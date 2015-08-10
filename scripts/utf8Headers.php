@@ -1,3 +1,3 @@
 <?php
-header('Content-Type: text/html; charset=UTF-16');
+header('Content-Type: text/html; charset=UTF-8');
 ?>
