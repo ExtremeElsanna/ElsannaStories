@@ -34,7 +34,7 @@
 	$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':joindate', $joinDate, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	//$stmt->execute();
-	echo "Inserting user : ".$user." - hash : ".$hash." - salt : ".$salt." - email : ".$email." - join date : ".$joinDate."<br>";
+	echo "Inserting User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
 ?>
 	</body>
 </html>
