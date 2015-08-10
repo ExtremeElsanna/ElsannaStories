@@ -149,11 +149,11 @@ foreach ($rows as $row) {
 	$story[] = $row['Deleted'];
 	$story[] = 1;
 	$newStories[] = $story;
-	print_r($story);
-	echo '<br>';
+	//print_r($story);
+	//echo '<br>';
+	echo 'INSERT INTO Stories (Title, Author, SiteAuthor, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Incest, Age, SmutLevel, Host, Url, DateAdded, DatePublised, Visible, Moderated) VALUES ("'.$story[0].'","'.$story[1].'",'.$story[2].','.$story[3].',"'.$story[4].'","'.$story[5].'","'.$story[6].'","'.$story[7].'","'.$story[8].'","'.$story[9].'","'.$story[10].'","'.$story[11].'","'.$story[12].'","'.$story[13].'","'.$story[14].'","'.$story[15].'","'.$story[16].'","'.$story[17].'",'.$story[18].','.$story[19].');<br>';
 	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, SiteAuthor, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Incest, Age, SmutLevel, Host, Url, DateAdded, DatePublised, Visible, Moderated) VALUES ("'.$story[0].'","'.$story[1].'",'.$story[2].','.$story[3].',"'.$story[4].'","'.$story[5].'","'.$story[6].'","'.$story[7].'","'.$story[8].'","'.$story[9].'","'.$story[10].'","'.$story[11].'","'.$story[12].'","'.$story[13].'","'.$story[14].'","'.$story[15].'","'.$story[16].'","'.$story[17].'",'.$story[18].','.$story[19].');');
-	print_r($pdo->errorInfo());
-	echo '<br>';
+	//echo '<br>';
 	$stmt->execute();
 }
 ?>
