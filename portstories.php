@@ -131,7 +131,7 @@ foreach ($rows as $row) {
 			break;
 	}
 	
-	if ($row['Fanfiction'] != "") 
+	if ($row['Fanfiction'] != "")  {
 		$story[] = "FF";
 		$story[] = $row['Fanfiction'];
 	} elseif ($row['AO3'] != "") {
