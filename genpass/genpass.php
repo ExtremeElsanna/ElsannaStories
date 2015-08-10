@@ -8,9 +8,9 @@
 <?php
 	include("/hdd/database-config/config.php");
 	
-	echo $_POST['user']."<br>";
-	echo $_POST['password']."<br>";
-	echo $_POST['email']."<br>";
+	//echo $_POST['user']."<br>";
+	//echo $_POST['password']."<br>";
+	//echo $_POST['email']."<br>";
 	
 	$salt = mcrypt_create_iv($PsaltLength, $PsaltPattern);
 	$options = [
@@ -33,7 +33,8 @@
 	$stmt->bindParam(':salt', $salt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':joindate', $joinDate, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-	$stmt->execute();
+	//$stmt->execute();
+	echo "Inserting user : ".$user." - hash : ".$hash." - salt : ".$salt." - email : ".$email." - join date : ".$joinDate."<br>";
 ?>
 	</body>
 </html>
