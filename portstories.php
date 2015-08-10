@@ -6,6 +6,9 @@ $stmt = $pdo->prepare('SELECT * FROM _main');
 $stmt->execute();
 $rows = $stmt->fetchAll();
 $newStories = array();
+
+$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+
 foreach ($rows as $row) {
 	$story = array();
 	$story[] = $row['Title'];
@@ -143,13 +146,12 @@ foreach ($rows as $row) {
 	}
 	$story[] = $row['added'];
 	$story[] = $row['published'];
-	$story[] = 1;
+	$story[] = $row['Deleted'];
 	$story[] = 1;
 	$newStories[] = $story;
 	print_r($story);
 	echo '<br>';
+	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, SiteAuthor, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Incest, Age, SmutLevel, Host, Url, DateAdded, DatePublised, Visible, Moderated) VALUES ("'.$story[0].'","'.$story[1].'",'.$story[2].','.$story[3].',"'.$story[4].'","'.$story[5].'","'.$story[6].'","'.$story[7].'","'.$story[8].'","'.$story[9].'","'.$story[10].'","'.$story[11].'","'.$story[12].'","'.$story[13].'","'.$story[14].'","'.$story[15].'","'.$story[16].'","'.$story[17].'",'.$story[18].','.$story[19].');');
+	$stmt->execute();
 }
-
-//$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
-
 ?>
