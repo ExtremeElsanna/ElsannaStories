@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include("/hdd/database-config/config.php");
 $pdo = new PDO('mysql:host='.$DBhost.';dbname=fiction_database', $DBusername, $DBpassword);
 

@@ -1,4 +1,4 @@
-<?php include("/hdd/elsanna-ssl/scripts/utf8Headers.php"); ?>
+﻿<?php include("/hdd/elsanna-ssl/scripts/utf8Headers.php"); ?>
 <!DOCTYPE html>
 <html>
 	<head>
