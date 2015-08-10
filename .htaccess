@@ -1,5 +1,5 @@
-AuthUserFile /hdd/.htpasswd
-AuthGroupFile /dev/null
-AuthName "Please Enter Password"
-AuthType Basic
-Require user admin public
+#AuthUserFile /hdd/.htpasswd
+#AuthGroupFile /dev/null
+#AuthName "Please Enter Password"
+#AuthType Basic
+#Require user admin public
