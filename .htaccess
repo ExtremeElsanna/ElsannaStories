@@ -1,0 +1,6 @@
+Header set Content-Type "text/html; charset=UTF-8"
+AuthUserFile /hdd/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Please Enter Password"
+AuthType Basic
+Require user admin public
