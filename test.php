@@ -1,1 +1,4 @@
-﻿<?php echo "é"; ?>
+﻿<?php
+$letter = "é";
+echo $letter;
+?>

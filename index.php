@@ -12,7 +12,7 @@
 				include("/hdd/database-config/config.php");
 				$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
 
-				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
+				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories WHERE Id = 131');
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				foreach ($rows as $row) {
