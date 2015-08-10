@@ -11,6 +11,8 @@
 			<?php
 				include("/hdd/database-config/config.php");
 				$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+				$stmt = $pdo->prepare("SET NAMES 'utf8'");
+				$stmt->execute();
 
 				$id = $_GET['id'];
 				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id');

@@ -1,6 +1,8 @@
 ﻿<?php
 include("/hdd/database-config/config.php");
 $pdo = new PDO('mysql:host='.$DBhost.';dbname=fiction_database', $DBusername, $DBpassword);
+$stmt = $pdo->prepare("SET NAMES 'utf8'");
+$stmt->execute();
 
 $stmt = $pdo->prepare('SELECT * FROM _main');
 $stmt->execute();
@@ -8,6 +10,8 @@ $rows = $stmt->fetchAll();
 $newStories = array();
 
 $pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+$stmt = $pdo->prepare("SET NAMES 'utf8'");
+$stmt->execute();
 
 foreach ($rows as $row) {
 	$story = array();

@@ -27,6 +27,8 @@
 	$joinDate = date("Y-m-d");
 	
 	$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+	$stmt = $pdo->prepare("SET NAMES 'utf8'");
+	$stmt->execute();
 	$stmt = $pdo->prepare('INSERT INTO Users (Username, UpperUser, Hash, Salt, Email, DateJoined) VALUES (:user,:upperuser,:hash,:salt,:email,:joindate);');
 	$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':upperuser', $userUpper, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
