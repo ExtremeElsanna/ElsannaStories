@@ -14,7 +14,7 @@
 				$stmt = $pdo->prepare("SET NAMES 'utf8'");
 				$stmt->execute();
 				
-				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories WHERE Id = 131');
+				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				foreach ($rows as $row) {
