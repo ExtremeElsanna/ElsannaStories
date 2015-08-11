@@ -12,9 +12,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<table>
 			<?php
 				if ($_SESSION['loggedIn'] == 1) {
-					echo 'Hi '.$_SESSION['username']."!<br>";
+					echo 'Hi '.$_SESSION['username'].'! <a href="/logout/">Logout</a><br>';
 				} else {
-					echo 'Hi Guest!<br>';
+					echo 'Hi Guest! <a href="/login/">Login</a><br>';
 				}
 			?>
 			<tr><th>Title</th></tr>
