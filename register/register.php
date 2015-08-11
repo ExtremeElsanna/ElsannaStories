@@ -79,9 +79,9 @@
 	
 		echo "Email sent:<br>";
 		echo $body."<br>";
-		//if(!$mail->Send()) {
-		//  die( "Mailer Error: " . $mail->ErrorInfo);
-		//}
+		if(!$mail->Send()) {
+		  die( "Mailer Error: " . $mail->ErrorInfo);
+		}
 	}
 	
 	include("/hdd/config/config.php");
