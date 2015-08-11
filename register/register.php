@@ -86,13 +86,10 @@
 		}
 	}
 	
-	require_once('recaptchalib.php');
-	$privatekey = $config['RcaptchaPrivateKey'];
-	$resp = recaptcha_check_answer ($privatekey,
-									$_SERVER["REMOTE_ADDR"],
-									$_POST["recaptcha_challenge_field"],
-									$_POST["recaptcha_response_field"]);
-	if ($resp->is_valid) {
+	echo $_POST['g-recaptcha-response'];
+	$captcha = $_POST['g-recaptcha-response'];
+	$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$config['RcaptchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+	if ($response.success == true) {
 		//$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 		//$userId = generateUser($config,$pdo);
 		//$code = generateActivation($pdo, $userId);
