@@ -27,8 +27,7 @@
 		$stmt->execute();
 		$row = $stmt->fetch();
 		$userId = $row['Id'];
-		//echo "Inserting Account = ID : ".$userId." | User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
-		echo "Inserting Account = ID : ".$userId." | User : ".$user." | Email : ".$email." | Join Date : ".$joinDate."<br>";
+		//echo "Inserting Account = ID : ".$userId." | User : ".$user." | Email : ".$email." | Join Date : ".$joinDate."<br>";
 		return $userId;
 		
 	}
@@ -48,7 +47,7 @@
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':activationCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
-		echo "Inserting Activation Code = UserID : ".$userId." | Code : ".$code."<br>";
+		//echo "Inserting Activation Code = UserID : ".$userId." | Code : ".$code."<br>";
 		return $code;
 	}
 	
@@ -77,8 +76,8 @@
 
 		$mail->AddAddress($address, $name);
 	
-		echo "Email sent:<br>";
-		echo $body."<br>";
+		//echo "Email sent:<br>";
+		//echo $body."<br>";
 		if(!$mail->Send()) {
 		  die( "Mailer Error: " . $mail->ErrorInfo);
 		}
