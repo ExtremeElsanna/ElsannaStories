@@ -9,7 +9,7 @@
 		$stmt->bindParam(':code', $_GET['code'], PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		$row = $stmt->fetch();
-		$userId = $row['Id'];
+		$userId = $row['UserId'];
 		
 		echo 'Activating Account UserId: '.$userId;
 	}
