@@ -7,7 +7,7 @@
 	$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 	
 	echo $upperUser."<br>";
-	$stmt = $pdo->prepare('SELECT Id,User,Hash,Salt,Activated FROM Users WHERE UpperUser = :upperUser');
+	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,Activated FROM Users WHERE UpperUser = :upperUser');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
