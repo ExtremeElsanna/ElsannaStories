@@ -89,7 +89,7 @@
 	echo $_POST['g-recaptcha-response'];
 	$captcha = $_POST['g-recaptcha-response'];
 	$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$config['RcaptchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
-	print_r($response);
+	print_r(json_decode ( $response));
 	if ($response.success == true) {
 		//$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 		//$userId = generateUser($config,$pdo);
