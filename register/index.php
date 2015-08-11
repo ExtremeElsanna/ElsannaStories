@@ -14,6 +14,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="password" name="password" value="" placeholder="Password">
 			<input type="text" name="email" value="" placeholder="Email">
 			<input type="submit" name="submit" value="Register">
-		</form>
+		</form><br>
+		<a href="/">Home</a>
 	</body>
 </html>

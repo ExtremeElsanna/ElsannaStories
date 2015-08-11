@@ -13,7 +13,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
 			<input type="submit" name="submit" value="Login">
-		</form>
-		<a href="/register/">Register</a>
+		</form><br>
+		<a href="/">Home</a> <a href="/register/">Register</a>
 	</body>
 </html>
