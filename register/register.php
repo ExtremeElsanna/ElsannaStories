@@ -13,10 +13,10 @@
 													// 2 = messages only
 		$mail->SMTPAuth   = true;                   // enable SMTP authentication
 		$mail->SMTPSecure = "";                  // sets the prefix to the server
-		$mail->Host       = $config['Ehost'];        // sets hotmail as the SMTP server
-		$mail->Port       = $config['EsmtpPort'];                    // set the SMTP port for the hotmail server
-		$mail->Username   = "no-reply@".$config['Edomain'];      // hotmail username
-		$mail->Password   = $config['EnoReplyPass'];           // hotmail password
+		$mail->Host       = $config['Ehost'];        // sets the SMTP server
+		$mail->Port       = $config['EsmtpPort'];                    // set the SMTP port
+		$mail->Username   = "no-reply@".$config['Edomain'];      // username
+		$mail->Password   = $config['EnoReplyPass'];           // password
 		$mail->SetFrom('no-reply@'.$config['Edomain'], 'No-Reply');
 		$mail->AddReplyTo('no-reply@'.$config['Edomain'],'No-Reply');
 		$mail->Subject    = $subject;
