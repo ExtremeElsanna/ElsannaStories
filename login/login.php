@@ -28,22 +28,18 @@
 				$_SESSION['loggedIn'] = 1;
 				$_SESSION['userId'] = $userId;
 				$_SESSION['username'] = $user;
-				echo "1";
-				//header("Location: /");
+				header("Location: /");
 				die();
-			} else {	
-				echo "2";		
-				//header("Location: /login/");
+			} else {
+				header("Location: /login/");
 				die();
 			}
 		} else {
-			echo "3";
-			//header("Location: /login/");
+			header("Location: /login/");
 			die();
 		}
 	} else {
-		echo "4";
-		//header("Location: /login/");
+		header("Location: /login/");
 		die();
 	}
 ?>
