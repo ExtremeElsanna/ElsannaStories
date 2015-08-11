@@ -3,7 +3,7 @@
 		$salt = generateCode($config['PsaltLength']);
 		$options = [
 			'cost' => $config['PsaltCost'],
-			'salt' => $salt,
+			'salt' => $salt.$config['Ppepper'],
 		];
 		$hash = password_hash($_POST['password'], $config['PhashPattern'], $options);
 		
@@ -91,6 +91,6 @@
 	$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
 	$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
 	sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
-	header("Location: /login/");
+	//header("Location: /login/");
 	die();
 ?>
