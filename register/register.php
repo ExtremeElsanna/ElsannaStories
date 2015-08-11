@@ -24,7 +24,7 @@
 		
 		$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-		$stmt->execute();
+		//$stmt->execute();
 		$row = $stmt->fetch();
 		$userId = $row['Id'];
 		echo "Inserting Account = ID : ".$userId." | User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
@@ -48,6 +48,7 @@
 		$stmt->bindParam(':activationCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		//$stmt->execute();
 		echo "Inserting Activation Code = UserID : ".$userId." | Code : ".$code."<br>";
+		return $code;
 	}
 	
 	function sendEmail($config,$subject,$address,$name,$body) {
@@ -75,7 +76,8 @@
 
 		$mail->AddAddress($address, $name);
 	
-		echo "Email sent<br>";
+		echo "Email sent:<br>";
+		echo $body."<br>";
 		//if(!$mail->Send()) {
 		//  die( "Mailer Error: " . $mail->ErrorInfo);
 		//}
@@ -87,8 +89,8 @@
 	$stmt->execute();
 	
 	$userId = generateUser($config,$pdo);
-	generateActivation($pdo, $userId);
-	sendEmail($config,"Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
-	//"www.elsannastories.com: ".$_POST['user']." Account Activation";
-	//$_POST['fname']." ".$_POST['sname']
+	$code = generateActivation($pdo, $userId);
+	$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
+	$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')))
+	sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
 ?>
