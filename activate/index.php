@@ -17,7 +17,7 @@
 		$stmt->execute();
 		
 		$stmt = $pdo->prepare('DELETE FROM AccountActivation WHERE AccountActivationId = :id');
-		$stmt->bindParam(':id', activationId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':id', $activationId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		
 		
