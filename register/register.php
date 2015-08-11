@@ -24,7 +24,7 @@
 		
 		$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-		//$stmt->execute();
+		$stmt->execute();
 		$row = $stmt->fetch();
 		$userId = $row['Id'];
 		//echo "Inserting Account = ID : ".$userId." | User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
@@ -47,7 +47,7 @@
 		$stmt = $pdo->prepare('INSERT INTO AccountActivation (UserId, ActivationCode) VALUES (:userId, :activationCode);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':activationCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-		//$stmt->execute();
+		$stmt->execute();
 		echo "Inserting Activation Code = UserID : ".$userId." | Code : ".$code."<br>";
 		return $code;
 	}
