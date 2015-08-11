@@ -7,18 +7,18 @@
 	</head>
 	<body>
 <?php
-	include("/hdd/database-config/config.php");
+	include("/hdd/config/config.php");
 	
 	//echo $_POST['user']."<br>";
 	//echo $_POST['password']."<br>";
 	//echo $_POST['email']."<br>";
 	
-	$salt = mcrypt_create_iv($PsaltLength, $PsaltPattern);
+	$salt = mcrypt_create_iv($config['PsaltLength'], $config['PsaltPattern']);
 	$options = [
-		'cost' => $PsaltCost,
+		'cost' => $config['PsaltCost'],
 		'salt' => $salt,
 	];
-	$hash = password_hash($_POST['password'], $PhashPattern, $options);
+	$hash = password_hash($_POST['password'], $config['PhashPattern'], $options);
 	
 	$user = $_POST['user'];
 	$userUpper = mb_strtoupper($_POST['user'], 'UTF-8');
@@ -26,7 +26,7 @@
 	date_default_timezone_set('UTC');
 	$joinDate = date("Y-m-d");
 	
-	$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword']);
 	$stmt = $pdo->prepare("SET NAMES 'utf8'");
 	$stmt->execute();
 	$stmt = $pdo->prepare('INSERT INTO Users (Username, UpperUser, Hash, Salt, Email, DateJoined) VALUES (:user,:upperuser,:hash,:salt,:email,:joindate);');

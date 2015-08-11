@@ -1,5 +1,5 @@
 <?php
-	include("/hdd/database-config/config.php");
+	include("/hdd/config/config.php");
 	
 	function sendEmail($subject,$address,$name,$body) {
 		require_once('/hdd/elsanna-ssl/PHPMailer/PHPMailerAutoload.php');
@@ -14,12 +14,12 @@
 													// 2 = messages only
 		$mail->SMTPAuth   = true;                   // enable SMTP authentication
 		$mail->SMTPSecure = "";                  // sets the prefix to the server
-		$mail->Host       = $Ehost;        // sets hotmail as the SMTP server
-		$mail->Port       = $EsmtpPort;                    // set the SMTP port for the hotmail server
-		$mail->Username   = "no-reply@".$Edomain;      // hotmail username
-		$mail->Password   = $EnoReplyPass;           // hotmail password
-		$mail->SetFrom('no-reply@'.$Edomain, 'No-Reply');
-		$mail->AddReplyTo('no-reply@'.$Edomain,'No-Reply');
+		$mail->Host       = $config['Ehost'];        // sets hotmail as the SMTP server
+		$mail->Port       = $config['EsmtpPort'];                    // set the SMTP port for the hotmail server
+		$mail->Username   = "no-reply@".$config['Edomain'];      // hotmail username
+		$mail->Password   = $config['EnoReplyPass'];           // hotmail password
+		$mail->SetFrom('no-reply@'.$config['Edomain'], 'No-Reply');
+		$mail->AddReplyTo('no-reply@'.$config['Edomain'],'No-Reply');
 		$mail->Subject    = $subject;
 		//$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 		$mail->MsgHTML($body);
@@ -31,7 +31,7 @@
 		}
 	}
 	
-	sendEmail("Test Email",$EtestAddress,"Forename Surname","Body of email");
+	sendEmail("Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
 	//"www.elsannastories.com: ".$_POST['user']." Account Activation";
 	//$_POST['fname']." ".$_POST['sname']
 ?>

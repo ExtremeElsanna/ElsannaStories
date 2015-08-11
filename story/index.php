@@ -9,8 +9,8 @@
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Site Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Incest</th><th>Age</th><th>Smut Level</th><th>Host</th><th>Url</th><th>Date Added</th><th>Date Published</th><th>Visible</th><th>Moderated</th></tr>
 			<?php
-				include("/hdd/database-config/config.php");
-				$pdo = new PDO('mysql:host='.$DBhost.';dbname='.$DBname, $DBusername, $DBpassword);
+				include("/hdd/config/config.php");
+				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword']);
 				$stmt = $pdo->prepare("SET NAMES 'utf8'");
 				$stmt->execute();
 
