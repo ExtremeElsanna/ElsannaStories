@@ -6,13 +6,13 @@
 	
 	$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 	
-	echo $upperUser."<br>";
+	//echo $upperUser."<br>";
 	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,Activated FROM Users WHERE UpperUser = :upperUser');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	$userId = $row['Id'];
-	$user = $row['User'];
+	$user = $row['Username'];
 	$hash = $row['Hash'];
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
