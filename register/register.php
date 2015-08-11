@@ -1,6 +1,6 @@
 <?php
 	function generateUser($config,$pdo) {		
-		$salt = mcrypt_create_iv($config['PsaltLength'], $config['PsaltPattern']);
+		$salt = generateCode($config['PsaltLength']);
 		$options = [
 			'cost' => $config['PsaltCost'],
 			'salt' => $salt,
@@ -32,18 +32,22 @@
 		
 	}
 	
-	function generateActivation($pdo, $userId, $length) {
+	function generateCode($length) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {
 			$code .= $characters[rand(0, strlen($characters) - 1)];
 		}
+		return $code;
+	}
+	
+	function generateActivation($pdo, $userId) {
+		$code = generateCode(20);
 		$stmt = $pdo->prepare('INSERT INTO AccountActivation (UserId, ActivationCode) VALUES (:userId, :activationCode);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':activationCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		//$stmt->execute();
 		echo "Inserting Activation Code = UserID : ".$userId." | Code : ".$code."<br>";
-		return $code;
 	}
 	
 	function sendEmail($config,$subject,$address,$name,$body) {
@@ -83,7 +87,7 @@
 	$stmt->execute();
 	
 	$userId = generateUser($config,$pdo);
-	$code = generateActivation($pdo, $userId,20);
+	generateActivation($pdo, $userId);
 	sendEmail($config,"Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
 	//"www.elsannastories.com: ".$_POST['user']." Account Activation";
 	//$_POST['fname']." ".$_POST['sname']
