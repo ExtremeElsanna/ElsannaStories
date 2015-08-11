@@ -90,15 +90,17 @@
 	$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$config['RcaptchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	$googleResponse = json_decode($response, true);
 	if ($googleResponse['success'] == 1) {
-		//$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-		//$userId = generateUser($config,$pdo);
-		//$code = generateActivation($pdo, $userId);
-		//$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
-		//$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
-		//sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
+		# ReCaptcha correct
+		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		$userId = generateUser($config,$pdo);
+		$code = generateActivation($pdo, $userId);
+		$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
+		$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
+		sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
 		header("Location: /login/");
 		die();
 	} else {
+		# ReCaptcha wrong
 		header("Location: /register/");
 		die();
 	}

@@ -23,28 +23,34 @@
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
 	if ($userId != "") {
+		# Correct username
 		if ($activated == 1) {
+			# Account activated
 			$options = [
 					'cost' => $config['PsaltCost'],
 					'salt' => $salt.$config['Ppepper'],
 				];
 			$newHash = password_hash($_POST['password'], $config['PhashPattern'], $options);
 			
-			if ($newHash == $hash) {		
+			if ($newHash == $hash) {
+				# Password correct
 				$_SESSION['loggedIn'] = 1;
 				$_SESSION['userId'] = $userId;
 				$_SESSION['username'] = $user;
 				header("Location: /");
 				die();
 			} else {
+				# Password wrong
 				header("Location: /login/");
 				die();
 			}
 		} else {
+			# Account not activated
 			header("Location: /login/");
 			die();
 		}
 	} else {
+		# Wrong username
 		header("Location: /login/");
 		die();
 	}
