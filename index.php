@@ -1,4 +1,7 @@
-﻿<?php include("/hdd/elsanna-ssl/scripts/utf8Headers.php"); ?>
+﻿<?php
+include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +10,13 @@
 	</head>
 	<body>
 		<table>
+			<?php
+				if ($_SESSION['loggedIn'] == 1) {
+					echo 'Hi '.$_SESSION['username']."!<br>";
+				} else {
+					echo 'Hi Guest!<br>';
+				}
+			?>
 			<tr><th>Title</th></tr>
 			<?php
 				include("/hdd/config/config.php");

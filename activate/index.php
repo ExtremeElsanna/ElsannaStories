@@ -1,4 +1,6 @@
 <?php
+	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+	
 	include("/hdd/config/config.php");
 	if (isset($_GET['code'])) {
 		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
