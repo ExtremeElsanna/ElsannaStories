@@ -27,7 +27,8 @@
 		//$stmt->execute();
 		$row = $stmt->fetch();
 		$userId = $row['Id'];
-		echo "Inserting Account = ID : ".$userId." | User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
+		//echo "Inserting Account = ID : ".$userId." | User : ".$user." | Hash : ".$hash." | Salt : ".$salt." | Email : ".$email." | Join Date : ".$joinDate."<br>";
+		echo "Inserting Account = ID : ".$userId." | User : ".$user." | Email : ".$email." | Join Date : ".$joinDate."<br>";
 		return $userId;
 		
 	}
