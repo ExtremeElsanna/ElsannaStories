@@ -13,8 +13,11 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
 			<input type="text" name="email" value="" placeholder="Email">
+			<?php
+				include("recaptcha.php")
+			?>
 			<input type="submit" name="submit" value="Register">
-		</form><br>
-		<a href="/">Home</a>
+		</form>
+		<br><a href="/">Home</a>
 	</body>
 </html>
