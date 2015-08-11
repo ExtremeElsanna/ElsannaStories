@@ -32,7 +32,7 @@
 		
 	}
 	
-	function generateActivation($pdo, $userId) {
+	function generateActivation($pdo, $userId, $length) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {
@@ -83,7 +83,7 @@
 	$stmt->execute();
 	
 	$userId = generateUser($config,$pdo);
-	$code = generateActivation($pdo, $userId);
+	$code = generateActivation($pdo, $userId,20);
 	sendEmail($config,"Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
 	//"www.elsannastories.com: ".$_POST['user']." Account Activation";
 	//$_POST['fname']." ".$_POST['sname']
