@@ -11,6 +11,10 @@
 		$row = $stmt->fetch();
 		$userId = $row['UserId'];
 		
-		echo 'Activating Account UserId: '.$userId;
+		$stmt = $pdo->prepare('UPDATE Users SET Activated = 1 WHERE Id = :id');
+		$stmt->bindParam(':id', $userId, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+		$stmt->execute();
+		
+		echo 'Activated Account UserId: '.$userId;
 	}
 ?>
