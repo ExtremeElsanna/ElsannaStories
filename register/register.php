@@ -84,9 +84,7 @@
 	}
 	
 	include("/hdd/config/config.php");
-	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword']);
-	$stmt = $pdo->prepare("SET NAMES 'utf8'");
-	$stmt->execute();
+	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	
 	$userId = generateUser($config,$pdo);
 	$code = generateActivation($pdo, $userId);

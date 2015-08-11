@@ -10,9 +10,7 @@
 			<tr><th>Title</th></tr>
 			<?php
 				include("/hdd/config/config.php");
-				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword']);
-				$stmt = $pdo->prepare("SET NAMES 'utf8'");
-				$stmt->execute();
+				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 				
 				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
 				$stmt->execute();

@@ -1,17 +1,13 @@
 ﻿<?php
 include("/hdd/config/config.php");
-$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname=fiction_database', $config['DBusername'], $config['DBpassword']);
-$stmt = $pdo->prepare("SET NAMES 'utf8'");
-$stmt->execute();
+$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname=fiction_database', $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
 $stmt = $pdo->prepare('SELECT * FROM _main');
 $stmt->execute();
 $rows = $stmt->fetchAll();
 $newStories = array();
 
-$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword']);
-$stmt = $pdo->prepare("SET NAMES 'utf8'");
-$stmt->execute();
+$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
 foreach ($rows as $row) {
 	$story = array();
