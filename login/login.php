@@ -6,6 +6,7 @@
 	
 	$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 	
+	echo $upperUser."<br>";
 	$stmt = $pdo->prepare('SELECT Id,User,Hash,Salt,Activated FROM Users WHERE UpperUser = :upperUser');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
@@ -15,7 +16,6 @@
 	$hash = $row['Hash'];
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
-	echo $userId."<br>";
 	if ($userId != "") {
 		if ($activated == 1) {
 			$options = [
