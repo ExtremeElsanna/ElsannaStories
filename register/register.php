@@ -1,7 +1,6 @@
 <?php
-	include("/hdd/config/config.php");
 	
-	function sendEmail($subject,$address,$name,$body) {
+	function sendEmail($config,$subject,$address,$name,$body) {
 		require_once('/hdd/elsanna-ssl/PHPMailer/PHPMailerAutoload.php');
 
 		$mail             = new PHPMailer();
@@ -31,7 +30,8 @@
 		}
 	}
 	
-	sendEmail("Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
+	include("/hdd/config/config.php");
+	sendEmail($config,"Test Email",$config['EtestAddress'],"Forename Surname","Body of email");
 	//"www.elsannastories.com: ".$_POST['user']." Account Activation";
 	//$_POST['fname']." ".$_POST['sname']
 ?>
