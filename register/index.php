@@ -1,6 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/config/config.php");
 ?>
 <!DOCTYPE html>
 <html>
