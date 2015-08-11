@@ -10,7 +10,7 @@
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
 			<input type="text" name="email" value="" placeholder="Email">
-			<input type="submit" name="submit" value="Login">
+			<input type="submit" name="submit" value="Register">
 		</form>
 	</body>
 </html>
