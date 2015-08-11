@@ -15,6 +15,7 @@
 	$hash = $row['Hash'];
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
+	echo $userId."<br>";
 	if ($userId != "") {
 		if ($activated == 1) {
 			$options = [
