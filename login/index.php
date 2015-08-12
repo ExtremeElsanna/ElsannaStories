@@ -16,8 +16,12 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			echo '<br>';
 			print_r($_SERVER['HTTP_REFERER']);
 			echo '<br>';
+			print_r(mb_substr($_SERVER['HTTP_REFERER'], 8, null, 'UTF-8'));
+			echo '<br>';
+			print_r(mb_strlen($_SERVER['HTTP_HOST'], 'UTF-8'));
+			echo '<br>';
 			if ($_SERVER['HTTPS'] == "on") {
-				$referer = mb_substr(mb_substr($_SERVER['HTTP_REFERER'], 8, null, 'UTF-8'), mb_strlen($_SERVER['HTTP_HOST'], 'UTF-8')-1, null, 'UTF-8');
+				$referer = mb_substr(mb_substr($_SERVER['HTTP_REFERER'], 8, null, 'UTF-8'), mb_strlen($_SERVER['HTTP_HOST'], 'UTF-8'), null, 'UTF-8');
 				echo substr($referer, 4)."<br>";
 			}
 		?>
