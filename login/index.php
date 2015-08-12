@@ -10,7 +10,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
-			print_r($_SERVER);
+			print_r($_SERVER['HTTP_HOST']);
+			echo '<br>';
+			print_r($_SERVER['HTTP_REFERER']);
 			echo '<br>';
 		?>
 		
