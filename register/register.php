@@ -105,14 +105,37 @@
 								# Username valid
 								if ($_POST['password'] == $_POST['password_confirm']) {
 									# Password valid
-									//$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-									//$userId = generateUser($config,$pdo);
-									//$code = generateActivation($pdo, $userId);
-									//$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
-									//$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
-									//sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
-									header("Location: /login/");
-									die();
+									$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
+									
+									$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
+									$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser');
+									$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+									$stmt->execute();
+									$row = $stmt->fetch();
+									if ($row['Id'] != "") {
+										$email = mb_strtoupper($_POST['email'], 'UTF-8');
+										$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email');
+										$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+										$stmt->execute();
+										$row = $stmt->fetch();
+										if ($row['Id'] != "") {
+											//$userId = generateUser($config,$pdo);
+											//$code = generateActivation($pdo, $userId);
+											//$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
+											//$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
+											//sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
+											header("Location: /login/");
+											die();
+										else {
+											# Email already exists
+											header("Location: /register/");
+											die();
+										}
+									} else {
+										# Username already exists
+										header("Location: /register/");
+										die();
+									}
 								} else {
 									# Password is not equal to Confirmation Password
 									header("Location: /register/");
