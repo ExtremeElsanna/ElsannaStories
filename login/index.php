@@ -9,23 +9,16 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
-			print_r($_SERVER['HTTPS']);
-			echo '<br>';
-			print_r($_SERVER['HTTP_HOST']);
-			echo '<br>';
-			print_r($_SERVER['HTTP_REFERER']);
-			echo '<br>';
-			if ($_SERVER['HTTPS'] == "on") {
-				$referer = mb_substr(mb_substr($_SERVER['HTTP_REFERER'], 8, null, 'UTF-8'), mb_strlen($_SERVER['HTTP_HOST'], 'UTF-8'), null, 'UTF-8');
-				echo $referer."<br>";
-			}
-		?>
-		
 		<a href="/">Home</a> <a href="/register/">Register</a><br>
 		<form action="login.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
+			<?php
+				if (isset($_GET['refer'])) {
+					echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
+				}
+			?>
+			
 			<input type="submit" name="submit" value="Login">
 		</form>
 	</body>
