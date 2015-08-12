@@ -101,9 +101,9 @@
 						# Password <= 20 chars
 						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 							# Email valid
-							if ($_POST['user'] == "Guest" or $_POST['user'] == "guest") {
+							if ($_POST['user'] != "Guest" and $_POST['user'] != "guest") {
 								# Username valid
-								if ($_POST['password'] != $_POST['password_confirm']) {
+								if ($_POST['password'] == $_POST['password_confirm']) {
 									# Password valid
 									//$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 									//$userId = generateUser($config,$pdo);
