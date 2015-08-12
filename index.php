@@ -9,14 +9,15 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
+		<?php
+			if ($_SESSION['loggedIn'] == 1) {
+				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/">Logout</a><br>';
+			} else {
+				echo 'Hi Guest! <a href="/login/?refer=/">Login</a><br>';
+			}
+		?>
+		
 		<table>
-			<?php
-				if ($_SESSION['loggedIn'] == 1) {
-					echo 'Hi '.$_SESSION['username'].'! <a href="/logout/">Logout</a><br>';
-				} else {
-					echo 'Hi Guest! <a href="/login/">Login</a><br>';
-				}
-			?>
 			<tr><th>Title</th></tr>
 			<?php
 				include("/hdd/config/config.php");

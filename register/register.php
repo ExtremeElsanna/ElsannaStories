@@ -91,14 +91,86 @@
 	$googleResponse = json_decode($response, true);
 	if ($googleResponse['success'] == 1) {
 		# ReCaptcha correct
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-		$userId = generateUser($config,$pdo);
-		$code = generateActivation($pdo, $userId);
-		$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
-		$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
-		sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
-		header("Location: /login/");
-		die();
+		if (strlen($_POST['user']) >= 4) {
+			# Username >= 4 chars
+			if (strlen($_POST['user']) <= 25) {
+				# Username <= 25 chars
+				if (strlen($_POST['password']) >= 7) {
+					# Password >= 7 chars
+					if (strlen($_POST['password']) <= 20) {
+						# Password <= 20 chars
+						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+							# Email valid
+							if ($_POST['user'] != "Guest" and $_POST['user'] != "guest") {
+								# Username valid
+								if ($_POST['password'] == $_POST['password_confirm']) {
+									# Password valid
+									$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
+									
+									$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
+									$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser');
+									$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+									$stmt->execute();
+									$row = $stmt->fetch();
+									if ($row['Id'] == "") {
+										$email = mb_strtoupper($_POST['email'], 'UTF-8');
+										$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email');
+										$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+										$stmt->execute();
+										$row = $stmt->fetch();
+										if ($row['Id'] == "") {
+											$userId = generateUser($config,$pdo);
+											$code = generateActivation($pdo, $userId);
+											$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
+											$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
+											sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
+											header("Location: /login/");
+											die();
+										} else {
+											# Email already exists
+											header("Location: /register/");
+											die();
+										}
+									} else {
+										# Username already exists
+										header("Location: /register/");
+										die();
+									}
+								} else {
+									# Password is not equal to Confirmation Password
+									header("Location: /register/");
+									die();
+								}
+							} else {
+								# Username is Guest or guest
+								header("Location: /register/");
+								die();
+							}
+						} else {
+							# Email not valid
+							header("Location: /register/");
+							die();
+						}
+					} else {
+						# Password longer than 20 chars
+						header("Location: /register/");
+						die();
+					}
+				} else {
+					# Password shorter than 7 chars
+					header("Location: /register/");
+					die();
+				}
+			} else {
+				# Username longer than 25 chars
+				header("Location: /register/");
+				die();
+			}
+		} else {
+			# Username shorter than 4 chars
+			header("Location: /register/");
+			die();
+		}
 	} else {
 		# ReCaptcha wrong
 		header("Location: /register/");
