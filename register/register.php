@@ -91,13 +91,13 @@
 	$googleResponse = json_decode($response, true);
 	if ($googleResponse['success'] == 1) {
 		# ReCaptcha correct
-		if (strlen($_POST['user']) < 4) {
+		if (strlen($_POST['user']) >= 4) {
 			# Username >= 4 chars
-			if (strlen($_POST['user']) > 25) {
+			if (strlen($_POST['user']) <= 25) {
 				# Username <= 25 chars
-				if (strlen($_POST['password']) < 7) {
+				if (strlen($_POST['password']) >= 7) {
 					# Password >= 7 chars
-					if (strlen($_POST['password']) > 20) {
+					if (strlen($_POST['password']) <= 20) {
 						# Password <= 20 chars
 						if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 							# Email valid
