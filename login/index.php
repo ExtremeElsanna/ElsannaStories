@@ -9,6 +9,10 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
+		<?php
+			echo $_SERVER;
+		?>
+		
 		<a href="/">Home</a> <a href="/register/">Register</a><br>
 		<form action="login.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
