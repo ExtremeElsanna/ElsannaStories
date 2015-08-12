@@ -99,7 +99,7 @@
 					# Password >= 7 chars
 					if (strlen($_POST['password']) <= 20) {
 						# Password <= 20 chars
-						if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 							# Email valid
 							if ($_POST['user'] == "Guest" or $_POST['user'] == "guest") {
 								# Username valid
