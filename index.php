@@ -26,7 +26,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				foreach ($rows as $row) {
-					echo '<tr><td><a href="story/?id='.$row['Id'].'">'.$row['Title'].'</a></td></tr>\n';
+					echo '<tr><td><a href="story/?id='.$row['Id'].'">'.$row['Title'].'</a></td></tr>';
 				}
 			?>
 
