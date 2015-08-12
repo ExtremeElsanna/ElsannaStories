@@ -112,13 +112,13 @@
 									$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 									$stmt->execute();
 									$row = $stmt->fetch();
-									if ($row['Id'] != "") {
+									if ($row['Id'] == "") {
 										$email = mb_strtoupper($_POST['email'], 'UTF-8');
 										$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email');
 										$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 										$stmt->execute();
 										$row = $stmt->fetch();
-										if ($row['Id'] != "") {
+										if ($row['Id'] == "") {
 											//$userId = generateUser($config,$pdo);
 											//$code = generateActivation($pdo, $userId);
 											//$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
