@@ -10,7 +10,8 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
-			echo $_SERVER;
+			print_r($_SERVER);
+			echo '<br>';
 		?>
 		
 		<a href="/">Home</a> <a href="/register/">Register</a><br>
