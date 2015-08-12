@@ -37,7 +37,11 @@
 				$_SESSION['loggedIn'] = 1;
 				$_SESSION['userId'] = $userId;
 				$_SESSION['username'] = $user;
-				header("Location: /");
+				if (isset($_POST['refer'])) {
+					header("Location: ".$_POST['refer']);
+				} else {
+					header("Location: /");
+				}
 				die();
 			} else {
 				# Password wrong
