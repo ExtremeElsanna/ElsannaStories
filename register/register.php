@@ -126,7 +126,7 @@
 											//sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
 											header("Location: /login/");
 											die();
-										else {
+										} else {
 											# Email already exists
 											header("Location: /register/");
 											die();
