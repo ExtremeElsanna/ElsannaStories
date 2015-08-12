@@ -16,6 +16,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 				echo 'Hi Guest! <a href="/login/">Login</a><br>';
 			}
 		?>
+		
 		<table>
 			<tr><th>Title</th></tr>
 			<?php

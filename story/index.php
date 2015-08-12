@@ -17,6 +17,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 				echo 'Hi Guest! <a href="/login/">Login</a><br>';
 			}
 		?>
+		
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age</th><th>Smut Level</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
 			<?php
