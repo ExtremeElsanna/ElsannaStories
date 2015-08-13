@@ -25,13 +25,18 @@ include("/hdd/config/config.php");
 				$upperUser = mb_strtoupper($user, 'UTF-8');
 				
 				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-				$stmt = $pdo->prepare('SELECT Username FROM Users WHERE UpperUser = :upperUser');
+				$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE UpperUser = :upperUser');
 				$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$row = $stmt->fetch();
+				$userId = $row['Id'];
 				$user = $row['Username'];
-				if ($user != "") {
-					echo $user."'s profile!";
+				if ($userId != "") {
+					if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
+						echo "Welcome to your profile!";
+					} else {
+						echo $user."'s profile!";
+					}
 				} else {
 					header("Location: /");
 					die;
