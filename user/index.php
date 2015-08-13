@@ -10,7 +10,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
-			die;
+			print_r($_GET);
 		?>
 	</body>
 </html>
