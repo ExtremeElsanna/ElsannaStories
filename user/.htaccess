@@ -1,3 +1,3 @@
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !^/user/index\.php
-RewriteRule ^(.*)$ /user/index.php?$1 [L]
+RewriteRule ^(.*)$ /user/index.php?user=$1 [L]
