@@ -1,7 +1,9 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
-	
+	if (!isset($_POST['refer']) {
+		$_POST['refer'] = "/";
+	}
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	
 	$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
@@ -37,11 +39,7 @@
 				$_SESSION['loggedIn'] = 1;
 				$_SESSION['userId'] = $userId;
 				$_SESSION['username'] = $user;
-				if (isset($_POST['refer'])) {
-					header("Location: ".$_POST['refer']);
-				} else {
-					header("Location: /");
-				}
+				header("Location: ".$_POST['refer']);
 				die();
 			} else {
 				# Password wrong

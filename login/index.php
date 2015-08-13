@@ -1,6 +1,9 @@
 <?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+if (!isset($_GET['refer']) {
+	$_GET['refer'] = "/";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +17,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
 			<?php
-				if (isset($_GET['refer'])) {
-					echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
-				}
+				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
 			?>
 			
 			<input type="submit" name="submit" value="Login">
