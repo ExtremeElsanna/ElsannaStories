@@ -1,4 +1,4 @@
 <?php
-	$result = preg_match("/[^ABC]/i",$_GET['string']);
+	$result = preg_match("/(?:.*[^ABC].*)*/i",$_GET['string']);
 	echo $result;
 ?>
