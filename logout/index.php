@@ -10,6 +10,6 @@
 	if (!isset($_GET['refer'])) {
 		$_GET['refer'] = "/";
 	}
-	header("Location: ".$_POST['refer']);
+	header("Location: ".$_GET['refer']);
 	die();
 ?>
