@@ -1,4 +1,4 @@
 <?php
-	$result = preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$_GET['string']);
+	$result = preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\@\#\!\£\$\%\^\&\*\(\)].*)+/i",$_GET['string']);
 	echo $result;
 ?>
