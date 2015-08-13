@@ -11,7 +11,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	<body>
 		<?php
 			if ($_SESSION['loggedIn'] == 1) {
-				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/">Logout</a><br>';
+				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/?refer=/">Logout</a><br>';
 			} else {
 				echo 'Hi Guest! <a href="/login/?refer=/">Login</a><br>';
 			}
