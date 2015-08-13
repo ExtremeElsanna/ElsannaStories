@@ -1,7 +1,7 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
-	if (!isset($_POST['refer']) {
+	if (!isset($_POST['refer'])) {
 		$_POST['refer'] = "/";
 	}
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
