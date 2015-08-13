@@ -7,8 +7,8 @@
 	$_SESSION['userId'] = null;
 	$_SESSION['username'] = null;
 	
-	if (!isset($_POST['refer'])) {
-		$_POST['refer'] = "/";
+	if (!isset($_GET['refer'])) {
+		$_GET['refer'] = "/";
 	}
 	header("Location: ".$_POST['refer']);
 	die();
