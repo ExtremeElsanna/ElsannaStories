@@ -6,6 +6,10 @@
 	$_SESSION['loggedIn'] = 0;
 	$_SESSION['userId'] = null;
 	$_SESSION['username'] = null;
-	header("Location: /");
+	if (isset($_POST['refer'])) {
+		header("Location: ".$_POST['refer']);
+	} else {
+		header("Location: /");
+	}
 	die();
 ?>
