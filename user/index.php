@@ -10,6 +10,7 @@ include("/hdd/config/config.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
+		<a href="/">Home</a> <a href="/register/">Register</a><br>
 		<?php
 			if (isset($_GET['user'])) {
 				$user = $_GET['user'];
