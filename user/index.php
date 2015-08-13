@@ -10,7 +10,15 @@ include("/hdd/config/config.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<a href="/">Home</a> <a href="/register/">Register</a><br>
+		<a href="/">Home</a><br>
+		<?php
+			if ($_SESSION['loggedIn'] == 1) {
+				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/">Logout</a><br>';
+			} else {
+				echo 'Hi Guest! <a href="/login/">Login</a><br>';
+			}
+		?>
+		
 		<?php
 			if (isset($_GET['user'])) {
 				$user = $_GET['user'];
