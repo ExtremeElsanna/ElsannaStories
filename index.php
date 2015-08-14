@@ -37,7 +37,7 @@ function substri_count($haystack, $needle) {
 				}
 				$words = explode(" ",$_GET['search']);
 				$wordcount = count($words);
-				foreach ($rows as $row) {
+				foreach ($rows as $rowIndex => $row) {
 					$hitCounter = -1;
 					if ($_GET['search'] != "") {
 						$hitCounter = 0;
@@ -157,7 +157,7 @@ function substri_count($haystack, $needle) {
 						}
 					}
 					if ($hitCounter != 0) {
-						echo "<tr><td><a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
+						echo "<tr><td>".$rowIndex." - <a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
 					}
 				}
 			?>
