@@ -48,7 +48,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 	if ($i > 1) {
 		
 		for ($y = 1; $y < $i; $y++) {
-			echo "I'm here!";
 			$maxiterations = $wordcount-($i-1);
 			$hitCounts = 0;
 			$no_results_found = False;
@@ -72,6 +71,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 				$hitCounts = 0;
 			}
 			
+			echo "I'm here!";
 			// Second Part
 			$persplitcount = 0;
 			$split = "";
