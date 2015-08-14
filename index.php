@@ -5,6 +5,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 function substri_count($haystack, $needle) {
 	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
 }
+if (!isset($_GET['search'])) {
+	$_GET['search'] = "";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +17,11 @@ function substri_count($haystack, $needle) {
 	</head>
 	<body>
 		<?php
-			$headerRefer = '/';
+			if ($_GET['search'] != "") {
+				$headerRefer = '/?search='.$_GET['search'];
+			} else {
+				$headerRefer = '/';
+			}
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
@@ -30,9 +37,6 @@ function substri_count($haystack, $needle) {
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			$debug = False;
-			if (!isset($_GET['search'])) {
-				$_GET['search'] = "";
-			}
 			$words = explode(" ",$_GET['search']);
 			$wordcount = count($words);
 			$validStories = array();
