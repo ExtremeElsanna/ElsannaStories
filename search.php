@@ -46,9 +46,9 @@ for ($i = $wordcount; $i > 0; $i--) {
 		echo "Total ".$hitCounts;
 		echo "<br><br>";
 	}
-	array_push($queries,$query);
-	array_push($query_array,$hitCounts);
-	array_push($types,0);
+	//array_push($queries,$query);
+	//array_push($query_array,$hitCounts);
+	//array_push($types,0);
 	
 	// start non overlapping section
 	if ($i > 1) {
@@ -66,8 +66,9 @@ for ($i = $wordcount; $i > 0; $i--) {
 				$split = $split." ".$words[$x];
 			}
 			$split = substr($split,1);
-			$persplitcount = substri_count($multi_array[$counter][$infoComp],$split);
+			$persplitcount = substri_count($row[1],$split);
 			if ($debug == True) {
+				echo 'Query was: "'.$split.'"<br>';
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
 			if ($persplitcount == 0) {
@@ -86,8 +87,9 @@ for ($i = $wordcount; $i > 0; $i--) {
 				$split = $split." ".$words[$x];
 			}
 			$split = substr($split,1);
-			$persplitcount = substri_count($multi_array[$counter][$infoComp],$split);
+			$persplitcount = substri_count($row[1],$split);
 			if ($debug == True) {
+				echo 'Query was: "'.$split.'"<br>';
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
 			if ($persplitcount == 0) {
