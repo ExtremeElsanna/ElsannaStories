@@ -65,7 +65,7 @@ foreach ($rows as $row) {
 					$split = $split." ".$words[$x];
 				}
 				$split = substr($split,1);
-				$persplitcount = substri_count($row[1],$split);
+				$persplitcount = substri_count($row['Title'],$split);
 				if ($debug == True) {
 					echo '"'.$split.'" - '.$persplitcount." and ";
 				}
@@ -84,7 +84,7 @@ foreach ($rows as $row) {
 					$split = $split." ".$words[$x];
 				}
 				$split = substr($split,1);
-				$persplitcount = substri_count($row[1],$split);
+				$persplitcount = substri_count($row['Title'],$split);
 				if ($debug == True) {
 					echo '"'.$split.'" - '.$persplitcount." and ";
 				}
@@ -116,7 +116,7 @@ foreach ($rows as $row) {
 				$split = $split." ".$words[$y+$x];
 			}
 			$split = substr($split,1);
-			$persplitcount = substri_count($row[1],$split);
+			$persplitcount = substri_count($row['Title'],$split);
 			if ($debug == True) {
 				echo '"'.$split.'" - '.$persplitcount." or ";
 			}
