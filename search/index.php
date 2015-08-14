@@ -24,8 +24,8 @@ if (!isset($_POST['user'])) {
 				include("/hdd/config/config.php");
 				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 				
-				$username = $_POST['user'];
-				$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Username LIKE "%:username%";');
+				$username = "%".$_POST['user']."%";
+				$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Username LIKE :username;');
 				$stmt->bindParam(':username', $username, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
