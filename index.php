@@ -1,6 +1,10 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+
+function substri_count($haystack, $needle) {
+	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
+}
 ?>
 <!DOCTYPE html>
 <html>
