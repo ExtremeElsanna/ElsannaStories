@@ -28,7 +28,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		$split = substr($split,1);
 		$persplitcount = substri_count($row[1],$split);
 		if ($debug == True) {
-			echo '"'.$split.'" - '.$persplitcount;
+			echo '"'.$split.'" - '.$persplitcount." and ";
 		}
 		if ($persplitcount == 0) {
 			$no_results_found = True;
