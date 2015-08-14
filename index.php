@@ -157,7 +157,6 @@ function substri_count($haystack, $needle) {
 				}
 				if ($hitCounter != 0) {
 					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter));
-					echo "<tr><td>".$rowIndex." - <a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
 				}
 			}
 		?>
@@ -165,7 +164,7 @@ function substri_count($haystack, $needle) {
 			<tr><th>Title</th></tr>
 			<?php
 				foreach ($validStories as $story) {
-					print_r($story);
+					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a> - ".$story[1]."</td></tr>\n\t\t\t";
 				}
 			?>
 		</table>
