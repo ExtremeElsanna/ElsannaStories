@@ -22,39 +22,72 @@ function substri_count($haystack, $needle) {
 			<input type="text" name="search" value="" placeholder="Elsa, Canon, Princess...">
 			<input type="submit" value="Search">
 		</form>
-		<table>
-			<tr><th>Title</th></tr>
-			<?php
-				include("/hdd/config/config.php");
-				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-				
-				$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
-				$stmt->execute();
-				$rows = $stmt->fetchAll();
-				$debug = False;
-				if (!isset($_GET['search'])) {
-					$_GET['search'] = "";
-				}
-				$words = explode(" ",$_GET['search']);
-				$wordcount = count($words);
-				foreach ($rows as $rowIndex => $row) {
-					$hitCounter = -1;
-					if ($_GET['search'] != "") {
-						$hitCounter = 0;
-						if ($debug == True) {
-							echo $row[1]."<br><br>";
+		<?php
+			include("/hdd/config/config.php");
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			
+			$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
+			$stmt->execute();
+			$rows = $stmt->fetchAll();
+			$debug = False;
+			if (!isset($_GET['search'])) {
+				$_GET['search'] = "";
+			}
+			$words = explode(" ",$_GET['search']);
+			$wordcount = count($words);
+			$validStories = array();
+			foreach ($rows as $rowIndex => $row) {
+				$hitCounter = -1;
+				if ($_GET['search'] != "") {
+					$hitCounter = 0;
+					if ($debug == True) {
+						echo $row[1]."<br><br>";
+					}
+					for ($i = $wordcount; $i > 0; $i--) {
+						$maxiterations = $wordcount-($i-1);
+						$hitCounts = 0;
+						$no_results_found = False;
+						
+						// start overlapping section
+						for ($y = 0; $y < $maxiterations; $y++) {
+							$persplitcount = 0;
+							$split = "";
+							for ($x = 0; $x < $i; $x++) {
+								$split = $split." ".$words[$y+$x];
+							}
+							$split = substr($split,1);
+							$persplitcount = substri_count($row['Title'],$split);
+							if ($debug == True) {
+								echo '"'.$split.'" - '.$persplitcount." and ";
+							}
+							if ($persplitcount == 0) {
+								$no_results_found = True;
+							}
+							$hitCounts += $persplitcount;
+							if ($no_results_found == True) {
+								$hitCounts = 0;
+							}
 						}
-						for ($i = $wordcount; $i > 0; $i--) {
-							$maxiterations = $wordcount-($i-1);
-							$hitCounts = 0;
-							$no_results_found = False;
+						if ($debug == True) {
+							echo "<br>";
+							echo "Total ".$hitCounts;
+							echo "<br><br>";
+						}
+						$hitCounter += $hitCounts;
+						
+						// start non overlapping section
+						if ($i > 1) {
 							
-							// start overlapping section
-							for ($y = 0; $y < $maxiterations; $y++) {
+							for ($y = 1; $y < $i; $y++) {
+								$maxiterations = $wordcount-($i-1);
+								$hitCounts = 0;
+								$no_results_found = False;
+								
+								//First Part
 								$persplitcount = 0;
 								$split = "";
-								for ($x = 0; $x < $i; $x++) {
-									$split = $split." ".$words[$y+$x];
+								for ($x = 0; $x < $i-$y; $x++) {
+									$split = $split." ".$words[$x];
 								}
 								$split = substr($split,1);
 								$persplitcount = substri_count($row['Title'],$split);
@@ -68,97 +101,71 @@ function substri_count($haystack, $needle) {
 								if ($no_results_found == True) {
 									$hitCounts = 0;
 								}
-							}
-							if ($debug == True) {
-								echo "<br>";
-								echo "Total ".$hitCounts;
-								echo "<br><br>";
-							}
-							$hitCounter += $hitCounts;
-							
-							// start non overlapping section
-							if ($i > 1) {
 								
-								for ($y = 1; $y < $i; $y++) {
-									$maxiterations = $wordcount-($i-1);
-									$hitCounts = 0;
-									$no_results_found = False;
-									
-									//First Part
-									$persplitcount = 0;
-									$split = "";
-									for ($x = 0; $x < $i-$y; $x++) {
-										$split = $split." ".$words[$x];
-									}
-									$split = substr($split,1);
-									$persplitcount = substri_count($row['Title'],$split);
-									if ($debug == True) {
-										echo '"'.$split.'" - '.$persplitcount." and ";
-									}
-									if ($persplitcount == 0) {
-										$no_results_found = True;
-									}
-									$hitCounts += $persplitcount;
-									if ($no_results_found == True) {
-										$hitCounts = 0;
-									}
-									
-									// Second Part
-									$persplitcount = 0;
-									$split = "";
-									for ($x = $i-$y; $x < $i; $x++) {
-										$split = $split." ".$words[$x];
-									}
-									$split = substr($split,1);
-									$persplitcount = substri_count($row['Title'],$split);
-									if ($debug == True) {
-										echo '"'.$split.'" - '.$persplitcount." and ";
-									}
-									if ($persplitcount == 0) {
-										$no_results_found = True;
-									}
-									$hitCounts += $persplitcount;
-									if ($no_results_found == True) {
-										$hitCounts = 0;
-									}
-									
-									if ($debug == True) {
-										echo "<br>";
-										echo "Total ".$hitCounts;
-										echo "<br><br>";
-									}
-									$hitCounter += $hitCounts;
-								}
-							}
-						}
-						for ($i = $wordcount; $i > 0; $i--) {
-							$maxiterations = $wordcount-($i-1);
-							$hitCounts = 0;
-							for ($y = 0; $y < $maxiterations; $y++) {
+								// Second Part
 								$persplitcount = 0;
-								$no_results_found = False;
 								$split = "";
-								for ($x = 0; $x < $i; $x++) {
-									$split = $split." ".$words[$y+$x];
+								for ($x = $i-$y; $x < $i; $x++) {
+									$split = $split." ".$words[$x];
 								}
 								$split = substr($split,1);
 								$persplitcount = substri_count($row['Title'],$split);
 								if ($debug == True) {
-									echo '"'.$split.'" - '.$persplitcount." or ";
+									echo '"'.$split.'" - '.$persplitcount." and ";
+								}
+								if ($persplitcount == 0) {
+									$no_results_found = True;
 								}
 								$hitCounts += $persplitcount;
+								if ($no_results_found == True) {
+									$hitCounts = 0;
+								}
+								
+								if ($debug == True) {
+									echo "<br>";
+									echo "Total ".$hitCounts;
+									echo "<br><br>";
+								}
+								$hitCounter += $hitCounts;
 							}
-							if ($debug == True) {
-								echo "<br>";
-								echo "Total ".$hitCounts;
-								echo "<br><br>";
-							}
-							$hitCounter += $hitCounts;
 						}
 					}
-					if ($hitCounter != 0) {
-						echo "<tr><td>".$rowIndex." - <a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
+					for ($i = $wordcount; $i > 0; $i--) {
+						$maxiterations = $wordcount-($i-1);
+						$hitCounts = 0;
+						for ($y = 0; $y < $maxiterations; $y++) {
+							$persplitcount = 0;
+							$no_results_found = False;
+							$split = "";
+							for ($x = 0; $x < $i; $x++) {
+								$split = $split." ".$words[$y+$x];
+							}
+							$split = substr($split,1);
+							$persplitcount = substri_count($row['Title'],$split);
+							if ($debug == True) {
+								echo '"'.$split.'" - '.$persplitcount." or ";
+							}
+							$hitCounts += $persplitcount;
+						}
+						if ($debug == True) {
+							echo "<br>";
+							echo "Total ".$hitCounts;
+							echo "<br><br>";
+						}
+						$hitCounter += $hitCounts;
 					}
+				}
+				if ($hitCounter != 0) {
+					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter));
+					echo "<tr><td>".$rowIndex." - <a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
+				}
+			}
+		?>
+		<table>
+			<tr><th>Title</th></tr>
+			<?php
+				foreach ($validStories as $) {
+					print_r($story);
 				}
 			?>
 		</table>
