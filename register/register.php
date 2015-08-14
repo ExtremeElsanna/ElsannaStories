@@ -90,25 +90,25 @@
 	$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$config['RcaptchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	$googleResponse = json_decode($response, true);
 	if ($googleResponse['success'] == 1) {
-		# ReCaptcha correct
+		// ReCaptcha correct
 		if (strlen($_POST['user']) >= 4) {
-			# Username >= 4 chars
+			// Username >= 4 chars
 			if (strlen($_POST['user']) <= 25) {
-				# Username <= 25 chars
+				// Username <= 25 chars
 				if (strlen($_POST['password']) >= 7) {
-					# Password >= 7 chars
+					// Password >= 7 chars
 					if (strlen($_POST['password']) <= 20) {
-						# Password <= 20 chars
+						// Password <= 20 chars
 						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-							# Email valid
+							// Email valid
 							if ($_POST['user'] != "Guest" and $_POST['user'] != "guest") {
-								# Username valid
+								// Username valid
 								if ($_POST['password'] == $_POST['password_confirm']) {
-									# Password valid
+									// Password valid
 									if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$_POST['user']) == 0) {
-										# Username contains valid characters
+										// Username contains valid characters
 										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
-											# Password contains valid characters
+											// Password contains valid characters
 											$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
 											
 											$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
@@ -131,62 +131,62 @@
 													header("Location: /login/");
 													die();
 												} else {
-													# Email already exists
+													// Email already exists
 													header("Location: /register/");
 													die();
 												}
 											} else {
-												# Username already exists
+												// Username already exists
 												header("Location: /register/");
 												die();
 											}
 										} else {
-											# Password contains invalid characters
+											// Password contains invalid characters
 											header("Location: /register/");
 											die();
 										}
 									} else {
-										# Username contains invalid characters
+										// Username contains invalid characters
 										header("Location: /register/");
 										die();
 									}
 								} else {
-									# Password is not equal to Confirmation Password
+									// Password is not equal to Confirmation Password
 									header("Location: /register/");
 									die();
 								}
 							} else {
-								# Username is Guest or guest
+								// Username is Guest or guest
 								header("Location: /register/");
 								die();
 							}
 						} else {
-							# Email not valid
+							// Email not valid
 							header("Location: /register/");
 							die();
 						}
 					} else {
-						# Password longer than 20 chars
+						// Password longer than 20 chars
 						header("Location: /register/");
 						die();
 					}
 				} else {
-					# Password shorter than 7 chars
+					// Password shorter than 7 chars
 					header("Location: /register/");
 					die();
 				}
 			} else {
-				# Username longer than 25 chars
+				// Username longer than 25 chars
 				header("Location: /register/");
 				die();
 			}
 		} else {
-			# Username shorter than 4 chars
+			// Username shorter than 4 chars
 			header("Location: /register/");
 			die();
 		}
 	} else {
-		# ReCaptcha wrong
+		// ReCaptcha wrong
 		header("Location: /register/");
 		die();
 	}

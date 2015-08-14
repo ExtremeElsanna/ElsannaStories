@@ -1,0 +1,80 @@
+Search String
+e.g. "Even Longer Search String"
+
+Split size <= word_count(Search String)-1
+
+Split size 0
+Results Priority 1
+if title contains "Even Longer Search String"
+
+Split size 1
+Results Priority 2
+if title contains "Even Longer Search" and "String"
+if title contains "Even Longer" and "Search String"
+if title contains "Even" and "Longer Search String"
+
+Split size 1
+Results Priority 3
+if title contains "Even Longer"
+if title contains "Longer Search"
+if title contains "Search String"
+
+Split size 2
+Results Priority 3
+if title contains "Even Longer" and "Search" and "String"
+if title contains "Even" and "Longer Search" and "String"
+if title contains "Even" and "Longer" and "Search String"
+
+Split size 3
+Results Priority 4
+if title contains "Even" and "Longer"
+if title contains "Even" and "Search"
+if title contains "Even" and "String"
+if title contains "Longer" and "Search"
+if title contains "Longer" and "String"
+if title contains "Search" and "String"
+
+Split size 3
+Results Priority 5
+if title contains "Even"
+if title contains "Longer"
+if title contains "Search"
+if title contains "String"
+
+
+
+
+
+e.g. "Long Search String"
+
+Split size <= word_count(Search String)-1
+
+Split size 0
+Results Priority 1
+if title contains "Long Search String"
+
+Split size 1
+Results Priority 2
+if title contains "Long Search" and "String"
+if title contains "Long" and "Search String"
+
+Split size 1
+Results Priority 3
+if title contains "Long Search"
+if title contains "Search String"
+
+Split size 2
+Results Priority 3
+if title contains "Long" and "Search" and "String"
+
+Split size 2
+Results Priority 4
+if title contains "Long" and "Search"
+if title contains "Search" and "String"
+if title contains "Long" and "String"
+
+Split size 2
+Results Priority 5
+if title contains "Long"
+if title contains "Search"
+if title contains "String"
