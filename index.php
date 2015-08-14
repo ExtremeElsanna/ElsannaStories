@@ -32,10 +32,10 @@ function substri_count($haystack, $needle) {
 					$_GET['search'] = "";
 				}
 				$hitCounter = 0;
-				if ($_GET['search'] != "") {
-					$words = explode(" ",$_GET['search']);
-					$wordcount = count($words);
-					foreach ($rows as $row) {
+				$words = explode(" ",$_GET['search']);
+				$wordcount = count($words);
+				foreach ($rows as $row) {
+					if ($_GET['search'] != "") {
 						if ($debug == True) {
 							echo $row[1]."<br><br>";
 						}
