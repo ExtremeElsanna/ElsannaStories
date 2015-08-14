@@ -129,6 +129,6 @@ foreach ($rows as $row) {
 		}
 		$hitCounter += $hitCounts;
 	}
-	echo $hitCounter;
+	echo $hitCounter.'<br>';
 }
 ?>
