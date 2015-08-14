@@ -3,15 +3,15 @@ function substri_count($haystack, $needle) {
 	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
 }
 
-$dummySearch = $_GET['search'];
-$debug = False;
 $row = array(0 => 1,
 			 'Title' => $_GET['story']);
 $row2 = array(0 => 1,
 			  'Title' => $_GET['story2']);
 $rows = array(0 => $row,
 			  1 => $row2);
-$words = explode(" ",$dummySearch);
+			  
+$debug = False;
+$words = explode(" ",$_GET['search']);
 $wordcount = count($words);
 foreach ($rows as $row) {
 	$hitCounter = 0;
