@@ -18,6 +18,10 @@ function substri_count($haystack, $needle) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
+		<form action="/" method="get">
+			<input type="text" name="search" value="" placeholder="Elsa, Canon, Princess...">
+			<input type="submit" value="Search">
+		</form>
 		<table>
 			<tr><th>Title</th></tr>
 			<?php
