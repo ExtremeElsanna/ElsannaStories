@@ -163,6 +163,10 @@ function substri_count($haystack, $needle) {
 		<table>
 			<tr><th>Title</th></tr>
 			<?php
+				function custom_sort($a,$b) {
+					return $a[1]>$b[1];
+				}
+				
 				print_r($validStories);
 				echo '<br>';
 				$rowIds = array();
@@ -171,7 +175,7 @@ function substri_count($haystack, $needle) {
 					$rowIds[$key]  = $row[0];
 					$hitCounter[$key] = $row[1];
 				}
-				print(array_multisort($rowIds, SORT_ASC, $hitCounter, SORT_ASC, $validStories));
+				usort($validStories, "custom_sort");
 				print_r($validStories);
 			?>
 		</table>
