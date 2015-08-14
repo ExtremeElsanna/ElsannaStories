@@ -164,6 +164,7 @@ function substri_count($haystack, $needle) {
 			<tr><th>Title</th></tr>
 			<?php
 				print_r($validStories);
+				echo '<br>';
 				$rowIds = array();
 				$hitCounter = array();
 				foreach ($validStories as $key => $row) {
