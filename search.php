@@ -11,7 +11,7 @@ $row = array(0 => 1,
 $queryWords = explode(" ", $dummySearch);
 
 # For each 'split size' e.g. not splitting the query at all is 0 while splitting it once is 1. See search engine algorithm.txt
-for ($splitCount = 0; $i <= count($queryWords)-1; $i++) {
+for ($splitCount = 0; $splitCount <= count($queryWords)-1; $splitCount++) {
 	echo 'Making '.$splitCount.' splits!<br>';
 }
 ?>
