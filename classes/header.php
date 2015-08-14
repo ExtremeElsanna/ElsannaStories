@@ -4,7 +4,7 @@
 ?>
 <form action="/search/" method="get">
 	<input type="text" name="user" value="" placeholder="Username...">
-	<input type="submit" name="submit" value="Search">
+	<input type="submit" value="Search">
 </form>
 <?php
 	if (!isset($headerRefer)) {
