@@ -156,7 +156,7 @@ function substri_count($haystack, $needle) {
 					}
 				}
 				if ($hitCounter != 0) {
-					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter));
+					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter, 2 => $row['title']));
 				}
 			}
 		?>
@@ -164,7 +164,11 @@ function substri_count($haystack, $needle) {
 			<tr><th>Title</th></tr>
 			<?php
 				function custom_sort($a,$b) {
-					return $a[1]>$b[1];
+					if ($a[1] == $b[1]) {
+						return strcmp($a[2], $b[2]);
+					} else {
+						return $a[1]>$b[1];
+					}
 				}
 				
 				echo '<br>';
