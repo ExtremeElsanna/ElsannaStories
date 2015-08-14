@@ -28,6 +28,9 @@ function substri_count($haystack, $needle) {
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				$debug = False;
+				if (!isset($_GET['search'])) {
+					$_GET['search'] = "";
+				}
 				$words = explode(" ",$_GET['search']);
 				$wordcount = count($words);
 				$hitCounter = 0;
