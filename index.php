@@ -36,6 +36,10 @@ function substri_count($haystack, $needle) {
 			$words = explode(" ",$_GET['search']);
 			$wordcount = count($words);
 			$validStories = array();
+			$indexesToSearch = array(0 => "Title",
+									 1 => "Author",
+									 2 => "ElsaCharacter",
+									 3 => "AnnaCharacter");
 			foreach ($rows as $rowIndex => $row) {
 				$hitCounter = -1;
 				if ($_GET['search'] != "") {
@@ -56,7 +60,9 @@ function substri_count($haystack, $needle) {
 								$split = $split." ".$words[$y+$x];
 							}
 							$split = substr($split,1);
-							$persplitcount = substri_count($row['Title'],$split);
+							foreach ($indexesToSearch as $index) {
+								$persplitcount += substri_count($row[$index],$split);
+							}
 							if ($debug == True) {
 								echo '"'.$split.'" - '.$persplitcount." and ";
 							}
@@ -90,7 +96,9 @@ function substri_count($haystack, $needle) {
 									$split = $split." ".$words[$x];
 								}
 								$split = substr($split,1);
-								$persplitcount = substri_count($row['Title'],$split);
+								foreach ($indexesToSearch as $index) {
+									$persplitcount += substri_count($row[$index],$split);
+								}
 								if ($debug == True) {
 									echo '"'.$split.'" - '.$persplitcount." and ";
 								}
@@ -109,7 +117,9 @@ function substri_count($haystack, $needle) {
 									$split = $split." ".$words[$x];
 								}
 								$split = substr($split,1);
-								$persplitcount = substri_count($row['Title'],$split);
+								foreach ($indexesToSearch as $index) {
+									$persplitcount += substri_count($row[$index],$split);
+								}
 								if ($debug == True) {
 									echo '"'.$split.'" - '.$persplitcount." and ";
 								}
@@ -141,7 +151,9 @@ function substri_count($haystack, $needle) {
 								$split = $split." ".$words[$y+$x];
 							}
 							$split = substr($split,1);
-							$persplitcount = substri_count($row['Title'],$split);
+							foreach ($indexesToSearch as $index) {
+								$persplitcount += substri_count($row[$index],$split);
+							}
 							if ($debug == True) {
 								echo '"'.$split.'" - '.$persplitcount." or ";
 							}
@@ -180,7 +192,7 @@ function substri_count($haystack, $needle) {
 				}
 				usort($validStories, "custom_sort");
 				foreach ($validStories as $story) {
-					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a> - ".$story[1]."</td></tr>\n\t\t\t";
+					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n\t\t\t";
 				}
 			?>
 		</table>
