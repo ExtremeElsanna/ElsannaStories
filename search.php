@@ -29,8 +29,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		$split = substr($split,1);
 		$persplitcount = substri_count($row[1],$split);
 		if ($debug == True) {
-			echo 'Query was: "'.$split.'"<br>';
-			echo '"'.$split.'" - '.$persplitcount." and ";
+			echo '"'.$split.'" - '.$persplitcount;
 		}
 		if ($persplitcount == 0) {
 			$no_results_found = True;
@@ -68,7 +67,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 			$split = substr($split,1);
 			$persplitcount = substri_count($row[1],$split);
 			if ($debug == True) {
-				echo 'Query was: "'.$split.'"<br>';
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
 			if ($persplitcount == 0) {
@@ -89,7 +87,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 			$split = substr($split,1);
 			$persplitcount = substri_count($row[1],$split);
 			if ($debug == True) {
-				echo 'Query was: "'.$split.'"<br>';
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
 			if ($persplitcount == 0) {
@@ -106,9 +103,9 @@ for ($i = $wordcount; $i > 0; $i--) {
 				echo "Total ".$hitCounts;
 				echo "<br><br>";
 			}
-			array_push($queries,$query);
-			array_push($query_array,$hitCounts);
-			array_push($types,0);
+			//array_push($queries,$query);
+			//array_push($query_array,$hitCounts);
+			//array_push($types,0);
 		}
 	}
 }
