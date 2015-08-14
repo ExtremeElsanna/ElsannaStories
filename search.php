@@ -1,8 +1,12 @@
 <?php
+function substri_count($haystack, $needle) {
+	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8')));
+}
+
 $dummySearch = "Conceal";
 $debug = True;
 $row = array(0 => 1,
-			 1 => "Feel don't conceal");
+			 1 => "Test Conceal story");
 $words = explode(" ",$dummySearch);
 $wordcount = count($words);
 
@@ -22,6 +26,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		for ($x = 0; $x < $i; $x++) {
 			$split = $split." ".$words[$y+$x];
 		}
+		echo $split;
 		$split = substr($split,1);
 		$persplitcount = substri_count($multi_array[$counter][$infoComp],$split);
 		if ($debug == True) {
