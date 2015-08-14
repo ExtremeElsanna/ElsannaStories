@@ -9,7 +9,10 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
+		<?php
+			$headerRefer = '/';
+			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
 		
 		<table>
 			<tr><th>Title</th></tr>

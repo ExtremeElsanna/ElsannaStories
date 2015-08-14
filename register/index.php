@@ -11,7 +11,10 @@ include("/hdd/config/config.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
+		<?php
+			$headerRefer = '/register/';
+			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
 		
 		<form action="register.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">

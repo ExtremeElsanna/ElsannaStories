@@ -29,7 +29,10 @@ if (isset($_GET['user'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
+		<?php
+			$headerRefer = '/user/'.$user;
+			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
 		
 		<?php			
 			if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {

@@ -12,7 +12,10 @@ if (!isset($_GET['refer'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
+		<?php
+			$headerRefer = "/";
+			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
 		
 		<a href="/register/">Register</a><br>
 		<form action="login.php" method="post">
