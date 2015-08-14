@@ -15,7 +15,6 @@ if ($debug == True) {
 }
 for ($i = $wordcount; $i > 0; $i--) {
 	$maxiterations = $wordcount-($i-1);
-	$query = array();
 	$hitCounts = 0;
 	$no_results_found = False;
 	
@@ -34,7 +33,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 		if ($persplitcount == 0) {
 			$no_results_found = True;
 		}
-		array_push($query,$split);
 		$hitCounts += $persplitcount;
 		if ($no_results_found == True) {
 			$hitCounts = 0;
@@ -45,16 +43,12 @@ for ($i = $wordcount; $i > 0; $i--) {
 		echo "Total ".$hitCounts;
 		echo "<br><br>";
 	}
-	//array_push($queries,$query);
-	//array_push($query_array,$hitCounts);
-	//array_push($types,0);
 	
 	// start non overlapping section
 	if ($i > 1) {
 		
 		for ($y = 1; $y < $i; $y++) {
 			$maxiterations = $wordcount-($i-1);
-			$query = array();
 			$hitCounts = 0;
 			$no_results_found = False;
 			
@@ -72,7 +66,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 			if ($persplitcount == 0) {
 				$no_results_found = True;
 			}
-			array_push($query,$split);
 			$hitCounts += $persplitcount;
 			if ($no_results_found == True) {
 				$hitCounts = 0;
@@ -92,7 +85,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 			if ($persplitcount == 0) {
 				$no_results_found = True;
 			}
-			array_push($query,$split);
 			$hitCounts += $persplitcount;
 			if ($no_results_found == True) {
 				$hitCounts = 0;
@@ -103,9 +95,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 				echo "Total ".$hitCounts;
 				echo "<br><br>";
 			}
-			//array_push($queries,$query);
-			//array_push($query_array,$hitCounts);
-			//array_push($types,0);
 		}
 	}
 }
@@ -125,7 +114,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 		if ($debug == True) {
 			echo '"'.$split.'" - '.$persplitcount." or ";
 		}
-		array_push($query,$split);
 		$hitCounts += $persplitcount;
 	}
 	if ($debug == True) {
@@ -133,11 +121,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		echo "Total ".$hitCounts;
 		echo "<br><br>";
 	}
-	array_push($queries,$query);
-	array_push($query_array,$hitCounts);
-	array_push($types,1);
 }
-array_push($search_array,$query_array);
 if ($debug == True) {
 	echo "-----------------<br><br>";
 }
