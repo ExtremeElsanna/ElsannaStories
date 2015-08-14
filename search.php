@@ -1,7 +1,8 @@
 <?php
 $dummySearch = "Conceal";
 $debug = True;
-
+$row = array(0 => 1,
+			 1 => "Feel don't conceal");
 $words = explode(" ",$dummySearch);
 $wordcount = count($words);
 
