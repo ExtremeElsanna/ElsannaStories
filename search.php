@@ -3,7 +3,7 @@ function substri_count($haystack, $needle) {
 	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
 }
 
-$dummySearch = "Conceal";
+$dummySearch = $_GET['search'];
 $debug = True;
 $row = array(0 => 1,
 			 1 => "Test Conceal story");
