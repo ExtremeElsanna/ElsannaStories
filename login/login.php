@@ -43,17 +43,17 @@
 				die();
 			} else {
 				# Password wrong
-				header("Location: /login/");
+				header("Location: /login/?refer=".$_POST['refer']);
 				die();
 			}
 		} else {
 			# Account not activated
-			header("Location: /login/");
+			header("Location: /login/?refer=".$_POST['refer']);
 			die();
 		}
 	} else {
 		# Wrong username
-		header("Location: /login/");
+		header("Location: /login/?refer=".$_POST['refer']);
 		die();
 	}
 ?>
