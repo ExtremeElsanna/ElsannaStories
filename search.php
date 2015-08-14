@@ -1,6 +1,6 @@
 <?php
 function substri_count($haystack, $needle) {
-	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8')));
+	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
 }
 
 $dummySearch = "Conceal";
