@@ -26,7 +26,7 @@ function substri_count($haystack, $needle) {
 			include("/hdd/config/config.php");
 			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 			
-			$stmt = $pdo->prepare('SELECT Id,Title FROM Stories');
+			$stmt = $pdo->prepare('SELECT Id,Title,Author,ElsaCharacter,AnnaCharacter FROM Stories');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			$debug = False;
