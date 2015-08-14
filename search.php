@@ -6,7 +6,7 @@ function substri_count($haystack, $needle) {
 $dummySearch = $_GET['search'];
 $debug = True;
 $row = array(0 => 1,
-			 1 => "Test Conceal story");
+			 1 => $_GET['story']);
 $words = explode(" ",$dummySearch);
 $wordcount = count($words);
 
@@ -48,6 +48,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 	if ($i > 1) {
 		
 		for ($y = 1; $y < $i; $y++) {
+			echo "I'm here!";
 			$maxiterations = $wordcount-($i-1);
 			$hitCounts = 0;
 			$no_results_found = False;
