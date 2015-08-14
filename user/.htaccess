@@ -2,6 +2,7 @@ AuthUserFile /hdd/.htpasswd
 AuthGroupFile /dev/null
 AuthName "Please Enter Password"
 AuthType Basic
+
 Require user admin
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !^/user/index\.php
