@@ -100,7 +100,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 }
 for ($i = $wordcount; $i > 0; $i--) {
 	$maxiterations = $wordcount-($i-1);
-	$query = array();
 	$hitCounts = 0;
 	for ($y = 0; $y < $maxiterations; $y++) {
 		$persplitcount = 0;
@@ -110,7 +109,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 			$split = $split." ".$words[$y+$x];
 		}
 		$split = substr($split,1);
-		$persplitcount = substri_count($multi_array[$counter][$infoComp],$split);
+		$persplitcount = substri_count($row[1],$split);
 		if ($debug == True) {
 			echo '"'.$split.'" - '.$persplitcount." or ";
 		}
