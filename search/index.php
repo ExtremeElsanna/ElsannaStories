@@ -30,7 +30,7 @@ if (!isset($_POST['user'])) {
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				
-				print_r($rows);
+				print_r('SELECT Username FROM Users WHERE Username LIKE "'.$username.'";');
 				foreach ($rows as $row) {
 					echo '<tr><td><a href="/user/'.$row['Username'].'">'.$row['Username'].'</a></td></tr>';
 				}
