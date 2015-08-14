@@ -26,10 +26,10 @@ for ($i = $wordcount; $i > 0; $i--) {
 		for ($x = 0; $x < $i; $x++) {
 			$split = $split." ".$words[$y+$x];
 		}
-		echo $split;
 		$split = substr($split,1);
 		$persplitcount = substri_count($row[1],$split);
 		if ($debug == True) {
+			echo 'Query was: "'.$split.'"<br>';
 			echo '"'.$split.'" - '.$persplitcount." and ";
 		}
 		if ($persplitcount == 0) {
