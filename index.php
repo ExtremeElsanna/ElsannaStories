@@ -169,7 +169,7 @@ function substri_count($haystack, $needle) {
 					$rowIds[$key]  = $row[0];
 					$hitCounter[$key] = $row[1];
 				}
-				array_multisort($rowId, SORT_ASC, $hitCounter, SORT_ASC, $validStories);
+				array_multisort($rowIds, SORT_ASC, $hitCounter, SORT_ASC, $validStories);
 				foreach ($rowIds as $rowIdIndex => $rowId) {
 					echo "<tr><td><a href='/story/?id=".$rows[$rowId]['Id']."'>".$rows[$rowId]['Title']."</a> - ".$hitCounter[$rowIdIndex]."</td></tr>\n\t\t\t";
 				}
