@@ -171,7 +171,7 @@ function substri_count($haystack, $needle) {
 					$rowIds[$key]  = $row[0];
 					$hitCounter[$key] = $row[1];
 				}
-				array_multisort($rowIds, SORT_ASC, $hitCounter, SORT_ASC, $validStories);
+				print(array_multisort($rowIds, SORT_ASC, $hitCounter, SORT_ASC, $validStories));
 				print_r($validStories);
 			?>
 		</table>
