@@ -156,7 +156,7 @@ function substri_count($haystack, $needle) {
 					}
 				}
 				if ($hitCounter != 0) {
-					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter, 2 => $row['title']));
+					array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter, 2 => $row['Title']));
 				}
 			}
 		?>
