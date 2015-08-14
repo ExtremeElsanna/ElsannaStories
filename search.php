@@ -60,10 +60,11 @@ for ($i = $wordcount; $i > 0; $i--) {
 			}
 			$split = substr($split,1);
 			$persplitcount = substri_count($row[1],$split);
+			echo "I'm here!";
 			if ($debug == True) {
-				echo "I'm here!";
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
+			echo "I'm here!";
 			if ($persplitcount == 0) {
 				$no_results_found = True;
 			}
