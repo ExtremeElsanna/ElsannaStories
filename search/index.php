@@ -13,6 +13,11 @@ if (!isset($_POST['user'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
+		<?php
+			$headerRefer = '/';
+			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
+		
 		<table>
 			<tr><th>User</th></tr>
 			<?php
