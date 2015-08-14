@@ -4,7 +4,7 @@ function substri_count($haystack, $needle) {
 }
 
 $dummySearch = $_GET['search'];
-$debug = True;
+$debug = False;
 $row = array(0 => 1,
 			 1 => $_GET['story']);
 $row2 = array(0 => 1,
@@ -14,6 +14,7 @@ $rows = array(0 => $row,
 $words = explode(" ",$dummySearch);
 $wordcount = count($words);
 foreach ($rows as $row) {
+	$hitCounter = 0;
 	if ($debug == True) {
 		echo $row[1]."<br><br>";
 	}
@@ -47,6 +48,7 @@ foreach ($rows as $row) {
 			echo "Total ".$hitCounts;
 			echo "<br><br>";
 		}
+		$hitCounter += $hitCounts;
 		
 		// start non overlapping section
 		if ($i > 1) {
@@ -99,6 +101,7 @@ foreach ($rows as $row) {
 					echo "Total ".$hitCounts;
 					echo "<br><br>";
 				}
+				$hitCounter += $hitCounts;
 			}
 		}
 	}
@@ -124,6 +127,8 @@ foreach ($rows as $row) {
 			echo "Total ".$hitCounts;
 			echo "<br><br>";
 		}
+		$hitCounter += $hitCounts;
 	}
+	echo $hitCounter;
 }
 ?>
