@@ -2,7 +2,7 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 ?>
-<form action="/search/" method="post">
+<form action="/search/" method="get">
 	<input type="text" name="user" value="" placeholder="Username...">
 	<input type="submit" name="submit" value="Search">
 </form>
