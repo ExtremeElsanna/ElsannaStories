@@ -151,8 +151,8 @@ function substri_count($haystack, $needle) {
 							$hitCounter += $hitCounts;
 						}
 					}
-					echo "<tr><td><a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
 				}
+				echo "<tr><td><a href='/story/?id=".$row['Id']."'>".$row['Title']."</a> - ".$hitCounter."</td></tr>\n\t\t\t";
 			?>
 		</table>
 	</body>
