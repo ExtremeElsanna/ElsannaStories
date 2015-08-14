@@ -11,7 +11,8 @@ include("/hdd/config/config.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<a href="/">Home</a><br>
+		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
+		
 		<form action="register.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">

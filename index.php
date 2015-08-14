@@ -9,13 +9,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
-			if ($_SESSION['loggedIn'] == 1) {
-				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/?refer=/">Logout</a><br>';
-			} else {
-				echo 'Hi Guest! <a href="/login/?refer=/">Login</a><br>';
-			}
-		?>
+		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
 		
 		<table>
 			<tr><th>Title</th></tr>

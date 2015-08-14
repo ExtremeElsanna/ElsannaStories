@@ -13,15 +13,7 @@ if (!isset($_GET['id'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<a href="/">Home</a><br>
-		<?php
-			if ($_SESSION['loggedIn'] == 1) {
-				echo 'Hi '.$_SESSION['username'].'! <a href="/logout/?refer=/story/?id='.$_GET['id'].'">Logout</a><br>';
-			} else {
-				echo 'Hi Guest! <a href="/login/?refer=/story/?id='.$_GET['id'].'">Login</a><br>';
-			}
-		?>
-		
+		<?php include("/hdd/elsanna-ssl/classes/header.php") ?>
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age</th><th>Smut Level</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
 			<?php
