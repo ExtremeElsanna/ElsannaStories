@@ -71,7 +71,6 @@ for ($i = $wordcount; $i > 0; $i--) {
 				$hitCounts = 0;
 			}
 			
-			echo "I'm here!";
 			// Second Part
 			$persplitcount = 0;
 			$split = "";
@@ -99,6 +98,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		}
 	}
 }
+echo "I'm here!";
 for ($i = $wordcount; $i > 0; $i--) {
 	$maxiterations = $wordcount-($i-1);
 	$hitCounts = 0;
