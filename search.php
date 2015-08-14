@@ -28,7 +28,7 @@ for ($i = $wordcount; $i > 0; $i--) {
 		}
 		echo $split;
 		$split = substr($split,1);
-		$persplitcount = substri_count($multi_array[$counter][$infoComp],$split);
+		$persplitcount = substri_count($row[1],$split);
 		if ($debug == True) {
 			echo '"'.$split.'" - '.$persplitcount." and ";
 		}
