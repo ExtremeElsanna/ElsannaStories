@@ -96,11 +96,11 @@ for ($i = $wordcount; $i > 0; $i--) {
 				echo "<br><br>";
 			}
 		}
-		echo "I'm here!";
+		echo "I'm here1!";
 	}
-	echo "I'm here!";
+	echo "I'm here2!";
 }
-echo "I'm here!";
+echo "I'm here3!";
 for ($i = $wordcount; $i > 0; $i--) {
 	$maxiterations = $wordcount-($i-1);
 	$hitCounts = 0;
