@@ -30,7 +30,7 @@ if (!isset($_POST['user'])) {
 				$stmt->execute();
 				$rows = $stmt->fetchAll();
 				
-				print_r($users)
+				print_r($users);
 				foreach ($rows as $row) {
 					echo '<tr><td><a href="/user/'.$row['Username'].'">'.$row['Username'].'</a></td></tr>';
 				}
