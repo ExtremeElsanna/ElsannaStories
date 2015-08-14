@@ -6,9 +6,9 @@ function substri_count($haystack, $needle) {
 $dummySearch = $_GET['search'];
 $debug = False;
 $row = array(0 => 1,
-			 1 => $_GET['story']);
+			 'Title' => $_GET['story']);
 $row2 = array(0 => 1,
-			 1 => $_GET['story2']);
+			  'Title' => $_GET['story2']);
 $rows = array(0 => $row,
 			  1 => $row2);
 $words = explode(" ",$dummySearch);
@@ -31,7 +31,7 @@ foreach ($rows as $row) {
 				$split = $split." ".$words[$y+$x];
 			}
 			$split = substr($split,1);
-			$persplitcount = substri_count($row[1],$split);
+			$persplitcount = substri_count($row['Title'],$split);
 			if ($debug == True) {
 				echo '"'.$split.'" - '.$persplitcount." and ";
 			}
