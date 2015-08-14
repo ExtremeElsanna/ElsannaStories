@@ -1,6 +1,12 @@
 <a href="/">Home</a><br>
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+?>
+<form action="/search/" method="post">
+	<input type="text" name="user" value="" placeholder="Username...">
+	<input type="submit" name="submit" value="Search">
+</form>
+<?php
 	if (!isset($headerRefer)) {
 		$headerRefer = "/";
 	}
