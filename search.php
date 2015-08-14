@@ -1,21 +1,10 @@
 <?php
-$queries = array();
-$query_array = array();
-$types = array();
-array_push($queries,array(0=>"Row"));
-array_push($queries,array(0=>"Story"));
-array_push($types,"");
-array_push($query_array,$counter);
-array_push($query_array,$multi_array[$counter][1]);
-array_push($types,"");
-$words = explode(" ",$_GET['search']);
-for ($i = 0; $i < count($words); $i++) {
-	if (in_array(strtolower($words[$i]),$truncate_words)) {
-		unset($words[$i]);
-	}
-	$words = array_values($words);
-}
+$dummySearch = "Conceal";
+$debug = True;
+
+$words = explode(" ",$dummySearch);
 $wordcount = count($words);
+
 if ($debug == True) {
 	echo $row[1]."<br><br>";
 }
