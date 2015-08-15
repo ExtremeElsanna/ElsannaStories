@@ -16,6 +16,7 @@
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
+	print_r($_SERVER);
 	$httpLength = 7;
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
