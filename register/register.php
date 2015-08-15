@@ -104,7 +104,7 @@
 							if ($_POST['user'] != "Guest" and $_POST['user'] != "guest") {
 								// Username valid
 								if ($_POST['password'] == $_POST['password_confirm']) {
-									// Password valid
+									// Password == Password Confirmation
 									if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$_POST['user']) == 0) {
 										// Username contains valid characters
 										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
