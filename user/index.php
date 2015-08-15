@@ -42,10 +42,11 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 		<?php			
 			if ($usersProfile == true) {
 				echo "Welcome to your profile!<br>\n";
-				echo "<a href='/delete/'>Delete Account</a>";
+				echo "\t\t<a href='/delete/'>Delete Account</a>";
 			} else {
 				echo $user."'s profile!";
 			}
 		?>
+		
 	</body>
 </html>
