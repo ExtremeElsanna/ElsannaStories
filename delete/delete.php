@@ -17,7 +17,7 @@
 		die();
 	}
 	$httpLength = 7;
-	if (isset($_SERVER['HTTPS'] and $_SERVER['HTTPS'] == "on") {
+	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
 	}
 	print(mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8"));
