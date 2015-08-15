@@ -33,9 +33,9 @@
 		// Old Password Correct
 		if ($_POST['new_password'] == $_POST['new_password_confirm']) {
 			// New Password == Password confirmation
-			if (strlen($_POST['password']) >= 7) {
+			if (strlen($_POST['new_password']) >= 7) {
 				// Password >= 7 chars
-				if (strlen($_POST['password']) <= 20) {
+				if (strlen($_POST['new_password']) <= 20) {
 					// Password <= 20 chars
 					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
 						// Password contains valid characters
