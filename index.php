@@ -176,6 +176,7 @@ if (!isset($_GET['search'])) {
 				}
 			}
 		?>
+		
 		<table>
 			<tr><th>Title</th></tr>
 			<?php
@@ -187,7 +188,6 @@ if (!isset($_GET['search'])) {
 					}
 				}
 				
-				echo '<br>';
 				$rowIds = array();
 				$hitCounter = array();
 				foreach ($validStories as $key => $row) {
@@ -199,6 +199,7 @@ if (!isset($_GET['search'])) {
 					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n\t\t\t";
 				}
 			?>
+			
 		</table>
 	</body>
 </html>
