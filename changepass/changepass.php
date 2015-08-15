@@ -50,12 +50,12 @@
 							$newHash = password_hash($_POST['new_password'], $config['PhashPattern'], $options);
 							
 							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id");
-							$stmt->bindParam(':newHash', $newHash, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':newHash', $newHash, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
 							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id");
-							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
