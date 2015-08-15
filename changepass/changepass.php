@@ -37,7 +37,7 @@
 				// Password >= 7 chars
 				if (strlen($_POST['new_password']) <= 20) {
 					// Password <= 20 chars
-					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
+					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['new_password']) == 0) {
 						// Password contains valid characters
 						if ($_POST['old_password'] != $_POST['new_password']) {
 							// New password is different from old password
@@ -59,43 +59,31 @@
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 						} else {
-							echo '6';
-							die();
 							// New password is same as old password
 							header("Location: /user/".$_SESSION['username']);
 							die();
 						}
 					} else {
-						echo '5';
-						die();
 						// Password contains invalid characters
 						header("Location: /user/".$_SESSION['username']);
 						die();
 					}
 				} else {
-					echo '4';
-					die();
 					// Password > 20 chars
 					header("Location: /user/".$_SESSION['username']);
 					die();
 				}
 			} else {
-				echo '3';
-				die();
 				// Password < 7 chars
 				header("Location: /user/".$_SESSION['username']);
 				die();
 			}
 		} else {
-			echo '2';
-			die();
 			// New Password != Password Confirmation
 			header("Location: /user/".$_SESSION['username']);
 			die();
 		}
 	} else {
-		echo '1';
-		die();
 		// Old Password Incorrect
 		header("Location: /user/".$_SESSION['username']);
 		die();
