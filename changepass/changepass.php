@@ -59,31 +59,37 @@
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 						} else {
+							echo '6';
 							// New password is same as old password
 							header("Location: /user/".$_SESSION['username']);
 							die();
 						}
 					} else {
+						echo '5';
 						// Password contains invalid characters
 						header("Location: /user/".$_SESSION['username']);
 						die();
 					}
 				} else {
+					echo '4';
 					// Password > 20 chars
 					header("Location: /user/".$_SESSION['username']);
 					die();
 				}
 			} else {
+				echo '3';
 				// Password < 7 chars
 				header("Location: /user/".$_SESSION['username']);
 				die();
 			}
 		} else {
+			echo '2';
 			// New Password != Password Confirmation
 			header("Location: /user/".$_SESSION['username']);
 			die();
 		}
 	} else {
+		echo '1';
 		// Old Password Incorrect
 		header("Location: /user/".$_SESSION['username']);
 		die();
