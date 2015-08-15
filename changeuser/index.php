@@ -14,7 +14,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
-		<form action="changepass.php" method="post">
+		<form action="changeuser.php" method="post">
 			<input type="text" name="username" value="" placeholder="New Username">
 			<input type="submit" value="Change Username">
 		</form>
