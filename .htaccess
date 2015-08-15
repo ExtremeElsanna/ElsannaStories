@@ -3,3 +3,5 @@ AuthGroupFile /dev/null
 AuthName "Please Enter Password"
 AuthType Basic
 Require user admin public
+
+ErrorDocument 403 /error/forbidden.php
