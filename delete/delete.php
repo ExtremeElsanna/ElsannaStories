@@ -33,7 +33,7 @@
 	$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
 	$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
 	$referrer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
-	if (mb_substr($noHost,-9,null,"UTF-8") == "index.php") {
+	if (mb_substr($referrer,-9,null,"UTF-8") == "index.php") {
 		$referrer = mb_substr($noHost,0,-9,"UTF-8");
 	}
 	if ($referrer != "/delete/") {
