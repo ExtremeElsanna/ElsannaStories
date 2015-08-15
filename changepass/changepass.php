@@ -60,36 +60,42 @@
 							$stmt->execute();
 						} else {
 							echo '6';
+							die();
 							// New password is same as old password
 							header("Location: /user/".$_SESSION['username']);
 							die();
 						}
 					} else {
 						echo '5';
+						die();
 						// Password contains invalid characters
 						header("Location: /user/".$_SESSION['username']);
 						die();
 					}
 				} else {
 					echo '4';
+					die();
 					// Password > 20 chars
 					header("Location: /user/".$_SESSION['username']);
 					die();
 				}
 			} else {
 				echo '3';
+				die();
 				// Password < 7 chars
 				header("Location: /user/".$_SESSION['username']);
 				die();
 			}
 		} else {
 			echo '2';
+			die();
 			// New Password != Password Confirmation
 			header("Location: /user/".$_SESSION['username']);
 			die();
 		}
 	} else {
 		echo '1';
+		die();
 		// Old Password Incorrect
 		header("Location: /user/".$_SESSION['username']);
 		die();
