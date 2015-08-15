@@ -65,32 +65,32 @@
 							die();
 						} else {
 							// New password is same as old password
-							header("Location: /user/".$_SESSION['username']);
+							header("Location: /changepass/");
 							die();
 						}
 					} else {
 						// Password contains invalid characters
-						header("Location: /user/".$_SESSION['username']);
+						header("Location: /changepass/");
 						die();
 					}
 				} else {
 					// Password > 20 chars
-					header("Location: /user/".$_SESSION['username']);
+					header("Location: /changepass/");
 					die();
 				}
 			} else {
 				// Password < 7 chars
-				header("Location: /user/".$_SESSION['username']);
+				header("Location: /changepass/");
 				die();
 			}
 		} else {
 			// New Password != Password Confirmation
-			header("Location: /user/".$_SESSION['username']);
+			header("Location: /changepass/");
 			die();
 		}
 	} else {
 		// Old Password Incorrect
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /changepass/");
 		die();
 	}
 ?>
