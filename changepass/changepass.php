@@ -58,6 +58,11 @@
 							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
+							
+							// Logout
+							include("/hdd/elsanna-ssl/scripts/logout.php");
+							header("Location: /login/");
+							die();
 						} else {
 							// New password is same as old password
 							header("Location: /user/".$_SESSION['username']);
