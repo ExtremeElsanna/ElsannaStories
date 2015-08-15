@@ -39,22 +39,30 @@
 					// Password <= 20 chars
 					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
 						// Password contains valid characters
-						$newSalt = generateCode($config['PsaltLength']);
-						$options = [
-							'cost' => $config['PsaltCost'],
-							'salt' => $newSalt.$config['Ppepper'],
-						];
-						// Generate new hash + salt for new password
-						$newHash = password_hash($_POST['new_password'], $config['PhashPattern'], $options);
-						$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id");
-						$stmt->bindParam(':newHash', $newHash, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-						$stmt->execute();
-						
-						$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id");
-						$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-						$stmt->execute();
+						if ($_POST['old_password'] != $_POST['new_password']) {
+							// New password is different from old password
+							$newSalt = generateCode($config['PsaltLength']);
+							$options = [
+								'cost' => $config['PsaltCost'],
+								'salt' => $newSalt.$config['Ppepper'],
+							];
+							// Generate new hash + salt for new password
+							$newHash = password_hash($_POST['new_password'], $config['PhashPattern'], $options);
+							
+							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id");
+							$stmt->bindParam(':newHash', $newHash, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->execute();
+							
+							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id");
+							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->execute();
+						} else {
+							// New password is same as old password
+							header("Location: /user/".$_SESSION['username']);
+							die();
+						}
 					} else {
 						// Password contains invalid characters
 						header("Location: /user/".$_SESSION['username']);
