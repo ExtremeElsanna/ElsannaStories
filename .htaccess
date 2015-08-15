@@ -4,4 +4,5 @@ AuthName "Please Enter Password"
 AuthType Basic
 Require user admin public
 
+ErrorDocument 401 /error/unauthorised.php
 ErrorDocument 403 /error/forbidden.php
