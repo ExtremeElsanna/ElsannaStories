@@ -26,7 +26,7 @@ if (!isset($_GET['search'])) {
 		?>
 		
 		<form action="/" method="get">
-			<input type="text" name="search" value="" placeholder="Elsa, Canon, Princess...">
+			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
 			<input type="submit" value="Search">
 		</form>
 		<?php

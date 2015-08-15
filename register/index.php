@@ -22,7 +22,7 @@ include("/hdd/config/config.php");
 			<input type="password" name="password_confirm" value="" placeholder="Password Confirmation">
 			<input type="text" name="email" value="" placeholder="Email">
 			<div class="g-recaptcha" data-sitekey="<?php echo $config['RcaptchaSiteKey'] ?>"></div>
-			<input type="submit" name="submit" value="Register">
+			<input type="submit" value="Register">
 		</form>
 	</body>
 </html>

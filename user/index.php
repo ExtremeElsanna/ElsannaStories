@@ -21,6 +21,11 @@ if (isset($_GET['user'])) {
 	header("Location: /");
 	die;
 }
+if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
+	$usersProfile = true;
+} else {
+	$usersProfile = false;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +40,7 @@ if (isset($_GET['user'])) {
 		?>
 		
 		<?php			
-			if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
+			if ($usersProfile == true) {
 				echo "Welcome to your profile!";
 			} else {
 				echo $user."'s profile!";
