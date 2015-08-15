@@ -2,27 +2,27 @@
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
 	if ($_SESSION['loggedIn'] != 1) {
-		# Not logged in
+		// Not logged in
 		header("Location: /");
 		die();
 	}
 	if (!isset($_SERVER)) {
-		# SERVER data doesn't exist
+		// SERVER data doesn't exist
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
 	if (!isset($_POST['confirm']) or $_POST['confirm'] != "true") {
-		# Not referred by /delete/
+		// Not referred by /delete/
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
 	if (!isset($_SERVER['HTTP_REFERER'])) {
-		# Not referred by /delete/
+		// Not referred by /delete/
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
 	if (!isset($_SERVER['HTTP_HOST'])) {
-		# HTTP_HOST data not present for some reason
+		// HTTP_HOST data not present for some reason
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
@@ -37,7 +37,7 @@
 		$referrer = mb_substr($noHost,0,-9,"UTF-8");
 	}
 	if ($referrer != "/delete/") {
-		# Not referred by /delete/
+		// Not referred by /delete/
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
@@ -46,7 +46,9 @@
 	$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id");
 	$stmt->bindParam(':id', $_SESSION['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
-	# ReDirect to homepage
+	// Logout
+	include("/hdd/elsanna-ssl/scripts/logout.php");
+	// ReDirect to homepage
 	header("Location: /");
 	die();
 ?>
