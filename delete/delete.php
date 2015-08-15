@@ -41,5 +41,12 @@
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
-	print($referrer);
+	
+	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
+	$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id");
+	$stmt->bindParam(':id', $_SESSION['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt->execute();
+	# ReDirect to homepage
+	header("Location: /");
+	die();
 ?>
