@@ -25,7 +25,7 @@ if (!isset($_GET['refer'])) {
 				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
 			?>
 			
-			<input type="submit" name="submit" value="Login">
+			<input type="submit" value="Login">
 		</form>
 	</body>
 </html>
