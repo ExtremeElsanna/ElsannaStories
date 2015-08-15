@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !/delete/index\.php
-RewriteRule ^(.*)$ /delete/ [R,L]
