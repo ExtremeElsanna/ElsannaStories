@@ -16,10 +16,18 @@
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
+	if (!isset($_SERVER['HTTP_HOST'])) {
+		# HTTP_HOST data not present for some reason
+		header("Location: /user/".$_SESSION['username']);
+		die();
+	}
 	print_r($_SERVER);
 	$httpLength = 7;
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
 	}
-	print(mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8"));
+	$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
+	$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
+	$noHost = mb_substr($noProtocol,$hostLength,null,"UTF-8");
+	print($noHost);
 ?>
