@@ -36,6 +36,7 @@
 			$stmt->bindParam(':newUpperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
+			$_SESSION['username'] = $newUser;
 			header("Location: /");
 			die();
 		} else {
