@@ -11,8 +11,8 @@
 		$headerRefer = "/";
 	}
 	if ($_SESSION['loggedIn'] == 1) {
-		echo 'Hi '.$_SESSION['username'].'! <a href="/logout/?refer='.$headerRefer.'">Logout</a><br>';
+		echo "\t\tHi ".$_SESSION['username']."! <a href='/logout/?refer=".$headerRefer."'>Logout</a><br>";
 	} else {
-		echo 'Hi Guest! <a href="/login/?refer='.$headerRefer.'">Login</a><br>';
+		echo "\t\tHi Guest! <a href='/login/?refer=".$headerRefer."'>Login</a><br>";
 	}
 ?>
