@@ -2,10 +2,10 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 ?>
-<form action="/search/" method="get">
-	<input type="text" name="user" value="" placeholder="Username...">
-	<input type="submit" value="Search">
-</form>
+		<form action="/search/" method="get">
+			<input type="text" name="user" value="" placeholder="Username...">
+			<input type="submit" value="Search">
+		</form>
 <?php
 	if (!isset($headerRefer)) {
 		$headerRefer = "/";

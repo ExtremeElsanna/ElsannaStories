@@ -14,7 +14,6 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
-		<a href="/register/">Register</a><br>
 		<form action="delete.php" method="post">
 			<input type="submit" value="Are you sure?">
 		</form>

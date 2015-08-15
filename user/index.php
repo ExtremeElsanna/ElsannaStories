@@ -41,7 +41,8 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 		
 		<?php			
 			if ($usersProfile == true) {
-				echo "Welcome to your profile!";
+				echo "Welcome to your profile!<br>\n";
+				echo "<a href='/delete/'>Delete Account</a>";
 			} else {
 				echo $user."'s profile!";
 			}
