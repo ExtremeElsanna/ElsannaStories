@@ -6,11 +6,19 @@
 		header("Location: /");
 		die();
 	}
+	if (!isset($_SERVER)) {
+		# SERVER data doesn't exist
+		header("Location: /user/".$_SESSION['username']);
+		die();
+	}
 	if (!isset($_SERVER['HTTP_REFERER'])) {
 		# Not referred by /delete/
 		header("Location: /user/".$_SESSION['username']);
 		die();
 	}
-	print_r($_SERVER);
-	print($_SERVER['HTTP_REFERER']);
+	$httpLength = 7;
+	if (isset($_SERVER['HTTPS'] and $_SERVER['HTTPS'] == "on") {
+		$httpLength = 8;
+	}
+	print(mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8"));
 ?>
