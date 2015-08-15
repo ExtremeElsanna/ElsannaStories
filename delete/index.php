@@ -15,6 +15,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		?>
 		
 		<form action="delete.php" method="post">
+			<input type="hidden" name="confirm" value="true">
 			<input type="submit" value="Are you sure?">
 		</form>
 	</body>
