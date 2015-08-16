@@ -13,7 +13,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$title = $_GET['Title'];
+		$title = $_POST['Title'];
 		if ($title == "") {
 			// Title not valid
 			//header("Location: /submitstory/");
@@ -26,7 +26,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$author = $_GET['Author'];
+		$author = $_POST['Author'];
 		if ($author == "") {
 			// Title not valid
 			//header("Location: /submitstory/");
@@ -39,7 +39,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$length = $_GET['Length'];
+		$length = $_POST['Length'];
 		if (!is_numeric($length)) {
 			// Length not valid
 			//header("Location: /submitstory/");
@@ -52,7 +52,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$storyType = $_GET['StoryType'];
+		$storyType = $_POST['StoryType'];
 		$valid = array("MC", "OS", "OSS");
 		if (!in_array($storyType,$valid)) {
 			// StoryType not valid
@@ -66,7 +66,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$complete = $_GET['Complete'];
+		$complete = $_POST['Complete'];
 		$valid = array("Y", "N", "U");
 		if (!in_array($complete,$valid)) {
 			// Complete not valid
@@ -80,7 +80,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$setting = $_GET['Setting'];
+		$setting = $_POST['Setting'];
 		$valid = array("C", "AU", "mAU", "STP", "U");
 		if (!in_array($setting,$valid)) {
 			// Setting not valid
@@ -95,7 +95,7 @@
 		die();
 	} else {
 		// Not required, so no checking
-		$elsaCharacter = $_GET['ElsaCharacter'];
+		$elsaCharacter = $_POST['ElsaCharacter'];
 	}
 	echo "Debug";
 	if (!isset($_POST['AnnaCharacter'])) {
@@ -104,7 +104,7 @@
 		die();
 	} else {
 		// Not required, so no checking
-		$annaCharacter = $_GET['AnnaCharacter'];
+		$annaCharacter = $_POST['AnnaCharacter'];
 	}
 	echo "Debug";
 	if (!isset($_POST['ElsaPowers'])) {
@@ -112,7 +112,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$elsaPowers = $_GET['ElsaPowers'];
+		$elsaPowers = $_POST['ElsaPowers'];
 		$valid = array("C", "D", "N", "U");
 		if (!in_array($elsaPowers,$valid)) {
 			// ElsaPowers not valid
@@ -126,7 +126,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$annaPowers = $_GET['AnnaPowers'];
+		$annaPowers = $_POST['AnnaPowers'];
 		$valid = array("N","Y");
 		if (!in_array($annaPowers,$valid)) {
 			// AnnaPowers not valid
@@ -140,7 +140,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$sisters = $_GET['Sisters'];
+		$sisters = $_POST['Sisters'];
 		$valid = array("Y","N","U");
 		if (!in_array($sisters,$valid)) {
 			// Sisters not valid
@@ -154,7 +154,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$age = $_GET['Age'];
+		$age = $_POST['Age'];
 		$valid = array("K","KP","T","M");
 		if (!in_array($age,$valid)) {
 			// Age not valid
@@ -168,7 +168,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$smutLevel = $_GET['SmutLevel'];
+		$smutLevel = $_POST['SmutLevel'];
 		$valid = array("N","PL","L","M","H","PU");
 		if (!in_array($smutLevel,$valid)) {
 			// SmutLevel not valid
@@ -182,7 +182,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$url = $_GET['Url'];
+		$url = $_POST['Url'];
 		if ($title == "") {
 			// Url not valid
 			//header("Location: /submitstory/");
@@ -195,7 +195,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$dayPublished = $_GET['DayPublished'];
+		$dayPublished = $_POST['DayPublished'];
 		if (!is_numeric($dayPublished)) {
 			// DayPublished not valid
 			//header("Location: /submitstory/");
@@ -208,7 +208,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$monthPublished = $_GET['MonthPublished'];
+		$monthPublished = $_POST['MonthPublished'];
 		if (!is_numeric($monthPublished)) {
 			// MonthPublished not valid
 			//header("Location: /submitstory/");
@@ -221,7 +221,7 @@
 		//header("Location: /submitstory/");
 		die();
 	} else {
-		$yearPublished = $_GET['YearPublished'];
+		$yearPublished = $_POST['YearPublished'];
 		if (!is_numeric($yearPublished)) {
 			// YearPublished not valid
 			//header("Location: /submitstory/");
