@@ -2,7 +2,7 @@
 include("/hdd/config/config.php");
 $pdo = new PDO('mysql:host='.$config['DBhost'].';dbname=fiction_database', $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
-$stmt = $pdo->prepare('SELECT * FROM _main');
+$stmt = $pdo->prepare('SELECT * FROM _main;');
 $stmt->execute();
 $rows = $stmt->fetchAll();
 $newStories = array();

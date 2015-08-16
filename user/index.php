@@ -7,7 +7,7 @@ if (isset($_GET['user'])) {
 	$upperUser = mb_strtoupper($user, 'UTF-8');
 	
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-	$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE UpperUser = :upperUser');
+	$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();

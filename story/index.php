@@ -25,7 +25,7 @@ if (!isset($_GET['id'])) {
 				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
 				$id = $_GET['id'];
-				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id');
+				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id;');
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$row = $stmt->fetch();

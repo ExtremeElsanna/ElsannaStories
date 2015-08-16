@@ -20,7 +20,7 @@
 	$newUser = $_POST['username'];
 	$newUpperUser = mb_strtoupper($newUser, "UTF-8");
 	$userId = $_SESSION['userId'];
-	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser');
+	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
@@ -28,11 +28,11 @@
 		// Username not taken
 		if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$newUser) == 0) {
 			// Username contains valid chars
-			$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE Id = :id");
+			$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE Id = :id;");
 			$stmt->bindParam(':newUser', $newUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
-			$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE Id = :id");
+			$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE Id = :id;");
 			$stmt->bindParam(':newUpperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();

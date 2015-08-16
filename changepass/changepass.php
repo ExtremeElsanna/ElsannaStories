@@ -18,7 +18,7 @@
 	
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	$userId = $_SESSION['userId'];
-	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE Id = :userId');
+	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE Id = :userId;');
 	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
@@ -49,12 +49,12 @@
 							// Generate new hash + salt for new password
 							$newHash = password_hash($_POST['new_password'], $config['PhashPattern'], $options);
 							
-							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id");
+							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id;");
 							$stmt->bindParam(':newHash', $newHash, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
-							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id");
+							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id;");
 							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();

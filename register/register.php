@@ -25,7 +25,7 @@
 		$stmt->bindParam(':joindate', $joinDate, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		
-		$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
+		$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		$row = $stmt->fetch();
@@ -109,16 +109,16 @@
 										// Username contains valid characters
 										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
 											// Password contains valid characters
-											$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user');
+											$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
 											
 											$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
-											$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser');
+											$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser;');
 											$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 											$stmt->execute();
 											$row = $stmt->fetch();
 											if ($row['Id'] == "") {
 												$email = mb_strtoupper($_POST['email'], 'UTF-8');
-												$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email');
+												$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email;');
 												$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 												$stmt->execute();
 												$row = $stmt->fetch();
