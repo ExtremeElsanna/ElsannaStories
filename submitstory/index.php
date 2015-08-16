@@ -100,6 +100,39 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 					}
 				?>
 			</select>
+			<select name="MonthPublished">
+				<?php
+					if ($currentMonth == "01") {
+						echo "<option value='01' selected>01</option>\n";
+					} else {
+						echo "<option value='01'>01</option>\n";
+					}
+					for ($i = 2; $i <= 12; $i ++) {
+						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				?>
+			</select>
+			<select name="YearPublished">
+				<?php
+					if ($currentYear == "2013") {
+						echo "<option value='2013' selected>2013</option>\n";
+					} else {
+						echo "<option value='2013'>2013</option>\n";
+					}
+					for ($i = 2013; $i <= intval($currentYear); $i ++) {
+						if ($currentYear == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				?>
+			</select><br>
+			<br>
 			<input type="submit" value="Submit">
 		</form>
 	</body>
