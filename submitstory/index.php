@@ -13,9 +13,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 			date_default_timezone_set('UTC');
-			$currentDay = date("Y-m-d");
-			$currentMonth = date("Y-m-d");
-			$currentYear = date("Y-m-d");
+			$currentDay = date("d");
+			$currentMonth = date("m");
+			$currentYear = date("Y");
 		?>
 		
 		<form action="submit.php" method="post">
@@ -85,13 +85,21 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<br>
 			Date Published<br>
 			<select name="DayPublished">
-<?php
-	for ($i = 1; $i <= 31; $i ++) {
-		echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
-	}
-?>
-			</select><br>
-			<br>
+				<?php
+					if ($currentDay == "01") {
+						echo "<option value='01' selected>01</option>\n";
+					} else {
+						echo "<option value='01'>01</option>\n";
+					}
+					for ($i = 2; $i <= 31; $i ++) {
+						if ($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				?>
+			</select>
 			<input type="submit" value="Submit">
 		</form>
 	</body>
