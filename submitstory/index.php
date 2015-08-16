@@ -1,6 +1,11 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+if ($_SESSION['loggedIn'] != 1) {
+	// Not logged in
+	header("Location: /login/?refer=/submitstory/");
+	die();
+}
 ?>
 <!DOCTYPE html>
 <html>
