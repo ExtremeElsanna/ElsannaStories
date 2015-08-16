@@ -88,7 +88,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 				<?php
 					echo "<option value='01' selected>01</option>\n";
 					for ($i = 2; $i <= 31; $i ++) {
-						echo "<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 					}
 				?>
 			</select>
