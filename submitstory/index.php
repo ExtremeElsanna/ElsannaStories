@@ -83,15 +83,14 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			URL of Story<br>
 			<input type="text" name="Url" value="" placeholder="URL"><br>
 			<br>
-			Day Published<br>
+			Date Published<br>
 			<select name="DayPublished">
 				<?php
-					echo "<option value='01' selected>01</option>\n";
-					for ($i = 2; $i <= 31; $i ++) {
+					for ($i = 1; $i <= 31; $i ++) {
 						echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 					}
 				?>
-			</select>
+			</select><br>
 			<br>
 			<input type="submit" value="Submit">
 		</form>
