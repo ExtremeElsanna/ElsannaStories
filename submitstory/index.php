@@ -13,9 +13,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 			date_default_timezone_set('UTC');
-			$currentDay = date("d");
-			$currentMonth = date("m");
-			$currentYear = date("Y");
+			$currentDay = date("Y-m-d");
+			$currentMonth = date("Y-m-d");
+			$currentYear = date("Y-m-d");
 		?>
 		
 		<form action="submit.php" method="post">
@@ -84,9 +84,15 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="text" name="Url" value="" placeholder="URL"><br>
 			<br>
 			Day Published<br>
-			<input type="number" name="DayPublished" value="<?php echo $currentDay ?>" min="1" max="31"><br>
-			<input type="number" name="MonthPublished" value="<?php echo $currentMonth ?>" min="1" max="12"><br>
-			<input type="number" name="YearPublished" value="<?php echo $currentYear ?>" min="2013" max="<?php echo $currentYear ?>"><br>
+			<select name="DayPublished">
+				<option value="01">01</option>
+				<?php
+					for ($i = 2; $i <= 31; $i ++) {
+						echo "<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n"
+					}
+				?>
+				
+			</select>
 			<br>
 			<input type="submit" value="Submit">
 		</form>
