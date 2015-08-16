@@ -35,7 +35,7 @@
 	}
 	
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-	$stmt = $pdo->prepare('SELECT Id FROM ElsannaStories.Stories WHERE Title = :title AND Author = ;author;');
+	$stmt = $pdo->prepare('SELECT Id FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
