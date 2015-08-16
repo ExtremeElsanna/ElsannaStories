@@ -82,7 +82,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			<input type="text" name="Url" value="" placeholder="URL"><br>
 			<br>
 			Date Published<br>
-			<input type="date" name="DatePublished" value="2013-11-27" <br>
+			<input type="date" name="DatePublished" value="2013-11-27" min="2013-11-27" max="<?php echo $currentDate ?>"><br>
 			<br>
 			<input type="submit" value="Submit">
 		</form>
