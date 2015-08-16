@@ -25,6 +25,10 @@ if (!isset($_GET['search'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
+		
+		<form action="/submitstory/" method="get">
+			<input type="submit" value="Submit a Story!">
+		</form>
 		<form action="/" method="get">
 			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
 			<input type="submit" value="Search">
@@ -33,7 +37,7 @@ if (!isset($_GET['search'])) {
 			include("/hdd/config/config.php");
 			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 			
-			$stmt = $pdo->prepare('SELECT Id,Title,Author,ElsaCharacter,AnnaCharacter FROM Stories');
+			$stmt = $pdo->prepare('SELECT Id,Title,Author,ElsaCharacter,AnnaCharacter FROM Stories;');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			$debug = False;
