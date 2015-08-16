@@ -13,7 +13,9 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 			date_default_timezone_set('UTC');
-			$currentDate = date("Y-m-d");
+			$currentDay = date("d");
+			$currentMonth = date("m");
+			$currentYear = date("Y");
 		?>
 		
 		<form action="submit.php" method="post">
@@ -81,8 +83,10 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			URL of Story<br>
 			<input type="text" name="Url" value="" placeholder="URL"><br>
 			<br>
-			Date Published<br>
-			<input type="date" name="DatePublished" value="2013-11-27" min="2013-11-27" max="<?php echo $currentDate ?>"><br>
+			Day Published<br>
+			<input type="number" name="DayPublished" value="<?php echo $currentDay ?>" min="1" max="31"><br>
+			<input type="number" name="MonthPublished" value="<?php echo $currentMonth ?>" min="1" max="12"><br>
+			<input type="number" name="YearPublished" value="<?php echo $currentYear ?>" min="2013" max="<?php echo $currentYear ?>"><br>
 			<br>
 			<input type="submit" value="Submit">
 		</form>
