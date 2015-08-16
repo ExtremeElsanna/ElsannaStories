@@ -25,6 +25,10 @@ if (!isset($_GET['search'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		
+		
+		<form action="/submitstory/" method="get">
+			<input type="submit" value="Submit a Story!">
+		</form>
 		<form action="/" method="get">
 			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
 			<input type="submit" value="Search">
