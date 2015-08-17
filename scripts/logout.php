@@ -4,4 +4,5 @@
 	$_SESSION['userId'] = null;
 	$_SESSION['username'] = null;
 	$_SESSION['lastActive'] = null;
+	$_SESSION['changePassId'] = null;
 ?>
