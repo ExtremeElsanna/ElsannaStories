@@ -15,6 +15,9 @@
 	if (!isset($_SESSION['lastActive'])) {
 		$_SESSION['userId'] = null;
 	}
+	if (!isset($_SESSION['changePassId'])) {
+		$_SESSION['userId'] = null;
+	}
 	
 	// Check user logged in
 	if ($_SESSION['loggedIn'] == 1) {

@@ -17,7 +17,7 @@
 	// 16	Admin
 	
 	// Get important details about user
-	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,Activated FROM Users WHERE UpperUser = :upperUser;');
+	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,Activated,ChangePass FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
@@ -27,6 +27,7 @@
 	$hash = $row['Hash'];
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
+	$changePass = $row['ChangePass'];
 	if ($userId != "") {
 		// Correct username
 		if ($activated == 1) {
@@ -39,13 +40,19 @@
 			
 			if ($newHash == $hash) {
 				// Password correct
-				$_SESSION['loggedIn'] = 1;
-				$_SESSION['userId'] = $userId;
-				$_SESSION['username'] = $user;
-				date_default_timezone_set('UTC');
-				$_SESSION['lastActive'] = time();
-				header("Location: ".$_POST['refer']);
-				die();
+				if ($changePass == 0) {
+					$_SESSION['loggedIn'] = 1;
+					$_SESSION['userId'] = $userId;
+					$_SESSION['username'] = $user;
+					date_default_timezone_set('UTC');
+					$_SESSION['lastActive'] = time();
+					header("Location: ".$_POST['refer']);
+					die();
+				} else {
+					$_SESSION['changePassId'] = $userId;
+					header("Location: /changepass/?code=7");
+					die();
+				}
 			} else {
 				// Password wrong
 				header("Location: /login/?refer=".$_POST['refer']."&code=3");

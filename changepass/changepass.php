@@ -11,7 +11,7 @@
 	
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
-	if ($_SESSION['loggedIn'] != 1) {
+	if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 		// Not logged in
 		header("Location: /?code=3");
 		die();
@@ -19,7 +19,17 @@
 	
 	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-	$userId = $_SESSION['userId'];
+	
+	// If we're allowing through because $_SESSION['changePassId'] != null, identify that
+	if ($_SESSION['loggedIn'] != 1) {
+		$forcedChangePass = true;
+		$userId = $_SESSION['changePassId'];
+	} else {
+		$forcedChangePass = false;
+		$userId = $_SESSION['userId'];
+	}
+	
+	
 	
 	// Get the current password hash of the user
 	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE Id = :userId;');
