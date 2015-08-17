@@ -1,12 +1,6 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-	include("/hdd/config/config.php");
-	if ($_SESSION['loggedIn'] != 1) {
-		// Not logged in
-		header("Location: /");
-		die();
-	}
-	
+	include("/hdd/config/config.php");	
 	
 	if (!isset($_POST['Title'])) {
 		// Title not set
