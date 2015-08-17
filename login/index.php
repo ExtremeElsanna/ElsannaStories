@@ -4,6 +4,13 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
+
+$errors = array(1 => "Account activated",
+				2 => "Password changed",
+				3 => "Password incorrect",
+				4 => "Account not activated",
+				5 => "Wrong username",
+				6 => "Registered");
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +23,12 @@ if (!isset($_GET['refer'])) {
 			// Include header in page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
+		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>";
+			}
 		?>
 		
 		<a href="/register/">Register</a><br>

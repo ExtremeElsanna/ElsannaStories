@@ -1,6 +1,22 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+
+$errors = array(1 => "Unexpected error",
+				2 => "Title not given",
+				3 => "Author not given",
+				4 => "Story already exists",
+				5 => "Length not given",
+				6 => "StoryType not given",
+				7 => "Complete not given",
+				8 => "Setting not given",
+				9 => "ElsaPowers not given",
+				10 => "AnnaPowers not given",
+				11 => "Sisters not given",
+				12 => "Age not given",
+				13 => "SmutProminence not given",
+				14 => "Url not given",
+				15 => "DatePublished not valid");
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +34,12 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			$currentDay = date("d");
 			$currentMonth = date("m");
 			$currentYear = date("Y");
+		?>
+		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>";
+			}
 		?>
 		
 		<form action="submit.php" method="post">
