@@ -33,5 +33,9 @@
 			$_SESSION['lastActive'] = $currentTime;
 		}
 	}
+	echo "-----"."<br>";
+	echo $_SESSION['loggedIn']."<br>";
 	echo $_SESSION['userId']."<br>";
+	echo $_SESSION['username']."<br>";
+	echo "-----"."<br>";
 ?>
