@@ -19,7 +19,7 @@
 		date_default_timezone_set('UTC');
 		$currentTime = time();
 		$difference = $currentTime - $_SESSION['lastActive'];
-		if ($difference > 1) {
+		if ($difference > 900) {
 			include("/hdd/elsanna-ssl/scripts/logout.php");
 		} else {
 			$_SESSION['lastActive'] = $currentTime;
