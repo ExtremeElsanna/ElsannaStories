@@ -10,13 +10,13 @@
 		$_SESSION['userId'] = null;
 	}
 	if (!isset($_SESSION['username'])) {
-		$_SESSION['userId'] = null;
+		$_SESSION['username'] = null;
 	}
 	if (!isset($_SESSION['lastActive'])) {
-		$_SESSION['userId'] = null;
+		$_SESSION['lastActive'] = null;
 	}
 	if (!isset($_SESSION['changePassId'])) {
-		$_SESSION['userId'] = null;
+		$_SESSION['changePassId'] = null;
 	}
 	
 	// Check user logged in
@@ -33,9 +33,4 @@
 			$_SESSION['lastActive'] = $currentTime;
 		}
 	}
-	echo "-----"."<br>";
-	echo $_SESSION['loggedIn']."<br>";
-	echo $_SESSION['userId']."<br>";
-	echo $_SESSION['username']."<br>";
-	echo "-----"."<br>";
 ?>
