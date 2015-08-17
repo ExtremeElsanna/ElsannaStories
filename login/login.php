@@ -43,11 +43,11 @@
 				if ($changePass == 0) {
 					$_SESSION['loggedIn'] = 1;
 					$_SESSION['userId'] = $userId;
-					echo $_SESSION['userId'];
-					die;
 					$_SESSION['username'] = $user;
 					date_default_timezone_set('UTC');
 					$_SESSION['lastActive'] = time();
+					echo $_SESSION['userId'];
+					die();
 					header("Location: ".$_POST['refer']);
 					die();
 				} else {
