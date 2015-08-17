@@ -7,13 +7,13 @@ function substri_count($haystack, $needle) {
 	return substr_count(mb_strtoupper($haystack, 'UTF-8'), mb_strtoupper($needle, 'UTF-8'));
 }
 
-$errors = array(1 => "Username changed",
-				2 => "Unexpected error",
-				3 => "Not logged in",
-				4 => "Account deleted",
-				5 => "Story submitted",
-				6 => "User does not exist",
-				7 => "Story does not exist");
+$errors = array(1 => "Username Changed!",
+				2 => "Unexpected Error :(",
+				3 => "Not Logged In.",
+				4 => "Account deleted!",
+				5 => "Story submitted!",
+				6 => "User does not exist.",
+				7 => "Story does not exist.");
 
 // Make sure we have a search variable for code later
 if (!isset($_GET['search'])) {

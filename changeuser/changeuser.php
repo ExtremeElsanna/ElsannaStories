@@ -34,22 +34,29 @@
 			// Username >= 4 chars
 			if (strlen($newUser) <= 25) {
 				// Username <= 25 chars
-				if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$newUser) == 0) {
-					// Username contains valid chars
-					$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE Id = :id;");
-					$stmt->bindParam(':newUser', $newUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-					$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-					$stmt->execute();
-					$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE Id = :id;");
-					$stmt->bindParam(':newUpperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-					$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-					$stmt->execute();
-					$_SESSION['username'] = $newUser;
-					header("Location: /?code=1");
-					die();
+				if (strcasecmp($_POST['user'],"guest") != 0) {
+					// Username valid
+					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$newUser) == 0) {
+						// Username contains valid chars
+						$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE Id = :id;");
+						$stmt->bindParam(':newUser', $newUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+						$stmt->execute();
+						$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE Id = :id;");
+						$stmt->bindParam(':newUpperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+						$stmt->execute();
+						$_SESSION['username'] = $newUser;
+						header("Location: /?code=1");
+						die();
+					} else {
+						// Username contains invalid chars
+						header("Location: /changeuser/?code=2");
+						die();
+					}
 				} else {
-					// Username contains invalid chars
-					header("Location: /changeuser/?code=2");
+					// Username is Guest
+					header("Location: /changeuser/?code=5");
 					die();
 				}
 			} else {

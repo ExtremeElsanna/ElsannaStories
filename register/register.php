@@ -111,7 +111,7 @@
 						// Password <= 20 chars
 						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 							// Email valid
-							if ($_POST['user'] != "Guest" and $_POST['user'] != "guest") {
+							if (strcasecmp($_POST['user'],"guest") != 0) {
 								// Username valid
 								if ($_POST['password'] == $_POST['password_confirm']) {
 									// Password == Password Confirmation

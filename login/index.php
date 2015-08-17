@@ -5,12 +5,12 @@ if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
 
-$errors = array(1 => "Account activated",
-				2 => "Password changed",
-				3 => "Password incorrect",
-				4 => "Account not activated",
-				5 => "Wrong username",
-				6 => "Registered");
+$errors = array(1 => "Account Activated!",
+				2 => "Password Changed!",
+				3 => "Password Incorrect.",
+				4 => "Account not Activated.",
+				5 => "Wrong Username.",
+				6 => "Registered!");
 ?>
 <!DOCTYPE html>
 <html>

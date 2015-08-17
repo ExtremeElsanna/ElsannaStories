@@ -2,12 +2,12 @@
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
-$errors = array(1 => "Old password wrong",
-				2 => "Pass conf not same",
-				3 => "Password < 7 chars",
-				4 => "Password > 20 chars",
-				5 => "Password contains invalid characters a=>z,A=>Z,0=>9,[,],(,),{,},@,#,!,£,$,%,^,&,*,?,<,>",
-				6 => "New Password same as old password");
+$errors = array(1 => "Old Password is incorrect.",
+				2 => "Password confirmation not equal to original password.",
+				3 => "Password is shorter than 7 characters.",
+				4 => "Password is longer than 20 characters",
+				5 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>",
+				6 => "New Password same as Old Password.");
 ?>
 <!DOCTYPE html>
 <html>

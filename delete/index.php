@@ -2,7 +2,7 @@
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
-$errors = array(1 => "Unexpected error");
+$errors = array(1 => "Unexpected Error :(");
 ?>
 <!DOCTYPE html>
 <html>

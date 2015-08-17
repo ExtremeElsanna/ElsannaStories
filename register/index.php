@@ -3,18 +3,18 @@ include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 include("/hdd/config/config.php");
 
-$errors = array(1 => "ReCaptcha wrong",
-				2 => "Username < 4 chars",
-				3 => "Username > 25 chars",
-				4 => "Password < 7 chars",
-				5 => "Password > 20 chars",
-				6 => "Email not valid",
-				7 => "Username is Guest or guest",
-				8 => "Pass conf not same",
-				9 => "Username contains invalid characters a=>z,A=>Z,0=>9",
-				10 => "Password contains invalid characters a=>z,A=>Z,0=>9,[,],(,),{,},@,#,!,£,$,%,^,&,*,?,<,>",
-				11 => "Username already exists",
-				12 => "Email already exists");
+$errors = array(1 => "ReCaptcha wrong.",
+				2 => "Username is shorter than 4 characters.",
+				3 => "Username is longer than 25 characters.",
+				4 => "Password is shorter than 7 characters.",
+				5 => "Password is longer than 20 characters",
+				6 => "Email is not a valid email.",
+				7 => "Username cannot be 'guest'.",
+				8 => "Password confirmation not equal to original password.",
+				9 => "Username contains invalid characters. You may use: a-z, A-Z, 0-9.",
+				10 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>.",
+				11 => "Username taken.",
+				12 => "Email taken.");
 ?>
 <!DOCTYPE html>
 <html>

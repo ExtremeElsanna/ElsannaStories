@@ -2,10 +2,11 @@
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
-$errors = array(1 => "Username already exists",
-				2 => "Username contains invalid characters a=>z,A=>Z,0=>9",
-				3 => "Username < 4 chars",
-				4 => "Username > 25 chars");
+$errors = array(1 => "Username taken.",
+				2 => "Username contains invalid characters. You may use: a-z, A-Z, 0-9.",
+				3 => "Username is shorter than 4 characters.",
+				4 => "Username is longer than 25 characters.",
+				5 => "Username cannot be 'guest'.");
 ?>
 <!DOCTYPE html>
 <html>
