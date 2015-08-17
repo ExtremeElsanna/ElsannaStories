@@ -75,6 +75,13 @@
 							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
+							if ($forcedChangePass) {
+								// Turn off force change password
+								$stmt = $pdo->prepare('UPDATE Users SET ChangePass = 0 WHERE Id = :id;');
+								$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+								$stmt->execute();
+							}
+							
 							// Logout
 							include("/hdd/elsanna-ssl/scripts/logout.php");
 							header("Location: /login/?code=2");
