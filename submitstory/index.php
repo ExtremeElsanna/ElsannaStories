@@ -1,6 +1,22 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+
+$errors = array(1 => "Unexpected Error :(",
+				2 => "Title Not Given.",
+				3 => "Author Not Given.",
+				4 => "Story Already Submitted.",
+				5 => "Length Not Given.",
+				6 => "Story Type Not Given.",
+				7 => "Complete Not Given.",
+				8 => "Setting Not Given.",
+				9 => "'Elsa Powers' Not Given.",
+				10 => "'Anna Powers' Not Given.",
+				11 => "Sisters Not Given.",
+				12 => "Age Not Given.",
+				13 => "Smut Prominence Not Given.",
+				14 => "URL Not Given.",
+				15 => "Date Published Not Valid.");
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,12 +26,20 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
+			// Get current day, month and year
 			date_default_timezone_set('UTC');
 			$currentDay = date("d");
 			$currentMonth = date("m");
 			$currentYear = date("Y");
+		?>
+		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>";
+			}
 		?>
 		
 		<form action="submit.php" method="post">
@@ -86,6 +110,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			Date Published<br>
 			<select name="DayPublished">
 				<?php
+					// Print all days and select current
 					if ($currentDay == "01") {
 						echo "<option value='01' selected>01</option>\n";
 					} else {
@@ -102,6 +127,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			</select>
 			<select name="MonthPublished">
 				<?php
+					// Print all months and select current
 					if ($currentMonth == "01") {
 						echo "<option value='01' selected>01</option>\n";
 					} else {
@@ -118,6 +144,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			</select>
 			<select name="YearPublished">
 				<?php
+					// Print all years and select current
 					if ($currentYear == "2013") {
 						echo "<option value='2013' selected>2013</option>\n";
 					} else {

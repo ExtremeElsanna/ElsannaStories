@@ -1,6 +1,8 @@
 <?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+
+$errors = array(1 => "Unexpected Error :(");
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,8 +12,15 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
+		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>";
+			}
 		?>
 		
 		<form action="delete.php" method="post">

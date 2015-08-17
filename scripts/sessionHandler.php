@@ -1,4 +1,5 @@
 <?php
+	// Make sure session data exists for access
 	if (!isset($_SESSION)) {
 		session_start();
 	}
@@ -15,13 +16,17 @@
 		$_SESSION['userId'] = null;
 	}
 	
+	// Check user logged in
 	if ($_SESSION['loggedIn'] == 1) {
 		date_default_timezone_set('UTC');
 		$currentTime = time();
 		$difference = $currentTime - $_SESSION['lastActive'];
+		// Check if not active for 15 minutes
 		if ($difference > 900) {
+			// Log the user out
 			include("/hdd/elsanna-ssl/scripts/logout.php");
 		} else {
+			// Update the last active time
 			$_SESSION['lastActive'] = $currentTime;
 		}
 	}

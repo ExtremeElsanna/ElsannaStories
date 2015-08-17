@@ -1,6 +1,13 @@
 <?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+
+$errors = array(1 => "Old Password is incorrect.",
+				2 => "Password confirmation not equal to original password.",
+				3 => "Password is shorter than 7 characters.",
+				4 => "Password is longer than 20 characters",
+				5 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>",
+				6 => "New Password same as Old Password.");
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,8 +17,15 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
+			// Include header on page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
+		?>
+		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>";
+			}
 		?>
 		
 		<form action="changepass.php" method="post">
