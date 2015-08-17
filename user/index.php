@@ -29,8 +29,6 @@ if (isset($_GET['user'])) {
 	die;
 }
 // Check if this is logged in user's profile
-echo $_SESSION['userId']."<br>";
-echo $userId."<br>";
 if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 	$usersProfile = true;
 } else {

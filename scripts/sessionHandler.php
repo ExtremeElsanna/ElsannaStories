@@ -33,4 +33,5 @@
 			$_SESSION['lastActive'] = $currentTime;
 		}
 	}
+	echo $_SESSION['userId']."<br>";
 ?>
