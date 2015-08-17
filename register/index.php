@@ -12,6 +12,7 @@ include("/hdd/config/config.php");
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>

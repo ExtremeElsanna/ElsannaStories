@@ -10,8 +10,10 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
+			// Get current day, month and year
 			date_default_timezone_set('UTC');
 			$currentDay = date("d");
 			$currentMonth = date("m");
@@ -86,6 +88,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			Date Published<br>
 			<select name="DayPublished">
 				<?php
+					// Print all days and select current
 					if ($currentDay == "01") {
 						echo "<option value='01' selected>01</option>\n";
 					} else {
@@ -102,6 +105,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			</select>
 			<select name="MonthPublished">
 				<?php
+					// Print all months and select current
 					if ($currentMonth == "01") {
 						echo "<option value='01' selected>01</option>\n";
 					} else {
@@ -118,6 +122,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			</select>
 			<select name="YearPublished">
 				<?php
+					// Print all years and select current
 					if ($currentYear == "2013") {
 						echo "<option value='2013' selected>2013</option>\n";
 					} else {

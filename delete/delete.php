@@ -30,6 +30,7 @@
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
 	}
+	// Strip referer down to link extension
 	$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
 	$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
 	$referrer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
@@ -42,7 +43,10 @@
 		die();
 	}
 	
+	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
+	
+	// Delete user
 	$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id;");
 	$userId = $_SESSION['userId'];
 	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO

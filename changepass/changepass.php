@@ -1,5 +1,6 @@
 <?php
 	function generateCode($length) {
+		// Generate a $length character long string using characters from below
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {
@@ -16,8 +17,11 @@
 		die();
 	}
 	
+	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	$userId = $_SESSION['userId'];
+	
+	// Get the current password hash of the user
 	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE Id = :userId;');
 	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
@@ -28,7 +32,9 @@
 			'cost' => $config['PsaltCost'],
 			'salt' => $salt.$config['Ppepper'],
 		];
+	// Create hash of their 'old password' entry
 	$oldHash = password_hash($_POST['old_password'], $config['PhashPattern'], $options);
+	
 	if ($oldHash == $hash) {
 		// Old Password Correct
 		if ($_POST['new_password'] == $_POST['new_password_confirm']) {

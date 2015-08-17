@@ -14,6 +14,7 @@ if (!isset($_GET['id'])) {
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = '/story/?id='.$_GET['id'];
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
@@ -22,14 +23,17 @@ if (!isset($_GET['id'])) {
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
 			<?php
 				include("/hdd/config/config.php");
+				// Connect to DB
 				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
 				$id = $_GET['id'];
+				// Get all data about this story
 				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id;');
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$row = $stmt->fetch();
 				
+				// Assign all data and format it correctly
 				$title = $row['Title'];
 				$author = $row['Author'];
 				$length = $row['Length'];
@@ -76,7 +80,7 @@ if (!isset($_GET['id'])) {
 				$annaCharacter = $row['AnnaCharacter'];
 				switch ($row['ElsaPowers']) {
 					case "C":
-						$elsaPowers = "Canom";
+						$elsaPowers = "Canon";
 						break;
 					case "D":
 						$elsaPowers = "Different";
@@ -145,6 +149,7 @@ if (!isset($_GET['id'])) {
 				$dateAdded = $row['DateAdded'];
 				$datePublished = $row['DatePublished'];
 				
+				// Print data
 				echo "<tr>";
 				echo "<td>".$title."</td>";
 				echo "<td>".$author."</td>";

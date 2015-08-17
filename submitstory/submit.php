@@ -28,7 +28,9 @@
 		}
 	}
 	
+	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	// Get all stories with that title and author
 	$stmt = $pdo->prepare('SELECT Id FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
@@ -237,9 +239,11 @@
 	// Construct date from individual parts
 	$datePublished = $yearPublished."-".$monthPublished."-".$dayPublished;
 	
+	// Get current date
 	date_default_timezone_set('UTC');
 	$dateAdded = date("Y-m-d");
-		
+	
+	// Insert story into DB for moderation
 	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, DateAdded, DatePublished) VALUES (:title,:author,:length,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:dateAdded,:datePublished);');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO

@@ -10,6 +10,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>

@@ -1,5 +1,6 @@
 <?php
 	function generateCode($length) {
+		// Generate a $length character long string using characters from below
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {
@@ -16,10 +17,13 @@
 		die();
 	}
 	
+	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	$newUser = $_POST['username'];
 	$newUpperUser = mb_strtoupper($newUser, "UTF-8");
 	$userId = $_SESSION['userId'];
+	
+	// Get users with given new username
 	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();

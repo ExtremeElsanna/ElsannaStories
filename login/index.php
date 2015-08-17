@@ -13,6 +13,7 @@ if (!isset($_GET['refer'])) {
 	</head>
 	<body>
 		<?php
+			// Include header in page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
@@ -22,6 +23,7 @@ if (!isset($_GET['refer'])) {
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
 			<?php
+				// Pass refer link given from referer to the login.php page
 				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
 			?>
 			
