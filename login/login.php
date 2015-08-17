@@ -39,6 +39,8 @@
 				$_SESSION['loggedIn'] = 1;
 				$_SESSION['userId'] = $userId;
 				$_SESSION['username'] = $user;
+				date_default_timezone_set('UTC');
+				$_SESSION['lastActive'] = time();
 				header("Location: ".$_POST['refer']);
 				die();
 			} else {

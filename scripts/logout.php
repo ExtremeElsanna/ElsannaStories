@@ -3,4 +3,5 @@
 	$_SESSION['loggedIn'] = 0;
 	$_SESSION['userId'] = null;
 	$_SESSION['username'] = null;
+	$_SESSION['lastActive'] = null;
 ?>
