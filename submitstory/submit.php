@@ -1,12 +1,6 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-	include("/hdd/config/config.php");
-	if ($_SESSION['loggedIn'] != 1) {
-		// Not logged in
-		header("Location: /");
-		die();
-	}
-	
+	include("/hdd/config/config.php");	
 	
 	if (!isset($_POST['Title'])) {
 		// Title not set
@@ -245,12 +239,11 @@
 	
 	date_default_timezone_set('UTC');
 	$dateAdded = date("Y-m-d");
-	
-	
+		
 	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, DateAdded, DatePublished) VALUES (:title,:author,:length,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:dateAdded,:datePublished);');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-	$stmt->bindParam(':length', $length, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+	$stmt->bindParam(':length', $length, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':storyType', $storyType, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':complete', $complete, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':setting', $setting, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO

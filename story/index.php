@@ -41,7 +41,7 @@ if (!isset($_GET['id'])) {
 				echo "<td>".$row['AnnaCharacter']."</td>";
 				echo "<td>".$row['ElsaPowers']."</td>";
 				echo "<td>".$row['AnnaPowers']."</td>";
-				echo "<td>".$row['Incest']."</td>";
+				echo "<td>".$row['Sisters']."</td>";
 				echo "<td>".$row['Age']."</td>";
 				echo "<td>".$row['SmutLevel']."</td>";
 				echo "<td>".$row['Url']."</td>";
