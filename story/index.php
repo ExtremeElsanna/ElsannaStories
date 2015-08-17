@@ -2,7 +2,7 @@
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if (!isset($_GET['id'])) {
-	header("Location: /?code=7");
+	header("Location: /?code=2");
 	die();
 }
 ?>
@@ -32,6 +32,11 @@ if (!isset($_GET['id'])) {
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$row = $stmt->fetch();
+				
+				if ($row["Id"] == "") {
+					header("Location: /?code=7");
+					die();
+				}
 				
 				// Assign all data and format it correctly
 				$title = $row['Title'];
