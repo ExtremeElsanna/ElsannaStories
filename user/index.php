@@ -20,12 +20,12 @@ if (isset($_GET['user'])) {
 	// Check user exists
 	if ($userId == "") {
 		// User doesn't exist
-		header("Location: /");
+		header("Location: /?code=6");
 		die;
 	}
 } else {
 	// No username passed
-	header("Location: /");
+	header("Location: /?code=2");
 	die;
 }
 // Check if this is logged in user's profile

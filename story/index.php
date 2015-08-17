@@ -2,7 +2,7 @@
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if (!isset($_GET['id'])) {
-	header("Location: /");
+	header("Location: /?code=7");
 	die();
 }
 ?>

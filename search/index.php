@@ -3,7 +3,7 @@ include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 // Require username to search by
 if (!isset($_GET['user'])) {
-	header("Location: /");
+	header("Location: /?code=2");
 	die();
 }
 ?>

@@ -3,27 +3,27 @@
 	include("/hdd/config/config.php");
 	if ($_SESSION['loggedIn'] != 1) {
 		// Not logged in
-		header("Location: /");
+		header("Location: /?code=3");
 		die();
 	}
 	if (!isset($_SERVER)) {
 		// SERVER data doesn't exist
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /delete/?code=1");
 		die();
 	}
 	if (!isset($_POST['confirm']) or $_POST['confirm'] != "true") {
 		// Not referred by /delete/
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /delete/?code=1");
 		die();
 	}
 	if (!isset($_SERVER['HTTP_REFERER'])) {
 		// Not referred by /delete/
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /delete/?code=1");
 		die();
 	}
 	if (!isset($_SERVER['HTTP_HOST'])) {
 		// HTTP_HOST data not present for some reason
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /delete/?code=1");
 		die();
 	}
 	$httpLength = 7;
@@ -39,7 +39,7 @@
 	}
 	if ($referrer != "/delete/") {
 		// Not referred by /delete/
-		header("Location: /user/".$_SESSION['username']);
+		header("Location: /user/delete/?code=1");
 		die();
 	}
 	
@@ -54,6 +54,6 @@
 	// Logout
 	include("/hdd/elsanna-ssl/scripts/logout.php");
 	// ReDirect to homepage
-	header("Location: /");
+	header("Location: /?code=4");
 	die();
 ?>

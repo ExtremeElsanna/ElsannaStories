@@ -117,7 +117,7 @@
 									// Password == Password Confirmation
 									if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$_POST['user']) == 0) {
 										// Username contains valid characters
-										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
+										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
 											// Password contains valid characters
 											// Connect to DB
 											$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
@@ -143,66 +143,66 @@
 													$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";
 													$body = str_replace("UNIQUEUSER",$_POST['user'],str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
 													sendEmail($config,$subject,$config['EtestAddress'],$_POST['user'],$body);
-													header("Location: /login/");
+													header("Location: /login/?code=6");
 													die();
 												} else {
 													// Email already exists
-													header("Location: /register/");
+													header("Location: /register/?code=12");
 													die();
 												}
 											} else {
 												// Username already exists
-												header("Location: /register/");
+												header("Location: /register/?code=11");
 												die();
 											}
 										} else {
 											// Password contains invalid characters
-											header("Location: /register/");
+											header("Location: /register/?code=10");
 											die();
 										}
 									} else {
 										// Username contains invalid characters
-										header("Location: /register/");
+										header("Location: /register/?code=9");
 										die();
 									}
 								} else {
 									// Password is not equal to Confirmation Password
-									header("Location: /register/");
+									header("Location: /register/?code=8");
 									die();
 								}
 							} else {
 								// Username is Guest or guest
-								header("Location: /register/");
+								header("Location: /register/?code=7");
 								die();
 							}
 						} else {
 							// Email not valid
-							header("Location: /register/");
+							header("Location: /register/?code=6");
 							die();
 						}
 					} else {
 						// Password longer than 20 chars
-						header("Location: /register/");
+						header("Location: /register/?code=5");
 						die();
 					}
 				} else {
 					// Password shorter than 7 chars
-					header("Location: /register/");
+					header("Location: /register/?code=4");
 					die();
 				}
 			} else {
 				// Username longer than 25 chars
-				header("Location: /register/");
+				header("Location: /register/?code=3");
 				die();
 			}
 		} else {
 			// Username shorter than 4 chars
-			header("Location: /register/");
+			header("Location: /register/?code=2");
 			die();
 		}
 	} else {
 		// ReCaptcha wrong
-		header("Location: /register/");
+		header("Location: /register/?code=1");
 		die();
 	}
 ?>

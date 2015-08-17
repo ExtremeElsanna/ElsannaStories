@@ -48,17 +48,17 @@
 				die();
 			} else {
 				// Password wrong
-				header("Location: /login/?refer=".$_POST['refer']);
+				header("Location: /login/?refer=".$_POST['refer']."&code=3");
 				die();
 			}
 		} else {
 			// Account not activated
-			header("Location: /login/?refer=".$_POST['refer']);
+			header("Location: /login/?refer=".$_POST['refer']."&code=4");
 			die();
 		}
 	} else {
 		// Wrong username
-		header("Location: /login/?refer=".$_POST['refer']);
+		header("Location: /login/?refer=".$_POST['refer']."&code=5");
 		die();
 	}
 ?>

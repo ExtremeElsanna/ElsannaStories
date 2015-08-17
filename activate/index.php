@@ -25,17 +25,17 @@
 			$stmt = $pdo->prepare('DELETE FROM AccountActivation WHERE AccountActivationId = :id;');
 			$stmt->bindParam(':id', $activationId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
+			// Account activated
+			header("Location: /login/?code=1");
+			die();
 		} else {
 			// No activation entry under that code
-			header("Location: /");
+			header("Location: /?code=2");
 			die();
 		}
 	} else {
 		// No code supplied
-		header("Location: /");
+		header("Location: /?code=2");
 		die();
 	}
-	// Account activated
-	header("Location: /login/");
-	die();
 ?>

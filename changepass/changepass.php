@@ -13,7 +13,7 @@
 	include("/hdd/config/config.php");
 	if ($_SESSION['loggedIn'] != 1) {
 		// Not logged in
-		header("Location: /");
+		header("Location: /?code=3");
 		die();
 	}
 	
@@ -43,7 +43,7 @@
 				// Password >= 7 chars
 				if (strlen($_POST['new_password']) <= 20) {
 					// Password <= 20 chars
-					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz01234567890\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['new_password']) == 0) {
+					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['new_password']) == 0) {
 						// Password contains valid characters
 						if ($_POST['old_password'] != $_POST['new_password']) {
 							// New password is different from old password
@@ -67,36 +67,36 @@
 							
 							// Logout
 							include("/hdd/elsanna-ssl/scripts/logout.php");
-							header("Location: /login/");
+							header("Location: /login/?code=2");
 							die();
 						} else {
 							// New password is same as old password
-							header("Location: /changepass/");
+							header("Location: /changepass/?code=6");
 							die();
 						}
 					} else {
 						// Password contains invalid characters
-						header("Location: /changepass/");
+						header("Location: /changepass/?code=5");
 						die();
 					}
 				} else {
 					// Password > 20 chars
-					header("Location: /changepass/");
+					header("Location: /changepass/?code=4");
 					die();
 				}
 			} else {
 				// Password < 7 chars
-				header("Location: /changepass/");
+				header("Location: /changepass/?code=3");
 				die();
 			}
 		} else {
 			// New Password != Password Confirmation
-			header("Location: /changepass/");
+			header("Location: /changepass/?code=2");
 			die();
 		}
 	} else {
 		// Old Password Incorrect
-		header("Location: /changepass/");
+		header("Location: /changepass/?code=1");
 		die();
 	}
 ?>

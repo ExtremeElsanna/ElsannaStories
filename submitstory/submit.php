@@ -4,26 +4,26 @@
 	
 	if (!isset($_POST['Title'])) {
 		// Title not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$title = $_POST['Title'];
 		if ($title == "") {
 			// Title not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=2");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Author'])) {
 		// Author not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$author = $_POST['Author'];
 		if ($author == "") {
 			// Title not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=3");
 			die();
 		}
 	}
@@ -38,68 +38,68 @@
 	$row = $stmt->fetch();
 	if ($row['Id'] != "") {
 		// Story already exists
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=4");
 		die();
 	}
 	
 	if (!isset($_POST['Length'])) {
 		// Length not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$length = $_POST['Length'];
 		if (!is_numeric($length)) {
 			// Length not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=5");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['StoryType'])) {
 		// StoryType not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$storyType = $_POST['StoryType'];
 		$valid = array("MC", "OS", "OSS");
 		if (!in_array($storyType,$valid)) {
 			// StoryType not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=6");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Complete'])) {
 		// Complete not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$complete = $_POST['Complete'];
 		$valid = array("Y", "N", "U");
 		if (!in_array($complete,$valid)) {
 			// Complete not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=7");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Setting'])) {
 		// Setting not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$setting = $_POST['Setting'];
 		$valid = array("C", "AU", "mAU", "STP", "U");
 		if (!in_array($setting,$valid)) {
 			// Setting not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=8");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['ElsaCharacter'])) {
 		// ElsaCharacter not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		// Not required, so no checking
@@ -108,7 +108,7 @@
 	
 	if (!isset($_POST['AnnaCharacter'])) {
 		// AnnaCharacter not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		// Not required, so no checking
@@ -117,125 +117,126 @@
 	
 	if (!isset($_POST['ElsaPowers'])) {
 		// ElsaPowers not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$elsaPowers = $_POST['ElsaPowers'];
 		$valid = array("C", "D", "N", "U");
 		if (!in_array($elsaPowers,$valid)) {
 			// ElsaPowers not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=9");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['AnnaPowers'])) {
 		// AnnaPowers not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$annaPowers = $_POST['AnnaPowers'];
 		$valid = array("N","Y");
 		if (!in_array($annaPowers,$valid)) {
 			// AnnaPowers not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=10");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Sisters'])) {
 		// Sisters not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$sisters = $_POST['Sisters'];
 		$valid = array("Y","N","U");
 		if (!in_array($sisters,$valid)) {
 			// Sisters not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=11");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Age'])) {
 		// Age not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$age = $_POST['Age'];
 		$valid = array("K","KP","T","M");
 		if (!in_array($age,$valid)) {
 			// Age not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=12");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['SmutLevel'])) {
 		// SmutLevel not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$smutLevel = $_POST['SmutLevel'];
 		$valid = array("N","PL","L","M","H","PU");
 		if (!in_array($smutLevel,$valid)) {
 			// SmutLevel not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=13");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['Url'])) {
 		// Url not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$url = $_POST['Url'];
 		if ($title == "") {
 			// Url not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=14");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['DayPublished'])) {
 		// DayPublished not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$dayPublished = $_POST['DayPublished'];
 		if (!is_numeric($dayPublished)) {
 			// DayPublished not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=15");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['MonthPublished'])) {
 		// MonthPublished not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$monthPublished = $_POST['MonthPublished'];
 		if (!is_numeric($monthPublished)) {
 			// MonthPublished not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=15");
 			die();
 		}
 	}
 	
 	if (!isset($_POST['YearPublished'])) {
 		// YearPublished not set
-		header("Location: /submitstory/");
+		header("Location: /submitstory/?code=1");
 		die();
 	} else {
 		$yearPublished = $_POST['YearPublished'];
 		if (!is_numeric($yearPublished)) {
 			// YearPublished not valid
-			header("Location: /submitstory/");
+			header("Location: /submitstory/?code=15");
 			die();
 		}
 	}
+	
 	// Construct date from individual parts
 	$datePublished = $yearPublished."-".$monthPublished."-".$dayPublished;
 	
@@ -264,6 +265,6 @@
 	$stmt->execute();
 	
 	// Story submitted
-	header("Location: /");
+	header("Location: /?code=5");
 	die();
 ?>
