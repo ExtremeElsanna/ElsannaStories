@@ -37,13 +37,11 @@ if (!isset($_GET['search'])) {
 			// Include the header in our pages
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="/submitstory/" method="get">
 			<input type="submit" value="Submit a Story!">
 		</form>
