@@ -30,13 +30,11 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<a href="/register/">Register</a><br>
 		<form action="login.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">

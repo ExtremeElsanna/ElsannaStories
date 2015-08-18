@@ -29,13 +29,11 @@ $errors = array(1 => "ReCaptcha wrong.",
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="register.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">

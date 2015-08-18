@@ -35,13 +35,11 @@ $errors = array(1 => "Unexpected Error :(",
 			$currentMonth = date("m");
 			$currentYear = date("Y");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="submit.php" method="post">
 			Title<br>
 			<input type="text" name="Title" value="" placeholder="Title"><br>

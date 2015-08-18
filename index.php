@@ -37,13 +37,11 @@ if (!isset($_GET['search'])) {
 			// Include the header in our pages
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="/submitstory/" method="get">
 			<input type="submit" value="Submit a Story!">
 		</form>
@@ -203,7 +201,6 @@ if (!isset($_GET['search'])) {
 			}
 			// Search Engine End
 		?>
-		
 		<table>
 			<tr><th>Title</th></tr>
 			<?php
@@ -223,7 +220,6 @@ if (!isset($_GET['search'])) {
 					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n\t\t\t";
 				}
 			?>
-			
 		</table>
 	</body>
 </html>

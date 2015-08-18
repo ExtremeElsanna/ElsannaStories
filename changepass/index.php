@@ -27,13 +27,11 @@ $errors = array(1 => "Old Password is incorrect.",
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="changepass.php" method="post">
 			<input type="password" name="old_password" value="" placeholder="Old Password">
 			<input type="password" name="new_password" value="" placeholder="New Password">
