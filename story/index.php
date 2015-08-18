@@ -1,7 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-if (!isset($_GET['id'])) {
+if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 	header("Location: /?code=2");
 	die();
 }

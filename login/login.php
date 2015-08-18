@@ -60,12 +60,12 @@
 			}
 		} else {
 			// Account not activated
-			header("Location: /login/?refer=".$_POST['refer']."&code=4");
+			header("Location: /login/?refer=".$_POST['refer']."&code=4&id=".$userId);
 			die();
 		}
 	} else {
 		// Wrong username
-		header("Location: /login/?refer=".$_POST['refer']."&code=5");
+		header("Location: /login/?refer=".$_POST['refer']."&code=3");
 		die();
 	}
 ?>

@@ -21,13 +21,11 @@ $errors = array(1 => "Unexpected Error :(");
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 		?>
-		
 		<form action="delete.php" method="post">
 			<input type="hidden" name="confirm" value="true">
 			<input type="submit" value="Are you sure?">
