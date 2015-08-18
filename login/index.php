@@ -7,9 +7,8 @@ if (!isset($_GET['refer'])) {
 
 $errors = array(1 => "Account Activated!",
 				2 => "Password Changed!",
-				3 => "Password Incorrect.",
+				3 => "Username or Password Incorrect.",
 				4 => "Account not Activated.",
-				5 => "Wrong Username.",
 				6 => "Activation code was sent to your email address!",
 				7 => "Unexpected Error :(",
 				8 => "User does not exist.",

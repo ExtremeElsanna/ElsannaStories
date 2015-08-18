@@ -65,7 +65,7 @@
 		}
 	} else {
 		// Wrong username
-		header("Location: /login/?refer=".$_POST['refer']."&code=5");
+		header("Location: /login/?refer=".$_POST['refer']."&code=3");
 		die();
 	}
 ?>
