@@ -11,6 +11,9 @@ $errors = array(1 => "Account Activated!",
 				4 => "Account not Activated.",
 				5 => "Wrong Username.",
 				6 => "Registered!");
+if (isset($_GET['id']) and is_numeric($_GET['id'])) {
+	$errors[4] = "Account not Activated. <a href='/?id=".$_GET['id']."'>Resend Activation Email</a>";
+}
 ?>
 <!DOCTYPE html>
 <html>
