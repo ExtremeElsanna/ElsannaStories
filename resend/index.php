@@ -43,11 +43,9 @@
 	
 	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
-	$userId = $_GET['Id'];
+	$userId = $_GET['id'];
 	
 	// Get all data about this story
-	echo $userId;
-	die;
 	$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Id = :id;');
 	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
