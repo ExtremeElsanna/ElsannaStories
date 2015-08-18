@@ -46,6 +46,8 @@
 	$userId = $_GET['Id'];
 	
 	// Get all data about this story
+	echo $userId;
+	die;
 	$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Id = :id;');
 	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
