@@ -34,6 +34,7 @@
 			$userId = $_SESSION['userId'];
 			
 			// Connect to DB
+			include("/hdd/config/config.php");
 			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 			$stmt = $pdo->prepare('SELECT Id,Banned FROM Users WHERE Id = :userId;');
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
