@@ -18,15 +18,12 @@ if (!isset($_GET['refer'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
 		<form action="reset.php" method="post">
-			<input type="text" name="user" value="" placeholder="Username">
-			<input type="password" name="password" value="" placeholder="Password">
+			<input type="text" name="email" value="" placeholder="Email">
 			<?php
 				// Pass refer link given from referer to the login.php page
 				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
 			?>
-			
-			<input type="submit" value="Login">
+			<input type="submit" value="Recover">
 		</form>
-		<a href="/reset/">Forgot Password?</a><br>
 	</body>
 </html>

@@ -91,32 +91,32 @@
 							die();
 						} else {
 							// New password is same as old password
-							header("Location: /changepass/?code=6");
+							header("Location: /changepass/?code=6&refer=".$_POST['refer']);
 							die();
 						}
 					} else {
 						// Password contains invalid characters
-						header("Location: /changepass/?code=5");
+						header("Location: /changepass/?code=5&refer=".$_POST['refer']);
 						die();
 					}
 				} else {
 					// Password > 20 chars
-					header("Location: /changepass/?code=4");
+					header("Location: /changepass/?code=4&refer=".$_POST['refer']);
 					die();
 				}
 			} else {
 				// Password < 7 chars
-				header("Location: /changepass/?code=3");
+				header("Location: /changepass/?code=3&refer=".$_POST['refer']);
 				die();
 			}
 		} else {
 			// New Password != Password Confirmation
-			header("Location: /changepass/?code=2");
+			header("Location: /changepass/?code=2&refer=".$_POST['refer']);
 			die();
 		}
 	} else {
 		// Old Password Incorrect
-		header("Location: /changepass/?code=1");
+		header("Location: /changepass/?code=1&refer=".$_POST['refer']);
 		die();
 	}
 ?>

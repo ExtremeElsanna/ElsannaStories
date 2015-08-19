@@ -46,6 +46,6 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			
 			<input type="submit" value="Login">
 		</form>
-		<a href="/reset/">Forgot Password?</a><br>
+		<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br>" ?>
 	</body>
 </html>
