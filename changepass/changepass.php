@@ -9,11 +9,11 @@
 		return $code;
 	}
 	
-	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-	include("/hdd/config/config.php");
 	if (!isset($_POST['refer'])) {
 		$_POST['refer'] = "/";
 	}
+	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+	include("/hdd/config/config.php");
 	
 	if (!isset($_POST['old_password'])) {
 		// Old Password not set

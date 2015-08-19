@@ -19,6 +19,13 @@
 		$_SESSION['changePassId'] = null;
 	}
 	
+	$refer = "/";
+	if (isset($_POST['refer'])) {
+		$refer = $_POST['refer'];
+	} else if(isset($_GET['refer'])) {
+		$refer = $_GET['refer'];
+	}
+	
 	// Check user logged in
 	if ($_SESSION['loggedIn'] == 1) {
 		date_default_timezone_set('UTC');
@@ -51,7 +58,7 @@
 					// Log the user out as they have been banned since they logged in
 					include("/hdd/elsanna-ssl/scripts/logout.php");
 					// Account banned
-					header("Location: /login/?refer=".$_POST['refer']."&code=11");
+					header("Location: /login/?refer=".$refer."&code=11");
 					die();
 				}
 			} else {

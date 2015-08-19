@@ -1,9 +1,9 @@
 <?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
-include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
+include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
 $errors = array(1 => "Account Activated!",
 				2 => "Password Changed!",
