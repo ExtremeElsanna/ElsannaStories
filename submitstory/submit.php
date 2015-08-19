@@ -37,7 +37,7 @@
 	$stmt->execute();
 	$row = $stmt->fetch();
 	if ($row['Id'] != "") {
-		if ($row['Visible'] == "1") {
+		if ($row['Visible'] == 1) {
 			// Story already exists
 			header("Location: /submitstory/?code=4");
 			die();
