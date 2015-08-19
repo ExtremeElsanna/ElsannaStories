@@ -1,10 +1,12 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-	
 	include("/hdd/config/config.php");
+	
 	if (isset($_GET['code'])) {
 		// Connect to DB
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		if(!isset($pdo)) {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		}
 		
 		// Get users with given activation code
 		$stmt = $pdo->prepare('SELECT AccountActivationId,UserId FROM AccountActivation WHERE ActivationCode = :code;');

@@ -29,17 +29,25 @@
 	}
 	
 	// Connect to DB
-	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	if(!isset($pdo)) {
+		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	}
 	// Get all stories with that title and author
-	$stmt = $pdo->prepare('SELECT Id FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
+	$stmt = $pdo->prepare('SELECT Id,Visible FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	if ($row['Id'] != "") {
-		// Story already exists
-		header("Location: /submitstory/?code=4");
-		die();
+		if ($row['Visible'] == 1) {
+			// Story already exists
+			header("Location: /submitstory/?code=4");
+			die();
+		} else {
+			// Story already exists and deleted from site
+			header("Location: /submitstory/?code=16");
+			die();
+		}
 	}
 	
 	if (!isset($_POST['Length'])) {

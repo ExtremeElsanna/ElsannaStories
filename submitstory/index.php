@@ -16,7 +16,8 @@ $errors = array(1 => "Unexpected Error :(",
 				12 => "Age Not Given.",
 				13 => "Smut Prominence Not Given.",
 				14 => "URL Not Given.",
-				15 => "Date Published Not Valid.");
+				15 => "Date Published Not Valid.",
+				16 => "Story Deleted from site");
 ?>
 <!DOCTYPE html>
 <html>

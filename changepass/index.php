@@ -1,13 +1,13 @@
 <?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+if (!isset($_GET['refer'])) {
+	$_GET['refer'] = "/";
+}
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 	// Not logged in
 	header("Location: /?code=3");
 	die();
-}
-if (!isset($_GET['refer'])) {
-	$_GET['refer'] = "/";
 }
 
 $errors = array(1 => "Old Password is incorrect.",

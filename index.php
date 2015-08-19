@@ -52,7 +52,9 @@ if (!isset($_GET['search'])) {
 		<?php
 			include("/hdd/config/config.php");
 			// Connect to DB
-			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			if(!isset($pdo)) {
+				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			}
 			
 			// Select all stories data
 			$stmt = $pdo->prepare('SELECT Id,Title,Author,ElsaCharacter,AnnaCharacter FROM Stories;');
