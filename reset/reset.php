@@ -104,9 +104,13 @@
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		
+		// Send new password to email
 		$subject = "CONFIDENTIAL - www.elsannastories.com: ".$username." Password Reset";
-		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUEPASS",$newPassword,file_get_contents('RegistrationEmail.html')));
+		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUEPASS",$newPassword,file_get_contents('ResetEmail.html')));
 		sendEmail($config,$subject,$config['EtestAddress'],$username,$body);
+		
+		header("Location: /login/?refer=".$_POST['refer']."&code=10");
+		die();
 	} else {
 		// No User with that email
 		header("Location: /reset/?refer=".$_POST['refer']."&code=2");
