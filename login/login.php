@@ -29,7 +29,7 @@
 	// 16	Admin
 	
 	// Get important details about user
-	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,Activated,ChangePass FROM Users WHERE UpperUser = :upperUser;');
+	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,LoginCount,Activated,ChangePass FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
@@ -40,6 +40,7 @@
 	$salt = $row['Salt'];
 	$activated = $row['Activated'];
 	$changePass = $row['ChangePass'];
+	$loginCount = $row['LoginCount'];
 	if ($userId != "") {
 		// Correct username
 		if ($activated == 1) {
@@ -51,6 +52,21 @@
 			$newHash = password_hash($_POST['password'], $config['PhashPattern'], $options);
 			
 			if ($newHash == $hash) {
+				// Update last login and login count
+				date_default_timezone_set('UTC');
+				$newDate = date("Y-m-d");
+				
+				$stmt = $pdo->prepare("UPDATE Users SET LastLoggedIn = :newDate WHERE Id = :userId;");
+				$stmt->bindParam(':newDate', $newDate, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				
+				$newCount = intval($loginCount) + 1;
+				$stmt = $pdo->prepare("UPDATE Users SET LoginCount = :newCount WHERE Id = :userId;");
+				$stmt->bindParam(':newCount', $newCount, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				
 				// Password correct
 				if ($changePass == 0) {
 					$_SESSION['loggedIn'] = 1;
