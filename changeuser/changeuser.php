@@ -11,12 +11,18 @@
 	
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
+	
+	if (!isset($_POST['username']) {
+		// Username not set
+		header("Location: /changeuser/?code=6");
+		die();
+	}
+	
 	if ($_SESSION['loggedIn'] != 1) {
 		// Not logged in
 		header("Location: /?code=3");
 		die();
 	}
-	
 	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	$newUser = $_POST['username'];

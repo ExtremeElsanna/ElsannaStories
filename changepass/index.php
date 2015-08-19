@@ -16,7 +16,8 @@ $errors = array(1 => "Old Password is incorrect.",
 				4 => "Password is longer than 20 characters",
 				5 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>",
 				6 => "New Password same as Old Password.",
-				7 => "You need to change your password.");
+				7 => "You need to change your password.",
+				8 => "Unexpected Error :(");
 ?>
 <!DOCTYPE html>
 <html>

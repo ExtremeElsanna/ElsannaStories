@@ -11,7 +11,8 @@ $errors = array(1 => "Username taken.",
 				2 => "Username contains invalid characters. You may use: a-z, A-Z, 0-9.",
 				3 => "Username is shorter than 4 characters.",
 				4 => "Username is longer than 25 characters.",
-				5 => "Username cannot be 'guest'.");
+				5 => "Username cannot be 'guest'.",
+				6 => "Unexpected Error :(");
 ?>
 <!DOCTYPE html>
 <html>
