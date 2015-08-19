@@ -97,22 +97,22 @@
 	}
 	
 	
-	if (!isset($_POST['user']) {
+	if (!isset($_POST['user'])) {
 		// User not set
 		header("Location: /register/?code=13");
 		die();
 	}
-	if (!isset($_POST['password']) {
+	if (!isset($_POST['password'])) {
 		// Password not set
 		header("Location: /register/?code=13");
 		die();
 	}
-	if (!isset($_POST['password_confirm']) {
+	if (!isset($_POST['password_confirm'])) {
 		// Password Conf not set
 		header("Location: /register/?code=13");
 		die();
 	}
-	if (!isset($_POST['g-recaptcha-response']) {
+	if (!isset($_POST['g-recaptcha-response'])) {
 		// ReCaptcha not set
 		header("Location: /register/?code=13");
 		die();

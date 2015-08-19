@@ -12,7 +12,7 @@
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
 	
-	if (!isset($_POST['username']) {
+	if (!isset($_POST['username'])) {
 		// Username not set
 		header("Location: /changeuser/?code=6");
 		die();

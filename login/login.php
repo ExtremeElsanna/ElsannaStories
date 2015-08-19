@@ -5,12 +5,12 @@
 		$_POST['refer'] = "/";
 	}
 	
-	if (!isset($_POST['user']) {
+	if (!isset($_POST['user'])) {
 		// User not set
 		header("Location: /login/?refer=".$_POST['refer']."&code=7");
 		die();
 	}
-	if (!isset($_POST['password']) {
+	if (!isset($_POST['password'])) {
 		// Password not set
 		header("Location: /login/?refer=".$_POST['refer']."&code=7");
 		die();
