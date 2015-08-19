@@ -38,7 +38,9 @@
 	}
 	
 	// Connect to DB
-	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	if(!isset($pdo)) {
+		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	}
 	
 	// If we're allowing through because $_SESSION['changePassId'] != null, identify that
 	if ($_SESSION['loggedIn'] != 1) {

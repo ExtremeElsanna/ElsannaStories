@@ -142,7 +142,10 @@
 										if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789\[\]\(\)\{\}\@\#\!\£\$\%\^\&\*\?\<\>].*)+/i",$_POST['password']) == 0) {
 											// Password contains valid characters
 											// Connect to DB
-											$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
+											if(!isset($pdo)) {
+												$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+											}
+											$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
 											
 											$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 											// Get all users with that username

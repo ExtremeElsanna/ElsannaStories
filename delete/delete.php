@@ -44,7 +44,10 @@
 	}
 	
 	// Connect to DB
-	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
+	if(!isset($pdo)) {
+		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+	}
+	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
 	
 	// Delete user
 	$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id;");

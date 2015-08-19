@@ -25,7 +25,9 @@ if (!isset($_GET['user'])) {
 			<?php
 				include("/hdd/config/config.php");
 				// Connect to DB
-				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+				if(!isset($pdo)) {
+					$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+				}
 				
 				$username = "%".$_GET['user']."%";
 				// Get all users with search query as a substring
