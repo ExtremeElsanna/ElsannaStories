@@ -14,7 +14,8 @@ $errors = array(1 => "ReCaptcha wrong.",
 				9 => "Username contains invalid characters. You may use: a-z, A-Z, 0-9.",
 				10 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>.",
 				11 => "Username taken.",
-				12 => "Email taken.");
+				12 => "Email taken.",
+				13 => "Unexpected Error :(");
 ?>
 <!DOCTYPE html>
 <html>

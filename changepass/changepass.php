@@ -11,6 +11,26 @@
 	
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
+	if (!isset($_POST['refer'])) {
+		$_POST['refer'] = "/";
+	}
+	
+	if (!isset($_POST['old_password'])) {
+		// Old Password not set
+		header("Location: /changepass/?refer=".$_POST['refer']."&code=8");
+		die();
+	}
+	if (!isset($_POST['new_password'])) {
+		// Password not set
+		header("Location: /changepass/?refer=".$_POST['refer']."&code=8");
+		die();
+	}
+	if (!isset($_POST['new_password_confirm'])) {
+		// Password Conf not set
+		header("Location: /changepass/?refer=".$_POST['refer']."&code=8");
+		die();
+	}
+	
 	if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 		// Not logged in
 		header("Location: /?code=3");
@@ -84,36 +104,36 @@
 							
 							// Logout
 							include("/hdd/elsanna-ssl/scripts/logout.php");
-							header("Location: /login/?code=2");
+							header("Location: /login/?code=2&refer=".$_POST['refer']);
 							die();
 						} else {
 							// New password is same as old password
-							header("Location: /changepass/?code=6");
+							header("Location: /changepass/?code=6&refer=".$_POST['refer']);
 							die();
 						}
 					} else {
 						// Password contains invalid characters
-						header("Location: /changepass/?code=5");
+						header("Location: /changepass/?code=5&refer=".$_POST['refer']);
 						die();
 					}
 				} else {
 					// Password > 20 chars
-					header("Location: /changepass/?code=4");
+					header("Location: /changepass/?code=4&refer=".$_POST['refer']);
 					die();
 				}
 			} else {
 				// Password < 7 chars
-				header("Location: /changepass/?code=3");
+				header("Location: /changepass/?code=3&refer=".$_POST['refer']);
 				die();
 			}
 		} else {
 			// New Password != Password Confirmation
-			header("Location: /changepass/?code=2");
+			header("Location: /changepass/?code=2&refer=".$_POST['refer']);
 			die();
 		}
 	} else {
 		// Old Password Incorrect
-		header("Location: /changepass/?code=1");
+		header("Location: /changepass/?code=1&refer=".$_POST['refer']);
 		die();
 	}
 ?>

@@ -13,9 +13,10 @@ $errors = array(1 => "Account Activated!",
 				6 => "Activation code was sent to your email address!",
 				7 => "Unexpected Error :(",
 				8 => "User does not exist.",
-				9 => "Account has already been activated.");
+				9 => "Account has already been activated.",
+				10 => "New password was sent to your email address if it was valid!");
 if (isset($_GET['id']) and is_numeric($_GET['id'])) {
-	$errors[4] = "Account not Activated. <a href='/resend/?id=".$_GET['id']."'>Resend Activation Email</a>";
+	$errors[4] = "Account not Activated. <a href='resend.php?id=".$_GET['id']."'>Resend Activation Email</a>";
 }
 ?>
 <!DOCTYPE html>
@@ -46,5 +47,6 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			
 			<input type="submit" value="Login">
 		</form>
+		<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br>" ?>
 	</body>
 </html>

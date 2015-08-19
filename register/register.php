@@ -96,6 +96,28 @@
 		}
 	}
 	
+	
+	if (!isset($_POST['user'])) {
+		// User not set
+		header("Location: /register/?code=13");
+		die();
+	}
+	if (!isset($_POST['password'])) {
+		// Password not set
+		header("Location: /register/?code=13");
+		die();
+	}
+	if (!isset($_POST['password_confirm'])) {
+		// Password Conf not set
+		header("Location: /register/?code=13");
+		die();
+	}
+	if (!isset($_POST['g-recaptcha-response'])) {
+		// ReCaptcha not set
+		header("Location: /register/?code=13");
+		die();
+	}
+	
 	$captcha = $_POST['g-recaptcha-response'];
 	$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$config['RcaptchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	$googleResponse = json_decode($response, true);

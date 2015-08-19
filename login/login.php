@@ -4,6 +4,18 @@
 	if (!isset($_POST['refer'])) {
 		$_POST['refer'] = "/";
 	}
+	
+	if (!isset($_POST['user'])) {
+		// User not set
+		header("Location: /login/?refer=".$_POST['refer']."&code=7");
+		die();
+	}
+	if (!isset($_POST['password'])) {
+		// Password not set
+		header("Location: /login/?refer=".$_POST['refer']."&code=7");
+		die();
+	}
+	
 	// Connect to DB
 	$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 	
@@ -50,7 +62,7 @@
 					die();
 				} else {
 					$_SESSION['changePassId'] = $userId;
-					header("Location: /changepass/?code=7");
+					header("Location: /changepass/?code=7&refer=".$_POST['refer']);
 					die();
 				}
 			} else {
