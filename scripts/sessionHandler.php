@@ -18,7 +18,9 @@
 	if (!isset($_SESSION['changePassId'])) {
 		$_SESSION['changePassId'] = null;
 	}
-	
+	if (!isset($_SESSION['banned'])) {
+		$_SESSION['banned'] = null;
+	}
 	$httpLength = 7;
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
@@ -62,7 +64,8 @@
 			$banned = $row['Banned'];
 			if ($userId != "") {
 				// User exists
-				if ($banned == 1) {
+				if ($banned == 1 and $_SESSION['banned'] == 0) {
+					$_SESSION['banned'] = 1;
 					// Log the user out as they have been banned since they logged in
 					include("/hdd/elsanna-ssl/scripts/logout.php");
 					// Account banned

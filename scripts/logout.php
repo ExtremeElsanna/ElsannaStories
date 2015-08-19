@@ -5,4 +5,5 @@
 	$_SESSION['username'] = null;
 	$_SESSION['lastActive'] = null;
 	$_SESSION['changePassId'] = null;
+	$_SESSION['banned'] = null;
 ?>
