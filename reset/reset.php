@@ -82,6 +82,9 @@
 		
 		// Create an activation code 20 characters long
 		$code = generateCode(20);
+		
+		
+		
 		// Create the activation code listing using $userId
 		$stmt = $pdo->prepare('INSERT INTO PasswordReset (UserId, PasswordResetCode) VALUES (:userId, :passwordResetCode);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO

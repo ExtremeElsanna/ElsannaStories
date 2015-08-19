@@ -46,6 +46,9 @@
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
 	
+	
+	
+	
 	if (isset($_GET['code'])) {
 		// Connect to DB
 		if(!isset($pdo)) {
