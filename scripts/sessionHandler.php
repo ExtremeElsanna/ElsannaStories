@@ -1,6 +1,4 @@
 <?php
-	print_r($_SERVER);
-	die;
 	// Make sure session data exists for access
 	if (!isset($_SESSION)) {
 		session_start();
@@ -27,10 +25,7 @@
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
 	}
-	// Strip referer down to link extension
-	$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
-	$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
-	$refer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
+	$refer = mb_strtolower($_SERVER['REQUEST_URI'],"UTF-8");
 	
 	if (isset($_POST['refer'])) {
 		$refer = $_POST['refer'];
