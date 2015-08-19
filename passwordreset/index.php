@@ -55,6 +55,13 @@
 			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 		}
 		
+		date_default_timezone_set('UTC');
+		$dropOff = strtotime(date("Y-m-d H:i:s")) - 86400;
+		
+		$stmt = $pdo->prepare('DELETE FROM PasswordReset WHERE DateCreated < :dropOff;');
+		$stmt->bindParam(':dropOff', $dropOff, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->execute();
+		
 		// Get users with given reset code
 		$stmt = $pdo->prepare('SELECT PasswordResetId,UserId FROM PasswordReset WHERE PasswordResetCode = :code;');
 		$stmt->bindParam(':code', $_GET['code'], PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO

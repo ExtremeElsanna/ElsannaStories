@@ -84,7 +84,7 @@
 		$code = generateCode(20);
 		
 		date_default_timezone_set('UTC');
-		$timestamp = strtotime(date("Y-m-d"))
+		$timestamp = strtotime(date("Y-m-d H:i:s"));
 		
 		// Create the activation code listing using $userId
 		$stmt = $pdo->prepare('INSERT INTO PasswordReset (UserId, PasswordResetCode,DateCreated) VALUES (:userId, :passwordResetCode, :dateCreated);');
