@@ -105,7 +105,7 @@
 		$stmt->execute();
 		
 		// Send new password to email
-		$subject = "CONFIDENTIAL - www.elsannastories.com: ".$username." Password Reset";
+		$subject = "CONFIDENTIAL - www.elsannastories.com Password Reset";
 		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUEPASS",$newPassword,file_get_contents('ResetEmail.html')));
 		sendEmail($config,$subject,$config['EtestAddress'],$username,$body);
 		
