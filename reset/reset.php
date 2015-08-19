@@ -48,7 +48,7 @@
 	if (!isset($_POST['refer'])) {
 		$_POST['refer'] = "/";
 	}
-	if (!isset($_POST['email']) {
+	if (!isset($_POST['email'])) {
 		// Email not set
 		header("Location: /reset/?refer=".$_POST['refer']."&code=1");
 		die();
