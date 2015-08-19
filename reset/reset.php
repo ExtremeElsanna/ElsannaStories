@@ -83,12 +83,14 @@
 		// Create an activation code 20 characters long
 		$code = generateCode(20);
 		
-		
+		date_default_timezone_set('UTC');
+		$timestamp = strtotime(date("Y-m-d H:i:s"));
 		
 		// Create the activation code listing using $userId
-		$stmt = $pdo->prepare('INSERT INTO PasswordReset (UserId, PasswordResetCode) VALUES (:userId, :passwordResetCode);');
+		$stmt = $pdo->prepare('INSERT INTO PasswordReset (UserId, PasswordResetCode,DateCreated) VALUES (:userId, :passwordResetCode, :dateCreated);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':passwordResetCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':dateCreated', $timestamp, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		
 		// Send new password link to email
