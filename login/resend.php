@@ -48,12 +48,13 @@
 	$userId = $_GET['id'];
 	
 	// Get all data about this story
-	$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Id = :id;');
+	$stmt = $pdo->prepare('SELECT Username,Email FROM Users WHERE Id = :id;');
 	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	if ($row['Username'] != "") {
 		$username = $row['Username'];
+		$email = $row['Email'];
 		$stmt = $pdo->prepare('SELECT ActivationCode FROM AccountActivation WHERE UserId = :userId;');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
@@ -62,7 +63,7 @@
 			$code = $row['ActivationCode'];
 			$subject = "www.elsannastories.com: ".$username." Account Activation";
 			$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
-			sendEmail($config,$subject,$config['EtestAddress'],$username,$body);
+			sendEmail($config,$subject,$email,$username,$body);
 			header("Location: /login/?code=6");
 			die();
 		} else {

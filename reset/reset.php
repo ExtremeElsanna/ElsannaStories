@@ -1,7 +1,7 @@
 <?php
 	function generateCode($length) {
 		// Create $length character long code
-		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$code = '';
 		for ($i = 0; $i < $length; $i++) {
 			$code .= $characters[rand(0, strlen($characters) - 1)];
@@ -79,37 +79,22 @@
 	$email = $row['Email'];
 	if ($userId != "") {
 		// User Exists
-		// Generate new Pass
-		$newPassword = generateCode(10);
-		// Generate Salt
-		$newSalt = generateCode($config['PsaltLength']);
-		$options = [
-			'cost' => $config['PsaltCost'],
-			'salt' => $newSalt.$config['Ppepper'],
-		];
-		// Create password hash
-		$newHash = password_hash($newPassword, $config['PhashPattern'], $options);
-		// Update user account
-		$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :userId;");
-		$stmt->bindParam(':newHash', $newHash, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+		
+		// Create an activation code 20 characters long
+		$code = generateCode(20);
+		
+		
+		
+		// Create the activation code listing using $userId
+		$stmt = $pdo->prepare('INSERT INTO PasswordReset (UserId, PasswordResetCode) VALUES (:userId, :passwordResetCode);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':passwordResetCode', $code, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		
-		$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :userId;");
-		$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-		$stmt->execute();
-		
-		$newChange = 1;
-		$stmt = $pdo->prepare("UPDATE Users SET ChangePass = :newChange WHERE Id = :userId;");
-		$stmt->bindParam(':newChange', $newChange, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-		$stmt->execute();
-		
-		// Send new password to email
-		$subject = "CONFIDENTIAL - www.elsannastories.com Password Reset";
-		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUEPASS",$newPassword,file_get_contents('ResetEmail.html')));
-		sendEmail($config,$subject,$config['EtestAddress'],$username,$body);
+		// Send new password link to email
+		$subject = "www.elsannastories.com Password Reset";
+		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUELINK","https://www.elsannastories.com/passwordreset/?code=".$code,file_get_contents('ResetEmail.html')));
+		sendEmail($config,$subject,$email,$username,$body);
 		
 		header("Location: /login/?refer=".$_POST['refer']."&code=10");
 		die();
