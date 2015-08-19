@@ -15,7 +15,7 @@ $errors = array(1 => "Account Activated!",
 				8 => "User does not exist.",
 				9 => "Account has already been activated.",
 				10 => "New password was sent to your email address if it was valid! Please check your junk folder if nothing arrives in the next 15 minutes.",
-				11 => "Account has been disabled. Please contact the support staff to find out why");
+				11 => "Your account has been disabled. Please contact the support staff to find out why.");
 if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 	$errors[4] = "Account not Activated. <a href='resend.php?id=".$_GET['id']."'>Resend Activation Email</a>";
 }

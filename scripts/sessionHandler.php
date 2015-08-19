@@ -31,6 +31,30 @@
 		} else {
 			// Update the last active time
 			$_SESSION['lastActive'] = $currentTime;
+			$userId = $_SESSION['userId'];
+			
+			// Connect to DB
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			$stmt = $pdo->prepare('SELECT Id,Banned FROM Users WHERE Id = :userId;');
+			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$row = $stmt->fetch();
+			// Save important information
+			$userId = $row['Id'];
+			$banned = $row['Banned'];
+			if ($userId != "") {
+				// User exists
+				if ($banned == 1) {
+					// Log the user out as they have been banned since they logged in
+					include("/hdd/elsanna-ssl/scripts/logout.php");
+					// Account banned
+					header("Location: /login/?refer=".$_POST['refer']."&code=11");
+					die();
+				}
+			} else {
+				// Log the user out as an error has occurred
+				include("/hdd/elsanna-ssl/scripts/logout.php");
+			}
 		}
 	}
 ?>

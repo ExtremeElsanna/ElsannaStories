@@ -96,7 +96,7 @@
 			}
 		} else {
 			// Account banned
-			header("Location: /login/?refer=".$_POST['refer']."&code=11&id=".$userId);
+			header("Location: /login/?refer=".$_POST['refer']."&code=11");
 			die();
 		}
 	} else {
