@@ -6,6 +6,9 @@ if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 	header("Location: /?code=3");
 	die();
 }
+if (!isset($_GET['refer'])) {
+	$_GET['refer'] = "/";
+}
 
 $errors = array(1 => "Old Password is incorrect.",
 				2 => "Password confirmation not equal to original password.",
@@ -36,6 +39,10 @@ $errors = array(1 => "Old Password is incorrect.",
 			<input type="password" name="old_password" value="" placeholder="Old Password">
 			<input type="password" name="new_password" value="" placeholder="New Password">
 			<input type="password" name="new_password_confirm" value="" placeholder="New Password Confirmation">
+			<?php
+				// Pass refer link given from referer to the login.php page
+				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
+			?>
 			<input type="submit" value="Change Password">
 		</form>
 	</body>

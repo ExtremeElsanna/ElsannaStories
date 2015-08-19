@@ -50,7 +50,7 @@
 					die();
 				} else {
 					$_SESSION['changePassId'] = $userId;
-					header("Location: /changepass/?code=7");
+					header("Location: /changepass/?code=7&refer=".$_POST['refer']);
 					die();
 				}
 			} else {

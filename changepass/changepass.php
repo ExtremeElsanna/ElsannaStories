@@ -11,6 +11,9 @@
 	
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	include("/hdd/config/config.php");
+	if (!isset($_POST['refer'])) {
+		$_POST['refer'] = "/";
+	}
 	if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 		// Not logged in
 		header("Location: /?code=3");
@@ -84,7 +87,7 @@
 							
 							// Logout
 							include("/hdd/elsanna-ssl/scripts/logout.php");
-							header("Location: /login/?code=2");
+							header("Location: /login/?code=2&refer=".$_POST['refer']);
 							die();
 						} else {
 							// New password is same as old password
