@@ -19,7 +19,15 @@
 		$_SESSION['changePassId'] = null;
 	}
 	
-	$refer = "/";
+	$httpLength = 7;
+	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
+		$httpLength = 8;
+	}
+	// Strip referer down to link extension
+	$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
+	$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
+	$refer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
+	
 	if (isset($_POST['refer'])) {
 		$refer = $_POST['refer'];
 	} else if(isset($_GET['refer'])) {
