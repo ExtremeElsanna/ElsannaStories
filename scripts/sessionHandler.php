@@ -1,4 +1,6 @@
 <?php
+	print_r($_SERVER);
+	die;
 	// Make sure session data exists for access
 	if (!isset($_SESSION)) {
 		session_start();
