@@ -52,8 +52,14 @@
 	if (isset($_GET['code'])) {
 		// Connect to DB
 		if(!isset($pdo)) {
-			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			try {
+				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+			} catch (PDOException $e) {
+				echo 'Connection failed: ' . $e->getMessage();
+				die;
+			}
 		}
+
 		
 		date_default_timezone_set('UTC');
 		$dropOff = strtotime(date("Y-m-d H:i:s")) - 86400;

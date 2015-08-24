@@ -56,8 +56,14 @@
 	}
 	// Connect to DB
 	if(!isset($pdo)) {
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
 	}
+
 	
 	$upperEmail = mb_strtoupper($_POST['email'], 'UTF-8');
 	

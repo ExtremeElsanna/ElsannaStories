@@ -26,8 +26,14 @@ if (!isset($_GET['user'])) {
 				include("/hdd/config/config.php");
 				// Connect to DB
 				if(!isset($pdo)) {
-					$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+					try {
+						$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+					} catch (PDOException $e) {
+						echo 'Connection failed: ' . $e->getMessage();
+						die;
+					}
 				}
+
 				
 				$username = "%".$_GET['user']."%";
 				// Get all users with search query as a substring

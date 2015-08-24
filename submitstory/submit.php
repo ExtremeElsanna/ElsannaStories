@@ -30,8 +30,14 @@
 	
 	// Connect to DB
 	if(!isset($pdo)) {
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
 	}
+
 	// Get all stories with that title and author
 	$stmt = $pdo->prepare('SELECT Id,Visible FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
