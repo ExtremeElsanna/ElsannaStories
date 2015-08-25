@@ -1,6 +1,4 @@
 ﻿<?php
-// Transfer old stories to new stories
-
 include("/hdd/config/config.php");
 $pdo = new PDO('mysql:host='.$config['DBhost'].';dbname=fiction_database', $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
 
@@ -24,7 +22,7 @@ foreach ($rows as $summary) {
 	$stmt->bindParam(':summary', $summary['Summary'], PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':dateSubmitted', $dateSubmitted, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-	$stmt->execute();
+	//$stmt->execute();
 }
 echo "Done";
 ?>
