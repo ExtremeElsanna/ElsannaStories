@@ -199,7 +199,7 @@ $id = $_GET['id'];
 				echo "No summary yet exists for this story. Care to leave a summary for other readers?<br>\n";
 				echo "\t\t<form>\n";
 				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,100);' onKeyUp='limitText(this.form.limitedtextarea,100);'></textarea><br>\n";
-				echo "\t\t\t(Maximum characters: <label id='countdown'>100</label>)<br>\n";
+				echo "\t\t\t<label id='countdown'></label><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
 				echo "A summary is currently in queue for moderation<br>\n";
@@ -210,9 +210,7 @@ $id = $_GET['id'];
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
 				if (limitField.value.length > limitNum) {
-					document.getElementById("countdown").textContent=limitField.value.substring(0, limitNum);
-				} else {
-					document.getElementById("countdown").textContent=limitNum - limitField.value.length;
+					document.getElementById("countdown").textContent="(Characters Left: " + (limitNum - limitField.value.length) + ")";
 				}
 			}
 		</script>
