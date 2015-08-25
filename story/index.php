@@ -181,7 +181,7 @@ $id = $_GET['id'];
 				echo "<td>".$datePublished."</td>";
 				echo "</tr>\n";
 			?>
-		</table>
+		</table><br>
 		<?php
 			// Get summary for this story
 			$stmt = $pdo->prepare('SELECT SummaryId,Summary,Moderated FROM Summaries WHERE StoryId = :id;');
@@ -196,13 +196,24 @@ $id = $_GET['id'];
 				}
 			}
 			if ($status == 0) {
-				echo "No summary yet exists for this story. Want to leave a summary for other readers?<br>\n";
-				echo "<textarea rows='4' cols='50' style='font-family:serif'></textarea><br>\n";
+				echo "No summary yet exists for this story. Care to leave a summary for other readers?<br>\n";
+				echo "\t\t<form>\n";
+				echo "\t\t\t<textarea rows='4' cols='50' style='font-family:serif'></textarea><br>\n";
+				echo "\t\t</form>\n";
 			} else if ($status == 1) {
 				echo "A summary is currently in queue for moderation<br>\n";
 			} else if ($status == 2) {
 				echo nl2br($row['Summary'])."<br>\n";
 			}
 		?>
+		<script language="javascript" type="text/javascript">
+			function limitText(limitField, limitCount, limitNum) {
+				if (limitField.value.length > limitNum) {
+					limitField.value = limitField.value.substring(0, limitNum);
+				} else {
+					limitCount.value = limitNum - limitField.value.length;
+				}
+			}
+		</script>
 	</body>
 </html>
