@@ -177,12 +177,14 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 				echo "<td>".$sisters."</td>";
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
-				echo "<td><a href='".$url."'>".$url."</a></td>";
+				echo "<td><a href='".$url."'>Link</a></td>";
 				echo "<td>".$dateAdded."</td>";
 				echo "<td>".$datePublished."</td>";
-				echo "</tr>";
+				echo "</tr>\n";
 			?>
-		
+			<textarea rows="4" cols="50" style="font-family:serif">
+				Test text
+			</textarea>
 		</table>
 	</body>
 </html>
