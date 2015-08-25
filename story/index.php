@@ -198,7 +198,7 @@ $id = $_GET['id'];
 			if ($status == 0) {
 				echo "No summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
 				echo "\t\t<form>\n";
-				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,100);' onKeyUp='limitText(this.form.limitedtextarea,100);'></textarea><br>\n";
+				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,1000);' onKeyUp='limitText(this.form.limitedtextarea,1000);'></textarea><br>\n";
 				echo "\t\t\t<label id='countdown'></label><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
