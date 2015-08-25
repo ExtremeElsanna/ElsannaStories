@@ -184,7 +184,7 @@ $id = $_GET['id'];
 		</table>
 		<?php
 			// Get summary for this story
-			$stmt = $pdo->prepare('SELECT * FROM Summaries WHERE StoryId = :id;');
+			$stmt = $pdo->prepare('SELECT SummaryId,Summary,Moderated FROM Summaries WHERE StoryId = :id;');
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$row = $stmt->fetch();
@@ -195,9 +195,15 @@ $id = $_GET['id'];
 					$status = 2;
 				}
 			}
-			echo '<textarea rows="4" cols="50" style="font-family:serif">
+			if ($status == 0) {
+				echo '<textarea rows="4" cols="50" style="font-family:serif">
 Test text
-			</textarea>';
+		</textarea><br>';
+			} else if ($status == 1) {
+				echo 'A summary is currently in queue for moderation<br>';
+			} else if ($status == 2) {
+				echo nl2br($row['Summary'])."<br>";
+			}
 		?>
 	</body>
 </html>
