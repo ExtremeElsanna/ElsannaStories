@@ -196,11 +196,11 @@ $id = $_GET['id'];
 				}
 			}
 			if ($status == 0) {
-				echo '<textarea rows="4" cols="50" style="font-family:serif">
+				echo "<textarea rows='4' cols='50' style='font-family:serif'>
 Test text
-		</textarea><br>\n';
+		</textarea><br>\n";
 			} else if ($status == 1) {
-				echo 'A summary is currently in queue for moderation<br>\n';
+				echo "A summary is currently in queue for moderation<br>\n";
 			} else if ($status == 2) {
 				echo nl2br($row['Summary'])."<br>\n";
 			}
