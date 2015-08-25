@@ -5,6 +5,7 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 	header("Location: /?code=2");
 	die();
 }
+$id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,8 +34,6 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 					}
 				}
 
-
-				$id = $_GET['id'];
 				// Get all data about this story
 				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id;');
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
@@ -183,8 +182,22 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 				echo "</tr>\n";
 			?>
 		</table>
-		<textarea rows="4" cols="50" style="font-family:serif">
-			Test text
-		</textarea>
+		<?php
+			// Get summary for this story
+			$stmt = $pdo->prepare('SELECT * FROM Summaries WHERE StoryId = :id;');
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$row = $stmt->fetch();
+			$status = 0;
+			if ($row['SummaryId'] != "") {
+				$status = 1;
+				if ($row['Moderated'] == 1) {
+					$status = 2;
+				}
+			}
+			echo '<textarea rows="4" cols="50" style="font-family:serif">
+Test text
+			</textarea>';
+		?>
 	</body>
 </html>
