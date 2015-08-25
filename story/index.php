@@ -182,9 +182,9 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 				echo "<td>".$datePublished."</td>";
 				echo "</tr>\n";
 			?>
-			<textarea rows="4" cols="50" style="font-family:serif">
-				Test text
-			</textarea>
 		</table>
+		<textarea rows="4" cols="50" style="font-family:serif">
+			Test text
+		</textarea>
 	</body>
 </html>
