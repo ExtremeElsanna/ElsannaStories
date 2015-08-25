@@ -196,20 +196,20 @@ $id = $_GET['id'];
 				}
 			}
 			if ($status == 0) {
-				echo "No summary yet exists for this story. Care to leave a summary for other readers?<br>\n";
+				echo "No summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
 				echo "\t\t<form>\n";
 				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,100);' onKeyUp='limitText(this.form.limitedtextarea,100);'></textarea><br>\n";
 				echo "\t\t\t<label id='countdown'></label><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
-				echo "A summary is currently in queue for moderation<br>\n";
+				echo "A summary is currently in queue for moderation for this story<br>\n";
 			} else if ($status == 2) {
 				echo nl2br($row['Summary'])."<br>\n";
 			}
 		?>
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
-				var newValue = "(Characters Left: " + (limitNum - limitField.value.length).toString() + ")";
+				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
 				document.getElementById("countdown").textContent=newValue;
 			}
 		</script>
