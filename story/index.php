@@ -208,7 +208,7 @@ $id = $_GET['id'];
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
 				echo "\t\t<form action='submitsummary.php' method='post'>\n";
 				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,1000);' onKeyUp='limitText(this.form.limitedtextarea,1000);'></textarea><br>\n";
-				echo "\t\t\t<label id='countdown'></label>\n";
+				echo "\t\t\t<label id='countdown'></label><br>\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
@@ -221,7 +221,7 @@ $id = $_GET['id'];
 		?>
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
-				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString() + "\n";
+				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
 				document.getElementById("countdown").textContent=newValue;
 			}
 		</script>
