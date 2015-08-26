@@ -5,6 +5,10 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 	header("Location: /?code=2");
 	die();
 }
+
+$errors = array(1 => "TBD",
+				2 => "TBD");
+				
 $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
@@ -19,7 +23,11 @@ $id = $_GET['id'];
 			$headerRefer = '/story/?id='.$_GET['id'];
 			include("/hdd/elsanna-ssl/classes/header.php");
 		?>
-		
+		<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br>\n";
+			}
+		?>
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
 			<?php
@@ -198,9 +206,10 @@ $id = $_GET['id'];
 			if ($status == 0) {
 				echo "Summary:<br>\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
-				echo "\t\t<form>\n";
+				echo "\t\t<form action='submitsummary.php' method='post'>\n";
 				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,1000);' onKeyUp='limitText(this.form.limitedtextarea,1000);'></textarea><br>\n";
 				echo "\t\t\t<label id='countdown'></label><br>\n";
+				echo "\t\t\t<input type='submit' value='Submit'><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
 				echo "Summary:<br>\n";
