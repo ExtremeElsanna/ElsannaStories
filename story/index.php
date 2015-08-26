@@ -221,7 +221,7 @@ $id = $_GET['id'];
 		?>
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
-				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString() + "<br>";
+				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString() + "\n";
 				document.getElementById("countdown").textContent=newValue;
 			}
 		</script>
