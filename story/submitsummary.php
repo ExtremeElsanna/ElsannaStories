@@ -46,7 +46,7 @@
 		}
 	}
 	
-	if ($status == 2) {
+	if ($status == 0) {
 		// Summary doesn't exist yet
 		if (isset($_POST['summary']) and strlen($_POST['summary']) > 0) {
 			// Summary > 0 chars
