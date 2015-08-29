@@ -1,13 +1,11 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
-	header("Location: /?code=2");
-	die();
-}
 
-$errors = array(1 => "TBD",
-				2 => "TBD");
+$errors = array(1 => "Summary already submitted.",
+				2 => "Summary too short.",
+				3 => "Summary longer than 1000 characters.",
+				4 => "Summary submitted!");
 				
 $id = $_GET['id'];
 ?>
@@ -196,17 +194,21 @@ $id = $_GET['id'];
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$row = $stmt->fetch();
+			// No sumamry
 			$status = 0;
 			if ($row['SummaryId'] != "") {
+				// Summary, not moderated
 				$status = 1;
 				if ($row['Moderated'] == 1) {
+					// Moderated summary
 					$status = 2;
 				}
 			}
+			// Display the relevant HTML
 			if ($status == 0) {
 				echo "Summary:<br>\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
-				echo "\t\t<form action='submitsummary.php' method='post'>\n";
+				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
 				echo "\t\t\t<textarea name='limitedtextarea' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.limitedtextarea,1000);' onKeyUp='limitText(this.form.limitedtextarea,1000);'></textarea><br>\n";
 				echo "\t\t\t<label id='countdown'></label><br>\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br>\n";
@@ -222,7 +224,8 @@ $id = $_GET['id'];
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
 				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
-				document.getElementById("countdown").textContent=newValue;
+				 nice
+				 document.getElementById("countdown").textContent=newValue;
 			}
 		</script>
 	</body>
