@@ -224,7 +224,6 @@ $id = $_GET['id'];
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
 				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
-				 nice
 				 document.getElementById("countdown").textContent=newValue;
 			}
 		</script>
