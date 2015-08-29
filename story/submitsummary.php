@@ -6,6 +6,17 @@
 		header("Location: /?code=2");
 		die();
 	}
+	
+	// Connect to DB
+	if(!isset($pdo)) {
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
+	}
+	
 	// Get all data about this story
 	$stmt = $pdo->prepare('SELECT Id FROM Stories WHERE Id = :id;');
 	$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
