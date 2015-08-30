@@ -49,7 +49,7 @@ if (!isset($_GET['search'])) {
 			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
 			<input type="submit" value="Search">
 		</form>
-		<?php
+<?php
 			include("/hdd/config/config.php");
 			// Connect to DB
 			if(!isset($pdo)) {
