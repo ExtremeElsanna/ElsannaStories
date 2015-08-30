@@ -1,34 +1,51 @@
-﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+<?php
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
+
+$errors = array(1 => "Summary already submitted.",
+				2 => "Summary too short.",
+				3 => "Summary longer than 1000 characters.",
+				4 => "Summary submitted!");
+
+				
 if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
-	header("Location: /?code=2");
+	header("Location: /?code=7");
 	die();
 }
+$id = $_GET['id'];
 ?>
-<!DOCTYPE html>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
-			$headerRefer = '/story/?id='.$_GET['id'];
+			$headerRefer = '/story/?id='.$id;
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		
+?>
+<?php
+			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+				echo $errors[intval($_GET['code'])]."<br />\n";
+			}
+?>
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
-			<?php
+<?php
 				include("/hdd/config/config.php");
 				// Connect to DB
 				if(!isset($pdo)) {
-					$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+					try {
+						$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+					} catch (PDOException $e) {
+						echo 'Connection failed: ' . $e->getMessage();
+						die;
+					}
 				}
 
-				$id = $_GET['id'];
 				// Get all data about this story
 				$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id;');
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
@@ -157,7 +174,7 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 				$datePublished = $row['DatePublished'];
 				
 				// Print data
-				echo "<tr>";
+				echo "\t\t\t<tr>";
 				echo "<td>".$title."</td>";
 				echo "<td>".$author."</td>";
 				echo "<td>".$length."</td>";
@@ -171,12 +188,53 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 				echo "<td>".$sisters."</td>";
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
-				echo "<td>".$url."</td>";
+				echo "<td><a href='".$url."'>Link</a></td>";
 				echo "<td>".$dateAdded."</td>";
 				echo "<td>".$datePublished."</td>";
-				echo "</tr>";
-			?>
-		
-		</table>
+				echo "</tr>\n";
+?>
+		</table><br />
+<?php
+			// Get summary for this story
+			$stmt = $pdo->prepare('SELECT SummaryId,Summary,Moderated FROM Summaries WHERE StoryId = :id;');
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$row = $stmt->fetch();
+			// No sumamry
+			$status = 0;
+			if ($row['SummaryId'] != "") {
+				// Summary, not moderated
+				$status = 1;
+				if ($row['Moderated'] == 1) {
+					// Moderated summary
+					$status = 2;
+				}
+			}
+			// Display the relevant HTML
+			if ($status == 0) {
+				echo "\t\tSummary:<br />\n";
+				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
+				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
+				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br />\n";
+				echo "\t\t\t<label id='countdown'></label><br />\n";
+				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
+				echo "\t\t</form>\n";
+			} else if ($status == 1) {
+				echo "\t\tSummary:<br />\n";
+				echo "\t\tA summary is currently in queue for moderation for this story<br />\n";
+			} else if ($status == 2) {
+				echo "\t\tSummary:<br />\n";
+				echo "<!-- Summary Starts Here -->\n";
+				echo nl2br(strip_tags($row['Summary']))."\n";
+				echo "<!-- Summary Ends Here -->\n";
+				echo "\t\t<br />\n";
+			}
+?>
+		<script language="javascript" type="text/javascript">
+			function limitText(limitField, limitNum) {
+				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
+				 document.getElementById("countdown").textContent=newValue;
+			}
+		</script>
 	</body>
 </html>

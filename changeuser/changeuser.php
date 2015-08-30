@@ -25,8 +25,14 @@
 	}
 	// Connect to DB
 	if(!isset($pdo)) {
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
 	}
+
 	$newUser = $_POST['username'];
 	$newUpperUser = mb_strtoupper($newUser, "UTF-8");
 	$userId = $_SESSION['userId'];

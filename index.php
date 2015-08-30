@@ -1,6 +1,7 @@
-﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+<?php
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 // Case insensitive function to count substring occurance
 function substri_count($haystack, $needle) {
@@ -20,14 +21,14 @@ if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
 ?>
-<!DOCTYPE html>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Define a refer link for our 'header' so login/logout refer us back to correct page
 			if ($_GET['search'] != "") {
 				$headerRefer = '/?search='.$_GET['search'];
@@ -36,12 +37,12 @@ if (!isset($_GET['search'])) {
 			}
 			// Include the header in our pages
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>\n";
+				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="/submitstory/" method="get">
 			<input type="submit" value="Submit a Story!">
 		</form>
@@ -49,11 +50,16 @@ if (!isset($_GET['search'])) {
 			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
 			<input type="submit" value="Search">
 		</form>
-		<?php
+<?php
 			include("/hdd/config/config.php");
 			// Connect to DB
 			if(!isset($pdo)) {
-				$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+				try {
+					$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+				} catch (PDOException $e) {
+					echo 'Connection failed: ' . $e->getMessage();
+					die;
+				}
 			}
 			
 			// Select all stories data
@@ -75,7 +81,7 @@ if (!isset($_GET['search'])) {
 				if ($_GET['search'] != "") {
 					$hitCounter = 0;
 					if ($debug == True) {
-						echo $row[1]."<br><br>";
+						echo $row[1]."<br /><br />";
 					}
 					for ($i = $wordcount; $i > 0; $i--) {
 						$maxiterations = $wordcount-($i-1);
@@ -105,9 +111,9 @@ if (!isset($_GET['search'])) {
 							}
 						}
 						if ($debug == True) {
-							echo "<br>";
+							echo "<br />";
 							echo "Total ".$hitCounts;
-							echo "<br><br>";
+							echo "<br /><br />";
 						}
 						$hitCounter += $hitCounts;
 						
@@ -162,9 +168,9 @@ if (!isset($_GET['search'])) {
 								}
 								
 								if ($debug == True) {
-									echo "<br>";
+									echo "<br />";
 									echo "Total ".$hitCounts;
-									echo "<br><br>";
+									echo "<br /><br />";
 								}
 								$hitCounter += $hitCounts;
 							}
@@ -190,9 +196,9 @@ if (!isset($_GET['search'])) {
 							$hitCounts += $persplitcount;
 						}
 						if ($debug == True) {
-							echo "<br>";
+							echo "<br />";
 							echo "Total ".$hitCounts;
-							echo "<br><br>";
+							echo "<br /><br />";
 						}
 						$hitCounter += $hitCounts;
 					}
@@ -202,10 +208,10 @@ if (!isset($_GET['search'])) {
 				}
 			}
 			// Search Engine End
-		?>
+?>
 		<table>
 			<tr><th>Title</th></tr>
-			<?php
+<?php
 				// Sort the stories by hitcounter, then name alphabetically
 				function custom_sort($a,$b) {
 					if ($a[1] == $b[1]) {
@@ -219,9 +225,9 @@ if (!isset($_GET['search'])) {
 				usort($validStories, "custom_sort");
 				foreach ($validStories as $story) {
 					// Print out the stories returned by search engine
-					echo "<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n\t\t\t";
+					echo "\t\t\t<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n";
 				}
-			?>
+?>
 		</table>
 	</body>
 </html>

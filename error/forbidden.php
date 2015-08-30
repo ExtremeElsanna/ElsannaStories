@@ -1,18 +1,19 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 ?>
-<!DOCTYPE html>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
+?>
 		
 		This document/directory is locked!
 	</body>

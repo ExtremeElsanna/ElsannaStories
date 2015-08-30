@@ -43,8 +43,14 @@
 	
 	// Connect to DB
 	if(!isset($pdo)) {
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
 	}
+
 	$userId = $_GET['id'];
 	
 	// Get all data about this story

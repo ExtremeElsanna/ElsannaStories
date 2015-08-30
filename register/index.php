@@ -1,6 +1,7 @@
-﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+<?php
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 include("/hdd/config/config.php");
 
 $errors = array(1 => "ReCaptcha wrong.",
@@ -17,7 +18,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 				12 => "Email taken.",
 				13 => "Unexpected Error :(");
 ?>
-<!DOCTYPE html>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
@@ -25,16 +26,16 @@ $errors = array(1 => "ReCaptcha wrong.",
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>\n";
+				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="register.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">

@@ -1,6 +1,7 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 include("/hdd/config/config.php");
 // Check we have a user name query
 if (isset($_GET['user'])) {
@@ -10,8 +11,14 @@ if (isset($_GET['user'])) {
 	
 	// Connect to DB
 	if(!isset($pdo)) {
-		$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		try {
+			$pdo = new PDO('mysql:host='.$config['DBhost'].';dbname='.$config['DBname'], $config['DBusername'], $config['DBpassword'], $config['DBoptions']);
+		} catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+			die;
+		}
 	}
+
 	// Get data about matching user
 	$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
@@ -37,32 +44,32 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 	$usersProfile = false;
 }
 ?>
-<!DOCTYPE html>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/user/'.$user;
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
+?>
 		
-		<?php
+<?php
 			// If logged in user's profile
 			if ($usersProfile == true) {
 				// Print user admin options
-				echo "Welcome to your profile!<br>\n";
-				echo "\t\t<a href='/changeuser/'>Change Username</a><br>\n";
-				echo "\t\t<a href='/changepass/'>Change Password</a><br>\n";
+				echo "Welcome to your profile!<br />\n";
+				echo "\t\t<a href='/changeuser/'>Change Username</a><br />\n";
+				echo "\t\t<a href='/changepass/'>Change Password</a><br />\n";
 				echo "\t\t<a href='/delete/'>Delete Account</a>";
 			} else {
 				// Print guest/other user information
 				echo $user."'s profile!";
 			}
-		?>
+?>
 		
 	</body>
 </html>
