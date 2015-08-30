@@ -1,6 +1,4 @@
 ﻿<?php
-$doctype = "";
-include("/hdd/elsanna-ssl/headers/doctype.php");
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
@@ -17,7 +15,7 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 $id = $_GET['id'];
 ?>
 <?php
-//$doctype = "<!DOCTYPE html>\n";
+include("/hdd/elsanna-ssl/headers/doctype.php");
 echo $doctype;
 ?>
 <html>
