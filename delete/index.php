@@ -23,7 +23,7 @@ $errors = array(1 => "Unexpected Error :(");
 		?>
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>\n";
+				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
 		?>
 		<form action="delete.php" method="post">

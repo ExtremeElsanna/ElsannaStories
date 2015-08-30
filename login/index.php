@@ -35,10 +35,10 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 		?>
 		<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>\n";
+				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
 		?>
-		<a href="/register/">Register</a><br>
+		<a href="/register/">Register</a><br />
 		<form action="login.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
@@ -49,6 +49,6 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			
 			<input type="submit" value="Login">
 		</form>
-		<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br>" ?>
+		<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br />" ?>
 	</body>
 </html>
