@@ -14,7 +14,10 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 }
 $id = $_GET['id'];
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php"); ?>
+<?php
+include("/hdd/elsanna-ssl/headers/doctype.php");
+echo $doctype;
+?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
