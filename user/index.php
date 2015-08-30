@@ -43,7 +43,7 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 	$usersProfile = false;
 }
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

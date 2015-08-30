@@ -9,7 +9,7 @@ if ($_SESSION['loggedIn'] != 1) {
 
 $errors = array(1 => "Unexpected Error :(");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

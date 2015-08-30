@@ -8,7 +8,7 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 $errors = array(1 => "Unexpected Error :(",
 				2 => "Email does not exist.");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

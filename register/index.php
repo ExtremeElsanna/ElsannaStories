@@ -17,7 +17,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 				12 => "Email taken.",
 				13 => "Unexpected Error :(");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

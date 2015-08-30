@@ -9,7 +9,7 @@ $errors = array(1 => "Summary already submitted.",
 				
 $id = $_GET['id'];
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

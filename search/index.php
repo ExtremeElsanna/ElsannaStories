@@ -7,7 +7,7 @@ if (!isset($_GET['user'])) {
 	die();
 }
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

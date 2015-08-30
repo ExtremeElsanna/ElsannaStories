@@ -19,7 +19,7 @@ $errors = array(1 => "Old Password is incorrect.",
 				7 => "You need to change your password.",
 				8 => "Unexpected Error :(");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

@@ -14,7 +14,7 @@ $errors = array(1 => "Username taken.",
 				5 => "Username cannot be 'guest'.",
 				6 => "Unexpected Error :(");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

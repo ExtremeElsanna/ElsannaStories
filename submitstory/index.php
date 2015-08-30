@@ -19,7 +19,7 @@ $errors = array(1 => "Unexpected Error :(",
 				15 => "Date Published Not Valid.",
 				16 => "Story Deleted from site");
 ?>
-<!DOCTYPE html>
+<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
