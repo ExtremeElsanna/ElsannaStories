@@ -14,6 +14,6 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 		
-		<br />It seems the requested URL was not found on the server :(
+		<br>It seems the requested URL was not found on the server :(
 	</body>
 </html>

@@ -23,7 +23,7 @@ $id = $_GET['id'];
 ?>
 <?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br />\n";
+				echo $errors[intval($_GET['code'])]."<br>\n";
 			}
 ?>
 		<table>
@@ -187,7 +187,7 @@ $id = $_GET['id'];
 				echo "<td>".$datePublished."</td>";
 				echo "</tr>\n";
 ?>
-		</table><br />
+		</table><br>
 <?php
 			// Get summary for this story
 			$stmt = $pdo->prepare('SELECT SummaryId,Summary,Moderated FROM Summaries WHERE StoryId = :id;');
@@ -206,22 +206,22 @@ $id = $_GET['id'];
 			}
 			// Display the relevant HTML
 			if ($status == 0) {
-				echo "Summary:<br />\n";
-				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
+				echo "Summary:<br>\n";
+				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br>\n";
 				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
-				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br />\n";
-				echo "\t\t\t<label id='countdown'></label><br />\n";
-				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
+				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br>\n";
+				echo "\t\t\t<label id='countdown'></label><br>\n";
+				echo "\t\t\t<input type='submit' value='Submit'><br>\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
-				echo "Summary:<br />\n";
-				echo "\t\tA summary is currently in queue for moderation for this story<br />\n";
+				echo "Summary:<br>\n";
+				echo "\t\tA summary is currently in queue for moderation for this story<br>\n";
 			} else if ($status == 2) {
-				echo "Summary:<br />\n";
+				echo "Summary:<br>\n";
 				echo "<!-- Summary Starts Here -->\n";
 				echo nl2br(strip_tags($row['Summary']))."\n";
 				echo "<!-- Summary Ends Here -->\n";
-				echo "\t\t<br />\n";
+				echo "\t\t<br>\n";
 			}
 ?>
 		<script language="javascript" type="text/javascript">
