@@ -16,7 +16,7 @@ $id = $_GET['id'];
 ?>
 <?php
 $doctype = "<!DOCTYPE html>\n";
-//include("/hdd/elsanna-ssl/headers/variables.php");
+require("/hdd/elsanna-ssl/headers/variables.php");
 print($doctype);
 ?>
 <html>
