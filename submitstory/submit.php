@@ -276,7 +276,7 @@
 	$stmt->bindParam(':url', $url, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':dateAdded', $dateAdded, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':datePublished', $datePublished, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-	//$stmt->execute();
+	$stmt->execute();
 	
 	// Story submitted
 	header("Location: /?code=5");
