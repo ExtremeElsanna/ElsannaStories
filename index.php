@@ -20,7 +20,7 @@ if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
 ?>
-<!DOCTYPE html>
+<?php echo "<!DOCTYPE html>\n"; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
