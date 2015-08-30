@@ -1,4 +1,4 @@
 ﻿<?php
 	// Output correct DOCTYPE
-	echo "<!DOCTYPE html>";
+	echo "<!DOCTYPE html>\n";
 ?>
