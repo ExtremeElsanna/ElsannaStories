@@ -33,7 +33,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 ?>
 <?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br />\n";
+				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
 		<form action="register.php" method="post">
