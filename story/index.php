@@ -219,8 +219,9 @@ $id = $_GET['id'];
 			} else if ($status == 2) {
 				echo "Summary:<br>\n";
 				echo "<!-- Summary Starts Here -->\n";
-				echo nl2br(strip_tags($row['Summary']))."<br>\n";
+				echo nl2br(strip_tags($row['Summary']))."\n";
 				echo "<!-- Summary Ends Here -->\n";
+				echo "\t\t<br>\n";
 			}
 		?>
 		<script language="javascript" type="text/javascript">
