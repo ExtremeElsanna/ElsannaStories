@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Transfer old stories to new stories
 
 include("/hdd/config/config.php");
