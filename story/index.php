@@ -218,7 +218,7 @@ $id = $_GET['id'];
 				echo "\t\tA summary is currently in queue for moderation for this story<br>\n";
 			} else if ($status == 2) {
 				echo "Summary:<br>\n";
-				echo "\t\t".nl2br($row['Summary'])."<br>\n";
+				echo "\t\t".nl2br(strip_tags($row['Summary']))."<br>\n";
 			}
 		?>
 		<script language="javascript" type="text/javascript">
