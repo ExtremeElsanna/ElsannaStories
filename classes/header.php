@@ -1,4 +1,4 @@
-<a href="/">Home</a><br />
+		<a href="/">Home</a><br />
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 ?>
