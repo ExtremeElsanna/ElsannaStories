@@ -20,7 +20,7 @@ if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php"); ?>
+<?php echo "<!DOCTYPE html>\n"; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
