@@ -16,7 +16,7 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 $id = $_GET['id'];
 ?>
 <?php
-//$doctype = "<!DOCTYPE html>\n";
+$doctype = "<!DOCTYPE html>\n";
 echo $doctype;
 ?>
 <html>
