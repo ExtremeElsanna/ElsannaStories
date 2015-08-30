@@ -1,6 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 // Case insensitive function to count substring occurance
 function substri_count($haystack, $needle) {
@@ -20,7 +21,7 @@ if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
 ?>
-<?php echo "<!DOCTYPE html>\n"; ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

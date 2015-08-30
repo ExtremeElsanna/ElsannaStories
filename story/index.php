@@ -1,6 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 $errors = array(1 => "Summary already submitted.",
 				2 => "Summary too short.",
@@ -14,11 +15,7 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 }
 $id = $_GET['id'];
 ?>
-<?php
-$doctype = "<!DOCTYPE html>\n";
-include_once("/hdd/elsanna-ssl/headers/variables.php");
-print($doctype);
-?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
