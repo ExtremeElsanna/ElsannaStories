@@ -13,7 +13,6 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
-		
 		<br />It seems the requested URL was not found on the server :(
 	</body>
 </html>

@@ -6,7 +6,12 @@ $errors = array(1 => "Summary already submitted.",
 				2 => "Summary too short.",
 				3 => "Summary longer than 1000 characters.",
 				4 => "Summary submitted!");
+
 				
+if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
+	header("Location: /?code=7");
+	die();
+}
 $id = $_GET['id'];
 ?>
 <?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
@@ -18,7 +23,7 @@ $id = $_GET['id'];
 	<body>
 <?php
 			// Include header in page
-			$headerRefer = '/story/?id='.$_GET['id'];
+			$headerRefer = '/story/?id='.$id;
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
