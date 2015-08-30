@@ -173,7 +173,7 @@ $id = $_GET['id'];
 				$datePublished = $row['DatePublished'];
 				
 				// Print data
-				echo "<tr>";
+				echo "\t\t\t<tr>";
 				echo "<td>".$title."</td>";
 				echo "<td>".$author."</td>";
 				echo "<td>".$length."</td>";
@@ -211,7 +211,7 @@ $id = $_GET['id'];
 			}
 			// Display the relevant HTML
 			if ($status == 0) {
-				echo "Summary:<br />\n";
+				echo "\t\tSummary:<br />\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
 				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
 				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br />\n";
@@ -219,10 +219,10 @@ $id = $_GET['id'];
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
-				echo "Summary:<br />\n";
+				echo "\t\tSummary:<br />\n";
 				echo "\t\tA summary is currently in queue for moderation for this story<br />\n";
 			} else if ($status == 2) {
-				echo "Summary:<br />\n";
+				echo "\t\tSummary:<br />\n";
 				echo "<!-- Summary Starts Here -->\n";
 				echo nl2br(strip_tags($row['Summary']))."\n";
 				echo "<!-- Summary Ends Here -->\n";
