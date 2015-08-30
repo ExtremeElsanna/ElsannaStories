@@ -1,5 +1,5 @@
 ﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
 // Case insensitive function to count substring occurance
@@ -27,7 +27,7 @@ if (!isset($_GET['search'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Define a refer link for our 'header' so login/logout refer us back to correct page
 			if ($_GET['search'] != "") {
 				$headerRefer = '/?search='.$_GET['search'];
@@ -36,12 +36,12 @@ if (!isset($_GET['search'])) {
 			}
 			// Include the header in our pages
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
 				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="/submitstory/" method="get">
 			<input type="submit" value="Submit a Story!">
 		</form>
@@ -207,7 +207,7 @@ if (!isset($_GET['search'])) {
 				}
 			}
 			// Search Engine End
-		?>
+?>
 		<table>
 			<tr><th>Title</th></tr>
 <?php
@@ -226,7 +226,7 @@ if (!isset($_GET['search'])) {
 					// Print out the stories returned by search engine
 					echo "\t\t\t<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n";
 				}
-			?>
+?>
 		</table>
 	</body>
 </html>

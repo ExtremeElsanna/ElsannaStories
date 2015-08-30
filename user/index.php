@@ -1,5 +1,5 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 include("/hdd/config/config.php");
 // Check we have a user name query
@@ -50,13 +50,13 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/user/'.$user;
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
+?>
 		
-		<?php
+<?php
 			// If logged in user's profile
 			if ($usersProfile == true) {
 				// Print user admin options
@@ -68,7 +68,7 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 				// Print guest/other user information
 				echo $user."'s profile!";
 			}
-		?>
+?>
 		
 	</body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
@@ -26,24 +26,24 @@ $errors = array(1 => "Old Password is incorrect.",
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header on page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
 				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="changepass.php" method="post">
 			<input type="password" name="old_password" value="" placeholder="Old Password">
 			<input type="password" name="new_password" value="" placeholder="New Password">
 			<input type="password" name="new_password_confirm" value="" placeholder="New Password Confirmation">
-			<?php
+<?php
 				// Pass refer link given from referer to the login.php page
 				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
-			?>
+?>
 			<input type="submit" value="Change Password">
 		</form>
 	</body>

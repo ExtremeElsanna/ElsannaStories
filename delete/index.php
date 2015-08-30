@@ -1,5 +1,5 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 if ($_SESSION['loggedIn'] != 1) {
 	// Not logged in
@@ -16,16 +16,16 @@ $errors = array(1 => "Unexpected Error :(");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
 				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="delete.php" method="post">
 			<input type="hidden" name="confirm" value="true">
 			<input type="submit" value="Are you sure?">

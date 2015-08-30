@@ -1,5 +1,5 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 // Require username to search by
 if (!isset($_GET['user'])) {
@@ -14,15 +14,15 @@ if (!isset($_GET['user'])) {
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/';
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
+?>
 		
 		<table>
 			<tr><th>User</th></tr>
-			<?php
+<?php
 				include("/hdd/config/config.php");
 				// Connect to DB
 				if(!isset($pdo)) {
@@ -45,7 +45,7 @@ if (!isset($_GET['user'])) {
 					// Print user
 					echo '<tr><td><a href="/user/'.$row['Username'].'">'.$row['Username'].'</a></td></tr>';
 				}
-			?>
+?>
 
 		</table>
 	</body>

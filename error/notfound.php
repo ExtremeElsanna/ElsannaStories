@@ -1,5 +1,5 @@
 <?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 ?>
 <?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
@@ -9,10 +9,10 @@ include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			$headerRefer = '/register/';
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
+?>
 		
 		<br />It seems the requested URL was not found on the server :(
 	</body>

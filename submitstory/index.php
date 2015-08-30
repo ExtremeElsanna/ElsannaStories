@@ -1,5 +1,5 @@
 ﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
 $errors = array(1 => "Unexpected Error :(",
@@ -26,7 +26,7 @@ $errors = array(1 => "Unexpected Error :(",
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/submitstory/';
 			include("/hdd/elsanna-ssl/classes/header.php");
@@ -35,12 +35,12 @@ $errors = array(1 => "Unexpected Error :(",
 			$currentDay = date("d");
 			$currentMonth = date("m");
 			$currentYear = date("Y");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
 				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<form action="submit.php" method="post">
 			Title<br />
 			<input type="text" name="Title" value="" placeholder="Title"><br />
@@ -108,7 +108,7 @@ $errors = array(1 => "Unexpected Error :(",
 			<br />
 			Date Published<br />
 			<select name="DayPublished">
-				<?php
+<?php
 					// Print all days and select current
 					if ($currentDay == "01") {
 						echo "<option value='01' selected>01</option>\n";
@@ -122,10 +122,10 @@ $errors = array(1 => "Unexpected Error :(",
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				?>
+?>
 			</select>
 			<select name="MonthPublished">
-				<?php
+<?php
 					// Print all months and select current
 					if ($currentMonth == "01") {
 						echo "<option value='01' selected>01</option>\n";
@@ -139,10 +139,10 @@ $errors = array(1 => "Unexpected Error :(",
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				?>
+?>
 			</select>
 			<select name="YearPublished">
-				<?php
+<?php
 					// Print all years and select current
 					if ($currentYear == "2013") {
 						echo "<option value='2013' selected>2013</option>\n";
@@ -156,7 +156,7 @@ $errors = array(1 => "Unexpected Error :(",
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				?>
+?>
 			</select><br />
 			<br />
 			<input type="submit" value="Submit">

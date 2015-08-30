@@ -1,5 +1,5 @@
 ﻿<?php
-include("/hdd/elsanna-ssl/scripts/utf8Headers.php");
+include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
 $errors = array(1 => "Summary already submitted.",
@@ -16,19 +16,19 @@ $id = $_GET['id'];
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	</head>
 	<body>
-		<?php
+<?php
 			// Include header in page
 			$headerRefer = '/story/?id='.$_GET['id'];
 			include("/hdd/elsanna-ssl/classes/header.php");
-		?>
-		<?php
+?>
+<?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
 				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
-		?>
+?>
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Length</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Url</th><th>Date Added</th><th>Date Published</th></tr>
-			<?php
+<?php
 				include("/hdd/config/config.php");
 				// Connect to DB
 				if(!isset($pdo)) {
@@ -186,9 +186,9 @@ $id = $_GET['id'];
 				echo "<td>".$dateAdded."</td>";
 				echo "<td>".$datePublished."</td>";
 				echo "</tr>\n";
-			?>
+?>
 		</table><br />
-		<?php
+<?php
 			// Get summary for this story
 			$stmt = $pdo->prepare('SELECT SummaryId,Summary,Moderated FROM Summaries WHERE StoryId = :id;');
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
@@ -223,7 +223,7 @@ $id = $_GET['id'];
 				echo "<!-- Summary Ends Here -->\n";
 				echo "\t\t<br />\n";
 			}
-		?>
+?>
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
 				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
