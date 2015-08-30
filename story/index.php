@@ -1,5 +1,5 @@
 ﻿<?php
-include("/hdd/elsanna-ssl/headers/variables.php");
+include("/hdd/elsanna-ssl/headers/doctype.php");
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 
