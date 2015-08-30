@@ -20,7 +20,9 @@ if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php
+	include("/hdd/elsanna-ssl/headers/doctype.php")
+?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
@@ -39,7 +41,7 @@ if (!isset($_GET['search'])) {
 ?>
 <?php
 			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br>\n";
+				echo $errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
 		<form action="/submitstory/" method="get">
@@ -80,7 +82,7 @@ if (!isset($_GET['search'])) {
 				if ($_GET['search'] != "") {
 					$hitCounter = 0;
 					if ($debug == True) {
-						echo $row[1]."<br><br>";
+						echo $row[1]."<br /><br />";
 					}
 					for ($i = $wordcount; $i > 0; $i--) {
 						$maxiterations = $wordcount-($i-1);
@@ -110,9 +112,9 @@ if (!isset($_GET['search'])) {
 							}
 						}
 						if ($debug == True) {
-							echo "<br>";
+							echo "<br />";
 							echo "Total ".$hitCounts;
-							echo "<br><br>";
+							echo "<br /><br />";
 						}
 						$hitCounter += $hitCounts;
 						
@@ -167,9 +169,9 @@ if (!isset($_GET['search'])) {
 								}
 								
 								if ($debug == True) {
-									echo "<br>";
+									echo "<br />";
 									echo "Total ".$hitCounts;
-									echo "<br><br>";
+									echo "<br /><br />";
 								}
 								$hitCounter += $hitCounts;
 							}
@@ -195,9 +197,9 @@ if (!isset($_GET['search'])) {
 							$hitCounts += $persplitcount;
 						}
 						if ($debug == True) {
-							echo "<br>";
+							echo "<br />";
 							echo "Total ".$hitCounts;
-							echo "<br><br>";
+							echo "<br /><br />";
 						}
 						$hitCounter += $hitCounts;
 					}

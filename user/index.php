@@ -60,9 +60,9 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 			// If logged in user's profile
 			if ($usersProfile == true) {
 				// Print user admin options
-				echo "Welcome to your profile!<br>\n";
-				echo "\t\t<a href='/changeuser/'>Change Username</a><br>\n";
-				echo "\t\t<a href='/changepass/'>Change Password</a><br>\n";
+				echo "Welcome to your profile!<br />\n";
+				echo "\t\t<a href='/changeuser/'>Change Username</a><br />\n";
+				echo "\t\t<a href='/changepass/'>Change Password</a><br />\n";
 				echo "\t\t<a href='/delete/'>Delete Account</a>";
 			} else {
 				// Print guest/other user information
