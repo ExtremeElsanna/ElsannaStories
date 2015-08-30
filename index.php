@@ -210,7 +210,7 @@ if (!isset($_GET['search'])) {
 		?>
 		<table>
 			<tr><th>Title</th></tr>
-			<?php
+<?php
 				// Sort the stories by hitcounter, then name alphabetically
 				function custom_sort($a,$b) {
 					if ($a[1] == $b[1]) {
