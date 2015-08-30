@@ -1,3 +1,3 @@
 ﻿<?php
-$doctype = "<!DOCTYPE html>\n";
+$doctype = "<!DOCTYPE html :)>\n";
 ?>

@@ -1,13 +1,14 @@
 <?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 // Require username to search by
 if (!isset($_GET['user'])) {
 	header("Location: /?code=2");
 	die();
 }
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

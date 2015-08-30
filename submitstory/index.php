@@ -1,6 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 $errors = array(1 => "Unexpected Error :(",
 				2 => "Title Not Given.",
@@ -19,7 +20,7 @@ $errors = array(1 => "Unexpected Error :(",
 				15 => "Date Published Not Valid.",
 				16 => "Story Deleted from site");
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

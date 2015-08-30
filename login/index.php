@@ -4,6 +4,7 @@ if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 $errors = array(1 => "Account Activated!",
 				2 => "Password Changed!",
@@ -21,7 +22,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 	$errors[4] = "Account not Activated. <a href='resend.php?id=".$_GET['id']."'>Resend Activation Email</a>";
 }
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

@@ -4,11 +4,12 @@ if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 
 $errors = array(1 => "Unexpected Error :(",
 				2 => "Email does not exist.");
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

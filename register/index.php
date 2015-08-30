@@ -1,6 +1,7 @@
 ﻿<?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 include("/hdd/config/config.php");
 
 $errors = array(1 => "ReCaptcha wrong.",
@@ -17,7 +18,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 				12 => "Email taken.",
 				13 => "Unexpected Error :(");
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

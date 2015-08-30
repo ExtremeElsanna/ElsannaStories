@@ -4,6 +4,7 @@ if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 }
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 if ($_SESSION['loggedIn'] != 1 and $_SESSION['changePassId'] == null) {
 	// Not logged in
 	header("Location: /?code=3");
@@ -19,7 +20,7 @@ $errors = array(1 => "Old Password is incorrect.",
 				7 => "You need to change your password.",
 				8 => "Unexpected Error :(");
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

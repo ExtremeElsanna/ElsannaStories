@@ -1,6 +1,7 @@
 <?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 if ($_SESSION['loggedIn'] != 1) {
 	// Not logged in
 	header("Location: /?code=3");
@@ -9,7 +10,7 @@ if ($_SESSION['loggedIn'] != 1) {
 
 $errors = array(1 => "Unexpected Error :(");
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>

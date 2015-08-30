@@ -1,6 +1,7 @@
 <?php
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 include("/hdd/config/config.php");
 // Check we have a user name query
 if (isset($_GET['user'])) {
@@ -43,7 +44,7 @@ if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $userId) {
 	$usersProfile = false;
 }
 ?>
-<?php include("/hdd/elsanna-ssl/headers/doctype.php") ?>
+<?php echo $doctype; ?>
 <html>
 	<head>
 		<title>Elsanna Stories</title>
