@@ -3,7 +3,7 @@
 	include("/hdd/config/config.php");
 	
 	if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
-		header("Location: /login/?code=7");
+		header("Location: /login/?code=6");
 		die();
 	}
 	
@@ -70,14 +70,14 @@
 			$subject = "www.elsannastories.com: ".$username." Account Activation";
 			$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUELINK","https://www.elsannastories.com/activate/?code=".$code,file_get_contents('RegistrationEmail.html')));
 			sendEmail($config,$subject,$email,$username,$body);
-			header("Location: /login/?code=6");
+			header("Location: /login/?code=5");
 			die();
 		} else {
-			header("Location: /login/?code=9");
+			header("Location: /login/?code=8");
 			die();
 		}
 	} else {
-		header("Location: /login/?code=8");
+		header("Location: /login/?code=7");
 		die();
 	}
 ?>

@@ -39,7 +39,7 @@ if (!isset($_GET['search'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
-			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>

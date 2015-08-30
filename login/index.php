@@ -10,14 +10,13 @@ $errors = array(1 => "Account Activated!",
 				2 => "Password Changed!",
 				3 => "Username or Password Incorrect.",
 				4 => "Account not Activated.",
-				5 => "",
-				6 => "Activation code was sent to your email address! Please check your junk folder if nothing arrives in the next 15 minutes.",
-				7 => "Unexpected Error :(",
-				8 => "User does not exist.",
-				9 => "Account has already been activated.",
-				10 => "Reset password link was sent to your email address if it was valid! Please check your junk folder if nothing arrives in the next 15 minutes.",
-				11 => "Your account has been disabled. Please contact the support staff to find out why.",
-				12 => "New password was sent to your email address! Please check your junk folder if nothing arrives in the next 15 minutes.");
+				5 => "Activation code was sent to your email address! Please check your junk folder if nothing arrives in the next 15 minutes.",
+				6 => "Unexpected Error :(",
+				7 => "User does not exist.",
+				8 => "Account has already been activated.",
+				9 => "Reset password link was sent to your email address if it was valid! Please check your junk folder if nothing arrives in the next 15 minutes.",
+				10 => "Your account has been disabled. Please contact the support staff to find out why.",
+				11 => "New password was sent to your email address! Please check your junk folder if nothing arrives in the next 15 minutes.");
 if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 	$errors[4] = "Account not Activated. <a href='resend.php?id=".$_GET['id']."'>Resend Activation Email</a>";
 }
@@ -35,7 +34,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
-			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
+			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
