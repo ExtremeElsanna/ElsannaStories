@@ -232,7 +232,7 @@ $id = $_GET['id'];
 			echo "\t\t<br />\n";
 			
 			echo "\t\tReviews:<br />\n";
-			// Select all stories data
+			// Select all review data
 			$moderated = 1;
 			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,DateSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated;');
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
@@ -240,8 +240,23 @@ $id = $_GET['id'];
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			
+			// For each review for this story
 			foreach ($rows as $review) {
+				// Default username to guest
+				$username = "Guest"
+				if ($review['UserId'] != 0) {
+					// If user was not guest on submission fetch username
+					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
+					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+					$stmt->execute();
+					$row = $stmt->fetch();
+					if ($row['UserId'] != "") {
+						$username = $row['Username'];
+					}
+				}
+				// Display the relevant HTML
 				echo "\t\t".$review['DateSubmitted']."<br />\n";
+				echo "\t\t".$username."<br />\n";
 				echo "\t\t".$review['Review']."<br />\n";
 				echo "\t\t<br />\n";
 			}
