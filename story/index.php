@@ -247,11 +247,11 @@ $id = $_GET['id'];
 				if ($review['UserId'] != 0) {
 					echo "debug";
 					// If user was not guest on submission fetch username
-					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
+					$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE Id = :userId;');
 					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 					$stmt->execute();
 					$row = $stmt->fetch();
-					if ($row['UserId'] != "") {
+					if ($row['Id'] != "") {
 						$username = $row['Username'];
 					}
 				}
