@@ -245,6 +245,7 @@ $id = $_GET['id'];
 				// Default username to guest
 				$username = "Guest";
 				if ($review['UserId'] != 0) {
+					echo "debug";
 					// If user was not guest on submission fetch username
 					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
 					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
