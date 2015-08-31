@@ -258,7 +258,7 @@ $id = $_GET['id'];
 				echo "\t\t".$review['DateSubmitted']."<br />\n";
 				echo "\t\t".$username."<br />\n";
 				echo "\t\t".$review['Review']."<br />\n";
-				echo "\t\t<br />\n";
+				echo "\t\t------------------------------------------------------------<br />\n";
 			}
 ?>
 		<script language="javascript" type="text/javascript">
