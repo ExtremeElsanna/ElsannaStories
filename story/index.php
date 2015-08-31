@@ -233,7 +233,7 @@ $id = $_GET['id'];
 			
 			echo "\t\tReviews:<br />\n";
 			// Select all stories data
-			$moderated = 1
+			$moderated = 1;
 			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,DateSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated;');
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
