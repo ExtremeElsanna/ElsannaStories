@@ -227,6 +227,22 @@ $id = $_GET['id'];
 				echo "<!-- Summary Starts Here -->\n";
 				echo nl2br(strip_tags($row['Summary']))."\n";
 				echo "<!-- Summary Ends Here -->\n";
+			}
+			echo "\t\t<br />\n";
+			echo "\t\t<br />\n";
+			
+			echo "\t\tReviews:<br />\n";
+			// Select all stories data
+			$moderated = 1
+			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,DateSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated;');
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$rows = $stmt->fetchAll();
+			
+			foreach ($rows as $review) {
+				echo "\t\t".$review['DateSubmitted']."<br />\n";
+				echo "\t\t".$review['Review']."<br />\n";
 				echo "\t\t<br />\n";
 			}
 ?>
