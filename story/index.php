@@ -243,7 +243,7 @@ $id = $_GET['id'];
 			// For each review for this story
 			foreach ($rows as $review) {
 				// Default username to guest
-				$username = "Guest"
+				$username = "Guest";
 				if ($review['UserId'] != 0) {
 					// If user was not guest on submission fetch username
 					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
