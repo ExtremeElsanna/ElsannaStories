@@ -83,7 +83,6 @@
 						$_SESSION['loggedIn'] = 1;
 						$_SESSION['userId'] = $userId;
 						$_SESSION['username'] = $user;
-						date_default_timezone_set('UTC');
 						$_SESSION['lastActive'] = time();
 						$_SESSION['banned'] = 0;
 						header("Location: ".$_POST['refer']);

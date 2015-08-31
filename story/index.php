@@ -254,11 +254,14 @@ $id = $_GET['id'];
 						$username = $row['Username'];
 					}
 				}
+				date_default_timezone_set('UTC');
+				// Format a nicer date
+				$newDate = date("d/m/Y", strtotime($review['DateSubmitted']));
 				// Display the relevant HTML
-				echo "\t\t".$review['DateSubmitted']."<br />\n";
+				echo "\t\t".$newDate."<br />\n";
 				echo "\t\t".$username."<br />\n";
 				echo "\t\t".$review['Review']."<br />\n";
-				echo "\t\t------------------------------------------------------------<br />\n";
+				echo "\t\t-------------------<br />\n";
 			}
 ?>
 		<script language="javascript" type="text/javascript">
