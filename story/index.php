@@ -241,7 +241,7 @@ $id = $_GET['id'];
 			$rows = $stmt->fetchAll();
 			
 			// For each review for this story
-			echo "\t\t<table style='border: 1px solid black'>\n";
+			echo "\t\t<table>\n";
 			foreach ($rows as $review) {
 				// Default username to guest
 				$username = "Guest";
@@ -260,9 +260,9 @@ $id = $_GET['id'];
 				$newDate = date("d/m/Y", strtotime($review['DateSubmitted']));
 				// Display the relevant HTML
 				echo "\t\t\t<tr>";
-				echo "<td>".$newDate."</td>";
-				echo "<td>".$username."</td>";
-				echo "<td>".$review['Review']."</td>\n";
+				echo "<td style='border: 1px solid black'>".$newDate."</td>";
+				echo "<td style='border: 1px solid black'>".$username."</td>";
+				echo "<td style='border: 1px solid black'>".$review['Review']."</td>\n";
 			}
 			echo "\t\t</table><br />\n";
 ?>
