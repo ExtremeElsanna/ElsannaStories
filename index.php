@@ -14,7 +14,8 @@ $errors = array(1 => "Username Changed!",
 				4 => "Account deleted!",
 				5 => "Story submitted!",
 				6 => "User does not exist.",
-				7 => "Story does not exist.");
+				7 => "Story does not exist.",
+				8 => "You did not write this review");
 
 // Make sure we have a search variable for code later
 if (!isset($_GET['search'])) {
@@ -39,8 +40,8 @@ if (!isset($_GET['search'])) {
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
-			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br />\n";
+			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
+				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
 		<form action="/submitstory/" method="get">

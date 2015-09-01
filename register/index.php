@@ -8,7 +8,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 				2 => "Username is shorter than 4 characters.",
 				3 => "Username is longer than 25 characters.",
 				4 => "Password is shorter than 7 characters.",
-				5 => "Password is longer than 20 characters",
+				5 => "Password is longer than 20 characters.",
 				6 => "Email is not a valid email.",
 				7 => "Username cannot be 'guest'.",
 				8 => "Password confirmation not equal to original password.",
@@ -32,8 +32,8 @@ $errors = array(1 => "ReCaptcha wrong.",
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
-			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br />\n";
+			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
+				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
 		<form action="register.php" method="post">

@@ -7,12 +7,12 @@
 	
 	if (!isset($_POST['user'])) {
 		// User not set
-		header("Location: /login/?refer=".$_POST['refer']."&code=7");
+		header("Location: /login/?refer=".$_POST['refer']."&code=6");
 		die();
 	}
 	if (!isset($_POST['password'])) {
 		// Password not set
-		header("Location: /login/?refer=".$_POST['refer']."&code=7");
+		header("Location: /login/?refer=".$_POST['refer']."&code=6");
 		die();
 	}
 	
@@ -83,7 +83,6 @@
 						$_SESSION['loggedIn'] = 1;
 						$_SESSION['userId'] = $userId;
 						$_SESSION['username'] = $user;
-						date_default_timezone_set('UTC');
 						$_SESSION['lastActive'] = time();
 						$_SESSION['banned'] = 0;
 						header("Location: ".$_POST['refer']);
@@ -105,7 +104,7 @@
 			}
 		} else {
 			// Account banned
-			header("Location: /login/?refer=".$_POST['refer']."&code=11");
+			header("Location: /login/?refer=".$_POST['refer']."&code=10");
 			die();
 		}
 	} else {

@@ -125,7 +125,7 @@
 			$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUEPASS",$newPassword,file_get_contents('PasswordEmail.html')));
 			sendEmail($config,$subject,$email,$username,$body);
 			
-			header("Location: /login/?code=12");
+			header("Location: /login/?code=11");
 			die();
 		} else {
 			// No reset entry under that code

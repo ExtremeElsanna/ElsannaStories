@@ -72,7 +72,7 @@
 					// Log the user out as they have been banned since they logged in
 					include("/hdd/elsanna-ssl/scripts/logout.php");
 					// Account banned
-					header("Location: /login/?refer=".$refer."&code=11");
+					header("Location: /login/?refer=".$refer."&code=10");
 					die();
 				}
 			} else {

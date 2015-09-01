@@ -6,7 +6,13 @@ include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 $errors = array(1 => "Summary already submitted.",
 				2 => "Summary too short.",
 				3 => "Summary longer than 1000 characters.",
-				4 => "Summary submitted!");
+				4 => "Summary submitted!",
+				5 => "Unexpected Error :(",
+				6 => "Review Deleted",
+				7 => "You have already reviewed this story",
+				8 => "Review too short.",
+				9 => "Review longer than 300 characters.",
+				10 => "Review submitted!");
 
 				
 if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
@@ -28,8 +34,8 @@ $id = $_GET['id'];
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
-			if (isset($_GET['code']) and is_numeric($_GET['code'])) {
-				echo $errors[intval($_GET['code'])]."<br />\n";
+			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
+				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 ?>
 		<table>
@@ -215,8 +221,8 @@ $id = $_GET['id'];
 				echo "\t\tSummary:<br />\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
 				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
-				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br />\n";
-				echo "\t\t\t<label id='countdown'></label><br />\n";
+				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000,\"summaryCountdown\");' onKeyUp='limitText(this.form.summary,1000,\"summaryCountdown\");'></textarea><br />\n";
+				echo "\t\t\t<label id='summaryCountdown'>Characters left: 1000</label><br />\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
@@ -227,13 +233,86 @@ $id = $_GET['id'];
 				echo "<!-- Summary Starts Here -->\n";
 				echo nl2br(strip_tags($row['Summary']))."\n";
 				echo "<!-- Summary Ends Here -->\n";
-				echo "\t\t<br />\n";
 			}
+			echo "\t\t<br />\n";
+			echo "\t\t<br />\n";
+			
+			echo "\t\tReviews:<br />\n";
+			// Select all review data
+			$moderated = 1;
+			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,TimeSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated ORDER BY TimeSubmitted DESC;');
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$rows = $stmt->fetchAll();
+			
+			$hasReview = false;
+			if ($_SESSION['loggedIn'] == 1) {
+				// If logged in
+				$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
+				$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				$row = $stmt->fetch();
+				if ($row['ReviewId'] != "") {
+					$hasReview = true;
+				}
+			} else {
+				if (isset($_GET['code']) and $_GET['code'] == 10) {
+					$hasReview = true;
+				}
+			}
+			
+			if (!$hasReview) {
+				echo "\t\tYou have not yet written a review for this story.<br />\n";
+				echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
+				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
+				echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
+				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
+				echo "\t\t</form><br />\n";
+			}
+			
+			// For each review for this story
+			echo "\t\t<table style='border-collapse: collapse;'>\n";
+			foreach ($rows as $review) {
+				// Default username to guest
+				$username = "Guest";
+				if ($review['UserId'] != 0) {
+					// If user was not guest on submission fetch username
+					$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE Id = :userId;');
+					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+					$stmt->execute();
+					$row = $stmt->fetch();
+					if ($row['Id'] != "") {
+						$username = $row['Username'];
+					}
+				}
+				// Check if this is logged in user's profile
+				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
+					$usersReview = true;
+				} else {
+					$usersReview = false;
+				}
+				date_default_timezone_set('UTC');
+				// Format a nicer date
+				$newDate = date("d/m/Y H:i", $review['TimeSubmitted']);
+				// Display the relevant HTML
+				echo "\t\t\t<tr>";
+				echo "<td style='border: 1px solid black'>".$newDate."</td>";
+				echo "<td style='border: 1px solid black'>".$username."</td>";
+				if ($usersReview) {
+					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
+					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>\n";
+				} else {
+					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>\n";
+				}
+			}
+			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
-			function limitText(limitField, limitNum) {
+			function limitText(limitField, limitNum, countdown) {
 				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
-				 document.getElementById("countdown").textContent=newValue;
+				 document.getElementById(countdown).textContent=newValue;
 			}
 		</script>
 	</body>

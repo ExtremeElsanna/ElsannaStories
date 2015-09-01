@@ -104,7 +104,7 @@
 		$body = str_replace("UNIQUEUSER",$username,str_replace("UNIQUELINK","https://www.elsannastories.com/passwordreset/?code=".$code,file_get_contents('ResetEmail.html')));
 		sendEmail($config,$subject,$email,$username,$body);
 		
-		header("Location: /login/?refer=".$_POST['refer']."&code=10");
+		header("Location: /login/?refer=".$_POST['refer']."&code=9");
 		die();
 	} else {
 		// No User with that email
