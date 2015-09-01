@@ -240,7 +240,7 @@ $id = $_GET['id'];
 			echo "\t\tReviews:<br />\n";
 			// Select all review data
 			$moderated = 1;
-			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,DateSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated;');
+			$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,TimeSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated ORDER BY TimeSubmitted DESC;');
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
@@ -295,7 +295,7 @@ $id = $_GET['id'];
 				}
 				date_default_timezone_set('UTC');
 				// Format a nicer date
-				$newDate = date("d/m/Y", strtotime($review['DateSubmitted']));
+				$newDate = date("d/m/Y", strtotime($review['TimeSubmitted']));
 				// Display the relevant HTML
 				echo "\t\t\t<tr>";
 				echo "<td style='border: 1px solid black'>".$newDate."</td>";

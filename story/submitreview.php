@@ -53,15 +53,15 @@
 				$userId = $_SESSION['userId'];
 			}
 			date_default_timezone_set('UTC');
-			$submitDate = date("Y-m-d");
+			$submitTime = time();
 			$moderated = 0;
 			$review = $_POST['review'];
 			
-			$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, DateSubmitted, Moderated) VALUES (:userId,:id,:review,:submitDate,:moderated);');
+			$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, TimeSubmitted, Moderated) VALUES (:userId,:id,:review,:submitTime,:moderated);');
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-			$stmt->bindParam(':submitDate', $submitDate, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+			$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			header("Location: /story/?id=".$id."&code=10");
