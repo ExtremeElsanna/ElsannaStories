@@ -6,12 +6,12 @@
 		header("Location: /?code=3");
 		die();
 	}
-	if (!isset($_GET['review']) or !is_numeric($_GET['review']) {
+	if (!isset($_GET['review']) or !is_numeric($_GET['review'])) {
 		// Not logged in
 		header("Location: /?code=5");
 		die();
 	}
-	if (!isset($_GET['story']) or !is_numeric($_GET['story']) {
+	if (!isset($_GET['story']) or !is_numeric($_GET['story'])) {
 		// Not logged in
 		header("Location: /?code=5");
 		die();
