@@ -54,15 +54,24 @@
 	}
 
 	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
-	
-	// Delete user
-	$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id;");
-	$userId = $_SESSION['userId'];
-	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$user = $_SESSION['username'];
+	$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
-	// Logout
-	include("/hdd/elsanna-ssl/scripts/logout.php");
-	// ReDirect to homepage
-	header("Location: /?code=4");
-	die();
+	$row = $stmt->fetch();
+	if ($row['Id'] != "") {
+		// Delete user
+		$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id;");
+		$userId = $_SESSION['userId'];
+		$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->execute();
+		// Logout
+		include("/hdd/elsanna-ssl/scripts/logout.php");
+		// ReDirect to homepage
+		header("Location: /?code=4");
+		die();
+	} else {
+		// User doesn't exist
+		header("Location: /user/delete/?code=6");
+		die();
+	}
 ?>

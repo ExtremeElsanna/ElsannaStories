@@ -6,7 +6,9 @@ include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
 $errors = array(1 => "Summary already submitted.",
 				2 => "Summary too short.",
 				3 => "Summary longer than 1000 characters.",
-				4 => "Summary submitted!");
+				4 => "Summary submitted!",
+				5 => "Unexpected Error :(",
+				6 => "Review Deleted");
 
 				
 if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
@@ -270,7 +272,7 @@ $id = $_GET['id'];
 				echo "<td style='border: 1px solid black'>".$username."</td>";
 				if ($usersReview) {
 					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
-					echo "<td style='border: 1px solid black'>"."Link to delete"."</td>\n";
+					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Link to delete</a></td>\n";
 				} else {
 					echo "<td style='border: 1px solid black' colspan=2>".$review['Review']."</td>\n";
 				}

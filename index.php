@@ -14,7 +14,8 @@ $errors = array(1 => "Username Changed!",
 				4 => "Account deleted!",
 				5 => "Story submitted!",
 				6 => "User does not exist.",
-				7 => "Story does not exist.");
+				7 => "Story does not exist.",
+				8 => "You did not write this review");
 
 // Make sure we have a search variable for code later
 if (!isset($_GET['search'])) {
