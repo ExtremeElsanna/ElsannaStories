@@ -264,8 +264,8 @@ $id = $_GET['id'];
 			}
 			
 			if (!$hasReview) {
-				echo "\t\tYou have not yet written a review for this story.<br />\n";
 				if ($_SESSION['loggedIn'] == 1) {
+					echo "\t\tYou have not yet written a review for this story.<br />\n";
 					echo "\t\tYou are reviewing as: ".$_SESSION['username']."<br />\n";
 				} else {
 					echo "\t\tYou are reviewing as: Guest<br />\n";
