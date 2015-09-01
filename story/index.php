@@ -217,7 +217,7 @@ $id = $_GET['id'];
 				echo "\t\tSummary:<br />\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
 				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
-				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000);' onKeyUp='limitText(this.form.summary,1000);'></textarea><br />\n";
+				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000,this.form.countdown);' onKeyUp='limitText(this.form.summary,1000,this.form.countdown);'></textarea><br />\n";
 				echo "\t\t\t<label id='countdown'>Characters left: 1000</label><br />\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
 				echo "\t\t</form>\n";
@@ -241,6 +241,27 @@ $id = $_GET['id'];
 			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
+			
+			$hasReview = false;
+			if ($_SESSION['loggedIn'] == 1) {
+				// If logged in
+				$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId;');
+				$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				$row = $stmt->fetch();
+				if ($row['ReviewId'] != "") {
+					$hasReview = true;
+				}
+			}
+			
+			if (!$hasReview) {
+				echo "\t\tYou have not written a review for this story<br />\n";
+				echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
+				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300);' onKeyUp='limitText(this.form.review,300);'></textarea><br />\n";
+				echo "\t\t\t<label id='countdown'>Characters left: 300</label><br />\n";
+				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
+				echo "\t\t</form>\n";
+			}
 			
 			// For each review for this story
 			echo "\t\t<table style='border-collapse: collapse;'>\n";
@@ -280,9 +301,9 @@ $id = $_GET['id'];
 			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
-			function limitText(limitField, limitNum) {
+			function limitText(limitField, limitNum, countdown) {
 				var newValue = "Characters left: " + (limitNum - limitField.value.length).toString();
-				 document.getElementById("countdown").textContent=newValue;
+				 countdown.textContent=newValue;
 			}
 		</script>
 	</body>
