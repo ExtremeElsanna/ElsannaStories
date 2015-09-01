@@ -258,7 +258,7 @@ $id = $_GET['id'];
 					$hasReview = true;
 				}
 			} else {
-				if ($_GET['code'] == 10) {
+				if (isset($_GET['code']) and $_GET['code'] == 10) {
 					$hasReview = true;
 				}
 			}
@@ -295,7 +295,7 @@ $id = $_GET['id'];
 				}
 				date_default_timezone_set('UTC');
 				// Format a nicer date
-				$newDate = date("d/m/Y", strtotime($review['TimeSubmitted']));
+				$newDate = date("d/m/Y", $review['TimeSubmitted']);
 				// Display the relevant HTML
 				echo "\t\t\t<tr>";
 				echo "<td style='border: 1px solid black'>".$newDate."</td>";
