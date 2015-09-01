@@ -8,7 +8,11 @@ $errors = array(1 => "Summary already submitted.",
 				3 => "Summary longer than 1000 characters.",
 				4 => "Summary submitted!",
 				5 => "Unexpected Error :(",
-				6 => "Review Deleted");
+				6 => "Review Deleted",
+				7 => "You have already reviewed this story",
+				8 => "Review too short.",
+				9 => "Review longer than 300 characters.",
+				10 => "Review submitted!");
 
 				
 if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
@@ -245,8 +249,9 @@ $id = $_GET['id'];
 			$hasReview = false;
 			if ($_SESSION['loggedIn'] == 1) {
 				// If logged in
-				$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId;');
+				$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
 				$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$row = $stmt->fetch();
 				if ($row['ReviewId'] != "") {
@@ -255,12 +260,12 @@ $id = $_GET['id'];
 			}
 			
 			if (!$hasReview) {
-				echo "\t\tYou have not written a review for this story<br />\n";
+				echo "\t\tYou have not yet written a review for this story.<br />\n";
 				echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
 				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
 				echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
-				echo "\t\t</form>\n";
+				echo "\t\t</form><br />\n";
 			}
 			
 			// For each review for this story
@@ -295,7 +300,7 @@ $id = $_GET['id'];
 					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
 					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>\n";
 				} else {
-					echo "<td style='border: 1px solid black' colspan=2>".$review['Review']."</td>\n";
+					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>\n";
 				}
 			}
 			echo "\t\t</table><br />\n";
