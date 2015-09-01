@@ -217,8 +217,8 @@ $id = $_GET['id'];
 				echo "\t\tSummary:<br />\n";
 				echo "\t\tNo summary exists for this story yet. Care to leave a summary for other readers?<br />\n";
 				echo "\t\t<form action='submitsummary.php?id=".$id."' method='post'>\n";
-				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000,\"countdown\");' onKeyUp='limitText(this.form.summary,1000,\"countdown\");'></textarea><br />\n";
-				echo "\t\t\t<label id='countdown'>Characters left: 1000</label><br />\n";
+				echo "\t\t\t<textarea name='summary' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.summary,1000,\"summaryCountdown\");' onKeyUp='limitText(this.form.summary,1000,\"summaryCountdown\");'></textarea><br />\n";
+				echo "\t\t\t<label id='summaryCountdown'>Characters left: 1000</label><br />\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
 				echo "\t\t</form>\n";
 			} else if ($status == 1) {
@@ -257,8 +257,8 @@ $id = $_GET['id'];
 			if (!$hasReview) {
 				echo "\t\tYou have not written a review for this story<br />\n";
 				echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
-				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"countdown1\");' onKeyUp='limitText(this.form.review,300,\"countdown1\");'></textarea><br />\n";
-				echo "\t\t\t<label id='countdown1'>Characters left: 300</label><br />\n";
+				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
+				echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
 				echo "\t\t\t<input type='submit' value='Submit'><br />\n";
 				echo "\t\t</form>\n";
 			}
