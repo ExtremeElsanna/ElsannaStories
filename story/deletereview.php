@@ -45,9 +45,7 @@
 	}
 	
 	// Delete user
-	echo $reviewId;
-	die;
-	$stmt = $pdo->prepare("DELETE FROM Reviws WHERE ReviewId = :reviewId;");
+	$stmt = $pdo->prepare("DELETE FROM Reviews WHERE ReviewId = :reviewId;");
 	$stmt->bindParam(':reviewId', $reviewId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	// ReDirect to homepage
