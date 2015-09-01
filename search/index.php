@@ -38,7 +38,7 @@ if (!isset($_GET['user'])) {
 				
 				$username = "%".$_GET['user']."%";
 				// Get all users with search query as a substring
-				$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Username LIKE :username;');
+				$stmt = $pdo->prepare('SELECT Username FROM Users WHERE Username LIKE :username; ORDER BY Username ASC');
 				$stmt->bindParam(':username', $username, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				$rows = $stmt->fetchAll();

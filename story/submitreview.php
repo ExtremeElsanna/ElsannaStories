@@ -63,7 +63,7 @@
 			$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-			$stmt->execute();
+			//$stmt->execute();
 			header("Location: /story/?id=".$id."&code=10");
 			die();
 		} else {
