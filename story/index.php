@@ -241,7 +241,7 @@ $id = $_GET['id'];
 			$rows = $stmt->fetchAll();
 			
 			// For each review for this story
-			echo "\t\t<table>\n";
+			echo "\t\t<table style='border-collapse: collapse;'>\n";
 			foreach ($rows as $review) {
 				// Default username to guest
 				$username = "Guest";
