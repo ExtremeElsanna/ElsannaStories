@@ -255,6 +255,12 @@ $id = $_GET['id'];
 						$username = $row['Username'];
 					}
 				}
+				// Check if this is logged in user's profile
+				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
+					$usersReview = true;
+				} else {
+					$usersReview = false;
+				}
 				date_default_timezone_set('UTC');
 				// Format a nicer date
 				$newDate = date("d/m/Y", strtotime($review['DateSubmitted']));
@@ -262,7 +268,12 @@ $id = $_GET['id'];
 				echo "\t\t\t<tr>";
 				echo "<td style='border: 1px solid black'>".$newDate."</td>";
 				echo "<td style='border: 1px solid black'>".$username."</td>";
-				echo "<td style='border: 1px solid black'>".$review['Review']."</td>\n";
+				if ($usersReview) {
+					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
+					echo "<td style='border: 1px solid black'>"."<Link to delete>"."</td>\n";
+				} else {
+					echo "<td style='border: 1px solid black' colspan=2>".$review['Review']."</td>\n";
+				}
 			}
 			echo "\t\t</table><br />\n";
 ?>
