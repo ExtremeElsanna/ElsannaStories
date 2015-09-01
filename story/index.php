@@ -265,6 +265,11 @@ $id = $_GET['id'];
 			
 			if (!$hasReview) {
 				echo "\t\tYou have not yet written a review for this story.<br />\n";
+				if ($_SESSION['loggedIn'] == 1) {
+					echo "\t\tYou are reviewing as: ".$_SESSION['username']."<br />\n";
+				} else {
+					echo "\t\tYou are reviewing as: Guest<br />\n";
+				}
 				echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
 				echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
 				echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
