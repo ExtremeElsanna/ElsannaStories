@@ -241,6 +241,7 @@ $id = $_GET['id'];
 			$rows = $stmt->fetchAll();
 			
 			// For each review for this story
+			echo "\t\t<table>";
 			foreach ($rows as $review) {
 				// Default username to guest
 				$username = "Guest";
@@ -259,11 +260,12 @@ $id = $_GET['id'];
 				// Format a nicer date
 				$newDate = date("d/m/Y", strtotime($review['DateSubmitted']));
 				// Display the relevant HTML
-				echo "\t\t".$newDate."<br />\n";
-				echo "\t\t".$username."<br />\n";
-				echo "\t\t".$review['Review']."<br />\n";
-				echo "\t\t-------------------<br />\n";
+				echo "\t\t\t<tr>";
+				echo "<td>".$newDate."</td>";
+				echo "<td>".$username."</td>";
+				echo "<td>".$review['Review']."</td>\n";
 			}
+			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
 			function limitText(limitField, limitNum) {
