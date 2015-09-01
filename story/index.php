@@ -270,7 +270,7 @@ $id = $_GET['id'];
 				echo "<td style='border: 1px solid black'>".$username."</td>";
 				if ($usersReview) {
 					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
-					echo "<td style='border: 1px solid black'>"."<Link to delete>"."</td>\n";
+					echo "<td style='border: 1px solid black'>"."Link to delete"."</td>\n";
 				} else {
 					echo "<td style='border: 1px solid black' colspan=2>".$review['Review']."</td>\n";
 				}
