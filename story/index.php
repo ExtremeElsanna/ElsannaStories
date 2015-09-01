@@ -257,6 +257,10 @@ $id = $_GET['id'];
 				if ($row['ReviewId'] != "") {
 					$hasReview = true;
 				}
+			} else {
+				if ($_GET['code'] == 10) {
+					$hasReview = true;
+				}
 			}
 			
 			if (!$hasReview) {
