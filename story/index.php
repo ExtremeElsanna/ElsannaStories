@@ -332,18 +332,24 @@ $id = $_GET['id'];
 				}
 			}
 			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=4>";
+			if ($page > 3) {
+				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-3)."'>".($page-3)."</a> ... ";
+			}
 			if ($page > 2) {
 				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-2)."'>".($page-2)."</a> ";
 			}
 			if ($page > 1) {
 				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-1)."'>".($page-1)."</a> ";
 			}
-			$pageHTML = $pageHTML.$page." ";
+			$pageHTML = $pageHTML.$page;
 			if ($page < $pages) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page+1)."'>".($page+1)."</a> ";
+				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+1)."'>".($page+1)."</a>";
 			}
 			if ($page < $pages-1) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a> ";
+				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a>";
+			}
+			if ($page < $pages-2) {
+				$pageHTML = $pageHTML." ... <a href='?id=".$id."&page=".($page+3)."'>".($page+3)."</a>";
 			}
 			$pageHTML = $pageHTML."</td></tr>\n";
 			echo $pageHTML;
