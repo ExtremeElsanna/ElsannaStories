@@ -345,7 +345,7 @@ $id = $_GET['id'];
 			if ($page < $pages-1) {
 				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a> ";
 			}
-			$pageHTML = "</td><tr>\n";
+			$pageHTML = $pageHTML + "</td><tr>\n";
 			echo $pageHTML;
 			echo "\t\t</table><br />\n";
 ?>
