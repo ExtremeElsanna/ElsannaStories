@@ -277,6 +277,19 @@ $id = $_GET['id'];
 				echo "\t\t</form><br />\n";
 			}
 			
+			$pageSize = 1;
+			if (!isset($_GET['page']) or !is_numeric($_GET['page'])) {
+				$page = 1;
+			} else {
+				$page = $_GET['page'];
+			}
+			
+			$reviews = count($rows);
+			$pages = ceil($reviews/$pageSize);
+			if ($page > $pages) {
+				$page = $pages;
+			}
+			
 			// For each review for this story
 			echo "\t\t<table style='border-collapse: collapse;'>\n";
 			foreach ($rows as $review) {
@@ -307,11 +320,13 @@ $id = $_GET['id'];
 				echo "<td style='border: 1px solid black'>".$username."</td>";
 				if ($usersReview) {
 					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
-					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>\n";
+					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>";
 				} else {
-					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>\n";
+					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>";
 				}
+				echo "</tr>\n";
 			}
+			echo "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page ".$page."</td><tr>\n";
 			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
