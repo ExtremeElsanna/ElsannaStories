@@ -331,25 +331,29 @@ $id = $_GET['id'];
 					echo "</tr>\n";
 				}
 			}
+			$codeExtension = "";
+			if (isset($_GET['code'])) {
+				$codeExtension = "&code=".$_GET['code'];
+			}
 			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page: ";
 			if ($page > 3) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".(1)."'>".(1)."</a> ... ";
+				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".(1).$codeExtension"'>".(1)."</a> ... ";
 			}
 			if ($page > 2) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-2)."'>".($page-2)."</a> ";
+				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-2).$codeExtension."'>".($page-2)."</a> ";
 			}
 			if ($page > 1) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-1)."'>".($page-1)."</a> ";
+				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-1).$codeExtension."'>".($page-1)."</a> ";
 			}
 			$pageHTML = $pageHTML.$page;
 			if ($page < $pages) {
-				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+1)."'>".($page+1)."</a>";
+				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+1).$codeExtension."'>".($page+1)."</a>";
 			}
 			if ($page < $pages-1) {
-				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a>";
+				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+2).$codeExtension."'>".($page+2)."</a>";
 			}
 			if ($page < $pages-2) {
-				$pageHTML = $pageHTML." ... <a href='?id=".$id."&page=".($pages)."'>".($pages)."</a>";
+				$pageHTML = $pageHTML." ... <a href='?id=".$id."&page=".($pages).$codeExtension."'>".($pages)."</a>";
 			}
 			$pageHTML = $pageHTML."</td></tr>\n";
 			echo $pageHTML;
