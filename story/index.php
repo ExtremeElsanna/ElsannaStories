@@ -292,39 +292,41 @@ $id = $_GET['id'];
 			
 			// For each review for this story
 			echo "\t\t<table style='border-collapse: collapse;'>\n";
-			foreach ($rows as $review) {
-				// Default username to guest
-				$username = "Guest";
-				if ($review['UserId'] != 0) {
-					// If user was not guest on submission fetch username
-					$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE Id = :userId;');
-					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-					$stmt->execute();
-					$row = $stmt->fetch();
-					if ($row['Id'] != "") {
-						$username = $row['Username'];
+			foreach ($rows as $key => $review) {
+				if ($key >= ($page*$pageSize)-1 and $key <= (($page*$pageSize)-1)+($pageSize-1))
+					// Default username to guest
+					$username = "Guest";
+					if ($review['UserId'] != 0) {
+						// If user was not guest on submission fetch username
+						$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE Id = :userId;');
+						$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+						$stmt->execute();
+						$row = $stmt->fetch();
+						if ($row['Id'] != "") {
+							$username = $row['Username'];
+						}
 					}
+					// Check if this is logged in user's profile
+					if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
+						$usersReview = true;
+					} else {
+						$usersReview = false;
+					}
+					date_default_timezone_set('UTC');
+					// Format a nicer date
+					$newDate = date("d/m/Y H:i", $review['TimeSubmitted']);
+					// Display the relevant HTML
+					echo "\t\t\t<tr>";
+					echo "<td style='border: 1px solid black'>".$newDate."</td>";
+					echo "<td style='border: 1px solid black'>".$username."</td>";
+					if ($usersReview) {
+						echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
+						echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>";
+					} else {
+						echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>";
+					}
+					echo "</tr>\n";
 				}
-				// Check if this is logged in user's profile
-				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
-					$usersReview = true;
-				} else {
-					$usersReview = false;
-				}
-				date_default_timezone_set('UTC');
-				// Format a nicer date
-				$newDate = date("d/m/Y H:i", $review['TimeSubmitted']);
-				// Display the relevant HTML
-				echo "\t\t\t<tr>";
-				echo "<td style='border: 1px solid black'>".$newDate."</td>";
-				echo "<td style='border: 1px solid black'>".$username."</td>";
-				if ($usersReview) {
-					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
-					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>";
-				} else {
-					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>";
-				}
-				echo "</tr>\n";
 			}
 			echo "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page ".$page."</td><tr>\n";
 			echo "\t\t</table><br />\n";
