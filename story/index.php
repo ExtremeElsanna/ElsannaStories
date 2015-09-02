@@ -344,7 +344,7 @@ $id = $_GET['id'];
 			$pageHTML = $pageHTML.$page;
 			if ($page < $pages) {
 				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+1)."'>".($page+1)."</a>";
-			
+			}
 			if ($page < $pages-1) {
 				$pageHTML = $pageHTML." <a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a>";
 			}
