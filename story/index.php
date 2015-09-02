@@ -331,7 +331,7 @@ $id = $_GET['id'];
 					echo "</tr>\n";
 				}
 			}
-			$pageHTML = "<tr><td style='border: 1px solid black' colspan=4>";
+			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=4>";
 			if ($page > 2) {
 				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page-2)."'>".($page-2)."</a> ";
 			}
@@ -345,7 +345,7 @@ $id = $_GET['id'];
 			if ($page < $pages-1) {
 				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a> ";
 			}
-			$pageHTML = $pageHTML + "</td><tr>\n";
+			$pageHTML = $pageHTML + "</td></tr>\n";
 			echo $pageHTML;
 			echo "\t\t</table><br />\n";
 ?>
