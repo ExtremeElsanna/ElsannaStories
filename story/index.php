@@ -293,7 +293,7 @@ $id = $_GET['id'];
 			// For each review for this story
 			echo "\t\t<table style='border-collapse: collapse;'>\n";
 			foreach ($rows as $key => $review) {
-				if ($key >= ($page*$pageSize)-1 and $key <= (($page*$pageSize)-1)+($pageSize-1))
+				if ($key >= ($page*$pageSize)-1 and $key <= (($page*$pageSize)-1)+($pageSize-1)) {
 					// Default username to guest
 					$username = "Guest";
 					if ($review['UserId'] != 0) {
