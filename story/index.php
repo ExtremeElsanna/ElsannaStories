@@ -277,7 +277,7 @@ $id = $_GET['id'];
 				echo "\t\t</form><br />\n";
 			}
 			
-			$pageSize = 1;
+			$pageSize = 5;
 			if (!isset($_GET['page']) or !is_numeric($_GET['page'])) {
 				$page = 1;
 			} else {
