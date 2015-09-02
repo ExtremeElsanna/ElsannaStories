@@ -289,6 +289,9 @@ $id = $_GET['id'];
 			if ($page > $pages) {
 				$page = $pages;
 			}
+			if ($page < 1) {
+				$page = 1;
+			}
 			
 			// For each review for this story
 			echo "\t\t<table style='border-collapse: collapse;'>\n";
@@ -328,7 +331,22 @@ $id = $_GET['id'];
 					echo "</tr>\n";
 				}
 			}
-			echo "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page ".$page."</td><tr>\n";
+			$pageHTML = "<tr><td style='border: 1px solid black' colspan=4>"
+			if ($page > 2) {
+				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page-2)."'>".($page-2)."</a> ";
+			}
+			if ($page > 1) {
+				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page-1)."'>".($page-1)."</a> ";
+			}
+			$pageHTML = $pageHTML + $page + " ";
+			if ($page < $pages) {
+				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page+1)."'>".($page+1)."</a> ";
+			}
+			if ($page < $pages-1) {
+				$pageHTML = $pageHTML + "<a href='?id=".$id."&page=".($page+2)."'>".($page+2)."</a> ";
+			}
+			$pageHTML = "</td><tr>\n"
+			echo $pageHTML;
 			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
