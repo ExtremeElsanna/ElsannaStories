@@ -352,7 +352,7 @@ $id = $_GET['id'];
 				$pageHTML = $pageHTML." ... <a href='?id=".$id."&page=".($pages)."'>".($pages)."</a>";
 			}
 			$pageHTML = $pageHTML."</td></tr>\n";
-			echo $pageHTML;
+			echo "Page: ".$pageHTML;
 			echo "\t\t</table><br />\n";
 ?>
 		<script language="javascript" type="text/javascript">
