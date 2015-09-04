@@ -324,7 +324,7 @@ $id = $_GET['id'];
 					echo "<td style='border: 1px solid black'>".$username."</td>";
 					if ($usersReview) {
 						echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
-						echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&story=".$id."'>Delete</a></td>";
+						echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&amp;story=".$id."'>Delete</a></td>";
 					} else {
 						echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>";
 					}
