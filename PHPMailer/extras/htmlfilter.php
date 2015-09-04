@@ -878,7 +878,7 @@ function tln_sanitize(
      * Take care of netscape's stupid javascript entities like
      * &{alert('boo')};
      */
-    $body = preg_replace('/&(\{.*?\};)/si', '&amp;\\1', $body);
+    $body = preg_replace('/&(\{.*?\};)/si', '&\\1', $body);
     while (($curtag = tln_getnxtag($body, $curpos)) != false) {
         list($tagname, $attary, $tagtype, $lt, $gt) = $curtag;
         $free_content = substr($body, $curpos, $lt-$curpos);

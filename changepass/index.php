@@ -15,7 +15,7 @@ $errors = array(1 => "Old Password is incorrect.",
 				2 => "Password confirmation not equal to original password.",
 				3 => "Password is shorter than 7 characters.",
 				4 => "Password is longer than 20 characters.",
-				5 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &, *, ?, <>",
+				5 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &amp;, *, ?, <>",
 				6 => "New Password same as Old Password.",
 				7 => "You need to change your password.",
 				8 => "Unexpected Error :(");
