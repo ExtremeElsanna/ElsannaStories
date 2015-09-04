@@ -13,7 +13,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 				7 => "Username cannot be 'guest'.",
 				8 => "Password confirmation not equal to original password.",
 				9 => "Username contains invalid characters. You may use: a-z, A-Z, 0-9.",
-				10 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &amp;, *, ?, <>.",
+				10 => "Password contains invalid characters. You may use: a-z, A-Z, 0-9, [], (), {}, @, #, !, £, $, %, ^, &amp;, *, ?, &lt;>.",
 				11 => "Username taken.",
 				12 => "Email taken.",
 				13 => "Unexpected Error :(");
