@@ -337,7 +337,7 @@ $id = $_GET['id'];
 			}
 			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page: ";
 			if ($page > 3) {
-				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".(1).$codeExtension"'>".(1)."</a> ... ";
+				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".(1).$codeExtension."'>".(1)."</a> ... ";
 			}
 			if ($page > 2) {
 				$pageHTML = $pageHTML."<a href='?id=".$id."&page=".($page-2).$codeExtension."'>".($page-2)."</a> ";
