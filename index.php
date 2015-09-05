@@ -21,6 +21,12 @@ $errors = array(1 => "Username Changed!",
 if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 }
+if (!isset($_GET['a'])) {
+	$_GET['a'] = 0;
+}
+if ($_GET['a'] != 0 and $_GET['a'] != 1) {
+	$_GET['a'] = 0;
+}
 ?>
 <?php echo $doctype; ?>
 <html>
@@ -47,13 +53,15 @@ if (!isset($_GET['search'])) {
 		<form action="/submitstory/" method="get">
 			<input type="submit" value="Submit a Story!">
 		</form>
-		<form action="/" method="get">
-			<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
-			<input type="submit" value="Search">
-		</form>
-		
-		<!-- FILTER START -->
-		<form action="filter.php" method="post">
+<?php
+		if ($_GET['a'] == 0) {
+			echo "\t\t<form action="/" method="get">
+				<input type="text" name="search" value="" placeholder="Summers, Queen, Princess...">
+				<input type="submit" value="Search">
+			</form>";
+		} else {
+		echo "\t\t<!-- FILTER START -->
+		<form action='filter.php' method='post'>
 			<table style='border-collapse: collapse;'>
 			<tr>
 			
@@ -61,39 +69,39 @@ if (!isset($_GET['search'])) {
 			
 			<td style='border: 1px solid black'>
 			Title<br />
-			<input type="text" name="Title" value="" placeholder="Title">
+			<input type='text' name='Title' value='' placeholder='Title'>
 			</td>
 			<td style='border: 1px solid black'>
 			Author<br />
-			<input type="text" name="Author" value="" placeholder="Author">
+			<input type='text' name='Author' value='' placeholder='Author'>
 			</td>
 			<td style='border: 1px solid black'>
 			Length (words)<br />
-			<input type="number" name="Length" value="" min="1">
+			<input type='number' name='Length' value='' min='1'>
 			</td>
 			<td style='border: 1px solid black'>
 			Story Type<br />
-			<input type="radio" name="StoryType" value="MC"> Multi-Chapter<br />
-			<input type="radio" name="StoryType" value="OS"> One-Shot<br />
-			<input type="radio" name="StoryType" value="OSS"> One-Shot Series
+			<input type='radio' name='StoryType' value='MC'> Multi-Chapter<br />
+			<input type='radio' name='StoryType' value='OS'> One-Shot<br />
+			<input type='radio' name='StoryType' value='OSS'> One-Shot Series
 			</td>
 			<td style='border: 1px solid black'>
 			Complete<br />
-			<input type="radio" name="Complete" value="Y"> Yes<br />
-			<input type="radio" name="Complete" value="N"> No<br />
-			<input type="radio" name="Complete" value="U"> Unknown
+			<input type='radio' name='Complete' value='Y'> Yes<br />
+			<input type='radio' name='Complete' value='N'> No<br />
+			<input type='radio' name='Complete' value='U'> Unknown
 			</td>
 			<td style='border: 1px solid black'>
 			Setting<br />
-			<input type="radio" name="Setting" value="C"> Canon<br />
-			<input type="radio" name="Setting" value="AU"> Alternate Universe (AU)<br />
-			<input type="radio" name="Setting" value="mAU"> Modern Alternate Universe (mAU)<br />
-			<input type="radio" name="Setting" value="STP"> Same Time and Place (STP)<br />
-			<input type="radio" name="Setting" value="U"> Unknown
+			<input type='radio' name='Setting' value='C'> Canon<br />
+			<input type='radio' name='Setting' value='AU'> Alternate Universe (AU)<br />
+			<input type='radio' name='Setting' value='mAU'> Modern Alternate Universe (mAU)<br />
+			<input type='radio' name='Setting' value='STP'> Same Time and Place (STP)<br />
+			<input type='radio' name='Setting' value='U'> Unknown
 			</td>
 			<td style='border: 1px solid black'>
 			Elsa's Character<br />
-			<input type="text" name="ElsaCharacter" value="" placeholder="Queen">
+			<input type='text' name='ElsaCharacter' value='' placeholder='Queen'>
 			</td>
 			
 			
@@ -105,104 +113,89 @@ if (!isset($_GET['search'])) {
 			
 			<td style='border: 1px solid black'>
 			Anna's Character<br />
-			<input type="text" name="AnnaCharacter" value="" placeholder="Princess">
+			<input type='text' name='AnnaCharacter' value='' placeholder='Princess'>
 			</td>
 			<td style='border: 1px solid black'>
 			Elsa's Powers<br />
-			<input type="radio" name="ElsaPowers" value="C"> Canon<br />
-			<input type="radio" name="ElsaPowers" value="D"> Different<br />
-			<input type="radio" name="ElsaPowers" value="N"> None<br />
-			<input type="radio" name="ElsaPowers" value="U"> Unknown
+			<input type='radio' name='ElsaPowers' value='C'> Canon<br />
+			<input type='radio' name='ElsaPowers' value='D'> Different<br />
+			<input type='radio' name='ElsaPowers' value='N'> None<br />
+			<input type='radio' name='ElsaPowers' value='U'> Unknown
 			</td>
 			<td style='border: 1px solid black'>
 			Anna's Powers<br />
-			<input type="radio" name="AnnaPowers" value="N"> No<br />
-			<input type="radio" name="AnnaPowers" value="Y"> Yes
+			<input type='radio' name='AnnaPowers' value='N'> No<br />
+			<input type='radio' name='AnnaPowers' value='Y'> Yes
 			</td>
 			<td style='border: 1px solid black'>
 			Sisters<br />
-			<input type="radio" name="Sisters" value="Y"> Yes<br />
-			<input type="radio" name="Sisters" value="N"> No<br />
-			<input type="radio" name="Sisters" value="U"> Unknown
+			<input type='radio' name='Sisters' value='Y'> Yes<br />
+			<input type='radio' name='Sisters' value='N'> No<br />
+			<input type='radio' name='Sisters' value='U'> Unknown
 			</td>
 			<td style='border: 1px solid black'>
-			Age [<a href="https://www.fictionratings.com/">X</a>]<br />
-			<input type="radio" name="Age" value="K"> K<br />
-			<input type="radio" name="Age" value="KP"> K+<br />
-			<input type="radio" name="Age" value="T"> T<br />
-			<input type="radio" name="Age" value="M"> M
+			Age [<a href='https://www.fictionratings.com/'>X</a>]<br />
+			<input type='radio' name='Age' value='K'> K<br />
+			<input type='radio' name='Age' value='KP'> K+<br />
+			<input type='radio' name='Age' value='T'> T<br />
+			<input type='radio' name='Age' value='M'> M
 			</td>
 			<td style='border: 1px solid black'>
 			Smut Prominence<br />
-			<input type="radio" name="SmutLevel" value="N"> None<br />
-			<input type="radio" name="SmutLevel" value="PL"> Plot Focused<br />
-			<input type="radio" name="SmutLevel" value="L"> Light<br />
-			<input type="radio" name="SmutLevel" value="M"> Medium<br />
-			<input type="radio" name="SmutLevel" value="H"> Heavy<br />
-			<input type="radio" name="SmutLevel" value="PU"> Pure
+			<input type='radio' name='SmutLevel' value='N'> None<br />
+			<input type='radio' name='SmutLevel' value='PL'> Plot Focused<br />
+			<input type='radio' name='SmutLevel' value='L'> Light<br />
+			<input type='radio' name='SmutLevel' value='M'> Medium<br />
+			<input type='radio' name='SmutLevel' value='H'> Heavy<br />
+			<input type='radio' name='SmutLevel' value='PU'> Pure
 			</td>
 			<td style='border: 1px solid black'>
 			Date Published<br />
-			<select name="DayPublished">
+			<select name='DayPublished'>";
 <?php
 					// Print all days and select current
-					if ($currentDay == "01") {
-						echo "<option value='01' selected>01</option>\n";
-					} else {
-						echo "<option value='01'>01</option>\n";
-					}
-					for ($i = 2; $i <= 31; $i ++) {
+					for ($i = 1; $i <= 31; $i ++) {
 						if ($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
 ?>
-			</select>
-			<select name="MonthPublished">
+			echo "\t\t</select>
+			<select name='MonthPublished'>;"
 <?php
 					// Print all months and select current
-					if ($currentMonth == "01") {
-						echo "<option value='01' selected>01</option>\n";
-					} else {
-						echo "<option value='01'>01</option>\n";
-					}
-					for ($i = 2; $i <= 12; $i ++) {
+					for ($i = 1; $i <= 12; $i ++) {
 						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
 ?>
-			</select>
-			<select name="YearPublished">
+			echo "\t\t</select>
+			<select name='YearPublished'>";
 <?php
 					// Print all years and select current
-					if ($currentYear == "2013") {
-						echo "<option value='2013' selected>2013</option>\n";
-					} else {
-						echo "<option value='2013'>2013</option>\n";
-					}
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if ($currentYear == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						if ($currentYear == $i) {
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
 ?>
-			</select>
+			echo "\t\t</select>
 			</td>
 			
 			
 			
 			</tr>
 			</table>
-			<input type="submit" value="Search">
+			<input type='submit' value='Search'>
 		</form>
-		<!-- FILTER END -->
+		<!-- FILTER END -->";
 		
 <?php
 			include("/hdd/config/config.php");

@@ -111,12 +111,7 @@ $errors = array(1 => "Unexpected Error :(",
 			<select name="DayPublished">
 <?php
 					// Print all days and select current
-					if ($currentDay == "01") {
-						echo "<option value='01' selected>01</option>\n";
-					} else {
-						echo "<option value='01'>01</option>\n";
-					}
-					for ($i = 2; $i <= 31; $i ++) {
+					for ($i = 1; $i <= 31; $i ++) {
 						if ($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
@@ -128,12 +123,7 @@ $errors = array(1 => "Unexpected Error :(",
 			<select name="MonthPublished">
 <?php
 					// Print all months and select current
-					if ($currentMonth == "01") {
-						echo "<option value='01' selected>01</option>\n";
-					} else {
-						echo "<option value='01'>01</option>\n";
-					}
-					for ($i = 2; $i <= 12; $i ++) {
+					for ($i = 1; $i <= 12; $i ++) {
 						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
@@ -145,13 +135,8 @@ $errors = array(1 => "Unexpected Error :(",
 			<select name="YearPublished">
 <?php
 					// Print all years and select current
-					if ($currentYear == "2013") {
-						echo "<option value='2013' selected>2013</option>\n";
-					} else {
-						echo "<option value='2013'>2013</option>\n";
-					}
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if ($currentYear == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+						if ($currentYear == $i) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
