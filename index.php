@@ -161,25 +161,25 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 						}
 					}
 				echo "\t\t</select>
-				<select name='MonthPublished'>;"
-						// Print all months and select current
-						for ($i = 1; $i <= 12; $i ++) {
-							if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-								echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
-							} else {
-								echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
-							}
+				<select name='MonthPublished'>";
+					// Print all months and select current
+					for ($i = 1; $i <= 12; $i ++) {
+						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
+					}
 				echo "\t\t</select>
 				<select name='YearPublished'>";
-						// Print all years and select current
-						for ($i = 2013; $i <= intval($currentYear); $i ++) {
-							if ($currentYear == $i) {
-								echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
-							} else {
-								echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
-							}
+					// Print all years and select current
+					for ($i = 2013; $i <= intval($currentYear); $i ++) {
+						if ($currentYear == $i) {
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
+					}
 				echo "\t\t</select>
 				</td>
 				
