@@ -21,6 +21,9 @@
 	if (!isset($_SESSION['banned'])) {
 		$_SESSION['banned'] = null;
 	}
+	if (!isset($_SESSION['refer'])) {
+		$_SESSION['refer'] = "/";
+	}
 	$httpLength = 7;
 	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
 		$httpLength = 8;
