@@ -39,6 +39,7 @@ if (!isset($_GET['code'])) {
 	</head>
 	<body>
 <?php
+			print_r($_SERVER);
 			// Define a refer link for our 'header' so login/logout refer us back to correct page
 			$headerRefer = '/?search='.$_GET['search'].'&amp;a='.$_GET['a'];
 			// Include the header in our pages
