@@ -194,7 +194,7 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 			</table>
 			<input type='submit' value='Search'>
 		</form>
-		<!-- FILTER END -->";
+		<!-- FILTER END -->\n";
 		}
 		
 			include("/hdd/config/config.php");
