@@ -19,4 +19,5 @@
 		//echo "\t\tHi Guest! <a href='/login/?refer=".$headerRefer."'>Login</a><br />\n";
 		echo "\t\tHi Guest! <a href='/login/'>Login</a><br />\n";
 	}
+	print_r($_SESSION);
 ?>
