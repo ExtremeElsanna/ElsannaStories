@@ -18,7 +18,7 @@ $errors = array(1 => "Unexpected Error :(",
 	<body>
 <?php
 			// Include header in page
-			$headerRefer = "/";
+			$headerRefer = "login";
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php

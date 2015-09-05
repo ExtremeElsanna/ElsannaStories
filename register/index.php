@@ -28,7 +28,7 @@ $errors = array(1 => "ReCaptcha wrong.",
 	<body>
 <?php
 			// Include header in page
-			$headerRefer = '/register/';
+			$headerRefer = 'register';
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
