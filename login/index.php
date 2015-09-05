@@ -30,6 +30,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 	<body>
 <?php
 			// Include header in page
+			$headerRefer = "login";
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
