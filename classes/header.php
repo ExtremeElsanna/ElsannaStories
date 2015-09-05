@@ -12,7 +12,7 @@
 	}
 	if ($headerRefer == "login") {
 		$headerRefer = "/";
-	} else if ($headerRefer == "register"{
+	} else if ($headerRefer == "register") {
 		$headerRefer = "/register/";
 	} else {
 		$_SESSION['refer'] = $headerRefer;
