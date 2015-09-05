@@ -66,135 +66,135 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 			$currentMonth = date("m");
 			$currentYear = date("Y");
 			echo "\t\t<!-- FILTER START -->
-			<form action='filter.php' method='post'>
-				<table style='border-collapse: collapse;'>
-				<tr>
-				
-				
-				
-				<td style='border: 1px solid black'>
-				Title<br />
-				<input type='text' name='Title' value='' placeholder='Title'>
-				</td>
-				<td style='border: 1px solid black'>
-				Author<br />
-				<input type='text' name='Author' value='' placeholder='Author'>
-				</td>
-				<td style='border: 1px solid black'>
-				Length (words)<br />
-				<input type='number' name='Length' value='' min='1'>
-				</td>
-				<td style='border: 1px solid black'>
-				Story Type<br />
-				<input type='radio' name='StoryType' value='MC'> Multi-Chapter<br />
-				<input type='radio' name='StoryType' value='OS'> One-Shot<br />
-				<input type='radio' name='StoryType' value='OSS'> One-Shot Series
-				</td>
-				<td style='border: 1px solid black'>
-				Complete<br />
-				<input type='radio' name='Complete' value='Y'> Yes<br />
-				<input type='radio' name='Complete' value='N'> No<br />
-				<input type='radio' name='Complete' value='U'> Unknown
-				</td>
-				<td style='border: 1px solid black'>
-				Setting<br />
-				<input type='radio' name='Setting' value='C'> Canon<br />
-				<input type='radio' name='Setting' value='AU'> Alternate Universe (AU)<br />
-				<input type='radio' name='Setting' value='mAU'> Modern Alternate Universe (mAU)<br />
-				<input type='radio' name='Setting' value='STP'> Same Time and Place (STP)<br />
-				<input type='radio' name='Setting' value='U'> Unknown
-				</td>
-				<td style='border: 1px solid black'>
-				Elsa's Character<br />
-				<input type='text' name='ElsaCharacter' value='' placeholder='Queen'>
-				</td>
-				
-				
-				
-				</tr>
-				<tr>
-				
-				
-				
-				<td style='border: 1px solid black'>
-				Anna's Character<br />
-				<input type='text' name='AnnaCharacter' value='' placeholder='Princess'>
-				</td>
-				<td style='border: 1px solid black'>
-				Elsa's Powers<br />
-				<input type='radio' name='ElsaPowers' value='C'> Canon<br />
-				<input type='radio' name='ElsaPowers' value='D'> Different<br />
-				<input type='radio' name='ElsaPowers' value='N'> None<br />
-				<input type='radio' name='ElsaPowers' value='U'> Unknown
-				</td>
-				<td style='border: 1px solid black'>
-				Anna's Powers<br />
-				<input type='radio' name='AnnaPowers' value='N'> No<br />
-				<input type='radio' name='AnnaPowers' value='Y'> Yes
-				</td>
-				<td style='border: 1px solid black'>
-				Sisters<br />
-				<input type='radio' name='Sisters' value='Y'> Yes<br />
-				<input type='radio' name='Sisters' value='N'> No<br />
-				<input type='radio' name='Sisters' value='U'> Unknown
-				</td>
-				<td style='border: 1px solid black'>
-				Age [<a href='https://www.fictionratings.com/'>X</a>]<br />
-				<input type='radio' name='Age' value='K'> K<br />
-				<input type='radio' name='Age' value='KP'> K+<br />
-				<input type='radio' name='Age' value='T'> T<br />
-				<input type='radio' name='Age' value='M'> M
-				</td>
-				<td style='border: 1px solid black'>
-				Smut Prominence<br />
-				<input type='radio' name='SmutLevel' value='N'> None<br />
-				<input type='radio' name='SmutLevel' value='PL'> Plot Focused<br />
-				<input type='radio' name='SmutLevel' value='L'> Light<br />
-				<input type='radio' name='SmutLevel' value='M'> Medium<br />
-				<input type='radio' name='SmutLevel' value='H'> Heavy<br />
-				<input type='radio' name='SmutLevel' value='PU'> Pure
-				</td>
-				<td style='border: 1px solid black'>
-				Date Published<br />
-				<select name='DayPublished'>";
+		<form action='filter.php' method='post'>
+			<table style='border-collapse: collapse;'>
+			<tr>
+			
+			
+			
+			<td style='border: 1px solid black'>
+			Title<br />
+			<input type='text' name='Title' value='' placeholder='Title'>
+			</td>
+			<td style='border: 1px solid black'>
+			Author<br />
+			<input type='text' name='Author' value='' placeholder='Author'>
+			</td>
+			<td style='border: 1px solid black'>
+			Length (words)<br />
+			<input type='number' name='Length' value='' min='1'>
+			</td>
+			<td style='border: 1px solid black'>
+			Story Type<br />
+			<input type='radio' name='StoryType' value='MC'> Multi-Chapter<br />
+			<input type='radio' name='StoryType' value='OS'> One-Shot<br />
+			<input type='radio' name='StoryType' value='OSS'> One-Shot Series
+			</td>
+			<td style='border: 1px solid black'>
+			Complete<br />
+			<input type='radio' name='Complete' value='Y'> Yes<br />
+			<input type='radio' name='Complete' value='N'> No<br />
+			<input type='radio' name='Complete' value='U'> Unknown
+			</td>
+			<td style='border: 1px solid black'>
+			Setting<br />
+			<input type='radio' name='Setting' value='C'> Canon<br />
+			<input type='radio' name='Setting' value='AU'> Alternate Universe (AU)<br />
+			<input type='radio' name='Setting' value='mAU'> Modern Alternate Universe (mAU)<br />
+			<input type='radio' name='Setting' value='STP'> Same Time and Place (STP)<br />
+			<input type='radio' name='Setting' value='U'> Unknown
+			</td>
+			<td style='border: 1px solid black'>
+			Elsa's Character<br />
+			<input type='text' name='ElsaCharacter' value='' placeholder='Queen'>
+			</td>
+			
+			
+			
+			</tr>
+			<tr>
+			
+			
+			
+			<td style='border: 1px solid black'>
+			Anna's Character<br />
+			<input type='text' name='AnnaCharacter' value='' placeholder='Princess'>
+			</td>
+			<td style='border: 1px solid black'>
+			Elsa's Powers<br />
+			<input type='radio' name='ElsaPowers' value='C'> Canon<br />
+			<input type='radio' name='ElsaPowers' value='D'> Different<br />
+			<input type='radio' name='ElsaPowers' value='N'> None<br />
+			<input type='radio' name='ElsaPowers' value='U'> Unknown
+			</td>
+			<td style='border: 1px solid black'>
+			Anna's Powers<br />
+			<input type='radio' name='AnnaPowers' value='N'> No<br />
+			<input type='radio' name='AnnaPowers' value='Y'> Yes
+			</td>
+			<td style='border: 1px solid black'>
+			Sisters<br />
+			<input type='radio' name='Sisters' value='Y'> Yes<br />
+			<input type='radio' name='Sisters' value='N'> No<br />
+			<input type='radio' name='Sisters' value='U'> Unknown
+			</td>
+			<td style='border: 1px solid black'>
+			Age [<a href='https://www.fictionratings.com/'>X</a>]<br />
+			<input type='radio' name='Age' value='K'> K<br />
+			<input type='radio' name='Age' value='KP'> K+<br />
+			<input type='radio' name='Age' value='T'> T<br />
+			<input type='radio' name='Age' value='M'> M
+			</td>
+			<td style='border: 1px solid black'>
+			Smut Prominence<br />
+			<input type='radio' name='SmutLevel' value='N'> None<br />
+			<input type='radio' name='SmutLevel' value='PL'> Plot Focused<br />
+			<input type='radio' name='SmutLevel' value='L'> Light<br />
+			<input type='radio' name='SmutLevel' value='M'> Medium<br />
+			<input type='radio' name='SmutLevel' value='H'> Heavy<br />
+			<input type='radio' name='SmutLevel' value='PU'> Pure
+			</td>
+			<td style='border: 1px solid black'>
+			Date Published<br />
+			<select name='DayPublished'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
 						if ($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				echo "\t\t</select>
-				<select name='MonthPublished'>";
+				echo "\t\t\t</select>
+			<select name='MonthPublished'>\n";
 					// Print all months and select current
 					for ($i = 1; $i <= 12; $i ++) {
 						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				echo "\t\t</select>
-				<select name='YearPublished'>";
+				echo "\t\t\t</select>
+			<select name='YearPublished'>\n";
 					// Print all years and select current
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
 						if ($currentYear == $i) {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
-							echo "\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						}
 					}
-				echo "\t\t</select>
-				</td>
-				
-				
-				
-				</tr>
-				</table>
-				<input type='submit' value='Search'>
-			</form>
-			<!-- FILTER END -->";
+				echo "\t\t\t</select>
+			</td>
+			
+			
+			
+			</tr>
+			</table>
+			<input type='submit' value='Search'>
+		</form>
+		<!-- FILTER END -->";
 		}
 		
 			include("/hdd/config/config.php");
