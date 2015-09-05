@@ -27,6 +27,9 @@ if (!isset($_GET['a'])) {
 if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 	$_GET['a'] = 0;
 }
+if (!isset($_GET['code'])) {
+	$_GET['code'] = 0;
+}
 ?>
 <?php echo $doctype; ?>
 <html>
