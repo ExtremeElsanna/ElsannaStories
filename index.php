@@ -40,7 +40,7 @@ if (!isset($_GET['code'])) {
 	<body>
 <?php
 			// Define a refer link for our 'header' so login/logout refer us back to correct page
-			$headerRefer = '/?search='.$_GET['search'].'&amp;a='.$_GET['a'];
+			$headerRefer = '/?search='.$_GET['search'].'&a='.$_GET['a'];
 			// Include the header in our pages
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
