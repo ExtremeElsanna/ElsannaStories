@@ -37,7 +37,22 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
-			print_r($_SERVER);
+			if (!isset($_SERVER['HTTP_REFERER'])) {
+				header("Location: /?code=2");
+				die();
+			}
+			if (!isset($_SERVER['HTTP_HOST'])) {
+				header("Location: /?code=2");
+				die();
+			}
+			$httpLength = 7;
+			if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
+				$httpLength = 8;
+			}
+			// Strip referer down to link extension
+			$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
+			$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
+			$referrer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
 ?>
 		<a href="/register/">Register</a><br />
 		<form action="login.php" method="post">
@@ -45,7 +60,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			<input type="password" name="password" value="" placeholder="Password">
 <?php
 				// Pass refer link given from referer to the login.php page
-				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
+				echo '<input type="hidden" name="refer" value="'.$referrer.'">';
 ?>
 			
 			<input type="submit" value="Login">
