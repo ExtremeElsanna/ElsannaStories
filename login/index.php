@@ -52,7 +52,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			// Strip referer down to link extension
 			$noProtocol = mb_substr($_SERVER['HTTP_REFERER'],$httpLength,null,"UTF-8");
 			$hostLength = mb_strlen($_SERVER['HTTP_HOST'],"UTF-8");
-			$referrer = mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8");
+			$referrer = str_replace("&","&amp;",mb_strtolower(mb_substr($noProtocol,$hostLength,null,"UTF-8"),"UTF-8"));
 ?>
 		<a href="/register/">Register</a><br />
 		<form action="login.php" method="post">
