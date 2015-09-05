@@ -195,7 +195,7 @@ if (!isset($_GET['code'])) {
 			
 			</tr>
 			</table>
-			<input type='submit' value='Search'> <a href='?search=".$_GET['search']."&amp;code=".$_GET['code']."'>Advanced Search</a>
+			<input type='submit' value='Search'> <a href='?search=".$_GET['search']."&amp;code=".$_GET['code']."'>Basic Search</a>
 		</form>
 		<!-- FILTER END -->\n";
 		}
