@@ -19,6 +19,9 @@ if (!isset($_GET['id']) and !is_numeric($_GET['id'])) {
 	header("Location: /?code=7");
 	die();
 }
+if (!isset($_GET['code'])) {
+	$_GET['code'] = 0;
+}
 $id = $_GET['id'];
 ?>
 <?php echo $doctype; ?>
