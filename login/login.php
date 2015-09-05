@@ -85,7 +85,9 @@
 						$_SESSION['username'] = $user;
 						$_SESSION['lastActive'] = time();
 						$_SESSION['banned'] = 0;
-						header("Location: ".$_SESSION['refer']);
+						$refer = $_SESSION['refer']
+						$_SESSION['refer'] = null;
+						header("Location: ".$refer);
 						die();
 					} else {
 						$_SESSION['changePassId'] = $userId;
