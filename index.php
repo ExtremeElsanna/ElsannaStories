@@ -57,7 +57,7 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 		if ($_GET['a'] == 0) {
 			echo "\t\t<form action='/' method='get'>
 				<input type='text' name='search' value='' placeholder='Summers, Queen, Princess...'>
-				<input type='submit' value='Search'>
+				<input type='submit' value='Search'> <a href='?search=".$_GET['search']."&amp;code=".$_GET['code']."&amp;a=1'>Advanced Search</a>
 			</form>";
 		} else {
 			// Get current day, month and year
@@ -192,7 +192,7 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 			
 			</tr>
 			</table>
-			<input type='submit' value='Search'>
+			<input type='submit' value='Search'> <a href='?search=".$_GET['search']."&amp;code=".$_GET['code']."'>Advanced Search</a>
 		</form>
 		<!-- FILTER END -->\n";
 		}
