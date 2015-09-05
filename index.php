@@ -60,6 +60,11 @@ if ($_GET['a'] != 0 and $_GET['a'] != 1) {
 				<input type='submit' value='Search'>
 			</form>";
 		} else {
+			// Get current day, month and year
+			date_default_timezone_set('UTC');
+			$currentDay = date("d");
+			$currentMonth = date("m");
+			$currentYear = date("Y");
 			echo "\t\t<!-- FILTER START -->
 			<form action='filter.php' method='post'>
 				<table style='border-collapse: collapse;'>
