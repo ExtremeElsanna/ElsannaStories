@@ -60,11 +60,12 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			<input type="password" name="password" value="" placeholder="Password">
 <?php
 				// Pass refer link given from referer to the login.php page
-				echo '<input type="hidden" name="refer" value="'.$referrer.'">';
+				echo '\t\t\t<input type="hidden" name="refer" value="'.$referrer.'">\n';
 ?>
-			
 			<input type="submit" value="Login">
 		</form>
-<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br />" ?>
+<?php
+		echo "\t\t<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br />\n"
+?>
 	</body>
 </html>
