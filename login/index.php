@@ -36,7 +36,6 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
-			print_r($_SESSION);
 ?>
 		<a href="/register/">Register</a><br />
 		<form action="login.php" method="post">
