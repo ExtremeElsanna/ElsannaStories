@@ -8,6 +8,8 @@
 	// Ensure we have a refer link
 	if (!isset($_GET['refer'])) {
 		$_GET['refer'] = "/";
+	} else {
+		$_GET['refer'] = iconv('UCS-2','UTF-8', hex2bin($_GET['refer']));
 	}
 	// Send user back to correct page
 	header("Location: ".$_GET['refer']);

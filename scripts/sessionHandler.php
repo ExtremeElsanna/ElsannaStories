@@ -21,16 +21,13 @@
 	if (!isset($_SESSION['banned'])) {
 		$_SESSION['banned'] = null;
 	}
-	$httpLength = 7;
-	if (isset($_SERVER['HTTPS']) and $_SERVER['HTTPS'] == "on") {
-		$httpLength = 8;
-	}
-	$refer = mb_strtolower($_SERVER['REQUEST_URI'],"UTF-8");
 	
 	if (isset($_POST['refer'])) {
 		$refer = $_POST['refer'];
 	} else if(isset($_GET['refer'])) {
 		$refer = $_GET['refer'];
+	} else {
+		$refer = bin2hex(iconv('UTF-8','UCS-2', "/"));
 	}
 	
 	// Check user logged in

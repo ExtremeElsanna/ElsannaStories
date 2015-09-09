@@ -2,6 +2,8 @@
 include("/hdd/elsanna-ssl/headers/utf8Headers.php");
 if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
+} else {
+	$_GET['refer'] = iconv('UCS-2','UTF-8', hex2bin($_GET['refer']));
 }
 include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 include("/hdd/elsanna-ssl/headers/HTMLvariables.php");
