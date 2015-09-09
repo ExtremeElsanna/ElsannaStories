@@ -4,7 +4,7 @@
 					if ($a[1] == $b[1] and $a[3] == $b[3]) {
 						return strcmp($a[2], $b[2]);
 					} else if ($a[1] == $b[1]) {
-						return $a[3]>$b[3]
+						return $a[3]>$b[3];
 					} else {
 						return $a[1]>$b[1];
 					}				}				// Call custom_sort()				usort($validStories, "custom_sort");
