@@ -11,6 +11,7 @@
 		$headerRefer = "/";
 	}
 	$headerRefer = bin2hex(iconv('UTF-8','UCS-2', $headerRefer));
+	$headerRefer = iconv('UCS-2','UTF-8', hex2bin($headerRefer));
 	// Print either Hi %User% or Hi Guest, with logout and login respectively which will refer back to given link when visited
 	if ($_SESSION['loggedIn'] == 1) {
 		echo "\t\tHi ".$_SESSION['username']."! <a href='/logout/?refer=".$headerRefer."'>Logout</a> - <a href='/user/".$_SESSION['username']."'>Profile</a><br />\n";
