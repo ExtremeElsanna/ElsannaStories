@@ -30,7 +30,7 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 	<body>
 <?php
 			// Include header in page
-			$headerRefer = "login";
+			$headerRefer = "/";
 			include("/hdd/elsanna-ssl/classes/header.php");
 ?>
 <?php
@@ -42,10 +42,13 @@ if (isset($_GET['id']) and is_numeric($_GET['id'])) {
 		<form action="login.php" method="post">
 			<input type="text" name="user" value="" placeholder="Username">
 			<input type="password" name="password" value="" placeholder="Password">
+<?php
+				// Pass refer link given from referer to the login.php page
+				echo '<input type="hidden" name="refer" value="'.$_GET['refer'].'">';
+?>
+			
 			<input type="submit" value="Login">
 		</form>
-<?php
-		echo "\t\t<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br />\n"
-?>
+<?php echo "<a href='/reset/?refer=".$_GET['refer']."'>Forgot Password?</a><br />" ?>
 	</body>
 </html>

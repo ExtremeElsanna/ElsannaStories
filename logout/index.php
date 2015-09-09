@@ -5,9 +5,11 @@
 	// Trigger logout procedure
 	include("/hdd/elsanna-ssl/scripts/logout.php");
 	
+	// Ensure we have a refer link
+	if (!isset($_GET['refer'])) {
+		$_GET['refer'] = "/";
+	}
 	// Send user back to correct page
-	$refer = $_SESSION['refer'];
-	$_SESSION['refer'] = null;
-	header("Location: ".$refer);
+	header("Location: ".$_GET['refer']);
 	die();
 ?>
