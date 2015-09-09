@@ -7,7 +7,7 @@
 					// } else {
 						// return $a[1]<$b[1];
 					// }
-					return strcmp($a[2], $b[2]);				}				// Call custom_sort()				usort($validStories, "custom_sort");
+					return $a[3]>$b[3];				}				// Call custom_sort()				usort($validStories, "custom_sort");
 				foreach ($validStories as $story) {
 					echo $story[2]."-".$story[1]."<br>";
 				}				//foreach ($validStories as $story) {				//	// Print out the stories returned by search engine				//	echo "\t\t\t<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$rows[$story[0]]['Title']."</a></td></tr>\n";				//}?>		</table>	</body></html>
