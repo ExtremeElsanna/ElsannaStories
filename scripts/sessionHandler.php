@@ -27,7 +27,7 @@
 	} else if(isset($_GET['refer'])) {
 		$refer = $_GET['refer'];
 	} else {
-		$refer = bin2hex(iconv('UTF-8','UCS-2', "/"));
+		$refer = bin2hex(mb_convert_encoding($refer,'UCS-2','UTF-8'))
 	}
 	
 	// Check user logged in

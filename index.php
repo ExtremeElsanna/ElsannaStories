@@ -21,7 +21,7 @@ $errors = array(1 => "Username Changed!",
 if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 } else {
-	$_GET['search'] = iconv('UCS-2','UTF-8', hex2bin($_GET['search']));;
+	$_GET['search'] = mb_convert_encoding(hex2bin($_GET['search']),'UTF-8','UCS-2')
 }
 if (!isset($_GET['a'])) {
 	$_GET['a'] = 0;

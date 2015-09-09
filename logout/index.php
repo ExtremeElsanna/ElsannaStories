@@ -9,7 +9,7 @@
 	if (!isset($_GET['refer'])) {
 		$_GET['refer'] = "/";
 	} else {
-		$_GET['refer'] = iconv('UCS-2','UTF-8', hex2bin($_GET['refer']));
+		$_GET['refer'] = mb_convert_encoding(hex2bin($_GET['refer']),'UTF-8','UCS-2')
 	}
 	// Send user back to correct page
 	header("Location: ".$_GET['refer']);
