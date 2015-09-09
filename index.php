@@ -58,7 +58,7 @@ if (!isset($_GET['code'])) {
 		if ($_GET['a'] == 0) {
 			echo "\t\t<form action='/' method='get'>
 				<input type='text' name='search' value='' placeholder='Summers, Queen, Princess...'>
-				<input type='submit' value='Search'> <a href='?search=".bin2hex(iconv('UTF-8','UCS-2', $_GET['search']))."&amp;code=".$_GET['code']."&amp;a=1'>Advanced Search</a>
+				<input type='submit' value='Search'> <a href='?search=".bin2hex(iconv('UTF-8','UCS-2', $_GET['search']))."&amp;code=".$_GET['code']."&a=1'>Advanced Search</a>
 			</form>";
 		} else {
 			// Get current day, month and year
@@ -193,7 +193,7 @@ if (!isset($_GET['code'])) {
 			
 			</tr>
 			</table>
-			<input type='submit' value='Search'> <a href='?search=".$_GET['search']."&amp;code=".$_GET['code']."'>Basic Search</a>
+			<input type='submit' value='Search'> <a href='?search=".bin2hex(iconv('UTF-8','UCS-2', $_GET['search']))."&code=".$_GET['code']."'>Basic Search</a>
 		</form>
 		<!-- FILTER END -->\n";
 		}
