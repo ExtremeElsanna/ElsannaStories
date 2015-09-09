@@ -56,7 +56,7 @@ if (!isset($_GET['code'])) {
 		</form>
 <?php
 		if ($_GET['a'] == 0) {
-			echo "\t\t<form action='/' method='get'>
+			echo "\t\t<form action='search.php' method='post'>
 				<input type='text' name='search' value='' placeholder='Summers, Queen, Princess...'>
 				<input type='submit' value='Search'> <a href='?search=".bin2hex(iconv('UTF-8','UCS-2', $_GET['search']))."&amp;code=".$_GET['code']."&a=1'>Advanced Search</a>
 			</form>";
