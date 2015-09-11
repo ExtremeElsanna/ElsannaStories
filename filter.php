@@ -38,7 +38,7 @@
 				break;
 		}
 	}
-	$getParams .= mb_substr($storyType, 0, -1, null, "UTF-8")."&";
+	$getParams .= mb_substr($storyType, 0, -1, "UTF-8")."&";
 	echo $getParams;
 	die;
 	header("Location: /?search=".$_POST['search']);
