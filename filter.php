@@ -134,15 +134,31 @@
 				break;
 		}
 	}
-	$getParams .= mb_substr($storyType, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($complete, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($setting, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($elsaPowers, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($annaPowers, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($sisters, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($age, 0, -1, "UTF-8")."&";
-	$getParams .= mb_substr($smutLevel, 0, -1, "UTF-8");
-	echo trim($getParams,"&");
+	if ($storyType != "") {
+		$getParams .= "sType=".mb_substr($storyType, 0, -1, "UTF-8")."&";
+	}
+	if ($complete != "") {
+		$getParams .= "sComplete=".mb_substr($complete, 0, -1, "UTF-8")."&";
+	}
+	if ($setting != "") {
+		$getParams .= "sSetting=".mb_substr($setting, 0, -1, "UTF-8")."&";
+	}
+	if ($elsaPowers != "") {
+		$getParams .= "sEPowers=".mb_substr($elsaPowers, 0, -1, "UTF-8")."&";
+	}
+	if ($annaPowers != "") {
+		$getParams .= "sAPowers=".mb_substr($annaPowers, 0, -1, "UTF-8")."&";
+	}
+	if ($sisters != "") {
+		$getParams .= "sSisters=".mb_substr($sisters, 0, -1, "UTF-8")."&";
+	}
+	if ($age != "") {
+		$getParams .= "sAge=".mb_substr($age, 0, -1, "UTF-8")."&";
+	}
+	if ($smutLevel != "") {
+		$getParams .= "sSmut=".mb_substr($smutLevel, 0, -1, "UTF-8");
+	}
+	echo $getParams;
 	die;
 	header("Location: /?search=".$_POST['search']);
 ?>
