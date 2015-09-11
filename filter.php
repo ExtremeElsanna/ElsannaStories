@@ -49,12 +49,12 @@
 				}
 				break;
 			case "ElsaCharacter":
-				if ($_POST['ElsaCharcter'] != "") {
+				if ($_POST['ElsaCharacter'] != "") {
 					$getParams = $getParams."sEChar=".$encParam."&";
 				}
 				break;
 			case "AnnaCharacter":
-				if ($_POST['AnnaCharcter'] != "") {
+				if ($_POST['AnnaCharacter'] != "") {
 					$getParams = $getParams."sAChar=".$encParam."&";
 				}
 				break;
