@@ -22,19 +22,29 @@
 		$encParam = toNumbers($param);
 		switch ($key) {
 			case "Title":
-				$getParams = $getParams."sTitle=".$encParam."&";
+				if ($_POST['Title'] != "") {
+					$getParams = $getParams."sTitle=".$encParam."&";
+				}
 				break;
 			case "Author":
-				$getParams = $getParams."sAuthor=".$encParam."&";
+				if ($_POST['Author'] != "") {
+					$getParams = $getParams."sAuthor=".$encParam."&";
+				}
 				break;
 			case "Length":
-				$getParams = $getParams."sLength=".$encParam."&";
+				if ($_POST['Length'] != "") {
+					$getParams = $getParams."sLength=".$encParam."&";
+				}
 				break;
 			case "ElsaCharcter":
-				$getParams = $getParams."sEChar=".$encParam."&";
+				if ($_POST['ElsaCharcter'] != "") {
+					$getParams = $getParams."sEChar=".$encParam."&";
+				}
 				break;
 			case "AnnaCharcter":
-				$getParams = $getParams."sAChar=".$encParam."&";
+				if ($_POST['AnnaCharcter'] != "") {
+					$getParams = $getParams."sAChar=".$encParam."&";
+				}
 				break;
 			case "DayPublished":
 				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished'])) {
