@@ -3,7 +3,7 @@
 	$getParams = "";
 	foreach ($_POST as $key => $param) {
 		echo $key." : ".$param."<br>";
-		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'))
+		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
 		switch ($key) {
 			case "Title":
 				$getParams = $getParams."sTitle=".$encParam."&"
