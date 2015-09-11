@@ -15,7 +15,7 @@
 				$getParams = $getParams."sLength=".$encParam."&";
 				break;
 			case "StoryType":
-				echo implode("\n", $_POST['service']);
+				echo implode("\n", $_POST['StoryType']);
 				break;
 			case "ElsaCharcter":
 				$getParams = $getParams."sEChar=".$encParam."&";
