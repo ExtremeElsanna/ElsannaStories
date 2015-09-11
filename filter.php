@@ -158,7 +158,7 @@
 	if ($smutLevel != "") {
 		$getParams .= "sSmut=".mb_substr($smutLevel, 0, -1, "UTF-8");
 	}
-	echo $getParams;
+	echo mb_substr($getParams, 0, -1, "UTF-8");
 	die;
 	header("Location: /?search=".$_POST['search']);
 ?>
