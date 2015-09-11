@@ -1,7 +1,8 @@
 <?php
 	function toNumbers($param) {
 		set_error_handler(function() { /* ignore errors */ });
-		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
+		//$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
+		$encParam = $param;
 		restore_error_handler();
 		return $encParam;
 	}
@@ -47,9 +48,9 @@
 				}
 				break;
 			case "DayPublished":
-				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished'])) {
+				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
 					try {
-						$encParam = toNumbers(strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']));
+						$encParam = toNumbers($_POST['DateType'].strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']));
 						$getParams = $getParams."sDate=".$encParam."&";
 					} catch (Exception $e) {
 						// Not a valid date
