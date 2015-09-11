@@ -61,7 +61,7 @@
 			case "DayPublished":
 				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
 					try {
-						$encParam = toNumbers($_POST['DateType'].strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']));
+						$encParam = toNumbers($_POST['DateType'].strtotime ( $_POST['YearPublished']."-".$_POST['MonthPublished']."-".$_POST['DayPublished']));
 						$getParams = $getParams."sDate=".$encParam."&";
 					} catch (Exception $e) {
 						// Not a valid date
