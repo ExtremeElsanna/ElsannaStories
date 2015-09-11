@@ -193,5 +193,5 @@
 		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"));
 	}
 	$getParams = mb_substr($getParams, 0, -1, "UTF-8");
-	header("Location: /?".$getParams);
+	header("Location: /?a=1&".$getParams);
 ?>
