@@ -16,13 +16,13 @@
 				$getParams = $getParams."sLength=".$encParam."&";
 				break;
 			case "StoryType1":
-				$storyType = $storyType."MC,"
+				$storyType = $storyType."MC,";
 				break;
 			case "StoryType2":
-				$storyType = $storyType."OS,"
+				$storyType = $storyType."OS,";
 				break;
 			case "StoryType3":
-				$storyType = $storyType."OSS,"
+				$storyType = $storyType."OSS,";
 				break;
 			case "ElsaCharcter":
 				$getParams = $getParams."sEChar=".$encParam."&";
