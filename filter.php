@@ -14,6 +14,9 @@
 			case "Length":
 				$getParams = $getParams."sLength=".$encParam."&";
 				break;
+			case "StoryType":
+				echo implode("\n", $_POST['service']);
+				break;
 			case "ElsaCharcter":
 				$getParams = $getParams."sEChar=".$encParam."&";
 				break;
@@ -22,7 +25,7 @@
 				break;
 			case "DayPublished":
 				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished'])) {
-					$encParam = strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']);
+					$encParam = bin2hex(mb_convert_encoding(strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']), 'UCS-2', 'UTF-8'));
 					$getParams = $getParams."sDate=".$encParam."&";
 				}
 				break;
