@@ -190,7 +190,7 @@
 		$getParams .= "sAge=".toNumbers(mb_substr($age, 0, -1, "UTF-8"))."&";
 	}
 	if ($smutLevel != "") {
-		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"));
+		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"))."&";
 	}
 	$getParams = mb_substr($getParams, 0, -1, "UTF-8");
 	echo $getParams;
