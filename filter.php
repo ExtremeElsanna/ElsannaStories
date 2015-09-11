@@ -1,4 +1,11 @@
 <?php
+	function toNumbers($param) {
+		set_error_handler(function() { /* ignore errors */ });
+		$encParam = bin2hex(mb_convert_encoding($param), 'UCS-2', 'UTF-8'));
+		restore_error_handler();
+		return $encParam;
+	}
+	
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	$getParams = "";
 	$storyType = "";
@@ -11,7 +18,8 @@
 	$smutLevel = "";
 	foreach ($_POST as $key => $param) {
 		echo $key." : ".$param."<br>";
-		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
+		set_error_handler(function() { /* ignore errors */ });
+		$encParam = toNumbers($param);
 		switch ($key) {
 			case "Title":
 				$getParams = $getParams."sTitle=".$encParam."&";
@@ -30,7 +38,7 @@
 				break;
 			case "DayPublished":
 				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished'])) {
-					$encParam = bin2hex(mb_convert_encoding(strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']), 'UCS-2', 'UTF-8'));
+					$encParam = toNumbers(strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']));
 					$getParams = $getParams."sDate=".$encParam."&";
 				}
 				break;
@@ -135,28 +143,28 @@
 		}
 	}
 	if ($storyType != "") {
-		$getParams .= "sType=".mb_substr($storyType, 0, -1, "UTF-8")."&";
+		$getParams .= "sType=".toNumbers(mb_substr($storyType, 0, -1, "UTF-8"))."&";
 	}
 	if ($complete != "") {
-		$getParams .= "sComplete=".mb_substr($complete, 0, -1, "UTF-8")."&";
+		$getParams .= "sComplete=".toNumbers(mb_substr($complete, 0, -1, "UTF-8"))."&";
 	}
 	if ($setting != "") {
-		$getParams .= "sSetting=".mb_substr($setting, 0, -1, "UTF-8")."&";
+		$getParams .= "sSetting=".toNumbers(mb_substr($setting, 0, -1, "UTF-8"))."&";
 	}
 	if ($elsaPowers != "") {
-		$getParams .= "sEPowers=".mb_substr($elsaPowers, 0, -1, "UTF-8")."&";
+		$getParams .= "sEPowers=".toNumbers(mb_substr($elsaPowers, 0, -1, "UTF-8"))."&";
 	}
 	if ($annaPowers != "") {
-		$getParams .= "sAPowers=".mb_substr($annaPowers, 0, -1, "UTF-8")."&";
+		$getParams .= "sAPowers=".toNumbers(mb_substr($annaPowers, 0, -1, "UTF-8"))."&";
 	}
 	if ($sisters != "") {
-		$getParams .= "sSisters=".mb_substr($sisters, 0, -1, "UTF-8")."&";
+		$getParams .= "sSisters=".toNumbers(mb_substr($sisters, 0, -1, "UTF-8"))."&";
 	}
 	if ($age != "") {
-		$getParams .= "sAge=".mb_substr($age, 0, -1, "UTF-8")."&";
+		$getParams .= "sAge=".toNumbers(mb_substr($age, 0, -1, "UTF-8"))."&";
 	}
 	if ($smutLevel != "") {
-		$getParams .= "sSmut=".mb_substr($smutLevel, 0, -1, "UTF-8");
+		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"));
 	}
 	echo mb_substr($getParams, 0, -1, "UTF-8");
 	die;
