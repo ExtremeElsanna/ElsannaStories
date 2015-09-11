@@ -1,8 +1,8 @@
 <?php
 	function toNumbers($param) {
 		set_error_handler(function() { /* ignore errors */ });
-		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
-		//$encParam = $param;
+		//$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
+		$encParam = $param;
 		restore_error_handler();
 		return $encParam;
 	}
@@ -32,9 +32,13 @@
 					$getParams = $getParams."sAuthor=".$encParam."&";
 				}
 				break;
-			case "Length":
-				if ($_POST['Length'] != "") {
-					$getParams = $getParams."sLength=".$encParam."&";
+			case "LengthType":
+				if ($_POST['LengthType'] == "M" and isset($_POST['Length']) and is_numeric($_POST['Length'])) {
+					$getParams = $getParams."sLength=".toNumbers("M".$_POST['Length'])."&";
+				} else if ($_POST['LengthType'] == "L" and isset($_POST['Length']) and is_numeric($_POST['Length'])) {
+					$getParams = $getParams."sLength=".toNumbers("L".$_POST['Length'])."&";
+				} else if ($_POST['LengthType'] == "B" and isset($_POST['LengthB1']) and is_numeric($_POST['LengthB1']) and isset($_POST['LengthB2']) and is_numeric($_POST['LengthB2'])) {
+					$getParams = $getParams."sLength=".toNumbers("B".$_POST['LengthB1'])."&sLength2=".toNumbers($_POST['LengthB2'])."&";
 				}
 				break;
 			case "ElsaCharcter":
