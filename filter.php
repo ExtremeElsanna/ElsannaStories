@@ -1,7 +1,7 @@
 <?php
 	function toNumbers($param) {
 		set_error_handler(function() { /* ignore errors */ });
-		$encParam = bin2hex(mb_convert_encoding($param), 'UCS-2', 'UTF-8'));
+		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
 		restore_error_handler();
 		return $encParam;
 	}
