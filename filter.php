@@ -47,7 +47,7 @@
 				}
 				break;
 			case "DayPublished":
-				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished') and is_numeric($_POST['YearPublished'])) {
+				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished'])) {
 					try {
 						$encParam = toNumbers(strtotime ( $_POST['DayPublished']."/".$_POST['MonthPublished']."/".$_POST['YearPublished']));
 						$getParams = $getParams."sDate=".$encParam."&";
