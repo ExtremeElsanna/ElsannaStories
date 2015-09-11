@@ -1,6 +1,7 @@
 <?php
 	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
 	$getParams = "";
+	$storyType = "";
 	foreach ($_POST as $key => $param) {
 		echo $key." : ".$param."<br>";
 		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
@@ -14,8 +15,14 @@
 			case "Length":
 				$getParams = $getParams."sLength=".$encParam."&";
 				break;
-			case "StoryType":
-				echo implode("\n", $_POST['StoryType']);
+			case "StoryType1":
+				$storyType = $storyType."MC,"
+				break;
+			case "StoryType2":
+				$storyType = $storyType."OS,"
+				break;
+			case "StoryType3":
+				$storyType = $storyType."OSS,"
 				break;
 			case "ElsaCharcter":
 				$getParams = $getParams."sEChar=".$encParam."&";
@@ -31,6 +38,7 @@
 				break;
 		}
 	}
+	$getParams .= $storyType;
 	echo $getParams;
 	die;
 	header("Location: /?search=".$_POST['search']);
