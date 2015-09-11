@@ -1,8 +1,8 @@
 <?php
 	function toNumbers($param) {
 		set_error_handler(function() { /* ignore errors */ });
-		//$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
-		$encParam = $param;
+		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
+		//$encParam = $param;
 		restore_error_handler();
 		return $encParam;
 	}
@@ -193,7 +193,5 @@
 		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"))."&";
 	}
 	$getParams = mb_substr($getParams, 0, -1, "UTF-8");
-	echo $getParams;
-	die;
 	header("Location: /?a=1&".$getParams);
 ?>
