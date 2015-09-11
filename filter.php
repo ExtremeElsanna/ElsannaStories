@@ -48,12 +48,12 @@
 					$getParams = $getParams."sLength=".toNumbers("B".$num1)."&sLength2=".toNumbers($num2)."&";
 				}
 				break;
-			case "ElsaCharcter":
+			case "ElsaCharacter":
 				if ($_POST['ElsaCharcter'] != "") {
 					$getParams = $getParams."sEChar=".$encParam."&";
 				}
 				break;
-			case "AnnaCharcter":
+			case "AnnaCharacter":
 				if ($_POST['AnnaCharcter'] != "") {
 					$getParams = $getParams."sAChar=".$encParam."&";
 				}
