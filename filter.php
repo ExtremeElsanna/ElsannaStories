@@ -142,7 +142,7 @@
 	$getParams .= mb_substr($sisters, 0, -1, "UTF-8")."&";
 	$getParams .= mb_substr($age, 0, -1, "UTF-8")."&";
 	$getParams .= mb_substr($smutLevel, 0, -1, "UTF-8");
-	echo $getParams;
+	echo trim($getParams,"&");
 	die;
 	header("Location: /?search=".$_POST['search']);
 ?>
