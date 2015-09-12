@@ -8,7 +8,7 @@
 	}
 	if ($_SESSION['loggedIn'] != 1) {
 		// Not logged in
-		header("Location: /?code=3");
+		header("Location: /story/?id=".$_GET['id']."&code=3");
 		die();
 	}
 	
