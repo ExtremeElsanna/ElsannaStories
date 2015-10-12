@@ -12,7 +12,7 @@
 		die();
 	}
 	
-	// Get summary for this story
+	// Get (non)existing favourite data
 	$userId = $_SESSION['userId'];
 	$storyId = $_GET['id'];
 	$stmt = $pdo->prepare('SELECT FavouriteId FROM Favourites WHERE UserId = :userId AND StoryId = :storyId;');
@@ -21,12 +21,14 @@
 	$stmt->execute();
 	$row = $stmt->fetch();
 	if ($row['FavouriteId'] == "") {
+		// Favourite Story
 		$stmt = $pdo->prepare('INSERT INTO Favourites (UserId, StoryId) VALUES (:userId,:storyId);');
-		$stmt->bindParam(':userId', $userId, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-		$stmt->bindParam(':storyId', $storyId, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		header("Location: /story/?id=".$storyId."&code=10");
 	} else {
+		// Un-Favourite Story
 		$stmt = $pdo->prepare('DELETE FROM Favourites WHERE UserId = :userId AND StoryId = :storyId;');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
