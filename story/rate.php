@@ -10,7 +10,7 @@
 		header("Location: /?code=2");
 		die();
 	}
-	if ($rating < 0 and $rating > 5) {
+	if ($_GET['rating'] < 0 and $_GET['rating'] > 5) {
 		header("Location: /?code=2");
 		die();
 	}
