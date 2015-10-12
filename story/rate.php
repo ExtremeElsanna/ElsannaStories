@@ -5,8 +5,12 @@
 	if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
 		header("Location: /?code=2");
 		die();
-	}			
+	}
 	if (!isset($_GET['rating']) or !is_numeric($_GET['rating'])) {
+		header("Location: /?code=2");
+		die();
+	}
+	if ($rating < 0 and $rating > 5) {
 		header("Location: /?code=2");
 		die();
 	}
@@ -32,6 +36,7 @@
 		$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':rating', $rating, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
+		die;
 		header("Location: /story/?id=".$storyId."&code=13");
 	} else {
 		if ($_GET['rating'] == 0) {
