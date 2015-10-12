@@ -31,12 +31,11 @@
 	$row = $stmt->fetch();
 	if ($row['RatingId'] == "") {
 		// Rate Story
-		$stmt = $pdo->prepare('INSERT INTO Rating (UserId, StoryId, Rating) VALUES (:userId,:storyId,:rating);');
+		$stmt = $pdo->prepare('INSERT INTO Ratings (UserId, StoryId, Rating) VALUES (:userId,:storyId,:rating);');
 		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':rating', $rating, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
-		die;
 		header("Location: /story/?id=".$storyId."&code=13");
 	} else {
 		if ($_GET['rating'] == 0) {
@@ -48,7 +47,7 @@
 			header("Location: /story/?id=".$storyId."&code=15");
 		} else if ($row['Rating'] != $rating) {
 			// Update Rating
-			$stmt = $pdo->prepare('UPDATE Rating SET Rating = :rating WHERE UserId = :userId AND StoryId = :storyId;');
+			$stmt = $pdo->prepare('UPDATE Ratings SET Rating = :rating WHERE UserId = :userId AND StoryId = :storyId;');
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':rating', $rating, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
