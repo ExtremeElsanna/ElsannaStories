@@ -1,6 +1,6 @@
 <?php
-	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
-	include("/hdd/config/config.php");
+	include("../scripts/sessionHandler.php");
+	include("../config.php");
 				
 	if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
 		header("Location: /?code=2");

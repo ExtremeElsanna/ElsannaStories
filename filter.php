@@ -7,7 +7,7 @@
 		return $encParam;
 	}
 	
-	include("/hdd/elsanna-ssl/scripts/sessionHandler.php");
+	include("scripts/sessionHandler.php");
 	$getParams = "";
 	$storyType = "";
 	$complete = "";
