@@ -1164,3 +1164,4 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
     );
     return $trusted;
 }
+

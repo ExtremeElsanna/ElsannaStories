@@ -146,3 +146,4 @@ END:VCALENDAR';
         return $ics;
     }
 }
+
