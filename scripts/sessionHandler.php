@@ -1,4 +1,6 @@
 <?php
+	include(dirname(__FILE__)."/../scripts/functions.php");
+	
 	// Make sure session data exists for access
 	if (!isset($_SESSION)) {
 		session_start();
@@ -27,9 +29,7 @@
 	} else if(isset($_GET['refer'])) {
 		$refer = $_GET['refer'];
 	} else {
-		set_error_handler(function() { /* ignore errors */ });
-		$refer = bin2hex(mb_convert_encoding("/",'UCS-2','UTF-8'));
-		restore_error_handler();
+		$refer = Encode("/");
 	}
 	
 	// Check user logged in

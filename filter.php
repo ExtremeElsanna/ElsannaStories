@@ -1,13 +1,6 @@
 <?php
-	function toNumbers($param) {
-		set_error_handler(function() { /* ignore errors */ });
-		$encParam = bin2hex(mb_convert_encoding($param, 'UCS-2', 'UTF-8'));
-		//$encParam = $param;
-		restore_error_handler();
-		return $encParam;
-	}
-	
 	include("scripts/sessionHandler.php");
+	include("scripts/functions.php");
 	$getParams = "";
 	$storyType = "";
 	$complete = "";
@@ -20,7 +13,7 @@
 	foreach ($_POST as $key => $param) {
 		echo $key." : ".$param."<br>";
 		set_error_handler(function() { /* ignore errors */ });
-		$encParam = toNumbers($param);
+		$encParam = Encode($param);
 		switch ($key) {
 			case "Title":
 				if ($_POST['Title'] != "") {
@@ -34,9 +27,9 @@
 				break;
 			case "WordsType":
 				if ($_POST['WordsType'] == "M" and isset($_POST['Words']) and is_numeric($_POST['Words'])) {
-					$getParams = $getParams."sWords=".toNumbers("M".$_POST['Words'])."&";
+					$getParams = $getParams."sWords=".Encode("M".$_POST['Words'])."&";
 				} else if ($_POST['WordsType'] == "L" and isset($_POST['Words']) and is_numeric($_POST['Words'])) {
-					$getParams = $getParams."sWords=".toNumbers("L".$_POST['Words'])."&";
+					$getParams = $getParams."sWords=".Encode("L".$_POST['Words'])."&";
 				} else if ($_POST['WordsType'] == "B" and isset($_POST['WordsB1']) and is_numeric($_POST['WordsB1']) and isset($_POST['WordsB2']) and is_numeric($_POST['WordsB2'])) {
 					if ($_POST['WordsB1'] <= $_POST['WordsB2']) {
 						$num1 = $_POST['WordsB1'];
@@ -45,7 +38,7 @@
 						$num1 = $_POST['WordsB2'];
 						$num2 = $_POST['WordsB1'];
 					}
-					$getParams = $getParams."sWords=".toNumbers("B".$num1)."&sWords2=".toNumbers($num2)."&";
+					$getParams = $getParams."sWords=".Encode("B".$num1)."&sWords2=".Encode($num2)."&";
 				}
 				break;
 			case "ElsaCharacter":
@@ -61,7 +54,7 @@
 			case "DayPublished":
 				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
 					try {
-						$encParam = toNumbers($_POST['DateType'].strtotime ( $_POST['YearPublished']."-".$_POST['MonthPublished']."-".$_POST['DayPublished']));
+						$encParam = Encode($_POST['DateType'].strtotime ( $_POST['YearPublished']."-".$_POST['MonthPublished']."-".$_POST['DayPublished']));
 						$getParams = $getParams."sDate=".$encParam."&";
 					} catch (Exception $e) {
 						// Not a valid date
@@ -169,28 +162,28 @@
 		}
 	}
 	if ($storyType != "") {
-		$getParams .= "sType=".toNumbers(mb_substr($storyType, 0, -1, "UTF-8"))."&";
+		$getParams .= "sType=".Encode(mb_substr($storyType, 0, -1, "UTF-8"))."&";
 	}
 	if ($complete != "") {
-		$getParams .= "sComplete=".toNumbers(mb_substr($complete, 0, -1, "UTF-8"))."&";
+		$getParams .= "sComplete=".Encode(mb_substr($complete, 0, -1, "UTF-8"))."&";
 	}
 	if ($setting != "") {
-		$getParams .= "sSetting=".toNumbers(mb_substr($setting, 0, -1, "UTF-8"))."&";
+		$getParams .= "sSetting=".Encode(mb_substr($setting, 0, -1, "UTF-8"))."&";
 	}
 	if ($elsaPowers != "") {
-		$getParams .= "sEPowers=".toNumbers(mb_substr($elsaPowers, 0, -1, "UTF-8"))."&";
+		$getParams .= "sEPowers=".Encode(mb_substr($elsaPowers, 0, -1, "UTF-8"))."&";
 	}
 	if ($annaPowers != "") {
-		$getParams .= "sAPowers=".toNumbers(mb_substr($annaPowers, 0, -1, "UTF-8"))."&";
+		$getParams .= "sAPowers=".Encode(mb_substr($annaPowers, 0, -1, "UTF-8"))."&";
 	}
 	if ($sisters != "") {
-		$getParams .= "sSisters=".toNumbers(mb_substr($sisters, 0, -1, "UTF-8"))."&";
+		$getParams .= "sSisters=".Encode(mb_substr($sisters, 0, -1, "UTF-8"))."&";
 	}
 	if ($age != "") {
-		$getParams .= "sAge=".toNumbers(mb_substr($age, 0, -1, "UTF-8"))."&";
+		$getParams .= "sAge=".Encode(mb_substr($age, 0, -1, "UTF-8"))."&";
 	}
 	if ($smutLevel != "") {
-		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"))."&";
+		$getParams .= "sSmut=".Encode(mb_substr($smutLevel, 0, -1, "UTF-8"))."&";
 	}
 	$getParams = mb_substr($getParams, 0, -1, "UTF-8");
 	if ($getParams != "")

@@ -1,6 +1,7 @@
 <?php
 include("headers/utf8Headers.php");
 include("scripts/sessionHandler.php");
+include("scripts/functions.php");
 include("headers/HTMLvariables.php");
 
 // Case insensitive function to count substring occurance
@@ -22,9 +23,7 @@ $errors = array(1 => "Username Changed!",
 if (!isset($_GET['search'])) {
 	$_GET['search'] = "";
 } else {
-	set_error_handler(function() { /* ignore errors */ });
-	$_GET['search'] = mb_convert_encoding(hex2bin($_GET['search']),'UTF-8','UCS-2');
-	restore_error_handler();
+	$_GET['search'] = Decode($_GET['search']);
 }
 if (!isset($_GET['a'])) {
 	$_GET['a'] = 0;
@@ -73,9 +72,7 @@ if (!isset($_GET['code'])) {
 			// Set the default values of the HTML forms to any data we already hold for each potential search query parameter
 			/* ############################################## */
 			if (isset($_GET['sTitle'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dTitle = mb_convert_encoding(hex2bin($_GET['sTitle']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dTitle = Decode($_GET['sTitle']);
 			} else {
 				$dTitle = FALSE;
 			}
@@ -86,9 +83,7 @@ if (!isset($_GET['code'])) {
 			}
 			/* ############################################## */
 			if (isset($_GET['sAuthor'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dAuthor = mb_convert_encoding(hex2bin($_GET['sAuthor']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dAuthor = Decode($_GET['sAuthor']);
 			} else {
 				$dAuthor = FALSE;
 			}
@@ -99,9 +94,7 @@ if (!isset($_GET['code'])) {
 			}
 			/* ############################################## */
 			if (isset($_GET['sEChar'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dEChar = mb_convert_encoding(hex2bin($_GET['sEChar']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dEChar = Decode($_GET['sEChar']);
 			} else {
 				$dEChar = FALSE;
 			}
@@ -112,9 +105,7 @@ if (!isset($_GET['code'])) {
 			}
 			/* ############################################## */
 			if (isset($_GET['sAChar'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dAChar = mb_convert_encoding(hex2bin($_GET['sAChar']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dAChar = Decode($_GET['sAChar']);
 			} else {
 				$dAChar = FALSE;
 			}
@@ -126,9 +117,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$sT = array(0 => "", 1 => "", 2 => "");
 			if (isset($_GET['sType'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dType = mb_convert_encoding(hex2bin($_GET['sType']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dType = Decode($_GET['sType']);
 			} else {
 				$dType = FALSE;
 			}
@@ -147,9 +136,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$com = array(0 => "", 1 => "", 2 => "");
 			if (isset($_GET['sComplete'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dComplete = mb_convert_encoding(hex2bin($_GET['sComplete']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dComplete = Decode($_GET['sComplete']);
 			} else {
 				$dComplete = FALSE;
 			}
@@ -168,9 +155,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$setting = array(0 => "", 1 => "", 2 => "", 3 => "", 4 => "");
 			if (isset($_GET['sSetting'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dSetting = mb_convert_encoding(hex2bin($_GET['sSetting']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dSetting = Decode($_GET['sSetting']);
 			} else {
 				$dSetting = FALSE;
 			}
@@ -195,9 +180,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$ePowers = array(0 => "", 1 => "", 2 => "", 3 => "");
 			if (isset($_GET['sEPowers'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dEPowers = mb_convert_encoding(hex2bin($_GET['sEPowers']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dEPowers = Decode($_GET['sEPowers']);
 			} else {
 				$dEPowers = FALSE;
 			}
@@ -219,9 +202,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$aPowers = array(0 => "", 1 => "");
 			if (isset($_GET['sAPowers'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dAPowers = mb_convert_encoding(hex2bin($_GET['sAPowers']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dAPowers = Decode($_GET['sAPowers']);
 			} else {
 				$dAPowers = FALSE;
 			}
@@ -237,9 +218,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$sisters = array(0 => "", 1 => "", 2 => "");
 			if (isset($_GET['sSisters'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dSisters = mb_convert_encoding(hex2bin($_GET['sSisters']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dSisters = Decode($_GET['sSisters']);
 			} else {
 				$dSisters = FALSE;
 			}
@@ -258,9 +237,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$age = array(0 => "", 1 => "", 2 => "", 3 => "");
 			if (isset($_GET['sAge'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dAge = mb_convert_encoding(hex2bin($_GET['sAge']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dAge = Decode($_GET['sAge']);
 			} else {
 				$dAge = FALSE;
 			}
@@ -282,9 +259,7 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$smut = array(0 => "", 1 => "", 2 => "", 3 => "", 4 => "", 5 => "");
 			if (isset($_GET['sSmut'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$dSmut = mb_convert_encoding(hex2bin($_GET['sSmut']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$dSmut = Decode($_GET['sSmut']);
 			} else {
 				$dSmut = FALSE;
 			}
@@ -317,12 +292,10 @@ if (!isset($_GET['code'])) {
 			$len1 = "";
 			$len2 = "";
 			if (isset($_GET['sWords'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$sWords = mb_convert_encoding(hex2bin($_GET['sWords']),'UTF-8','UCS-2');
+				$sWords = Decode($_GET['sWords']);
 				if (isset($_GET['sWords2'])) {
-					$sWords2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
+					$sWords2 = Decode($_GET['sWords2']);
 				}
-				restore_error_handler();
 			} else {
 				$sWords = FALSE;
 			}
@@ -359,9 +332,7 @@ if (!isset($_GET['code'])) {
 			$month = null;
 			$year = null;
 			if (isset($_GET['sDate'])) {
-				set_error_handler(function() { /* ignore errors */ });
-				$sDate = mb_convert_encoding(hex2bin($_GET['sDate']),'UTF-8','UCS-2');
-				restore_error_handler();
+				$sDate = Decode($_GET['sDate']);
 			} else {
 				$sDate = FALSE;
 			}
@@ -698,9 +669,7 @@ if (!isset($_GET['code'])) {
 					// For each detail one can filter, check if the user has filtered it, convert from numbers to letters and remove story if doesn't match filters
 					/* ############################################################### */
 					if (isset($_GET['sTitle']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sTitle = mb_convert_encoding(hex2bin($_GET['sTitle']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sTitle = Decode($_GET['sTitle']);
 					} else {
 						$sTitle = FALSE;
 					}
@@ -711,9 +680,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sAuthor']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sAuthor = mb_convert_encoding(hex2bin($_GET['sAuthor']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sAuthor = Decode($_GET['sAuthor']);
 					} else {
 						$sAuthor = FALSE;
 					}
@@ -724,12 +691,10 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sWords']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sWords = mb_convert_encoding(hex2bin($_GET['sWords']),'UTF-8','UCS-2');
+						$sWords = Decode($_GET['sWords']);
 						if (isset($_GET['sWords2'])) {
-							$sWords2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
+							$sWords2 = Decode($_GET['sWords2']);
 						}
-						restore_error_handler();
 					} else {
 						$sWords = FALSE;
 					}
@@ -754,9 +719,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sType']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sType = mb_convert_encoding(hex2bin($_GET['sType']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sType = Decode($_GET['sType']);
 					} else {
 						$sType = FALSE;
 					}
@@ -768,9 +731,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sComplete']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sComplete = mb_convert_encoding(hex2bin($_GET['sComplete']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sComplete = Decode($_GET['sComplete']);
 					} else {
 						$sComplete = FALSE;
 					}
@@ -782,9 +743,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sSetting']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sSetting = mb_convert_encoding(hex2bin($_GET['sSetting']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sSetting = Decode($_GET['sSetting']);
 					} else {
 						$sSetting = FALSE;
 					}
@@ -796,9 +755,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sEChar']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sEChar = mb_convert_encoding(hex2bin($_GET['sEChar']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sEChar = Decode($_GET['sEChar']);
 					} else {
 						$sEChar = FALSE;
 					}
@@ -809,9 +766,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sAChar']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sAChar = mb_convert_encoding(hex2bin($_GET['sAChar']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sAChar = Decode($_GET['sAChar']);
 					} else {
 						$sAChar = FALSE;
 					}
@@ -822,9 +777,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sEPowers']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sEPowers = mb_convert_encoding(hex2bin($_GET['sEPowers']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sEPowers = Decode($_GET['sEPowers']);
 					} else {
 						$sEPowers = FALSE;
 					}
@@ -836,9 +789,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sAPowers']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sAPowers = mb_convert_encoding(hex2bin($_GET['sAPowers']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sAPowers = Decode($_GET['sAPowers']);
 					} else {
 						$sAPowers = FALSE;
 					}
@@ -850,9 +801,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sSisters']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sSisters = mb_convert_encoding(hex2bin($_GET['sSisters']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sSisters = Decode($_GET['sSisters']);
 					} else {
 						$sSisters = FALSE;
 					}
@@ -864,9 +813,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sAge']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sAge = mb_convert_encoding(hex2bin($_GET['sAge']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sAge = Decode($_GET['sAge']);
 					} else {
 						$sAge = FALSE;
 					}
@@ -878,9 +825,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sSmut']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sSmut = mb_convert_encoding(hex2bin($_GET['sSmut']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sSmut = Decode($_GET['sSmut']);
 					} else {
 						$sSmut = FALSE;
 					}
@@ -892,9 +837,7 @@ if (!isset($_GET['code'])) {
 					}
 					/* ############################################################### */
 					if (isset($_GET['sDate']) and $found == True) {
-						set_error_handler(function() { /* ignore errors */ });
-						$sDate = mb_convert_encoding(hex2bin($_GET['sDate']),'UTF-8','UCS-2');
-						restore_error_handler();
+						$sDate = Decode($_GET['sDate']);
 					} else {
 						$sDate = FALSE;
 					}
