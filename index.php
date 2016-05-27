@@ -316,38 +316,38 @@ if (!isset($_GET['code'])) {
 			$len = "";
 			$len1 = "";
 			$len2 = "";
-			if (isset($_GET['sLength'])) {
+			if (isset($_GET['sWords'])) {
 				set_error_handler(function() { /* ignore errors */ });
-				$sLength = mb_convert_encoding(hex2bin($_GET['sLength']),'UTF-8','UCS-2');
-				if (isset($_GET['sLength2'])) {
-					$sLength2 = mb_convert_encoding(hex2bin($_GET['sLength2']),'UTF-8','UCS-2');
+				$sWords = mb_convert_encoding(hex2bin($_GET['sWords']),'UTF-8','UCS-2');
+				if (isset($_GET['sWords2'])) {
+					$sLength2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
 				}
 				restore_error_handler();
 			} else {
-				$sLength = FALSE;
+				$sWords = FALSE;
 			}
-			if ($sLength != FALSE) {
-				if (mb_substr($sLength,0,1,'UTF-8') == "M" and is_numeric(mb_substr($sLength,1,null,'UTF-8'))) {
+			if ($sWords != FALSE) {
+				if (mb_substr($sWords,0,1,'UTF-8') == "M" and is_numeric(mb_substr($sWords,1,null,'UTF-8'))) {
 					$more = " checked";
 					$less = "";
 					$between = "";
-					$len = mb_substr($sLength,1,null,'UTF-8');
+					$len = mb_substr($sWords,1,null,'UTF-8');
 					$len1 = "";
 					$len2 = "";
-				} else if (mb_substr($sLength,0,1,'UTF-8') == "L" and is_numeric(mb_substr($sLength,1,null,'UTF-8'))) {
+				} else if (mb_substr($sWords,0,1,'UTF-8') == "L" and is_numeric(mb_substr($sWords,1,null,'UTF-8'))) {
 					$more = "";
 					$less = " checked";
 					$between = "";
-					$len = mb_substr($sLength,1,null,'UTF-8');
+					$len = mb_substr($sWords,1,null,'UTF-8');
 					$len1 = "";
 					$len2 = "";
-				} else if (mb_substr($sLength,0,1,'UTF-8') == "B" and isset($_GET['sLength2']) and is_numeric(mb_substr($sLength,1,null,'UTF-8')) and is_numeric($sLength2)) {
+				} else if (mb_substr($sWords,0,1,'UTF-8') == "B" and isset($_GET['sWords2']) and is_numeric(mb_substr($sWords,1,null,'UTF-8')) and is_numeric($sWords2)) {
 					$more = "";
 					$less = "";
 					$between = " checked";
 					$len = "";
-					$len1 = mb_substr($sLength,1,null,'UTF-8');
-					$len2 = $sLength2;
+					$len1 = mb_substr($sWords,1,null,'UTF-8');
+					$len2 = $sWords2;
 				} else {
 					$found = False;
 				}
@@ -407,13 +407,13 @@ if (!isset($_GET['code'])) {
 			<input type='text' name='Author' value='".$authorDefault."' placeholder='Author'>
 			</td>
 			<td style='border: 1px solid black'>
-			Length (words)<br />
-			<input type='radio' name='LengthType' value='M'".$more."> More Than<br />
-			<input type='radio' name='LengthType' value='L'".$less."> Less Than<br />
-			<input type='number' name='Length' value='".$len."' min='1'> words<br />
-			<input type='radio' name='LengthType' value='B'".$between."> Between<br />
-			<input type='number' name='LengthB1' value='".$len1."' min='1'> and
-			<input type='number' name='LengthB2' value='".$len2."' min='1'> words
+			Words<br />
+			<input type='radio' name='WordsType' value='M'".$more."> More Than<br />
+			<input type='radio' name='WordsType' value='L'".$less."> Less Than<br />
+			<input type='number' name='Words' value='".$len."' min='1'> words<br />
+			<input type='radio' name='WordsType' value='B'".$between."> Between<br />
+			<input type='number' name='WordsB1' value='".$len1."' min='1'> and
+			<input type='number' name='WordsB2' value='".$len2."' min='1'> words
 			</td>
 			<td style='border: 1px solid black'>
 			Story Type<br />
@@ -686,7 +686,7 @@ if (!isset($_GET['code'])) {
 			}
 			
 			// Select all stories data
-			$stmt = $pdo->prepare('SELECT Id,Title,Author,Length,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished FROM Stories;');
+			$stmt = $pdo->prepare('SELECT Id,Title,Author,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished FROM Stories;');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			
@@ -723,29 +723,29 @@ if (!isset($_GET['code'])) {
 						}
 					}
 					/* ############################################################### */
-					if (isset($_GET['sLength']) and $found == True) {
+					if (isset($_GET['sWords']) and $found == True) {
 						set_error_handler(function() { /* ignore errors */ });
-						$sLength = mb_convert_encoding(hex2bin($_GET['sLength']),'UTF-8','UCS-2');
-						if (isset($_GET['sLength2'])) {
-							$sLength2 = mb_convert_encoding(hex2bin($_GET['sLength2']),'UTF-8','UCS-2');
+						$sWords = mb_convert_encoding(hex2bin($_GET['sWords']),'UTF-8','UCS-2');
+						if (isset($_GET['sWords2'])) {
+							$sWords2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
 						}
 						restore_error_handler();
 					} else {
-						$sLength = FALSE;
+						$sWords = FALSE;
 					}
-					if ($sLength != FALSE) {
-						if (mb_substr($sLength,0,1,'UTF-8') == "M" and is_numeric(mb_substr($sLength,1,null,'UTF-8'))) {
-							if ($story['Length'] <= mb_substr($sLength,1,null,'UTF-8')) {
+					if ($sWords != FALSE) {
+						if (mb_substr($sWords,0,1,'UTF-8') == "M" and is_numeric(mb_substr($sWords,1,null,'UTF-8'))) {
+							if ($story['Words'] <= mb_substr($sWords,1,null,'UTF-8')) {
 								$found = False;
 							}
-						} else if (mb_substr($sLength,0,1,'UTF-8') == "L" and is_numeric(mb_substr($sLength,1,null,'UTF-8'))) {
-							if ($story['Length'] >= mb_substr($sLength,1,null,'UTF-8')) {
+						} else if (mb_substr($sWords,0,1,'UTF-8') == "L" and is_numeric(mb_substr($sWords,1,null,'UTF-8'))) {
+							if ($story['Words'] >= mb_substr($sWords,1,null,'UTF-8')) {
 								$found = False;
 							}
-						} else if (mb_substr($sLength,0,1,'UTF-8') == "B" and isset($_GET['sLength2']) and is_numeric(mb_substr($sLength,1,null,'UTF-8')) and is_numeric($sLength2)) {
-							if ($story['Length'] < mb_substr($sLength,1,null,'UTF-8')) {
+						} else if (mb_substr($sWords,0,1,'UTF-8') == "B" and isset($_GET['sWords2']) and is_numeric(mb_substr($sWords,1,null,'UTF-8')) and is_numeric($sWords2)) {
+							if ($story['Words'] < mb_substr($sWords,1,null,'UTF-8')) {
 								$found = False;
-							} else if ($story['Length'] > $sLength2) {
+							} else if ($story['Words'] > $sWords2) {
 								$found = False;
 							}
 						} else {

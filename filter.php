@@ -32,20 +32,20 @@
 					$getParams = $getParams."sAuthor=".$encParam."&";
 				}
 				break;
-			case "LengthType":
-				if ($_POST['LengthType'] == "M" and isset($_POST['Length']) and is_numeric($_POST['Length'])) {
-					$getParams = $getParams."sLength=".toNumbers("M".$_POST['Length'])."&";
-				} else if ($_POST['LengthType'] == "L" and isset($_POST['Length']) and is_numeric($_POST['Length'])) {
-					$getParams = $getParams."sLength=".toNumbers("L".$_POST['Length'])."&";
-				} else if ($_POST['LengthType'] == "B" and isset($_POST['LengthB1']) and is_numeric($_POST['LengthB1']) and isset($_POST['LengthB2']) and is_numeric($_POST['LengthB2'])) {
-					if ($_POST['LengthB1'] <= $_POST['LengthB2']) {
-						$num1 = $_POST['LengthB1'];
-						$num2 = $_POST['LengthB2'];
+			case "WordsType":
+				if ($_POST['WordsType'] == "M" and isset($_POST['Words']) and is_numeric($_POST['Words'])) {
+					$getParams = $getParams."sWords=".toNumbers("M".$_POST['Words'])."&";
+				} else if ($_POST['WordsType'] == "L" and isset($_POST['Words']) and is_numeric($_POST['Words'])) {
+					$getParams = $getParams."sWords=".toNumbers("L".$_POST['Words'])."&";
+				} else if ($_POST['WordsType'] == "B" and isset($_POST['WordsB1']) and is_numeric($_POST['WordsB1']) and isset($_POST['WordsB2']) and is_numeric($_POST['WordsB2'])) {
+					if ($_POST['WordsB1'] <= $_POST['WordsB2']) {
+						$num1 = $_POST['WordsB1'];
+						$num2 = $_POST['WordsB2'];
 					} else {
-						$num1 = $_POST['LengthB2'];
-						$num2 = $_POST['LengthB1'];
+						$num1 = $_POST['WordsB2'];
+						$num2 = $_POST['WordsB1'];
 					}
-					$getParams = $getParams."sLength=".toNumbers("B".$num1)."&sLength2=".toNumbers($num2)."&";
+					$getParams = $getParams."sWords=".toNumbers("B".$num1)."&sWords2=".toNumbers($num2)."&";
 				}
 				break;
 			case "ElsaCharacter":
