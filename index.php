@@ -352,6 +352,12 @@ if (!isset($_GET['code'])) {
 					$found = False;
 				}
 			}
+			echo $more."<br>";
+			echo $less."<br>";
+			echo $between."<br>";
+			echo $len."<br>";
+			echo $len1."<br>";
+			echo $len2."<br>";
 			/* ############################################# */
 			$before = "";
 			$since = "";
