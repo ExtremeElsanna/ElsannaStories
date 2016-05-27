@@ -24,13 +24,13 @@
 		// Check the user exists
 		if($userId != "") {
 			// Activate the account
-			$stmt = $pdo->prepare('UPDATE Users SET Activated = 1 WHERE Id = :id;');
-			$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt = $pdo->prepare('UPDATE Users SET Activated = 1 WHERE UserId = :userId;');
+			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			
 			// Delete the activation code
-			$stmt = $pdo->prepare('DELETE FROM AccountActivation WHERE AccountActivationId = :id;');
-			$stmt->bindParam(':id', $activationId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt = $pdo->prepare('DELETE FROM AccountActivation WHERE AccountActivationId = :activationId;');
+			$stmt->bindParam(':activationId', $activationId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			// Account activated
 			header("Location: /login/?code=1");

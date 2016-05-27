@@ -57,12 +57,12 @@
 				}
 			}
 
-			$stmt = $pdo->prepare('SELECT Id,Banned FROM Users WHERE Id = :userId;');
+			$stmt = $pdo->prepare('SELECT UserId,Banned FROM Users WHERE UserId = :userId;');
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$row = $stmt->fetch();
 			// Save important information
-			$userId = $row['Id'];
+			$userId = $row['UserId'];
 			$banned = $row['Banned'];
 			if ($userId != "") {
 				// User exists

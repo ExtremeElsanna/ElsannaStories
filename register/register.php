@@ -30,11 +30,11 @@
 		$stmt->execute();
 		
 		// Fetch the ID generated when account was created
-		$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
+		$stmt = $pdo->prepare('SELECT UserId FROM Users WHERE Username = :user;');
 		$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		$row = $stmt->fetch();
-		$userId = $row['Id'];
+		$userId = $row['UserId'];
 		
 		// Give the rest of the code the ID
 		return $userId;
@@ -151,25 +151,23 @@
 													die;
 												}
 											}
-
-											$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
 											
 											$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 											// Get all users with that username
-											$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser;');
+											$stmt = $pdo->prepare('SELECT UserId FROM Users WHERE UpperUser = :upperUser;');
 											$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 											$stmt->execute();
 											$row = $stmt->fetch();
 											// Check no other user exists with that username
-											if ($row['Id'] == "") {
+											if ($row['UserId'] == "") {
 												$email = mb_strtoupper($_POST['email'], 'UTF-8');
 												// Get all users with that email
-												$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Email = :email;');
+												$stmt = $pdo->prepare('SELECT UserId FROM Users WHERE Email = :email;');
 												$stmt->bindParam(':email', $email, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 												$stmt->execute();
 												$row = $stmt->fetch();
 												// Check no other user exists with that email
-												if ($row['Id'] == "") {
+												if ($row['UserId'] == "") {
 													$userId = generateUser($config,$pdo);
 													$code = generateActivation($pdo, $userId);
 													$subject = "www.elsannastories.com: ".$_POST['user']." Account Activation";

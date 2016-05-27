@@ -20,12 +20,12 @@
 	$id = $_GET['id'];
 	
 	// Get all data about this story
-	$stmt = $pdo->prepare('SELECT Id FROM Stories WHERE Id = :id;');
-	$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt = $pdo->prepare('SELECT StoryId FROM Stories WHERE StoryId = :storyId;');
+	$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	
-	if ($row["Id"] == "") {
+	if ($row["StoryId"] == "") {
 		header("Location: /?code=7");
 		die();
 	}

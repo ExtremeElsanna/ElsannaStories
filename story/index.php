@@ -41,12 +41,12 @@ if(!isset($pdo)) {
 }
 
 // Get all data about this story
-$stmt = $pdo->prepare('SELECT * FROM Stories WHERE Id = :id;');
-$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+$stmt = $pdo->prepare('SELECT * FROM Stories WHERE StoryId = :storyId;');
+$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 $stmt->execute();
 $story = $stmt->fetch();
 
-if ($story["Id"] == "") {
+if ($story["StoryId"] == "") {
 	header("Location: /?code=7");
 	die();
 }
@@ -70,8 +70,8 @@ if ($story["Id"] == "") {
 			}
 			
 			// Get all data about this story
-			$stmt = $pdo->prepare('SELECT * FROM Ratings WHERE StoryId = :id;');
-			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt = $pdo->prepare('SELECT * FROM Ratings WHERE StoryId = :storyId;');
+			$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$ratingRows = $stmt->fetchAll();
 			$totalRating = 0;
@@ -388,15 +388,15 @@ if ($story["Id"] == "") {
 				$username = "Guest";
 				if ($review['UserId'] != 0) {
 					// If user was not guest on submission fetch username
-					$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE Id = :userId;');
+					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
 					$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 					$stmt->execute();
 					$row = $stmt->fetch();
-					if ($row['Id'] != "") {
+					if ($row['UserId'] != "") {
 						$username = $row['Username'];
 					}
 				}
-				// Check if this is logged in user's profile
+				// Check if review belongs to logged in user
 				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
 					$usersReview = true;
 				} else {

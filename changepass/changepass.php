@@ -59,7 +59,7 @@
 	
 	
 	// Get the current password hash of the user
-	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE Id = :userId;');
+	$stmt = $pdo->prepare('SELECT Hash,Salt FROM Users WHERE UserId = :userId;');
 	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
@@ -92,20 +92,20 @@
 							// Generate new hash + salt for new password
 							$newHash = password_hash($_POST['new_password'], $config['PhashPattern'], $options);
 							
-							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :id;");
+							$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE UserId = :userId;");
 							$stmt->bindParam(':newHash', $newHash, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
-							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :id;");
+							$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE UserId = :userId;");
 							$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-							$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 							$stmt->execute();
 							
 							if ($forcedChangePass) {
 								// Turn off force change password
-								$stmt = $pdo->prepare('UPDATE Users SET ChangePass = 0 WHERE Id = :id;');
-								$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+								$stmt = $pdo->prepare('UPDATE Users SET ChangePass = 0 WHERE UserId = :userId;');
+								$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 								$stmt->execute();
 							}
 							

@@ -20,11 +20,11 @@ if (isset($_GET['user'])) {
 	}
 
 	// Get data about matching user
-	$stmt = $pdo->prepare('SELECT Id,Username FROM Users WHERE UpperUser = :upperUser;');
+	$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
-	$userId = $row['Id'];
+	$userId = $row['UserId'];
 	$user = $row['Username'];
 	// Check user exists
 	if ($userId == "") {

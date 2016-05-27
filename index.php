@@ -686,7 +686,7 @@ if (!isset($_GET['code'])) {
 			}
 			
 			// Select all stories data
-			$stmt = $pdo->prepare('SELECT Id,Title,Author,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished FROM Stories;');
+			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished FROM Stories;');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			

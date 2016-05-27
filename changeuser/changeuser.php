@@ -38,11 +38,11 @@
 	$userId = $_SESSION['userId'];
 	
 	// Get users with given new username
-	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE UpperUser = :upperUser;');
+	$stmt = $pdo->prepare('SELECT UserId FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
-	if ($row['Id'] == "") {
+	if ($row['UserId'] == "") {
 		// Username not taken
 		if (strlen($newUser) >= 4) {
 			// Username >= 4 chars
@@ -52,13 +52,13 @@
 					// Username valid
 					if (preg_match("/(?:.*[^abcdefghijklmnopqrstuvwxyz0123456789].*)+/i",$newUser) == 0) {
 						// Username contains valid chars
-						$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE Id = :id;");
+						$stmt = $pdo->prepare("UPDATE Users SET Username = :newUser WHERE UserId = :userId;");
 						$stmt->bindParam(':newUser', $newUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+						$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 						$stmt->execute();
-						$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE Id = :id;");
+						$stmt = $pdo->prepare("UPDATE Users SET UpperUser = :newUpperUser WHERE UserId = :userId;");
 						$stmt->bindParam(':newUpperUser', $newUpperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-						$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+						$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 						$stmt->execute();
 						$_SESSION['username'] = $newUser;
 						header("Location: /?code=1");

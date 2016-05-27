@@ -68,20 +68,13 @@
 	
 	$upperEmail = mb_strtoupper($_POST['email'], 'UTF-8');
 	
-	// Usertype Guide
-	// 1		User
-	// 2		Developer
-	// 4		Moderator
-	// 8		Database
-	// 16		Admin
-	
 	// Get important details about user
-	$stmt = $pdo->prepare('SELECT Id,Username,Email FROM Users WHERE Email = :upperEmail;');
+	$stmt = $pdo->prepare('SELECT UserId,Username,Email FROM Users WHERE Email = :upperEmail;');
 	$stmt->bindParam(':upperEmail', $upperEmail, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	// Save important information
-	$userId = $row['Id'];
+	$userId = $row['UserId'];
 	$username = $row['Username'];
 	$email = $row['Email'];
 	if ($userId != "") {

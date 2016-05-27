@@ -80,12 +80,11 @@
 		
 		// Check the user exists
 		if($userId != "") {
-			$stmt = $pdo->prepare('SELECT Id,Username,Email FROM Users WHERE Id = :userId;');
+			$stmt = $pdo->prepare('SELECT Username,Email FROM Users WHERE UserId = :userId;');
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$row = $stmt->fetch();
 			// Save important information
-			$userId = $row['Id'];
 			$username = $row['Username'];
 			$email = $row['Email'];
 			
@@ -100,25 +99,25 @@
 			// Create password hash
 			$newHash = password_hash($newPassword, $config['PhashPattern'], $options);
 			// Update user account
-			$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE Id = :userId;");
+			$stmt = $pdo->prepare("UPDATE Users SET Hash = :newHash WHERE UserId = :userId;");
 			$stmt->bindParam(':newHash', $newHash, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			
-			$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE Id = :userId;");
+			$stmt = $pdo->prepare("UPDATE Users SET Salt = :newSalt WHERE UserId = :userId;");
 			$stmt->bindParam(':newSalt', $newSalt, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			
 			$newChange = 1;
-			$stmt = $pdo->prepare("UPDATE Users SET ChangePass = :newChange WHERE Id = :userId;");
+			$stmt = $pdo->prepare("UPDATE Users SET ChangePass = :newChange WHERE UserId = :userId;");
 			$stmt->bindParam(':newChange', $newChange, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			
 			// Delete the reset code
-			$stmt = $pdo->prepare('DELETE FROM PasswordReset WHERE PasswordResetId = :id;');
-			$stmt->bindParam(':id', $passwordResetId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt = $pdo->prepare('DELETE FROM PasswordReset WHERE PasswordResetId = :passwordResetId;');
+			$stmt->bindParam(':passwordResetId', $passwordResetId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			
 			// Send new password to email

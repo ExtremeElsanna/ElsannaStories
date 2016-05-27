@@ -55,8 +55,8 @@
 	$userId = $_GET['id'];
 	
 	// Get all data about this story
-	$stmt = $pdo->prepare('SELECT Username,Email FROM Users WHERE Id = :id;');
-	$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt = $pdo->prepare('SELECT Username,Email FROM Users WHERE UserId = :userId;');
+	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	if ($row['Username'] != "") {

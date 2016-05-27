@@ -40,12 +40,12 @@
 	}
 
 	// Get all stories with that title and author
-	$stmt = $pdo->prepare('SELECT Id,Visible FROM ElsannaStories.Stories WHERE Title = :title AND Author = :author;');
+	$stmt = $pdo->prepare('SELECT StoryId,Visible FROM Stories WHERE Title = :title AND Author = :author;');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
-	if ($row['Id'] != "") {
+	if ($row['StoryId'] != "") {
 		if ($row['Visible'] == 1) {
 			// Story already exists
 			header("Location: /submitstory/?code=4");

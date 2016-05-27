@@ -29,20 +29,13 @@
 	
 	$upperUser = mb_strtoupper($_POST['user'], 'UTF-8');
 	
-	// Usertype Guide
-	// 1		User
-	// 2		Developer
-	// 4		Moderator
-	// 8		Database
-	// 16	Admin
-	
 	// Get important details about user
-	$stmt = $pdo->prepare('SELECT Id,Username,Hash,Salt,LoginCount,Activated,ChangePass,Banned FROM Users WHERE UpperUser = :upperUser;');
+	$stmt = $pdo->prepare('SELECT UserId,Username,Hash,Salt,LoginCount,Activated,ChangePass,Banned FROM Users WHERE UpperUser = :upperUser;');
 	$stmt->bindParam(':upperUser', $upperUser, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
 	// Save important information
-	$userId = $row['Id'];
+	$userId = $row['UserId'];
 	$user = $row['Username'];
 	$hash = $row['Hash'];
 	$salt = $row['Salt'];
@@ -67,13 +60,13 @@
 					date_default_timezone_set('UTC');
 					$newTime = time();
 					
-					$stmt = $pdo->prepare("UPDATE Users SET LastLoggedIn = :newTime WHERE Id = :userId;");
+					$stmt = $pdo->prepare("UPDATE Users SET LastLoggedIn = :newTime WHERE UserId = :userId;");
 					$stmt->bindParam(':newTime', $newTime, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 					$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 					$stmt->execute();
 					
 					$newCount = intval($loginCount) + 1;
-					$stmt = $pdo->prepare("UPDATE Users SET LoginCount = :newCount WHERE Id = :userId;");
+					$stmt = $pdo->prepare("UPDATE Users SET LoginCount = :newCount WHERE UserId = :userId;");
 					$stmt->bindParam(':newCount', $newCount, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 					$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 					$stmt->execute();

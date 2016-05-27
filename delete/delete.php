@@ -53,16 +53,16 @@
 		}
 	}
 
-	$stmt = $pdo->prepare('SELECT Id FROM Users WHERE Username = :user;');
+	$stmt = $pdo->prepare('SELECT UserId FROM Users WHERE Username = :user;');
 	$user = $_SESSION['username'];
 	$stmt->bindParam(':user', $user, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	$row = $stmt->fetch();
-	if ($row['Id'] != "") {
+	if ($row['UserId'] != "") {
 		// Delete user
-		$stmt = $pdo->prepare("DELETE FROM Users WHERE Id = :id;");
+		$stmt = $pdo->prepare("DELETE FROM Users WHERE UserId = :userId;");
 		$userId = $_SESSION['userId'];
-		$stmt->bindParam(':id', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+		$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
 		// Logout
 		include("../scripts/logout.php");
