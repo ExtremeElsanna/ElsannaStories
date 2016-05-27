@@ -326,6 +326,8 @@ if (!isset($_GET['code'])) {
 			} else {
 				$sWords = FALSE;
 			}
+			echo $sWords."<br>";
+			echo $sWords2."<br>";
 			if ($sWords != FALSE) {
 				if (mb_substr($sWords,0,1,'UTF-8') == "M" and is_numeric(mb_substr($sWords,1,null,'UTF-8'))) {
 					$more = " checked";
@@ -341,7 +343,7 @@ if (!isset($_GET['code'])) {
 					$len = mb_substr($sWords,1,null,'UTF-8');
 					$len1 = "";
 					$len2 = "";
-				} else if (mb_substr($sWords,0,1,'UTF-8') == "B" and isset($_GET['sWords2']) and is_numeric(mb_substr($sWords,1,null,'UTF-8')) and is_numeric($sWords2)) {
+				} else if (mb_substr($sWords,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sWords,1,null,'UTF-8')) and isset($_GET['sWords2'])and is_numeric($sWords2)) {
 					$more = "";
 					$less = "";
 					$between = " checked";
