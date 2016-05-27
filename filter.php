@@ -21,6 +21,8 @@
 		echo $key." : ".$param."<br>";
 		set_error_handler(function() { /* ignore errors */ });
 		$encParam = toNumbers($param);
+		echo $key."<br>";
+		echo $param."<br>";
 		switch ($key) {
 			case "Title":
 				if ($_POST['Title'] != "") {
