@@ -170,6 +170,7 @@
 				break;
 		}
 	}
+	die;
 	if ($storyType != "") {
 		$getParams .= "sType=".toNumbers(mb_substr($storyType, 0, -1, "UTF-8"))."&";
 	}
