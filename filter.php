@@ -21,8 +21,10 @@
 		echo $key." : ".$param."<br>";
 		set_error_handler(function() { /* ignore errors */ });
 		$encParam = toNumbers($param);
+		/*
 		echo $key."<br>";
 		echo $param."<br>";
+		*/
 		switch ($key) {
 			case "Title":
 				if ($_POST['Title'] != "") {
@@ -195,7 +197,9 @@
 		$getParams .= "sSmut=".toNumbers(mb_substr($smutLevel, 0, -1, "UTF-8"))."&";
 	}
 	$getParams = mb_substr($getParams, 0, -1, "UTF-8");
+	/*
 	echo $getParams;
 	die;
+	*/
 	header("Location: /?a=1&".$getParams);
 ?>
