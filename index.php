@@ -944,7 +944,7 @@ if (!isset($_GET['code'])) {
 				usort($validStories, "custom_sort");
 				foreach ($validStories as $story) {
 					// Print out the stories returned by search engine
-					echo "\t\t\t<tr><td><a href='/story/?id=".$rows[$story[0]]['Id']."'>".$story[2]."</a></td></tr>\n";
+					echo "\t\t\t<tr><td><a href='/story/?id=".$rows[$story[0]]['StoryId']."'>".$story[2]."</a></td></tr>\n";
 				}
 ?>
 		</table>
