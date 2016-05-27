@@ -320,7 +320,7 @@ if (!isset($_GET['code'])) {
 				set_error_handler(function() { /* ignore errors */ });
 				$sWords = mb_convert_encoding(hex2bin($_GET['sWords']),'UTF-8','UCS-2');
 				if (isset($_GET['sWords2'])) {
-					$sLength2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
+					$sWords2 = mb_convert_encoding(hex2bin($_GET['sWords2']),'UTF-8','UCS-2');
 				}
 				restore_error_handler();
 			} else {
