@@ -6,7 +6,7 @@ if (!isset($_GET['refer'])) {
 	$_GET['refer'] = Decode($_GET['refer']);
 }
 include("../scripts/sessionHandler.php");
-include("../scripts/functions.php");
+include_once("../scripts/functions.php");
 include("../headers/HTMLvariables.php");
 
 $errors = array(1 => "Account Activated!",

@@ -1,6 +1,6 @@
 <?php
 	include("scripts/sessionHandler.php");
-	include("scripts/functions.php");
+	include_once("scripts/functions.php");
 	$getParams = "";
 	$storyType = "";
 	$complete = "";

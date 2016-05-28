@@ -1,7 +1,7 @@
 <?php
 include("headers/utf8Headers.php");
 include("scripts/sessionHandler.php");
-include("scripts/functions.php");
+include_once("scripts/functions.php");
 include("headers/HTMLvariables.php");
 
 // Case insensitive function to count substring occurance

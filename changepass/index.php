@@ -1,6 +1,6 @@
 <?php
 include("../headers/utf8Headers.php");
-include("../scripts/functions.php");
+include_once("../scripts/functions.php");
 if (!isset($_GET['refer'])) {
 	$_GET['refer'] = "/";
 } else {

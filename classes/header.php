@@ -1,7 +1,7 @@
 		<a href="/">Home</a><br />
 <?php
 	include(dirname(__FILE__)."/../scripts/sessionHandler.php");
-	include(dirname(__FILE__)."/../scripts/functions.php");
+	include_once(dirname(__FILE__)."/../scripts/functions.php");
 ?>
 		<form action="/search/" method="get">
 			<input type="text" name="user" value="" placeholder="Username...">

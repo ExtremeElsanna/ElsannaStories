@@ -1,5 +1,5 @@
 <?php
-	include(dirname(__FILE__)."/../scripts/functions.php");
+	include_once(dirname(__FILE__)."/../scripts/functions.php");
 	
 	// Make sure session data exists for access
 	if (!isset($_SESSION)) {
