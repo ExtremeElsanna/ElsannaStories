@@ -53,7 +53,9 @@ $errors = array(1 => "Unexpected Error :(",
 			<input type="number" name="Chapters" value="" min="1"><br />
 			<br />
 			Words<br />
+			<input type="radio" name="WordsRadio" value="Y">
 			<input type="number" name="Words" value="" min="1"><br />
+			<input type="radio" name="WordsRadio" value="U"> Unknown<br />
 			<br />
 			Story Type<br />
 			<input type="radio" name="StoryType" value="MC"> Multi-Chapter<br />
