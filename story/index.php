@@ -87,7 +87,7 @@ if ($story["StoryId"] == "") {
 			}
 ?>
 		<table>
-			<tr><th>Title</th><th>Author</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Url</th><th>Rating</th><th>Date Added</th><th>Date Published</th></tr>
+			<tr><th>Title</th><th>Author</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Date Added</th><th>Date Published</th></tr>
 <?php
 
 				
@@ -95,6 +95,10 @@ if ($story["StoryId"] == "") {
 				$title = $story['Title'];
 				$author = $story['Author'];
 				$words = $story['Words'];
+				if ($words == -1)
+				{
+					$words = "Unknown";
+				}
 				switch ($story['StoryType']) {
 					case "MC":
 						$storyType = "Multi-Chapter";
@@ -104,6 +108,9 @@ if ($story["StoryId"] == "") {
 						break;
 					case "OSS":
 						$storyType = "One-Shot Series";
+						break;
+					case "U":
+						$storyType = "Unknown";
 						break;
 				}
 				switch ($story['Complete']) {
@@ -157,6 +164,9 @@ if ($story["StoryId"] == "") {
 					case "N":
 						$annaPowers = "None";
 						break;
+					case "U":
+						$annaPowers = "Unknown";
+						break;
 				}
 				switch ($story['Sisters']) {
 					case "Y":
@@ -182,6 +192,9 @@ if ($story["StoryId"] == "") {
 					case "M":
 						$age = "M";
 						break;
+					case "U":
+						$age = "Unknown";
+						break;
 				}
 				switch ($story['SmutLevel']) {
 					case "N":
@@ -202,10 +215,13 @@ if ($story["StoryId"] == "") {
 					case "PU":
 						$smutLevel = "Pure";
 						break;
+					case "U":
+						$smutLevel = "Unknown";
+						break;
 				}
 				$url = $story['Url'];
-				$timeAdded = $story['TimeAdded'];
-				$timePublished = $story['TimePublished'];
+				$timeAdded = date("d/m/Y", $story['TimeAdded']);
+				$timePublished = date("d/m/Y", $story['TimePublished']);
 				
 				// Print data
 				echo "\t\t\t<tr>";
@@ -222,7 +238,6 @@ if ($story["StoryId"] == "") {
 				echo "<td>".$sisters."</td>";
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
-				echo "<td><a href='".$url."'>Link</a></td>";
 				echo "<td>".$totalRating."</td>";
 				echo "<td>".$timeAdded."</td>";
 				echo "<td>".$timePublished."</td>";
