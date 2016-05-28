@@ -49,25 +49,29 @@ $errors = array(1 => "Unexpected Error :(",
 			Author<br />
 			<input type="text" name="Author" value="" placeholder="Author"><br />
 			<br />
-			Length (words)<br />
-			<input type="number" name="Length" value="" min="1"><br />
+			Chapters<br />
+			<input type="number" name="Chapters" value="" min="1"><br />
+			<br />
+			Words<br />
+			<input type="number" name="Words" value="" min="1"><br />
 			<br />
 			Story Type<br />
 			<input type="radio" name="StoryType" value="MC"> Multi-Chapter<br />
 			<input type="radio" name="StoryType" value="OS"> One-Shot<br />
 			<input type="radio" name="StoryType" value="OSS"> One-Shot Series<br />
+			<input type="radio" name="StoryType" value="U" selected> Unknown<br />
 			<br />
 			Complete<br />
 			<input type="radio" name="Complete" value="Y"> Yes<br />
 			<input type="radio" name="Complete" value="N"> No<br />
-			<input type="radio" name="Complete" value="U"> Unknown<br />
+			<input type="radio" name="Complete" value="U" selected> Unknown<br />
 			<br />
 			Setting<br />
 			<input type="radio" name="Setting" value="C"> Canon<br />
 			<input type="radio" name="Setting" value="AU"> Alternate Universe (AU)<br />
 			<input type="radio" name="Setting" value="mAU"> Modern Alternate Universe (mAU)<br />
 			<input type="radio" name="Setting" value="STP"> Same Time and Place (STP)<br />
-			<input type="radio" name="Setting" value="U"> Unknown<br />
+			<input type="radio" name="Setting" value="U" selected> Unknown<br />
 			<br />
 			Elsa's Character<br />
 			<input type="text" name="ElsaCharacter" value="" placeholder="Queen"><br />
@@ -84,17 +88,19 @@ $errors = array(1 => "Unexpected Error :(",
 			Anna's Powers<br />
 			<input type="radio" name="AnnaPowers" value="N"> No<br />
 			<input type="radio" name="AnnaPowers" value="Y"> Yes<br />
+			<input type="radio" name="AnnaPowers" value="U" selected> Unknown<br />
 			<br />
 			Sisters<br />
 			<input type="radio" name="Sisters" value="Y"> Yes<br />
 			<input type="radio" name="Sisters" value="N"> No<br />
-			<input type="radio" name="Sisters" value="U"> Unknown<br />
+			<input type="radio" name="Sisters" value="U" selected> Unknown<br />
 			<br />
 			Age [<a href="https://www.fictionratings.com/">X</a>]<br />
 			<input type="radio" name="Age" value="K"> K<br />
 			<input type="radio" name="Age" value="KP"> K+<br />
 			<input type="radio" name="Age" value="T"> T<br />
 			<input type="radio" name="Age" value="M"> M<br />
+			<input type="radio" name="Age" value="U" selected> Unknown<br />
 			<br />
 			Smut Prominence<br />
 			<input type="radio" name="SmutLevel" value="N"> None<br />
@@ -103,11 +109,13 @@ $errors = array(1 => "Unexpected Error :(",
 			<input type="radio" name="SmutLevel" value="M"> Medium<br />
 			<input type="radio" name="SmutLevel" value="H"> Heavy<br />
 			<input type="radio" name="SmutLevel" value="PU"> Pure<br />
+			<input type="radio" name="SmutLevel" value="U" selected> Unknown<br />
 			<br />
 			URL of Story<br />
 			<input type="text" name="Url" value="" placeholder="URL"><br />
 			<br />
 			Date Published<br />
+			<input type="radio" name="DatePublishedRadio" value="K">
 			<select name="DayPublished">
 <?php
 					// Print all days and select current
@@ -144,6 +152,7 @@ $errors = array(1 => "Unexpected Error :(",
 					}
 ?>
 			</select><br />
+			<input type="radio" name="DatePublishedRadio" value="U"> Unknown<br />
 			<br />
 			<input type="submit" value="Submit">
 		</form>

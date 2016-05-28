@@ -23,7 +23,7 @@
 	} else {
 		$author = $_POST['Author'];
 		if ($author == "") {
-			// Title not valid
+			// Author not valid
 			header("Location: /submitstory/?code=3");
 			die();
 		}
