@@ -71,12 +71,17 @@ $errors = array(1 => "Unexpected Error :(",
 			<input type="radio" name="Setting" value="AU"> Alternate Universe (AU)<br />
 			<input type="radio" name="Setting" value="mAU"> Modern Alternate Universe (mAU)<br />
 			<input type="radio" name="Setting" value="STP"> Same Time and Place (STP)<br />
+			<input type="radio" name="Setting" value="U" checked> Unknown<br />
 			<br />
 			Elsa's Character<br />
+			<input type="radio" name="ElsaCharacterRadio" value="Y">
 			<input type="text" name="ElsaCharacter" value="" placeholder="Queen"><br />
+			<input type="radio" name="ElsaCharacterRadio" value="U" checked> Unknown<br />
 			<br />
 			Anna's Character<br />
+			<input type="radio" name="AnnaCharacterRadio" value="Y">
 			<input type="text" name="AnnaCharacter" value="" placeholder="Princess"><br />
+			<input type="radio" name="AnnaCharacterRadio" value="U" checked> Unknown<br />
 			<br />
 			Elsa's Powers<br />
 			<input type="radio" name="ElsaPowers" value="C"> Canon<br />
