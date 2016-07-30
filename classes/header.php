@@ -2,7 +2,6 @@
 <?php
 	include(dirname(__FILE__)."/../scripts/sessionHandler.php");
 	include_once(dirname(__FILE__)."/../scripts/functions.php");
-	echo '<form action="/search/" method="get">';
 	if (!isset($_GET['user']))
 	{
 		$_GET['user'] = "";
@@ -11,6 +10,7 @@
 	{
 		$_GET['user'] = Decode($_GET['user']);
 	}
+	echo '<form action="/search/search.php" method="post">';
 	echo '<input type="text" name="user" value="'.$_GET['user'].'" placeholder="Username...">';
 	echo '<input type="submit" value="Search">';
 	echo '</form>';
