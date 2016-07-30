@@ -1,6 +1,6 @@
 <?php
-	include("scripts/sessionHandler.php");
-	include_once("scripts/functions.php");
+	include("../scripts/sessionHandler.php");
+	include_once("../scripts/functions.php");
 
 	if (!isset($_POST['user'])) {
 		$_POST['user'] = "";
