@@ -57,14 +57,27 @@
 		}
 	}
 	
-	if (!isset($_POST['Length'])) {
-		// Length not set
+	if (!isset($_POST['Chapters'])) {
+		// Chapters not set
 		header("Location: /submitstory/?code=1");
 		die();
 	} else {
-		$length = $_POST['Length'];
-		if (!is_numeric($length)) {
-			// Length not valid
+		$chapters = $_POST['Chapters'];
+		if (!is_numeric($chapters)) {
+			// Chapters not valid
+			header("Location: /submitstory/?code=5");
+			die();
+		}
+	}
+	
+	if (!isset($_POST['Words'])) {
+		// Words not set
+		header("Location: /submitstory/?code=1");
+		die();
+	} else {
+		$words = $_POST['Words'];
+		if (!is_numeric($words)) {
+			// Words not valid
 			header("Location: /submitstory/?code=5");
 			die();
 		}
@@ -260,10 +273,11 @@
 	$timeAdded = time();
 	
 	// Insert story into DB for moderation
-	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Length, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimePublished) VALUES (:title,:author,:length,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:timeAdded,:timePublished);');
+	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Chapters, Words, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimePublished) VALUES (:title,:author,:chapters,:words,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:timeAdded,:timePublished);');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-	$stmt->bindParam(':length', $length, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt->bindParam(':chapters', $chapters, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt->bindParam(':words', $words, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':storyType', $storyType, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':complete', $complete, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':setting', $setting, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
