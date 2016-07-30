@@ -7,6 +7,6 @@
 	} else {
 		$_POST['user'] = Encode($_POST['user']);
 	}
-	header("Location: /user/?user=".$_POST['user']);
+	header("Location: /search/?user=".$_POST['user']);
 	
 ?>
