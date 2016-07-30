@@ -99,7 +99,6 @@ $errors = array(1 => "Unexpected Error :(",
 			<input type="radio" name="Sisters" value="Y"> Yes<br />
 			<input type="radio" name="Sisters" value="C"> It's complicated<br />
 			<input type="radio" name="Sisters" value="N"> No<br />
-			<input type="radio" name="Sisters" value="NC"> Not Clear<br />
 			<input type="radio" name="Sisters" value="U" checked> Unknown<br />
 			<br />
 			Age [<a href="https://www.fictionratings.com/">X</a>]<br />

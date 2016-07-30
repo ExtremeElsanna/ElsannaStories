@@ -177,9 +177,6 @@ if ($story["StoryId"] == "") {
 					case "N":
 						$sisters = "No";
 						break;
-					case "NC":
-						$sisters = "Not Clear";
-						break;
 					case "U":
 						$sisters = "Unknown";
 						break;

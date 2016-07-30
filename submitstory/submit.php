@@ -199,7 +199,7 @@
 		die();
 	} else {
 		$annaPowers = $_POST['AnnaPowers'];
-		$valid = array("N","Y");
+		$valid = array("N","Y","U");
 		if (!in_array($annaPowers,$valid)) {
 			// AnnaPowers not valid
 			header("Location: /submitstory/?code=10");
@@ -213,7 +213,7 @@
 		die();
 	} else {
 		$sisters = $_POST['Sisters'];
-		$valid = array("Y","C","N","NC","U");
+		$valid = array("Y","C","N","U");
 		if (!in_array($sisters,$valid)) {
 			// Sisters not valid
 			header("Location: /submitstory/?code=11");
