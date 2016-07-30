@@ -330,6 +330,6 @@
 	$stmt->execute();
 	
 	// Story submitted
-	header("Location: /?code=5");
+	//header("Location: /?code=5");
 	die();
 ?>
