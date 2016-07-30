@@ -870,9 +870,8 @@ if (!isset($_GET['code'])) {
 							$found = False;
 						}
 					}
-					echo $row['Moderated']."<br />";
 					/* ############################################################### */
-					if ($found == True and $row['Moderated'] == 1) {
+					if ($found == True and $story['Moderated'] == 1) {
 						array_push($validStories, array(0 => $key, 1 => 1, 2 => $story['Title']));
 					}
 				}
