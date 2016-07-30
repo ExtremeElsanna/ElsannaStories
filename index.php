@@ -626,7 +626,7 @@ if (!isset($_GET['code'])) {
 							$hitCounter += $hitCounts;
 						}
 					}
-					if ($hitCounter != 0) {
+					if ($hitCounter != 0 and $row['Moderated'] == 1) {
 						array_push($validStories, array(0 => $rowIndex, 1 => $hitCounter, 2 => $row['Title']));
 					}
 				}
@@ -657,7 +657,7 @@ if (!isset($_GET['code'])) {
 			}
 			
 			// Select all stories data
-			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished FROM Stories;');
+			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Chapters,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished,Moderated FROM Stories;');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();
 			
@@ -867,7 +867,7 @@ if (!isset($_GET['code'])) {
 						}
 					}
 					/* ############################################################### */
-					if ($found == True) {
+					if ($found == True and $row['Moderated'] == 1) {
 						array_push($validStories, array(0 => $key, 1 => 1, 2 => $story['Title']));
 					}
 				}
