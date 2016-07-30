@@ -154,7 +154,7 @@
 				$elsaCharacter = $_POST['ElsaCharacter'];
 			}
 		} else {
-			$elsaCharacter = -1;
+			$elsaCharacter = "";
 		}
 	}
 	
@@ -175,7 +175,7 @@
 				$annaCharacter = $_POST['AnnaCharacter'];
 			}
 		} else {
-			$annaCharacterRadio = "";
+			$annaCharacter = "";
 		}
 	}
 	
@@ -329,7 +329,7 @@
 	$stmt->bindParam(':timePublished', $timePublished, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	
-	print('INSERT INTO Stories (Title, Author, Chapters, Words, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimePublished) VALUES ('.$title.','.$author.','.$chapters.','.$words.','.$storyType.','.$complete.','.$setting.','.$elsaCharacter.','.$annaCharacter.','.$elsaPowers.','.$annaPowers.','.$sisters.','.$age.','.$smutLevel.','.$url.','.$timeAdded.','.$timePublished);
+	print('INSERT INTO Stories (Title, Author, Chapters, Words, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimePublished) VALUES ('.$title.','.$author.','.$chapters.','.$words.','.$storyType.','.$complete.','.$setting.','.$elsaCharacter.','.$annaCharacter.','.$elsaPowers.','.$annaPowers.','.$sisters.','.$age.','.$smutLevel.','.$url.','.$timeAdded.','.$timePublished.");");
 	
 	// Story submitted
 	//header("Location: /?code=5");
