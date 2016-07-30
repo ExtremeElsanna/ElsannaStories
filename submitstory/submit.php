@@ -328,6 +328,7 @@
 	$stmt->bindParam(':timeAdded', $timeAdded, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':timePublished', $timePublished, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
+	print_r($pdo->errorInfo());
 	
 	// Story submitted
 	//header("Location: /?code=5");
