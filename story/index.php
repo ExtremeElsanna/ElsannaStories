@@ -114,9 +114,6 @@ if ($story["StoryId"] == "") {
 					case "OSS":
 						$storyType = "One-Shot Series";
 						break;
-					case "U":
-						$storyType = "Unknown";
-						break;
 				}
 				switch ($story['Complete']) {
 					case "Y":
@@ -124,9 +121,6 @@ if ($story["StoryId"] == "") {
 						break;
 					case "N":
 						$complete = "No";
-						break;
-					case "U":
-						$complete = "Unknown";
 						break;
 				}
 				switch ($story['Setting']) {
@@ -177,8 +171,14 @@ if ($story["StoryId"] == "") {
 					case "Y":
 						$sisters = "Yes";
 						break;
+					case "C":
+						$sisters = "It's Complicated";
+						break;
 					case "N":
 						$sisters = "No";
+						break;
+					case "NC":
+						$sisters = "Not Clear";
 						break;
 					case "U":
 						$sisters = "Unknown";
@@ -196,9 +196,6 @@ if ($story["StoryId"] == "") {
 						break;
 					case "M":
 						$age = "M";
-						break;
-					case "U":
-						$age = "Unknown";
 						break;
 				}
 				switch ($story['SmutLevel']) {

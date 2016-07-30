@@ -65,21 +65,33 @@
 		$chapters = $_POST['Chapters'];
 		if (!is_numeric($chapters)) {
 			// Chapters not valid
-			header("Location: /submitstory/?code=5");
+			header("Location: /submitstory/?code=17");
 			die();
 		}
 	}
 	
-	if (!isset($_POST['Words'])) {
-		// Words not set
+	if (!isset($_POST['WordsRadio'])) {
+		// WordsRadio not set
 		header("Location: /submitstory/?code=1");
 		die();
 	} else {
-		$words = $_POST['Words'];
-		if (!is_numeric($words)) {
-			// Words not valid
-			header("Location: /submitstory/?code=5");
-			die();
+		$wordsRadio = $_POST['WordsRadio'];
+		if ($wordsRadio == "Y")
+		{
+			if (!isset($_POST['Words'])) {
+				// Words not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				$words = $_POST['Words'];
+				if (!is_numeric($words)) {
+					// Words not valid
+					header("Location: /submitstory/?code=5");
+					die();
+				}
+			}
+		} else {
+			$words = -1;
 		}
 	}
 	
@@ -125,22 +137,46 @@
 		}
 	}
 	
-	if (!isset($_POST['ElsaCharacter'])) {
-		// ElsaCharacter not set
+	if (!isset($_POST['ElsaCharacterRadio'])) {
+		// ElsaCharacterRadio not set
 		header("Location: /submitstory/?code=1");
 		die();
 	} else {
-		// Not required, so no checking
-		$elsaCharacter = $_POST['ElsaCharacter'];
+		$elsaCharacterRadio = $_POST['ElsaCharacterRadio'];
+		if ($elsaCharacterRadio == "Y")
+		{
+			if (!isset($_POST['ElsaCharacter'])) {
+				// ElsaCharacter not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				// Not required, so no checking
+				$elsaCharacter = $_POST['ElsaCharacter'];
+			}
+		} else {
+			$elsaCharacter = -1;
+		}
 	}
 	
-	if (!isset($_POST['AnnaCharacter'])) {
-		// AnnaCharacter not set
+	if (!isset($_POST['AnnaCharacterRadio'])) {
+		// AnnaCharacterRadio not set
 		header("Location: /submitstory/?code=1");
 		die();
 	} else {
-		// Not required, so no checking
-		$annaCharacter = $_POST['AnnaCharacter'];
+		$annaCharacterRadio = $_POST['AnnaCharacterRadio'];
+		if ($annaCharacterRadio == "Y")
+		{
+			if (!isset($_POST['AnnaCharacter'])) {
+				// AnnaCharacter not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				// Not required, so no checking
+				$annaCharacter = $_POST['AnnaCharacter'];
+			}
+		} else {
+			$annaCharacterRadio = "";
+		}
 	}
 	
 	if (!isset($_POST['ElsaPowers'])) {
@@ -177,7 +213,7 @@
 		die();
 	} else {
 		$sisters = $_POST['Sisters'];
-		$valid = array("Y","N","U");
+		$valid = array("Y","C","N","NC","U");
 		if (!in_array($sisters,$valid)) {
 			// Sisters not valid
 			header("Location: /submitstory/?code=11");
@@ -205,7 +241,7 @@
 		die();
 	} else {
 		$smutLevel = $_POST['SmutLevel'];
-		$valid = array("N","PL","L","M","H","PU");
+		$valid = array("N","PL","L","M","H","PU","U");
 		if (!in_array($smutLevel,$valid)) {
 			// SmutLevel not valid
 			header("Location: /submitstory/?code=13");

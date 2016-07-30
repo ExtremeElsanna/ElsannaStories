@@ -4,21 +4,22 @@ include("../scripts/sessionHandler.php");
 include("../headers/HTMLvariables.php");
 
 $errors = array(1 => "Unexpected Error :(",
-				2 => "Title Not Given.",
-				3 => "Author Not Given.",
+				2 => "Title Not Valid.",
+				3 => "Author Not Valid.",
 				4 => "Story Already Submitted.",
-				5 => "Word Count Not Given.",
-				6 => "Story Type Not Given.",
-				7 => "Complete Not Given.",
-				8 => "Setting Not Given.",
-				9 => "'Elsa Powers' Not Given.",
-				10 => "'Anna Powers' Not Given.",
-				11 => "Sisters Not Given.",
-				12 => "Age Not Given.",
-				13 => "Smut Prominence Not Given.",
-				14 => "URL Not Given.",
+				5 => "Word Count Not Valid.",
+				6 => "Story Type Not Valid.",
+				7 => "Complete Not Valid.",
+				8 => "Setting Not Valid.",
+				9 => "'Elsa Powers' Not Valid.",
+				10 => "'Anna Powers' Not Valid.",
+				11 => "Sisters Not Valid.",
+				12 => "Age Not Valid.",
+				13 => "Smut Prominence Not Valid.",
+				14 => "URL Not Valid.",
 				15 => "Date Published Not Valid.",
-				16 => "Story Deleted from Site");
+				16 => "Story Deleted from Site",
+				17 => "Chapters Not Valid.");
 ?>
 <?php echo $doctype; ?>
 <html>
@@ -98,6 +99,7 @@ $errors = array(1 => "Unexpected Error :(",
 			<input type="radio" name="Sisters" value="Y"> Yes<br />
 			<input type="radio" name="Sisters" value="C"> It's complicated<br />
 			<input type="radio" name="Sisters" value="N"> No<br />
+			<input type="radio" name="Sisters" value="NC"> Not Clear<br />
 			<input type="radio" name="Sisters" value="U" checked> Unknown<br />
 			<br />
 			Age [<a href="https://www.fictionratings.com/">X</a>]<br />
