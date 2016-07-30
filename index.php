@@ -660,8 +660,12 @@ if (!isset($_GET['code'])) {
 			// Select all stories data
 			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Chapters,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished,Moderated FROM Stories;');
 			$stmt->execute();
-			$rows = $stmt->fetchAll();
-			
+			$rows = $stmt->fetchAll();			
+					
+			function intdiv($a, $b){
+				return ($a - $a % $b) / $b;
+			}
+					
 			// Search Engine Start
 			if ($_GET['a'] == 1) {
 				$validStories = array();
@@ -843,10 +847,6 @@ if (!isset($_GET['code'])) {
 						$sDate = FALSE;
 					}
 					echo $sDate."</br>";
-					
-					function intdiv($a, $b){
-						return ($a - $a % $b) / $b;
-					}
 
 					if ($sDate != FALSE) {
 						if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
