@@ -2,12 +2,18 @@
 <?php
 	include(dirname(__FILE__)."/../scripts/sessionHandler.php");
 	include_once(dirname(__FILE__)."/../scripts/functions.php");
-?>
-		<form action="/search/" method="get">
-			<input type="text" name="user" value="" placeholder="Username...">
-			<input type="submit" value="Search">
-		</form>
-<?php
+	echo '<form action="/search/" method="get">';
+	if (!isset($_GET['user']))
+	{
+		$_GET['user'] = "";
+	}
+	else
+	{
+		$_GET['user'] = Decode($_GET['user']);
+	}
+	echo '<input type="text" name="user" value="'.$_GET['user'].'" placeholder="Username...">';
+	echo '<input type="submit" value="Search">';
+	echo '</form>';
 	if (!isset($headerRefer)) {
 		$headerRefer = "/";
 	}
