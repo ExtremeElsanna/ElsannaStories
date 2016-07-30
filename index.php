@@ -43,6 +43,7 @@ if (!isset($_GET['code'])) {
 	</head>
 	<body>
 <?php
+echo $_GET['search'];
 			// Define a refer link for our 'header' so login/logout refer us back to correct page
 			$headerRefer = '/?search='.$_GET['search'].'&a='.$_GET['a'];
 			// Include the header in our pages
@@ -58,14 +59,7 @@ if (!isset($_GET['code'])) {
 		</form>
 <?php
 		if ($_GET['a'] == 0) {
-			if (isset($_GET['search']))
-			{
-				$search = Decode($_GET['search']);
-			}
-			else
-			{
-				$search = "";
-			}
+			$search = Decode($_GET['search']);
 			echo "\t\t<form action='search.php' method='post'>
 				<input type='text' name='search' value='".$search."' placeholder='Summers, Queen, Princess...'>
 				<input type='submit' value='Search'> <a href='?code=".$_GET['code']."&a=1'>Advanced Search</a>
