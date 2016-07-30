@@ -94,7 +94,7 @@ if ($story["StoryId"] == "") {
 				// Assign all data and format it correctly
 				$title = $story['Title'];
 				$author = $story['Author'];
-				$chapters = $story['Chapter'];
+				$chapters = $story['Chapters'];
 				if ($chapters == -1)
 				{
 					$chapters = "Unknown";
