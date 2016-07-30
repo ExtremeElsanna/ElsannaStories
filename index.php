@@ -60,7 +60,7 @@ if (!isset($_GET['code'])) {
 		if ($_GET['a'] == 0) {
 			if (isset($_GET['search']))
 			{
-				$search = Decode($_GET['search'])
+				$search = Decode($_GET['search']);
 			}
 			else
 			{
