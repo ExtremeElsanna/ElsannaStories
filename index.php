@@ -846,7 +846,6 @@ if (!isset($_GET['code'])) {
 					} else {
 						$sDate = FALSE;
 					}
-					echo $sDate."</br>";
 
 					if ($sDate != FALSE) {
 						if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
