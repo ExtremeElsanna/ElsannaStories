@@ -681,6 +681,7 @@ if (!isset($_GET['code'])) {
 							$found = False;
 						}
 					}
+					echo $found."<br />";
 					/* ############################################################### */
 					if (isset($_GET['sAuthor']) and $found == True) {
 						$sAuthor = Decode($_GET['sAuthor']);
