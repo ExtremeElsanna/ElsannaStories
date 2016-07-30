@@ -58,8 +58,16 @@ if (!isset($_GET['code'])) {
 		</form>
 <?php
 		if ($_GET['a'] == 0) {
+			if (isset($_GET['search']))
+			{
+				$search = Decode($_GET['search'])
+			}
+			else
+			{
+				$search = "";
+			}
 			echo "\t\t<form action='search.php' method='post'>
-				<input type='text' name='search' value='' placeholder='Summers, Queen, Princess...'>
+				<input type='text' name='search' value='".$search."' placeholder='Summers, Queen, Princess...'>
 				<input type='submit' value='Search'> <a href='?code=".$_GET['code']."&a=1'>Advanced Search</a>
 			</form>";
 		} else {
