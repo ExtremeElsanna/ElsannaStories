@@ -847,7 +847,8 @@ if (!isset($_GET['code'])) {
 						if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
 							try {
 								$timePublished = $story['TimePublished'];
-								if ($timePublished > mb_substr($sDate,1,null,'UTF-8')) {
+								$filterTime = intdiv(mb_substr($sDate,1,null,'UTF-8'),86400) * 86400;
+								if ($timePublished > $filterTime) {
 									$found = False;
 								}
 							} catch (Exception $e) {
@@ -857,7 +858,8 @@ if (!isset($_GET['code'])) {
 						} else if (mb_substr($sDate,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
 							try {
 								$timePublished = $story['TimePublished'];
-								if ($timePublished < mb_substr($sDate,1,null,'UTF-8')) {
+								$filterTime = intdiv(mb_substr($sDate,1,null,'UTF-8'),86400) * 86400;
+								if ($timePublished < $filterTime) {
 									$found = False;
 								}
 							} catch (Exception $e) {
