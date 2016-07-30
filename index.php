@@ -674,14 +674,11 @@ if (!isset($_GET['code'])) {
 					} else {
 						$sTitle = FALSE;
 					}
-					echo $sTitle."<br />";
-					echo $story['Title']."<br />";
 					if ($sTitle != FALSE and $story['Title'] != "") {
 						if (mb_stripos($story['Title'], $sTitle, 0, 'UTF-8') === false) {
 							$found = False;
 						}
 					}
-					echo $found."<br />";
 					/* ############################################################### */
 					if (isset($_GET['sAuthor']) and $found == True) {
 						$sAuthor = Decode($_GET['sAuthor']);
@@ -845,6 +842,7 @@ if (!isset($_GET['code'])) {
 					} else {
 						$sDate = FALSE;
 					}
+					echo $sDate."</br>";
 					if ($sDate != FALSE) {
 						if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
 							try {
