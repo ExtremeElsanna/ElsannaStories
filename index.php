@@ -674,7 +674,8 @@ if (!isset($_GET['code'])) {
 					} else {
 						$sTitle = FALSE;
 					}
-					echo $sTitle;
+					echo $sTitle."<br />";
+					echo $story['Title']."<br />";
 					if ($sTitle != FALSE and $story['Title'] != "") {
 						if (mb_stripos($story['Title'], $sTitle, 0, 'UTF-8') === false) {
 							$found = False;
