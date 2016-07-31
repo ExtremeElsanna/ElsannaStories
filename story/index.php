@@ -89,7 +89,7 @@ if ($story["StoryId"] == "") {
 			$favourites = $favouritesRow['FavouriteCount'];
 ?>
 		<table>
-			<tr><th>Title</th><th>Author</th><th>Chapters</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Date Updated</th><th>Date Published</th><th>Date Added</th></tr>
+			<tr><th>Title</th><th>Author</th><th>Chapters</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Favourites</th><th>Date Updated</th><th>Date Published</th><th>Date Added</th></tr>
 <?php
 
 				
