@@ -247,7 +247,7 @@ if ($story["StoryId"] == "") {
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
 				echo "<td>".$totalRating."</td>";
-				echo "<td>".$timeUpdated."</td>";
+				echo "<td>".$dateUpdated."</td>";
 				echo "<td>".$datePublished."</td>";
 				echo "<td>".$dateAdded."</td>";
 				echo "</tr>\n";
