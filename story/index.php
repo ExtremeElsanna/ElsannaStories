@@ -9,7 +9,7 @@ $errors = array(1 => "Summary already submitted.",
 				4 => "Summary submitted!",
 				5 => "Unexpected Error :(",
 				6 => "Review Deleted",
-				7 => "You have already reviewed this story",
+				7 => "Review Updated",
 				8 => "Review too short.",
 				9 => "Review longer than 300 characters.",
 				10 => "Favourited!",
@@ -372,19 +372,21 @@ if ($story["StoryId"] == "") {
 			}
 		}
 		
-		if (!$hasReview) {
-			if ($_SESSION['loggedIn'] == 1) {
+		if ($_SESSION['loggedIn'] == 1) {
+			if (!$hasReview) {
 				echo "\t\tYou have not yet written a review for this story.<br />\n";
-				echo "\t\tYou are reviewing as: ".$_SESSION['username']."<br />\n";
 			} else {
-				echo "\t\tYou are reviewing as: Guest<br />\n";
+				echo "\t\tYou have already written a review for this story, a new one will overwrite the old one.<br />\n";
 			}
-			echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
-			echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
-			echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
-			echo "\t\t\t<input type='submit' value='Submit'><br />\n";
-			echo "\t\t</form><br />\n";
+			echo "\t\tYou are reviewing as: ".$_SESSION['username']."<br />\n";
+		} else {
+			echo "\t\tYou are reviewing as: Guest<br />\n";
 		}
+		echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
+		echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'></textarea><br />\n";
+		echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
+		echo "\t\t\t<input type='submit' value='Submit'><br />\n";
+		echo "\t\t</form><br />\n";
 		
 		$pageSize = 5;
 		if (!isset($_GET['page']) or !is_numeric($_GET['page'])) {

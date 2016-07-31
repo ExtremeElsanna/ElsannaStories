@@ -30,6 +30,8 @@
 		die();
 	}
 	
+	$hasReview = false;
+	
 	if ($_SESSION['loggedIn'] == 1) {
 		// If logged in
 		$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
@@ -38,16 +40,15 @@
 		$stmt->execute();
 		$row = $stmt->fetch();
 		if ($row['ReviewId'] != "") {
-			header("Location: /story/id=".$id."?code=7");
-			die();
+			$hasReview = $row['ReviewId'];
 		}
 	}
 	
 	// Review doesn't exist yet
 	if (isset($_POST['review']) and strlen($_POST['review']) > 0) {
 		// Review > 0 chars
-		if (strlen($_POST['review']) <= 1000) {
-			// Review <= 1000 chars
+		if (strlen($_POST['review']) <= 300) {
+			// Review <= 300 chars
 			$userId = 0;
 			if ($_SESSION['loggedIn'] == 1) {
 				$userId = $_SESSION['userId'];
@@ -57,22 +58,32 @@
 			$moderated = 0;
 			$review = $_POST['review'];
 			
-			$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, TimeSubmitted, Moderated) VALUES (:userId,:id,:review,:submitTime,:moderated);');
-			$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-			$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-			$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
-			$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-			$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
-			$stmt->execute();
-			header("Location: /story/?id=".$id."&code=10");
+			if ($hasReview != false)
+			{
+				$stmt = $pdo->prepare('UPDATE Reviews SET Review = :review, TimeSubmitted = :submitTime, Moderated = :moderated WHERE ReviewId = :reviewId;');
+				$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':reviewId', $hasReview, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				header("Location: /story/?id=".$id."&code=7");
+			} else {
+				$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, TimeSubmitted, Moderated) VALUES (:userId,:id,:review,:submitTime,:moderated);');
+				$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+				$stmt->execute();
+				header("Location: /story/?id=".$id."&code=12");
+			}
+			
 			die();
 		} else {
-			// Summary longer than 1000 chars
 			header("Location: /story/?id=".$id."&code=9");
 			die();
 		}
 	} else {
-		// Summary shorter than or equal to 0 chars
 		header("Location: /story/?id=".$id."&code=8");
 		die();
 	}
