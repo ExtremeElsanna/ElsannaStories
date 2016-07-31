@@ -359,9 +359,10 @@ if ($story["StoryId"] == "") {
 		
 		$hasReview = false;
 		$review = "";
+		$include_rating = 0;
 		if ($_SESSION['loggedIn'] == 1) {
 			// If logged in
-			$stmt = $pdo->prepare('SELECT ReviewId,Review FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
+			$stmt = $pdo->prepare('SELECT ReviewId,Review,IncludeRating FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
 			$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
@@ -369,10 +370,7 @@ if ($story["StoryId"] == "") {
 			if ($row['ReviewId'] != "") {
 				$hasReview = true;
 				$review = $row['Review'];
-			}
-		} else {
-			if (isset($_GET['code']) and $_GET['code'] == 10) {
-				$hasReview = true;
+				$include_rating = $row['IncludeRating'];
 			}
 		}
 		
@@ -388,7 +386,12 @@ if ($story["StoryId"] == "") {
 		}
 		
 		echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
-		echo "\t\t<input type='checkbox' name='include_rating' value='yes'> Include your rating in your review<br />\n";
+		if ($include_rating == 1)
+		{
+			echo "\t\t<input type='checkbox' name='include_rating' value='yes' checked> Include your rating in your review<br />\n";
+		} else {
+			echo "\t\t<input type='checkbox' name='include_rating' value='yes'> Include your rating in your review<br />\n";
+		}
 		echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'>".$review."</textarea><br />\n";
 		echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
 		echo "\t\t\t<input type='submit' value='Submit'><br />\n";
