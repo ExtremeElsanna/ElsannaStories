@@ -157,7 +157,47 @@ $errors = array(1 => "Unexpected Error :(",
 ?>
 			</select><br />
 			<br />
+			Date Updated<br />
+			<input type="radio" name="DateUpdatedRadio" value="Y">
+			<select name="DayUpdated">
+<?php
+					// Print all days and select current
+					for ($i = 1; $i <= 31; $i ++) {
+						if ($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+?>
+			</select>
+			<select name="MonthUpdated">
+<?php
+					// Print all months and select current
+					for ($i = 1; $i <= 12; $i ++) {
+						if ($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+?>
+			</select>
+			<select name="YearUpdated">
+<?php
+					// Print all years and select current
+					for ($i = 2013; $i <= intval($currentYear); $i ++) {
+						if ($currentYear == $i) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+?>
+			</select><br />
+			<input type="radio" name="DateUpdatedRadio" value="U" checked> Unknown<br />
 			<input type="submit" value="Submit">
+			<br />
 		</form>
 	</body>
 </html>

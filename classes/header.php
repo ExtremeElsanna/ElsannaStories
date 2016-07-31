@@ -25,3 +25,6 @@
 		echo "\t\tHi Guest! <a href='/login/?refer=".$headerRefer."'>Login</a><br />\n";
 	}
 ?>
+		<form action="/submitstory/" method="get">
+			<input type="submit" value="Submit a Story!">
+		</form>

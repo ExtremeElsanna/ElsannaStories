@@ -52,11 +52,6 @@ if (!isset($_GET['code'])) {
 			if (isset($_GET['code']) and is_numeric($_GET['code']) and isset($errors[intval($_GET['code'])])) {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
-?>
-		<form action="/submitstory/" method="get">
-			<input type="submit" value="Submit a Story!">
-		</form>
-<?php
 		if ($_GET['a'] == 0) {
 			$search = $_GET['search'];
 			echo "\t\t<form action='search.php' method='post'>
