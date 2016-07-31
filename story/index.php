@@ -14,10 +14,10 @@ $errors = array(1 => "Summary already submitted.",
 				9 => "Review longer than 300 characters.",
 				10 => "Favourited!",
 				11 => "Unfavourited!",
-				12 => "Review submitted!",
-				13 => "Rating submitted!",
-				14 => "Rating updated!",
-				15 => "Rating removed!");
+				12 => "Review Submitted!",
+				13 => "Rating Submitted!",
+				14 => "Rating Updated!",
+				15 => "Rating Removed!");
 
 				
 if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
@@ -69,22 +69,24 @@ if ($story["StoryId"] == "") {
 				echo "\t\t".$errors[intval($_GET['code'])]."<br />\n";
 			}
 			
-			// Get all data about this story
-			$stmt = $pdo->prepare('SELECT * FROM Ratings WHERE StoryId = :storyId;');
+			// Get all rating data about this story
+			$stmt = $pdo->prepare('SELECT (SUM(Rating)*20) as Rating FROM Ratings; WHERE StoryId = :storyId;');
 			$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
-			$ratingRows = $stmt->fetchAll();
-			$totalRating = 0;
-			$counter = 0;
-			foreach ($ratingRows as $rateRow) {
-				$totalRating += $rateRow['Rating'] * 10 * 2;
-				$counter ++;
+			$ratingRow = $stmt->fetch();
+			$totalRating = $ratingRow['Rating'];
+			
+			if ($totalRating == 0)
+			{
+				$totalRating = "No Ratings";
 			}
-			if ($totalRating == 0) {
-				$totalRating = "No Rating";
-			} else {
-				$totalRating = $totalRating / $counter;
-			}
+			
+			// Get favourite data about this story
+			$stmt = $pdo->prepare('SELECT COUNT(*) as FavouriteCount FROM Favourites WHERE StoryId = :storyId;');
+			$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+			$stmt->execute();
+			$favouritesRow = $stmt->fetch();
+			$favourites = $favouritesRow['FavouriteCount'];
 ?>
 		<table>
 			<tr><th>Title</th><th>Author</th><th>Chapters</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Date Updated</th><th>Date Published</th><th>Date Added</th></tr>
@@ -247,6 +249,7 @@ if ($story["StoryId"] == "") {
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
 				echo "<td>".$totalRating."</td>";
+				echo "<td>".$favourites."</td>";
 				echo "<td>".$dateUpdated."</td>";
 				echo "<td>".$datePublished."</td>";
 				echo "<td>".$dateAdded."</td>";
@@ -263,7 +266,7 @@ if ($story["StoryId"] == "") {
 			if ($row['FavouriteId'] == "") {
 				echo "\t\t<a href='favourite.php?id=".$id."'>Favourite</a><br />\n";
 			} else {
-				echo "\t\t<a href='favourite.php?id=".$id."'>UnFavourite</a><br />\n";
+				echo "\t\t<a href='favourite.php?id=".$id."'>Un-Favourite</a><br />\n";
 			}
 			
 			
