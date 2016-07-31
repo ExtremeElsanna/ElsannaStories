@@ -70,12 +70,11 @@ if ($story["StoryId"] == "") {
 			}
 			
 			// Get all rating data about this story
-			$stmt = $pdo->prepare('SELECT (SUM(Rating)*20) as Rating FROM Ratings; WHERE StoryId = :storyId;');
+			$stmt = $pdo->prepare('SELECT ROUND(COALESCE(SUM(Rating) / COUNT(*),0)) as Rating FROM Ratings WHERE StoryId = :storyId;');
 			$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 			$stmt->execute();
 			$ratingRow = $stmt->fetch();
 			$totalRating = $ratingRow['Rating'];
-			
 			if ($totalRating == 0)
 			{
 				$totalRating = "No Ratings";
@@ -285,27 +284,27 @@ if ($story["StoryId"] == "") {
 			if ($rating != null) {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=0'>Delete</a> ";
 			}
-			if ($rating == 1) {
+			if ($rating == 20) {
 				echo "\t\t1 ";
 			} else {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=1'>1</a> ";
 			}
-			if ($rating == 2) {
+			if ($rating == 40) {
 				echo "\t\t2 ";
 			} else {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=2'>2</a> ";
 			}
-			if ($rating == 3) {
+			if ($rating == 60) {
 				echo "\t\t3 ";
 			} else {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=3'>3</a> ";
 			}
-			if ($rating == 4) {
+			if ($rating == 80) {
 				echo "\t\t4 ";
 			} else {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=4'>4</a> ";
 			}
-			if ($rating == 5) {
+			if ($rating == 100) {
 				echo "\t\t5<br />\n";
 			} else {
 				echo "\t\t<a href='rate.php?id=".$id."&rating=5'>5</a><br />\n";
@@ -352,11 +351,11 @@ if ($story["StoryId"] == "") {
 		echo "\t\tReviews:<br />\n";
 		// Select all review data
 		$moderated = 1;
-		$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,TimeSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated ORDER BY TimeSubmitted DESC;');
+		$stmt = $pdo->prepare('SELECT ReviewId,UserId,Review,IncludeRating,TimeSubmitted FROM Reviews WHERE StoryId = :id AND Moderated = :moderated ORDER BY TimeSubmitted DESC;');
 		$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->execute();
-		$rows = $stmt->fetchAll();
+		$reviews = $stmt->fetchAll();
 		
 		$hasReview = false;
 		$review = "";
@@ -387,6 +386,7 @@ if ($story["StoryId"] == "") {
 		} else {
 			echo "\t\tYou are reviewing as: Guest<br />\n";
 		}
+		
 		echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
 		echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'>".$review."</textarea><br />\n";
 		echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";
@@ -400,8 +400,8 @@ if ($story["StoryId"] == "") {
 			$page = $_GET['page'];
 		}
 		
-		$reviews = count($rows);
-		$pages = ceil($reviews/$pageSize);
+		$reviewCount = count($reviews);
+		$pages = ceil($reviewCount/$pageSize);
 		if ($page > $pages) {
 			$page = $pages;
 		}
@@ -412,11 +412,13 @@ if ($story["StoryId"] == "") {
 		// For each review for this story
 		echo "\t\t<table style='border-collapse: collapse;'>\n";
 		$hasReviews = false;
-		foreach ($rows as $key => $review) {
+		foreach ($reviews as $key => $review) {
 			$hasReviews = true;
 			if ($key >= (($page-1)*$pageSize) and $key < ($page*$pageSize)) {
+		
 				// Default username to guest
 				$username = "Guest";
+				$review_rating = 0;
 				if ($review['UserId'] != 0) {
 					// If user was not guest on submission fetch username
 					$stmt = $pdo->prepare('SELECT UserId,Username FROM Users WHERE UserId = :userId;');
@@ -425,6 +427,18 @@ if ($story["StoryId"] == "") {
 					$row = $stmt->fetch();
 					if ($row['UserId'] != "") {
 						$username = $row['Username'];
+						
+						if ($review['IncludeRating'] == 1)
+						{
+							$stmt = $pdo->prepare('SELECT Rating FROM Ratings WHERE UserId = :userId AND StoryId = :storyId;');
+							$stmt->bindParam(':userId', $review['UserId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+							$stmt->execute();
+							$review_rating_row = $stmt->fetch();
+							if ($review_rating_row['Rating'] != "") {
+								$review_rating = $review_rating_row['Rating'];
+							}
+						}
 					}
 				}
 				// Check if review belongs to logged in user
@@ -439,7 +453,13 @@ if ($story["StoryId"] == "") {
 				// Display the relevant HTML
 				echo "\t\t\t<tr>";
 				echo "<td style='border: 1px solid black'>".$newDate."</td>";
-				echo "<td style='border: 1px solid black'>".$username."</td>";
+				if ($review_rating == 0)
+				{
+					echo "<td style='border: 1px solid black' colspan=2>".$username."</td>";
+				} else {
+					echo "<td style='border: 1px solid black'>".$username."</td>";
+					echo "<td style='border: 1px solid black'>".$review_rating."</td>";
+				}				
 				if ($usersReview) {
 					echo "<td style='border: 1px solid black'>".nl2br($review['Review'])."</td>";
 					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&amp;story=".$id."'>Delete</a></td>";
@@ -454,7 +474,7 @@ if ($story["StoryId"] == "") {
 			if (isset($_GET['code'])) {
 				$codeExtension = "&amp;code=".$_GET['code'];
 			}
-			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=4>Page: ";
+			$pageHTML = "\t\t\t<tr><td style='border: 1px solid black' colspan=5>Page: ";
 			if ($page > 3) {
 				$pageHTML = $pageHTML."<a href='?id=".$id."&amp;page=".(1).$codeExtension."'>".(1)."</a> ... ";
 			}

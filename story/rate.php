@@ -24,6 +24,26 @@
 	$userId = $_SESSION['userId'];
 	$storyId = $_GET['id'];
 	$rating = $_GET['rating'];
+	
+	switch ($rating) {
+		case 1:
+			$rating = 20;
+			break;
+		case 2:
+			$rating = 40;
+			break;
+		case 3:
+			$rating = 60;
+			break;
+		case 4:
+			$rating = 80;
+			break;
+		case 5:
+			$rating = 100;
+			break;
+	}
+	
+	
 	$stmt = $pdo->prepare('SELECT RatingId,Rating FROM Ratings WHERE UserId = :userId AND StoryId = :storyId;');
 	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':storyId', $storyId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
