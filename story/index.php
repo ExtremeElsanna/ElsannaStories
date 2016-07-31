@@ -340,7 +340,7 @@ if ($story["StoryId"] == "") {
 		} else if ($status == 2) {
 			echo "\t\tSummary:<br />\n";
 			echo "<!-- Summary Starts Here -->\n";
-			echo nl2br(strip_tags($row['Summary']))."\n";
+			echo nl2br($row['Summary'])."\n";
 			echo "<!-- Summary Ends Here -->\n";
 		}
 		echo "\t\t<br />\n";
@@ -438,10 +438,10 @@ if ($story["StoryId"] == "") {
 				echo "<td style='border: 1px solid black'>".$newDate."</td>";
 				echo "<td style='border: 1px solid black'>".$username."</td>";
 				if ($usersReview) {
-					echo "<td style='border: 1px solid black'>".$review['Review']."</td>";
+					echo "<td style='border: 1px solid black'>".nl2br($review['Review'])."</td>";
 					echo "<td style='border: 1px solid black'><a href='deletereview.php?review=".$review['ReviewId']."&amp;story=".$id."'>Delete</a></td>";
 				} else {
-					echo "<td style='border: 1px solid black' colspan=2>".nl2br(strip_tags($review['Review']))."</td>";
+					echo "<td style='border: 1px solid black' colspan=2>".nl2br($review['Review'])."</td>";
 				}
 				echo "</tr>\n";
 			}

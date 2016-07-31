@@ -56,7 +56,7 @@
 			date_default_timezone_set('UTC');
 			$submitTime = time();
 			$moderated = 0;
-			$review = $_POST['review'];
+			$review = strip_tags($_POST['review']);
 			
 			if ($hasReview != false)
 			{

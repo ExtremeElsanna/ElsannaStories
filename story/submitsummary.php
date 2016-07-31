@@ -59,7 +59,7 @@
 				date_default_timezone_set('UTC');
 				$submitTime = time();
 				$moderated = 0;
-				$summary = $_POST['summary'];
+				$summary = strip_tags($_POST['summary']);
 				
 				$stmt = $pdo->prepare('INSERT INTO Summaries (UserId, StoryId, Summary, TimeSubmitted, Moderated) VALUES (:userId,:id,:summary,:submitTime,:moderated);');
 				$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
