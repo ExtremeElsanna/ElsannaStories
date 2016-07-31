@@ -428,7 +428,6 @@ if ($story["StoryId"] == "") {
 					if ($row['UserId'] != "") {
 						$username = $row['Username'];
 						
-						echo $review['UserId'];
 						if ($review['IncludeRating'] == 1)
 						{
 							$stmt = $pdo->prepare('SELECT Rating FROM Ratings WHERE UserId = :userId AND StoryId = :storyId;');
