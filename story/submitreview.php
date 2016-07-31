@@ -17,6 +17,12 @@
 		}
 	}
 	
+	$include_rating = 0;
+	if (isset($_POST['include_rating']) and $_POST['include_rating'] == 'yes')
+	{
+		$include_rating = 1;
+	}
+	
 	$id = $_GET['id'];
 	
 	// Get all data about this story
@@ -60,18 +66,20 @@
 			
 			if ($hasReview != false)
 			{
-				$stmt = $pdo->prepare('UPDATE Reviews SET Review = :review, TimeSubmitted = :submitTime, Moderated = :moderated WHERE ReviewId = :reviewId;');
+				$stmt = $pdo->prepare('UPDATE Reviews SET Review = :review, IncludeRating = :include_rating, TimeSubmitted = :submitTime, Moderated = :moderated WHERE ReviewId = :reviewId;');
 				$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':include_rating', $include_rating, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':reviewId', $hasReview, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
 				header("Location: /story/?id=".$id."&code=7");
 			} else {
-				$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, TimeSubmitted, Moderated) VALUES (:userId,:id,:review,:submitTime,:moderated);');
+				$stmt = $pdo->prepare('INSERT INTO Reviews (UserId, StoryId, Review, IncludeRating, TimeSubmitted, Moderated) VALUES (:userId,:id,:review,:include_rating,:submitTime,:moderated);');
 				$stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':review', $review, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
+				$stmt->bindParam(':include_rating', $include_rating, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':submitTime', $submitTime, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->bindParam(':moderated', $moderated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 				$stmt->execute();
