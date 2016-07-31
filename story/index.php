@@ -386,11 +386,13 @@ if ($story["StoryId"] == "") {
 		}
 		
 		echo "\t\t<form action='submitreview.php?id=".$id."' method='post'>\n";
-		if ($include_rating == 1)
+		if ($_SESSION['loggedIn'] == 1)
 		{
-			echo "\t\t<input type='checkbox' name='include_rating' value='yes' checked> Include your rating in your review<br />\n";
-		} else {
-			echo "\t\t<input type='checkbox' name='include_rating' value='yes'> Include your rating in your review<br />\n";
+			if ($include_rating == 1) {
+				echo "\t\t<input type='checkbox' name='include_rating' value='yes' checked> Include your rating in your review<br />\n";
+			} else {
+				echo "\t\t<input type='checkbox' name='include_rating' value='yes'> Include your rating in your review<br />\n";
+			}
 		}
 		echo "\t\t\t<textarea name='review' rows='4' cols='50' style='font-family:serif' onKeyDown='limitText(this.form.review,300,\"reviewCountdown\");' onKeyUp='limitText(this.form.review,300,\"reviewCountdown\");'>".$review."</textarea><br />\n";
 		echo "\t\t\t<label id='reviewCountdown'>Characters left: 300</label><br />\n";

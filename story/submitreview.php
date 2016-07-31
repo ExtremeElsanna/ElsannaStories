@@ -17,11 +17,6 @@
 		}
 	}
 	
-	$include_rating = 0;
-	if (isset($_POST['include_rating']) and $_POST['include_rating'] == 'yes')
-	{
-		$include_rating = 1;
-	}
 	
 	$id = $_GET['id'];
 	
@@ -38,8 +33,15 @@
 	
 	$hasReview = false;
 	
+	$include_rating = 0;
 	if ($_SESSION['loggedIn'] == 1) {
 		// If logged in
+		
+		if (isset($_POST['include_rating']) and $_POST['include_rating'] == 'yes')
+		{
+			$include_rating = 1;
+		}
+		
 		$stmt = $pdo->prepare('SELECT ReviewId FROM Reviews WHERE UserId = :userId and StoryId = :storyId;');
 		$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 		$stmt->bindParam(':storyId', $id, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
