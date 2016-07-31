@@ -428,6 +428,7 @@ if ($story["StoryId"] == "") {
 					if ($row['UserId'] != "") {
 						$username = $row['Username'];
 						
+						echo $review['IncludeRating'];
 						if ($review['IncludeRating'] == 1)
 						{
 							$stmt = $pdo->prepare('SELECT Rating FROM Ratings WHERE UserId = :userId AND StoryId = :storyId;');
@@ -441,7 +442,6 @@ if ($story["StoryId"] == "") {
 						}
 					}
 				}
-				echo $review_rating;
 				// Check if review belongs to logged in user
 				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
 					$usersReview = true;
