@@ -441,6 +441,7 @@ if ($story["StoryId"] == "") {
 						}
 					}
 				}
+				echo $review_rating;
 				// Check if review belongs to logged in user
 				if ($_SESSION['loggedIn'] == 1 and $_SESSION['userId'] == $review['UserId']) {
 					$usersReview = true;
