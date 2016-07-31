@@ -87,7 +87,7 @@ if ($story["StoryId"] == "") {
 			}
 ?>
 		<table>
-			<tr><th>Title</th><th>Author</th><th>Chapters</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Date Added</th><th>Date Published</th></tr>
+			<tr><th>Title</th><th>Author</th><th>Chapters</th><th>Words</th><th>Story Type</th><th>Complete</th><th>Setting</th><th>Elsa Character</th><th>Anna Character</th><th>Elsa Powers</th><th>Anna Powers</th><th>Sisters</th><th>Age [<a href="https://www.fictionratings.com/">X</a>]</th><th>Smut Prominence</th><th>Rating</th><th>Date Updated</th><th>Date Published</th><th>Date Added</th></tr>
 <?php
 
 				
@@ -219,8 +219,16 @@ if ($story["StoryId"] == "") {
 						break;
 				}
 				$url = $story['Url'];
-				$timeAdded = date("d/m/Y", $story['TimeAdded']);
-				$timePublished = date("d/m/Y", $story['TimePublished']);
+				
+				$timeUpdated = $story['TimeUpdated'];
+				if ($timeUpdated == 0)
+				{
+					$dateUpdated = "Unknown";
+				} else {
+					$dateUpdated = date("d/m/Y", $timeUpdated);
+				}
+				$datePublished = date("d/m/Y", $story['TimePublished']);
+				$dateAdded = date("d/m/Y", $story['TimeAdded']);
 				
 				// Print data
 				echo "\t\t\t<tr>";
@@ -239,8 +247,9 @@ if ($story["StoryId"] == "") {
 				echo "<td>".$age."</td>";
 				echo "<td>".$smutLevel."</td>";
 				echo "<td>".$totalRating."</td>";
-				echo "<td>".$timeAdded."</td>";
-				echo "<td>".$timePublished."</td>";
+				echo "<td>".$timeUpdated."</td>";
+				echo "<td>".$datePublished."</td>";
+				echo "<td>".$dateAdded."</td>";
 				echo "</tr>\n";
 ?>
 		</table><br />

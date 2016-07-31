@@ -301,6 +301,60 @@
 		}
 	}
 	
+	if (!isset($_POST['DateUpdatedRadio'])) {
+		// DateUpdatedRadio not set
+		header("Location: /submitstory/?code=1");
+		die();
+	} else {
+		$dateUpdatedRadio = $_POST['DateUpdatedRadio'];
+		if ($dateUpdatedRadio == "Y")
+		{
+			if (!isset($_POST['DayUpdated'])) {
+				// DayUpdated not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				$dayUpdated = $_POST['DayUpdated'];
+				if (!is_numeric($dayUpdated)) {
+					// DayUpdated not valid
+					header("Location: /submitstory/?code=18");
+					die();
+				}
+			}
+			
+			if (!isset($_POST['MonthUpdated'])) {
+				// MonthUpdated not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				$monthUpdated = $_POST['MonthUpdated'];
+				if (!is_numeric($monthUpdated)) {
+					// MonthUpdated not valid
+					header("Location: /submitstory/?code=18");
+					die();
+				}
+			}
+			
+			if (!isset($_POST['YearUpdated'])) {
+				// YearUpdated not set
+				header("Location: /submitstory/?code=1");
+				die();
+			} else {
+				$yearUpdated = $_POST['YearUpdated'];
+				if (!is_numeric($yearUpdated)) {
+					// YearUpdated not valid
+					header("Location: /submitstory/?code=18");
+					die();
+				}
+			}
+			
+			$dateUpdated = $yearUpdated."-".$monthUpdated."-".$dayUpdated;
+			$timeUpdated = strtotime($dateUpdated);
+		} else {
+			$timeUpdated = 0;
+		}
+	}
+	
 	// Construct date from individual parts
 	$datePublished = $yearPublished."-".$monthPublished."-".$dayPublished;
 	$timePublished = strtotime($datePublished);
@@ -309,7 +363,7 @@
 	$timeAdded = time();
 	
 	// Insert story into DB for moderation
-	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Chapters, Words, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimePublished) VALUES (:title,:author,:chapters,:words,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:timeAdded,:timePublished);');
+	$stmt = $pdo->prepare('INSERT INTO Stories (Title, Author, Chapters, Words, StoryType, Complete, Setting, ElsaCharacter, AnnaCharacter, ElsaPowers, AnnaPowers, Sisters, Age, SmutLevel, Url, TimeAdded, TimeUpdated, TimePublished) VALUES (:title,:author,:chapters,:words,:storyType,:complete,:setting,:elsaCharacter,:annaCharacter,:elsaPowers,:annaPowers,:sisters,:age,:smutLevel,:url,:timeAdded,:timeUpdated,:timePublished);');
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':author', $author, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':chapters', $chapters, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
@@ -326,6 +380,7 @@
 	$stmt->bindParam(':smutLevel', $smutLevel, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':url', $url, PDO::PARAM_STR); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':timeAdded', $timeAdded, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
+	$stmt->bindParam(':timeUpdated', $timeUpdated, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->bindParam(':timePublished', $timePublished, PDO::PARAM_INT); // <-- Automatically sanitized for SQL by PDO
 	$stmt->execute();
 	

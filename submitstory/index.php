@@ -19,7 +19,8 @@ $errors = array(1 => "Unexpected Error :(",
 				14 => "URL Not Valid.",
 				15 => "Date Published Not Valid.",
 				16 => "Story Deleted from Site",
-				17 => "Chapters Not Valid.");
+				17 => "Chapters Not Valid.",
+				18 => "Date Updated Not Valid.");
 ?>
 <?php echo $doctype; ?>
 <html>
@@ -197,6 +198,7 @@ $errors = array(1 => "Unexpected Error :(",
 			</select><br />
 			<input type="radio" name="DateUpdatedRadio" value="U" checked> Unknown<br />
 			<input type="submit" value="Submit">
+			<br />
 			<br />
 		</form>
 	</body>
