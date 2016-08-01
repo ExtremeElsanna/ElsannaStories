@@ -322,11 +322,11 @@ if (!isset($_GET['code'])) {
 				}
 			}
 			/* ############################################# */
-			$before = "";
-			$since = "";
-			$day_published = null;
-			$month_published = null;
-			$year_published = null;
+			$beforePublished = "";
+			$sincePublished = "";
+			$dayPublished = null;
+			$monthPublished = null;
+			$yearPublished = null;
 			if (isset($_GET['sDatePublished'])) {
 				$sDatePublished = Decode($_GET['sDatePublished']);
 			} else {
@@ -335,26 +335,26 @@ if (!isset($_GET['code'])) {
 			if ($sDatePublished != FALSE) {
 				date_default_timezone_set('UTC');
 				try {
-					$day_published = date("d",mb_substr($sDatePublished,1,null,'UTF-8'));
-					$month_published = date("m",mb_substr($sDatePublished,1,null,'UTF-8'));
-					$year_published = date("Y",mb_substr($sDatePublished,1,null,'UTF-8'));
+					$dayPublished = date("d",mb_substr($sDatePublished,1,null,'UTF-8'));
+					$monthPublished = date("m",mb_substr($sDatePublished,1,null,'UTF-8'));
+					$yearPublished = date("Y",mb_substr($sDatePublished,1,null,'UTF-8'));
 				} catch (Exception $e) {
 					// Invalid Time
 				}
 				if (mb_substr($sDatePublished,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
-					$before = " checked";
-					$since = "";
+					$beforePublished = " checked";
+					$sincePublished = "";
 				} else if (mb_substr($sDatePublished,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
-					$before = "";
-					$since = " checked";
+					$beforePublished = "";
+					$sincePublished = " checked";
 				}
 			}
 			/* ############################################# */
-			$before = "";
-			$since = "";
-			$day_updated = null;
-			$month_updated = null;
-			$year_updated = null;
+			$beforeUpdated = "";
+			$sinceUpdated = "";
+			$dayUpdated = null;
+			$monthUpdated = null;
+			$yearUpdated = null;
 			if (isset($_GET['sDateUpdated'])) {
 				$sDateUpdated = Decode($_GET['sDateUpdated']);
 			} else {
@@ -363,26 +363,26 @@ if (!isset($_GET['code'])) {
 			if ($sDateUpdated != FALSE) {
 				date_default_timezone_set('UTC');
 				try {
-					$day_updated = date("d",mb_substr($sDateUpdated,1,null,'UTF-8'));
-					$month_updated = date("m",mb_substr($sDateUpdated,1,null,'UTF-8'));
-					$year_updated = date("Y",mb_substr($sDateUpdated,1,null,'UTF-8'));
+					$dayUpdated = date("d",mb_substr($sDateUpdated,1,null,'UTF-8'));
+					$monthUpdated = date("m",mb_substr($sDateUpdated,1,null,'UTF-8'));
+					$yearUpdated = date("Y",mb_substr($sDateUpdated,1,null,'UTF-8'));
 				} catch (Exception $e) {
 					// Invalid Time
 				}
 				if (mb_substr($sDateUpdated,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
-					$before = " checked";
-					$since = "";
+					$beforeUpdated = " checked";
+					$sinceUpdated = "";
 				} else if (mb_substr($sDateUpdated,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
-					$before = "";
-					$since = " checked";
+					$beforeUpdated = "";
+					$sinceUpdated = " checked";
 				}
 			}
 			/* ############################################# */
-			$before = "";
-			$since = "";
-			$day_added = null;
-			$month_added = null;
-			$year_added = null;
+			$beforeAdded = "";
+			$sinceAdded = "";
+			$dayAdded = null;
+			$monthAdded = null;
+			$yearAdded = null;
 			if (isset($_GET['sDateAdded'])) {
 				$sDateAdded = Decode($_GET['sDateAdded']);
 			} else {
@@ -391,18 +391,18 @@ if (!isset($_GET['code'])) {
 			if ($sDateAdded != FALSE) {
 				date_default_timezone_set('UTC');
 				try {
-					$day_added = date("d",mb_substr($sDateAdded,1,null,'UTF-8'));
-					$month_added = date("m",mb_substr($sDateAdded,1,null,'UTF-8'));
-					$year_added = date("Y",mb_substr($sDateAdded,1,null,'UTF-8'));
+					$dayAdded = date("d",mb_substr($sDateAdded,1,null,'UTF-8'));
+					$monthAdded = date("m",mb_substr($sDateAdded,1,null,'UTF-8'));
+					$yearAdded = date("Y",mb_substr($sDateAdded,1,null,'UTF-8'));
 				} catch (Exception $e) {
 					// Invalid Time
 				}
 				if (mb_substr($sDateAdded,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
-					$before = " checked";
-					$since = "";
+					$beforeAdded = " checked";
+					$sinceAdded = "";
 				} else if (mb_substr($sDateAdded,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
-					$before = "";
-					$since = " checked";
+					$beforeAdded = "";
+					$sinceAdded = " checked";
 				}
 			}
 			/* ############################################# */
@@ -500,7 +500,7 @@ if (!isset($_GET['code'])) {
 			<select name='DayUpdated'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
-						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_updated == null) or ($day_updated == $i)) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $dayUpdated == null) or ($dayUpdated == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -510,7 +510,7 @@ if (!isset($_GET['code'])) {
 			<select name='MonthUpdated'>\n";
 					// Print all months and select current
 					for ($i = 1; $i <= 12; $i ++) {
-						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_updated == null) or ($month_updated == $i)) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $monthUpdated == null) or ($monthUpdated == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -520,7 +520,7 @@ if (!isset($_GET['code'])) {
 			<select name='YearUpdated'>\n";
 					// Print all years and select current
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if (($currentYear == $i and $year_updated == null) or ($year_updated == $i)) {
+						if (($currentYear == $i and $yearUpdated == null) or ($yearUpdated == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -535,7 +535,7 @@ if (!isset($_GET['code'])) {
 			<select name='DayPublished'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
-						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_published == null) or ($day_published == $i)) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $dayPublished == null) or ($dayPublished == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -545,7 +545,7 @@ if (!isset($_GET['code'])) {
 			<select name='MonthPublished'>\n";
 					// Print all months and select current
 					for ($i = 1; $i <= 12; $i ++) {
-						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_published == null) or ($month_published == $i)) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $monthPublished == null) or ($monthPublished == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -555,7 +555,7 @@ if (!isset($_GET['code'])) {
 			<select name='YearPublished'>\n";
 					// Print all years and select current
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if (($currentYear == $i and $year_published == null) or ($year_published == $i)) {
+						if (($currentYear == $i and $yearPublished == null) or ($yearPublished == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -570,7 +570,7 @@ if (!isset($_GET['code'])) {
 			<select name='DayAdded'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
-						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_added == null) or ($day_added == $i)) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $dayAdded == null) or ($dayAdded == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -580,7 +580,7 @@ if (!isset($_GET['code'])) {
 			<select name='MonthAdded'>\n";
 					// Print all months and select current
 					for ($i = 1; $i <= 12; $i ++) {
-						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_added == null) or ($month_added == $i)) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $monthAdded == null) or ($monthAdded == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -590,7 +590,7 @@ if (!isset($_GET['code'])) {
 			<select name='YearAdded'>\n";
 					// Print all years and select current
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if (($currentYear == $i and $year_added == null) or ($year_added == $i)) {
+						if (($currentYear == $i and $yearAdded == null) or ($yearAdded == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
