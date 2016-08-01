@@ -495,8 +495,8 @@ if (!isset($_GET['code'])) {
 			</td>
 			<td style='border: 1px solid black'>
 			Date Updated<br />
-			<input type='radio' name='DateType' value='B'".$before."> Before<br />
-			<input type='radio' name='DateType' value='S'".$since."> Since<br />
+			<input type='radio' name='DateUpdatedType' value='B'".$before."> Before<br />
+			<input type='radio' name='DateUpdatedType' value='S'".$since."> Since<br />
 			<select name='DayUpdated'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
@@ -530,8 +530,8 @@ if (!isset($_GET['code'])) {
 			</td>
 			<td style='border: 1px solid black'>
 			Date Published<br />
-			<input type='radio' name='DateType' value='B'".$before."> Before<br />
-			<input type='radio' name='DateType' value='S'".$since."> Since<br />
+			<input type='radio' name='DatePublishedType' value='B'".$before."> Before<br />
+			<input type='radio' name='DatePublishedType' value='S'".$since."> Since<br />
 			<select name='DayPublished'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
@@ -565,8 +565,8 @@ if (!isset($_GET['code'])) {
 			</td>
 			<td style='border: 1px solid black'>
 			Date Added<br />
-			<input type='radio' name='DateType' value='B'".$before."> Before<br />
-			<input type='radio' name='DateType' value='S'".$since."> Since<br />
+			<input type='radio' name='DateAddedType' value='B'".$before."> Before<br />
+			<input type='radio' name='DateAddedType' value='S'".$since."> Since<br />
 			<select name='DayAdded'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
