@@ -324,36 +324,85 @@ if (!isset($_GET['code'])) {
 			/* ############################################# */
 			$before = "";
 			$since = "";
-			$day = null;
-			$month = null;
-			$year = null;
-			if (isset($_GET['sDate'])) {
-				$sDate = Decode($_GET['sDate']);
+			$day_published = null;
+			$month_published = null;
+			$year_published = null;
+			if (isset($_GET['sDatePublished'])) {
+				$sDatePublished = Decode($_GET['sDatePublished']);
 			} else {
-				$sDate = FALSE;
+				$sDatePublished = FALSE;
 			}
-			if ($sDate != FALSE) {
+			if ($sDatePublished != FALSE) {
 				date_default_timezone_set('UTC');
-				if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
+				try {
+					$day_published = date("d",mb_substr($sDatePublished,1,null,'UTF-8'));
+					$month_published = date("m",mb_substr($sDatePublished,1,null,'UTF-8'));
+					$year_published = date("Y",mb_substr($sDatePublished,1,null,'UTF-8'));
+				} catch (Exception $e) {
+					// Invalid Time
+				}
+				if (mb_substr($sDatePublished,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
 					$before = " checked";
 					$since = "";
-					try {
-						$day = date("d",mb_substr($sDate,1,null,'UTF-8'));
-						$month = date("m",mb_substr($sDate,1,null,'UTF-8'));
-						$year = date("Y",mb_substr($sDate,1,null,'UTF-8'));
-					} catch (Exception $e) {
-						// Invalid Time
-					}
-				} else if (mb_substr($sDate,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
+				} else if (mb_substr($sDatePublished,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
 					$before = "";
 					$since = " checked";
-					try {
-						$day = date("d",mb_substr($sDate,1,null,'UTF-8'));
-						$month = date("m",mb_substr($sDate,1,null,'UTF-8'));
-						$year = date("Y",mb_substr($sDate,1,null,'UTF-8'));
-					} catch (Exception $e) {
-						// Invalid Time
-					}
+				}
+			}
+			/* ############################################# */
+			$before = "";
+			$since = "";
+			$day_updated = null;
+			$month_updated = null;
+			$year_updated = null;
+			if (isset($_GET['sDateUpdated'])) {
+				$sDateUpdated = Decode($_GET['sDateUpdated']);
+			} else {
+				$sDateUpdated = FALSE;
+			}
+			if ($sDateUpdated != FALSE) {
+				date_default_timezone_set('UTC');
+				try {
+					$day_updated = date("d",mb_substr($sDateUpdated,1,null,'UTF-8'));
+					$month_updated = date("m",mb_substr($sDateUpdated,1,null,'UTF-8'));
+					$year_updated = date("Y",mb_substr($sDateUpdated,1,null,'UTF-8'));
+				} catch (Exception $e) {
+					// Invalid Time
+				}
+				if (mb_substr($sDateUpdated,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
+					$before = " checked";
+					$since = "";
+				} else if (mb_substr($sDateUpdated,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
+					$before = "";
+					$since = " checked";
+				}
+			}
+			/* ############################################# */
+			$before = "";
+			$since = "";
+			$day_added = null;
+			$month_added = null;
+			$year_added = null;
+			if (isset($_GET['sDateAdded'])) {
+				$sDateAdded = Decode($_GET['sDateAdded']);
+			} else {
+				$sDateAdded = FALSE;
+			}
+			if ($sDateAdded != FALSE) {
+				date_default_timezone_set('UTC');
+				try {
+					$day_added = date("d",mb_substr($sDateAdded,1,null,'UTF-8'));
+					$month_added = date("m",mb_substr($sDateAdded,1,null,'UTF-8'));
+					$year_added = date("Y",mb_substr($sDateAdded,1,null,'UTF-8'));
+				} catch (Exception $e) {
+					// Invalid Time
+				}
+				if (mb_substr($sDateAdded,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
+					$before = " checked";
+					$since = "";
+				} else if (mb_substr($sDateAdded,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
+					$before = "";
+					$since = " checked";
 				}
 			}
 			/* ############################################# */
@@ -445,13 +494,48 @@ if (!isset($_GET['code'])) {
 			<input type='checkbox' name='SmutLevel6' value='PU'".$smut[5]."> Pure
 			</td>
 			<td style='border: 1px solid black'>
+			Date Updated<br />
+			<input type='radio' name='DateType' value='B'".$before."> Before<br />
+			<input type='radio' name='DateType' value='S'".$since."> Since<br />
+			<select name='DayUpdated'>\n";
+					// Print all days and select current
+					for ($i = 1; $i <= 31; $i ++) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_updated == null) or ($day_updated == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			<select name='MonthUpdated'>\n";
+					// Print all months and select current
+					for ($i = 1; $i <= 12; $i ++) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_updated == null) or ($month_updated == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			<select name='YearUpdated'>\n";
+					// Print all years and select current
+					for ($i = 2013; $i <= intval($currentYear); $i ++) {
+						if (($currentYear == $i and $year_updated == null) or ($year_updated == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			</td>
+			<td style='border: 1px solid black'>
 			Date Published<br />
 			<input type='radio' name='DateType' value='B'".$before."> Before<br />
 			<input type='radio' name='DateType' value='S'".$since."> Since<br />
 			<select name='DayPublished'>\n";
 					// Print all days and select current
 					for ($i = 1; $i <= 31; $i ++) {
-						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day == null) or ($day == $i)) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_published == null) or ($day_published == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -461,7 +545,7 @@ if (!isset($_GET['code'])) {
 			<select name='MonthPublished'>\n";
 					// Print all months and select current
 					for ($i = 1; $i <= 12; $i ++) {
-						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month == null) or ($month == $i)) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_published == null) or ($month_published == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -471,7 +555,42 @@ if (!isset($_GET['code'])) {
 			<select name='YearPublished'>\n";
 					// Print all years and select current
 					for ($i = 2013; $i <= intval($currentYear); $i ++) {
-						if (($currentYear == $i and $year == null) or ($year == $i)) {
+						if (($currentYear == $i and $year_published == null) or ($year_published == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			</td>
+			<td style='border: 1px solid black'>
+			Date Added<br />
+			<input type='radio' name='DateType' value='B'".$before."> Before<br />
+			<input type='radio' name='DateType' value='S'".$since."> Since<br />
+			<select name='DayAdded'>\n";
+					// Print all days and select current
+					for ($i = 1; $i <= 31; $i ++) {
+						if (($currentDay == str_pad($i, 2, '0', STR_PAD_LEFT) and $day_added == null) or ($day_added == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			<select name='MonthAdded'>\n";
+					// Print all months and select current
+					for ($i = 1; $i <= 12; $i ++) {
+						if (($currentMonth == str_pad($i, 2, '0', STR_PAD_LEFT) and $month_added == null) or ($month_added == $i)) {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						} else {
+							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
+						}
+					}
+				echo "\t\t\t</select>
+			<select name='YearAdded'>\n";
+					// Print all years and select current
+					for ($i = 2013; $i <= intval($currentYear); $i ++) {
+						if (($currentYear == $i and $year_added == null) or ($year_added == $i)) {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."' selected>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
 						} else {
 							echo "\t\t\t\t<option value='".str_pad($i, 2, '0', STR_PAD_LEFT)."'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</option>\n";
@@ -653,7 +772,7 @@ if (!isset($_GET['code'])) {
 			}
 			
 			// Select all stories data
-			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Chapters,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimePublished,Moderated FROM Stories;');
+			$stmt = $pdo->prepare('SELECT StoryId,Title,Author,Chapters,Words,StoryType,Complete,Setting,ElsaCharacter,AnnaCharacter,ElsaPowers,AnnaPowers,Sisters,Age,SmutLevel,TimeUpdated,TimePublished,Moderated FROM Stories;');
 			$stmt->execute();
 			$rows = $stmt->fetchAll();			
 					
@@ -836,17 +955,17 @@ if (!isset($_GET['code'])) {
 						}
 					}
 					/* ############################################################### */
-					if (isset($_GET['sDate']) and $found == True) {
-						$sDate = Decode($_GET['sDate']);
+					if (isset($_GET['sDatePublished']) and $found == True) {
+						$sDatePublished = Decode($_GET['sDatePublished']);
 					} else {
-						$sDate = FALSE;
+						$sDatePublished = FALSE;
 					}
 
-					if ($sDate != FALSE) {
-						if (mb_substr($sDate,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
+					if ($sDatePublished != FALSE) {
+						if (mb_substr($sDatePublished,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
 							try {
 								$timePublished = $story['TimePublished'];
-								$filterTime = intdiv(mb_substr($sDate,1,null,'UTF-8'),86400) * 86400;
+								$filterTime = intdiv(mb_substr($sDatePublished,1,null,'UTF-8'),86400) * 86400;
 								if ($timePublished > $filterTime) {
 									$found = False;
 								}
@@ -854,11 +973,79 @@ if (!isset($_GET['code'])) {
 								// Invalid Date
 								$found = False;
 							}
-						} else if (mb_substr($sDate,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDate,1,null,'UTF-8'))) {
+						} else if (mb_substr($sDatePublished,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDatePublished,1,null,'UTF-8'))) {
 							try {
 								$timePublished = $story['TimePublished'];
-								$filterTime = intdiv(mb_substr($sDate,1,null,'UTF-8'),86400) * 86400;
+								$filterTime = intdiv(mb_substr($sDatePublished,1,null,'UTF-8'),86400) * 86400;
 								if ($timePublished < $filterTime) {
+									$found = False;
+								}
+							} catch (Exception $e) {
+								// Invalid Date
+								$found = False;
+							}
+						} else {
+							$found = False;
+						}
+					}
+					/* ############################################################### */
+					if (isset($_GET['sDateUpdated']) and $found == True) {
+						$sDateUpdated = Decode($_GET['sDateUpdated']);
+					} else {
+						$sDateUpdated = FALSE;
+					}
+
+					if ($sDateUpdated != FALSE) {
+						if (mb_substr($sDateUpdated,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
+							try {
+								$timeUpdated = $story['TimeUpdated'];
+								$filterTime = intdiv(mb_substr($sDateUpdated,1,null,'UTF-8'),86400) * 86400;
+								if ($timeUpdated > $filterTime) {
+									$found = False;
+								}
+							} catch (Exception $e) {
+								// Invalid Date
+								$found = False;
+							}
+						} else if (mb_substr($sDateUpdated,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateUpdated,1,null,'UTF-8'))) {
+							try {
+								$timeUpdated = $story['TimeUpdated'];
+								$filterTime = intdiv(mb_substr($sDateUpdated,1,null,'UTF-8'),86400) * 86400;
+								if ($timeUpdated < $filterTime) {
+									$found = False;
+								}
+							} catch (Exception $e) {
+								// Invalid Date
+								$found = False;
+							}
+						} else {
+							$found = False;
+						}
+					}
+					/* ############################################################### */
+					if (isset($_GET['sDateAdded']) and $found == True) {
+						$sDateAdded = Decode($_GET['sDateAdded']);
+					} else {
+						$sDateAdded = FALSE;
+					}
+
+					if ($sDateAdded != FALSE) {
+						if (mb_substr($sDateAdded,0,1,'UTF-8') == "B" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
+							try {
+								$timeAdded = $story['TimeAdded'];
+								$filterTime = intdiv(mb_substr($sDateAdded,1,null,'UTF-8'),86400) * 86400;
+								if ($timeAdded > $filterTime) {
+									$found = False;
+								}
+							} catch (Exception $e) {
+								// Invalid Date
+								$found = False;
+							}
+						} else if (mb_substr($sDateAdded,0,1,'UTF-8') == "S" and is_numeric(mb_substr($sDateAdded,1,null,'UTF-8'))) {
+							try {
+								$timeAdded = $story['TimeAdded'];
+								$filterTime = intdiv(mb_substr($sDateAdded,1,null,'UTF-8'),86400) * 86400;
+								if ($timeAdded < $filterTime) {
 									$found = False;
 								}
 							} catch (Exception $e) {
