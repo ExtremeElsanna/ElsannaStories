@@ -52,7 +52,7 @@
 				}
 				break;
 			case "DayPublished":
-				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
+				if (isset($_POST['MonthPublished']) and isset($_POST['YearPublished']) and is_numeric($_POST['DayPublished']) and is_numeric($_POST['MonthPublished']) and is_numeric($_POST['YearPublished']) and isset($_POST['DatePublishedType']) and ($_POST['DatePublishedType'] == "B" or $_POST['DatePublishedType'] == "S")) {
 					try {
 						$encParam = Encode($_POST['DatePublishedType'].strtotime ( $_POST['YearPublished']."-".$_POST['MonthPublished']."-".$_POST['DayPublished']));
 						$getParams = $getParams."sDatePublished=".$encParam."&";
@@ -62,7 +62,7 @@
 				}
 				break;
 			case "DayUpdated":
-				if (isset($_POST['MonthUpdated']) and isset($_POST['YearUpdated']) and is_numeric($_POST['DayUpdated']) and is_numeric($_POST['MonthUpdated']) and is_numeric($_POST['YearUpdated']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
+				if (isset($_POST['MonthUpdated']) and isset($_POST['YearUpdated']) and is_numeric($_POST['DayUpdated']) and is_numeric($_POST['MonthUpdated']) and is_numeric($_POST['YearUpdated']) and isset($_POST['DateUpdatedType']) and ($_POST['DateUpdatedType'] == "B" or $_POST['DateUpdatedType'] == "S")) {
 					try {
 						$encParam = Encode($_POST['DateUpdatedType'].strtotime ( $_POST['YearUpdated']."-".$_POST['MonthUpdated']."-".$_POST['DayUpdated']));
 						$getParams = $getParams."sDateUpdated=".$encParam."&";
@@ -72,7 +72,7 @@
 				}
 				break;
 			case "DayAdded":
-				if (isset($_POST['MonthAdded']) and isset($_POST['YearAdded']) and is_numeric($_POST['DayAdded']) and is_numeric($_POST['MonthAdded']) and is_numeric($_POST['YearAdded']) and isset($_POST['DateType']) and ($_POST['DateType'] == "B" or $_POST['DateType'] == "S")) {
+				if (isset($_POST['MonthAdded']) and isset($_POST['YearAdded']) and is_numeric($_POST['DayAdded']) and is_numeric($_POST['MonthAdded']) and is_numeric($_POST['YearAdded']) and isset($_POST['DateAddedType']) and ($_POST['DateAddedType'] == "B" or $_POST['DateAddedType'] == "S")) {
 					try {
 						$encParam = Encode($_POST['DateAddedType'].strtotime ( $_POST['YearAdded']."-".$_POST['MonthAdded']."-".$_POST['DayAdded']));
 						$getParams = $getParams."sDateAdded=".$encParam."&";
